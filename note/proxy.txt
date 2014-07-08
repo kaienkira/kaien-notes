@@ -17,11 +17,11 @@ proxychains <prog> <args>
 socks4 do not support UDP
 
 正向端口转发
-ssh -L[bind_address:]:<remote_port>:<local_addr>:<local_port>
+ssh -L[bind_address:]<remote_port>:<local_addr>:<local_port>
     <user_name>@<proxy_name>
 
 反向端口转发
-ssh -C -f -N -g -R[bind_address:]:<remote_port>:<local_addr>:<local_port>
+ssh -C -f -N -g -R[bind_address:]<remote_port>:<local_addr>:<local_port>
     <user_name>@<host_name>
 (修改/etc/ssh/sshd_config来监听非localhost地址)
 GatewayPorts yes
