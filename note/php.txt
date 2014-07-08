@@ -1,0 +1,240 @@
+===============================================================================
+-*- compile -*-
+-------------------------------------------------------------------------------
+./configure --prefix=/opt/php --with-apxs=/usr/sbin/apxs
+===============================================================================
+-*- php.ini Setting -*-
+-------------------------------------------------------------------------------
+*. variables_order "EGPCS"
+   (Environment,Get,Post,Cookie,Server)
+===============================================================================
+-*- Session -*-
+-------------------------------------------------------------------------------
+*. Session are made up of two components
+   a) Cookie
+   b) Server-side session data
+   The cookie usually contains a session id, which references where on the
+   server to get the session data from. The server then uses this session 
+   id to fetch the data from the server which is contained inside of a
+   file that has the matching name as the session id.
+*. Sessions are stored on the server, which means clients do not have
+   access to the information you store about them. Session data, being stored
+   on your server, does not need to be transmitted with each page; clients
+   jutst need to send an ID and the data is loaded from the local file.
+   Finally, session can be any size you want because they are held on your
+   server, whereas many web browsers have a limit on how big cookies can be
+   to stop rogue web sites chewing up gigabytes of data with meaningless
+   cookie information.
+===============================================================================
+-*- Cookies -*-
+-------------------------------------------------------------------------------
+*. Cookies can be set to a long lifespan, which means that data stored in a
+   cookie can be stored for months if not years. Cookies, having their data
+   stored on the client, work smoothly when you have a cluster of web servers,
+   whereas sessions are stored on the server, meaning in one of your web
+   servers handles the first request, the other web servers in your cluster
+   will not have the stored information.
+*. P3P problem
+    header('P3P: CP="CURa ADMa DEVa PSAo PSDo OUR BUS UNI '.
+           'PUR INT DEM STA PRE COM NAV OTC NOI DSP COR"');
+    header('P3P:CP=CAO PSA OUR');
+===============================================================================
+-*- Strings -*-
+-------------------------------------------------------------------------------
+*. A string is series of characters, where a character is the same as a byte.
+   This means that PHP only supports a 256-charater set, and hence does not
+   offer native Unicode support.
+===============================================================================
+-*- NULL -*-
+-------------------------------------------------------------------------------
+*. 特殊的NULL值表示一个变量没有值, NULL类型唯一可能的值就是NULL
+*. 在下列情况下一个变量被认为是NULL
+    <> 被赋值为NULL
+    <> 尚未被赋值
+    <> 被unset()
+*. NULL类型只有一个值, 就是大小写不敏感的关键字NULL
+===============================================================================
+-*- foreach loop -*-
+-------------------------------------------------------------------------------
+*. foreach works with all kinds of traversables(ie, arrays, plain objects, and
+   Traversable objects)
+*. Arrays in PHP are ordered hashtables. foreach will traverse the array
+   according to that order.
+*. When does foreach copy
+    <> $array Not referenced, refcount==1
+        ** do not copy **
+            The only thing that foreach modifies about $array is it's internal
+            array pointer. This is expected behavior and thus doesn't need 
+            to be prevented.
+    <> $array referenced
+        ** do not copy **
+    <> $array Not referenced, refcount > 1, not iterrated by reference
+        ** will copy the array structure, but not the values **
+    <> $array Not referenced, refcount > 1, iterated by reference
+        ** will copy the array structure and values **
+===============================================================================
+-*- Refernces -*-
+-------------------------------------------------------------------------------
+*. 使用引用往往导致性能变差的原因在于一般的变量和引用变量之间的赋值将会导致
+   拷贝的产生. 而一般变量之间的赋值有Copy On Write支持
+
+    $a = 1;
+    $b = $a;
+    $c = &$a;
+    <step1> $a      => FirstZval(type=IS_LONG, value.lval=1,
+                                 is_ref=0, refcount=1)
+    <step2> ($a,$b) => FirstZval(type=IS_LONG, value.lval=1,
+                                 is_ref=0, refcount=2)
+    <step3> $b      => FirstZval(type=IS_LONG, value.lval=1,
+                                 is_ref=0, refcount=1)
+            ($a,$c) => SecondZval(type=IS_LONG, value.lval=1,
+                                  is_ref=1, refcount=2)
+
+    $a = 1;
+    $b = &$a;
+    $c = $a;
+    <step1> $a      => FirstZval(type=IS_LONG, value.lval=1,
+                                 is_ref=0, refcount=1)
+    <step2> ($a,$b) => FirstZval(type=IS_LONG, value.lval=1,
+                                 is_ref=1, refcount=2)
+    <step3> ($a,$b) => FirstZval(type=IS_LONG, value.lval=1,
+                                 is_ref=1, refcount=2)
+            $c      => SecondZval(type=IS_LONG, value.lval=1,
+                                  is_ref=0, refcount=1)
+===============================================================================
+-*- Error Handling and Logging -*-
+-------------------------------------------------------------------------------
+debug_backtrace()
+debug_print_backtrace()
+
+set_error_handler()
+trigger_error()
+restore_error_handler()
+===============================================================================
+-*- File System -*-
+-------------------------------------------------------------------------------
+file_get_contents()
+    -- reads entrie file into a string
+===============================================================================
+-*- Async Call -*-
+-------------------------------------------------------------------------------
+ignore_user_abort(true);
+header("Connection: close\r\n");
+header("Content-Encoding: none\r\n");
+header("Content-Length: 0");
+if (function_exists(fastcgi_finish_request)) {
+    fastcgi_finish_request(); // important when using php-fpm!
+}
+flush();
+===============================================================================
+-*- Array -*-
+-------------------------------------------------------------------------------
+*. delete an element from an array
+    <> unset($a[i]); $a = array_value($a);
+       It should be noted that unset() will keep indexes untouched, which is
+       what you'd expect when using string indexes (array as hashtable), but
+       can be quite surpring when dealing with interger indexed arrays. So
+       use array_values() after unset();
+    <> array_splice()
+    <> array_diff()
+===============================================================================
+pack("H*", $hex_string) PHP < 5.4.0 
+hex2bin($hex_string)    PHP >= 5.4.0
+===============================================================================
+# 输出json格式信息
+header('Content-type: text/json');
+json_encode($var);
+
+# 打包解包数据
+pack()
+unpack()
+
+# 数组操作
+array_flip()
+# 数组排序
+array_multisort()
+
+# key-sort
+ksort()
+krsort()
+uksort()
+
+# value-sort: no maintain key associative 
+sort()
+rsort()
+usort()
+
+# value-sort: maintain key associative
+asort()
+arsort()
+uasort()
+
+# value-sort: naturl order
+natsort()
+natcasesort()
+
+# shuffle
+shuffle()
+
+# 字符转换
+strtr()
+
+# 正则表达式
+Named subpatterns (?P<name>) (?<name>) (?'name')
+preg_replace('/(?:^|_)([a-z])/e', "strtoupper('\\1')", strtolower($const_name))
+
+# 可变参数
+func_get_args()
+func_num_args()
+
+#删除变量
+unset()
+
+================================================================================
+超级变量
+
+$_SERVER['HTTP_USER_AGENT']
+================================================================================
+* It must be from a language which supports a NULL character represented by a
+  zero. PHP does not support a NULL character
+* The PHP version of unpack does not support NULL characters (as PHP does not
+  support NULL characters) and treats the character with hex value 0 as just
+  another character
+================================================================================
+* PHP does not support unsigned integers, Integer size can be determined
+  using the constant PHP_INT_SIZE
+* There is no integer division operator in PHP 1/2 yields the float 0.5
+* double使用52位表示尾数, 算上隐含的首位1, 一共是53位精度, 如果一个long的整数, 
+  值小于2^53 - 1 = 9007199254740991, 那么, 这个整数, 在发生long->double->long的
+  数值转换时, 不会发生精度丢失
+================================================================================
+* PHP allows you to access member data/methods in several ways
+
+  (1)object->{'name_of_member'};
+  (2)object->name_of_member;
+  (3)$member = 'name_of_member';
+     object->$member;
+================================================================================
+constant                                  blah    
+variable                                  $blah                            obj->blah
+variable;name from expression             ${expr}                          obj->{expr}
+variable;name from variable               $$blah                           obj->$blah
+    (equivalent to)                       ${$blah}                         obj->{$blah}
+function                                  blah()                           obj->blah()
+function;name from expression             {expr}() '(illegal syntax)'      obj->{expr}()
+function;name from variable               $blah()                          obj->$blah()
+    (equivalent to)                       {$blash}() '(illegal syntax)'    obj->{exprt}()
+function;name from variable twice         $$blah()                         obj->$$blah()
+    (equivalent to)                       ${$blah}()                       obj->{${$blah}}()
+array element                             $blah[expr]                      obj->blah[expr]
+variable;name from array element          $$blah[expr]                     obj->$blah[expr]
+array element;array name from variable    ${$blah}[expr]                   obj->{$blah}[expr]
+function;name from array element          $blah[expr]()                    obj->blah[expr]()
+                                              'ordinary function selected by array in object'
+                                                                           obj->{$blah[expr]}()
+                                              'Method in object selected by ordinary array'
+element of array returned from function   $blah()[expr] 'Not legal syntax'
+================================================================================
+There is no controlling terminal when you are doing passthrough, so there is on
+way for less to determine how 'big' your screen is so it can start paging
+================================================================================

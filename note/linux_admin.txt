@@ -1,0 +1,101 @@
+===============================================================================
+-*- crontab -*-
+-------------------------------------------------------------------------------
+*. crontab [-u user] {-e|-l|-r}
+   crontab [-u user] file
+*. crontab file format
+    <> minute hour dayofmonth month dayofweek command
+        [] dayofweek 0-7 (0 or 7 is Sun)
+        [] *
+        [] a-b
+        [] a,b
+        [] a/n, a-b/n
+
+*. files
+    <> allow file
+        /etc/cron.allow
+    <> deny file
+        /etc/cron.deny
+    <> system crontab file
+        /etc/crontab
+    <> user crontab file
+        [] centos /var/spool/cron/<username>
+        [] ubuntu /var/spool/cron/crontabs/<username>
+*. anacron
+===============================================================================
+-*- nmap -*-
+-------------------------------------------------------------------------------
+ -n
+    No DNS resolution
+ -PN
+    Treat all hosts as online, skip host discovery
+ -sP
+    Skip port scan
+
+ -T[0-5]     
+    Set a timing template
+    0 - paranoid
+    1 - sneaky
+    2 - polite
+    3 - normal
+    4 - aggressive
+    5 - insane
+ -D <decoy_list> -D RND:<number>
+    Cloak a scan with decoys
+ --randomize-hosts
+
+ -A
+    Enables OS detection and Version detection, Script scanning and Traceroute
+===============================================================================
+-*- rsyslog -*-
+-------------------------------------------------------------------------------
+===============================================================================
+-*- coredump -*-
+-------------------------------------------------------------------------------
+/proc/sys/kernel/core_pattern
+/proc/sys/kernel/core_uses_pid
+/proc/sys/fs/suid_dumpable
+===============================================================================
+-*- shared memory -*-
+-------------------------------------------------------------------------------
+/proc/sys/kernel/shmmax    max size of shared memory segment(bytes)
+/proc/sys/kernel/shmmni    max number of shared memory segments system-wide
+/proc/sys/kernel/shmall    (shmmax / page_size)
+===============================================================================
+-*- lvm -*-
+-------------------------------------------------------------------------------
+cfdisk /dev/sda (create new partition)
+fdisk /dev/sda (delete cfdisk's created partition, then create new one)
+p -> l -> t -> 8e
+pvcreate /dev/sda6
+vgextend <vg_name> /dev/sda6
+vgs (see size)
+lvs (see size)
+lvextend /dev/<vg_name>/root /dev/sda6
+resize2fs /dev/<vg_name>/root
+===============================================================================
+-*- ntpdate -*-
+-------------------------------------------------------------------------------
+ntpdate ntp.nasa.gov
+===============================================================================
+-*- iptables -*-
+-------------------------------------------------------------------------------
+iptables
+
+COMMAND
+ -L [chains] 
+    List all rules in the selected chain
+    If no chain is selected, all chains are listed
+ -F [chains]
+    deleting all the rules one by one in the selected chain
+ -A <chains> <rule-spec>
+     Append one or more rules to the end of the selected chain.
+
+RULE SPEC
+  [!] -p <protocol>
+    tcp/udp/udplite/icmp/esp/ah/sctp/all
+    map-file /etc/protocols
+  [!] -s <src_addr>
+  [!] -d <dest_addr>
+  -j <target>
+===============================================================================

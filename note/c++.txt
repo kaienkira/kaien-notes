@@ -1,0 +1,507 @@
+===============================================================================
+<algorithm>
+count()
+count_if()
+unique_copy()
+sort()
+    比较函数要求对于调用的两个参数交换位置时不能得到相同的true的结果
+transform()
+===============================================================================
+
+===============================================================================
+-*- Operator Summary -*-
+-------------------------------------------------------------------------------
+    [scope resolution]                class_name::member
+    [scope resolution]                namespace_name::member
+    [global]                          ::name
+    [global]                          ::qualified-name
+-------------------------------------------------------------------------------
+    [member selection]                object.member
+    [member selection]                pointer->member
+    [subscripting]                    pointer[expr]
+    [function call]                   expr(expr_list)
+    [value construction]              type(expr_list)
+    [post increment]                  lvalue++
+    [post decrement]                  lvalue--
+    [type identification]             typeid(type)
+    [run-time type identification]    typeid(expr)
+    [run-time checked conversion]     dynamic_cast<type>(expr)
+    [compile-time checked conversion] static_cast<type>(expr)
+    [unchecked conversion]            reinterpret_cast<type>(expr)
+    [const conversion]                const_cast<type>(expr)
+-------------------------------------------------------------------------------
+    [size of object]                  sizeof(expr)
+    [size of type]                    sizeof(type)
+    [pre increment]                   ++lvalue
+    [pre decrement]                   --lvalue
+    [complement]                      ~expr
+    [not]                             !expr
+    [unary minus]                     -expr
+    [unary plus]                      +expr
+    [address of]                      &expr
+    [dereference]                     *expr
+    [create(allocate)]                new type
+    [create(allocate and initialize)] new type(expr_list)
+    [create(place)]                   new(expr_list) type
+    [create(place and initialize)]    new(expr_list) type(expr_list)
+    [destroy(de-allocate)]            delete pointer
+    [destroy array]                   delete[] pointer
+    [cast(type conversion)]           (type)expr
+-------------------------------------------------------------------------------
+    [member selection]                object.*pointer-to-member
+    [member selection]                pointer->*pointer-to-member
+-------------------------------------------------------------------------------
+    [multiply]                        expr * expr
+    [divide]                          expr / expr
+    [modulo(remainder)]               expr % expr
+-------------------------------------------------------------------------------
+    [add(plus)]                       expr + expr
+    [subtract(minus)]                 expr - expr
+-------------------------------------------------------------------------------
+    [shift left]                      expr << expr
+    [shift right]                     expr >> expr
+-------------------------------------------------------------------------------
+    [less than]                       expr < expr
+    [less than or equal]              expr <= expr
+    [greater than]                    expr > expr
+    [greater than or equal]           expr >= expr
+-------------------------------------------------------------------------------
+    [equal]                           expr == expr
+    [not equal]                       expr != expr
+-------------------------------------------------------------------------------
+    [bitwise AND]                     expr & expr
+-------------------------------------------------------------------------------
+    [bitwise exclusive OR]            expr ^ expr
+-------------------------------------------------------------------------------
+    [bitwise inclusive OR]            expr | expr
+-------------------------------------------------------------------------------
+    [logical AND]                     expr && expr
+-------------------------------------------------------------------------------
+    [logical inclusive OR]            expr || expr
+-------------------------------------------------------------------------------
+    [simple assignment]               lvalue = expr
+    [multiply and assign]             lvalue *= expr
+    [divide and assign]               lvalue /= expr
+    [modulo and assign]               lvalue %= expr
+    [add and assgin]                  lvalue += expr
+    [subtract and assign]             lvalue -= expr
+    [shift left and assign]           lvalue <<= expr
+    [shift right and assign]          lvalue >>= expr
+    [AND and assign]                  lvalue &= expr
+    [inclusive OR and assign]         lvalue |= expr
+    [exclusive OR and assign]         lvalue ^= expr
+-------------------------------------------------------------------------------
+    [conditional expression]          expr ? expr : expr
+-------------------------------------------------------------------------------
+    [throw exception]                 throw expr
+-------------------------------------------------------------------------------
+    [comma(sequencing)]               expr, expr
+-------------------------------------------------------------------------------
+&& || , . .* :: ?: new delete sizeof typeid
+staic_cast dynamic_cast const_cast reinterpret_cast
+can not be override. 
+===============================================================================
+
+
+===============================================================================
+-*- Misc -*-
+-------------------------------------------------------------------------------
+*. For C++, you can't jump over an initialization, You can in C.
+   However, in C, a declaration is not a statement, and case lables
+   have to be followed by statements.
+*. if (double d = 1.0) {} 
+   C++ -- valid
+   C   -- invalid
+*. override prefix ++ and postfix ++
+    operator++() prefix
+    operator++(int) postfix
+*. operator new - just allocate memory, can be override.
+   new operator - call operator new, then call constructor, can not be override
+*. C++ overloaded method pointer
+   (void (A::*)()) &A::f
+   (void (A::*)(int)) &A::f
+   function pointers and member function pointers have this feature:
+   the overload can be resolved by to what the result was assigned or cast.
+===============================================================================
+
+
+===============================================================================
+-*- Forward declaration -*-
+===============================================================================
+*. 将文件间的编译依存关系降至最低 
+    <> 当你声明一个函数而它用到某个class时, 你并不需要该class的定义, 纵使函数
+       以by value 方式传递该类型的参数(返回值)亦然
+struct X;              // Forward declaration of X
+void f1(X* px) {}      // Legal: can always use a pointer/reference
+X f2(int);             // Legal: return value in function prototype
+void f3(X);            // Legal: parameter in function prototype
+void f4(X) {}          // ILLEGAL: *definitions* require complete types
+===============================================================================
+
+
+===============================================================================
+-*- idoioms -*-
+-------------------------------------------------------------------------------
+*. address-of
+    get real address of the object even the object override the operator&()
+    template <class T>
+    T * addressof(T & v)
+    {
+        return reinterpret_cast<T *>(
+            &const_cast<char&>(reinterpret_cast<const volatile char &>(v))
+        );
+    }
+    A cast straight to char& would fail if T has const or volatile qualifiers
+    reinterpret_cast can't remove these (but can add them),
+    and const_cast can't make arbitrary type changes.
+*. erase-remove idiom
+    c.erase(remove(c.begin(), c.end(), v), c.end());
+*. pimpl
+    Must provide destructor "in cpp file" in the PIMPL when use scoped_ptr.
+===============================================================================
+
+
+===============================================================================
+-*- Extention -*-
+-------------------------------------------------------------------------------
+*. __PRETTY_FUNCTION__ (g++)
+*. SEH (Structured Exception Handling) (microsoft)
+===============================================================================
+
+
+===============================================================================
+-*- Type Traits -*-
+-------------------------------------------------------------------------------
+*. traits are important because they allow you to make compile-time decisions
+   based on types, much as you would make runtime decisions based on values.
+*. Think of a trait as a small object whose main purpose is to carry
+   information used by another object or algorithm to determine
+   "policy" or "implementation details"
+*. Advantage of traits
+    <> a consistent interface
+        limits.h float.h <=> std::numeric_limits
+        [] where as with the C style limits.h idiom, where you must know
+           the type, with the C++ traits idiom, only the compiler needs
+           to know the type.
+*. Traits classed do not determine the type of the object. Instead, they
+   provide additional information about a type, typically by defining 
+   typedefs or constants inside the trait
+===============================================================================
+
+
+===============================================================================
+-*- Smart Pointer -*-
+-------------------------------------------------------------------------------
+*. Less bugs, Exception Safety, Garbage collection, Efficiency, STL containers
+*. A smart pointer is a class that wraps a "bare" C++ pointer, to manage the
+   lifetime of the object being pointed to. With "bare" C++ pointers, the
+   programmer has to explicitly destory the object when it is no longer
+   useful. A smart pointer by commparsion defines a policy as to when the
+   object is destroyed. You still have to create the object, but you no longer
+   have to worry about destroying it.
+*. To look and feel like pointers, smart pointers need to have the same
+   interface that pointers do, they need to support pointer operations like
+   dereferencing (operator *) and indirection(operator ->). An object that
+   looks and feels like somthing else is called a proxy object, or just proxy.
+*. you must never create more than one shared_ptr from the same raw pointer
+===============================================================================
+
+
+===============================================================================
+-*- Iterator Invalidation Rules (C++11) -*-
+-------------------------------------------------------------------------------
+*. Sequence containers 
+    <> vector
+        [] Insertion
+        all iterators and references before the point of insertion are 
+        unaffected, unless the new container size is greater than the previous 
+        capacity (in which case all iterators and references are invalidated)
+        [] Erasue
+        every iterator and reference after the point of erase is invalidated
+    <> deque
+        [] Insertion
+        all iterators and references are invalidated, unless the inserted
+        member is at an end(front or back) of the deque(in which case all
+        iterators are invalidated, but references to elements are unaffected)
+        [] Erasue
+        erasing the last element invalidates only iterators and references to
+        the erased elements and the past-the-end iterator; erasing the first
+        element invalidates only iterators and references to the erased
+        elements; erasing any other elements invalidates all iterators and
+        references (including the past-the-end iterator)
+    <> list
+        [] Insertion
+        all iterators and references unaffected
+        [] Erasue
+        only the iterators and references to the erased element is invalidated
+    <> foward_list
+        [] Insertion
+        all iterators and references unaffected
+        [] Erasue
+        only the iterators and references to the erased element is invalidated
+    <> array
+        [] (n/a)
+*. Associative containers
+    <> set, multiset, map, multimap
+        [] Insertion
+        all iterators and references unaffected
+        [] Erasue
+        only the iterators and references to the erased element is invalidated
+*. Unordered associative containers
+    <> unordered_set, unordered_multiset, unordered_map, unordered_multimap
+        [] all iterators invalidated when rehashing occurs,
+           but references unaffected 
+*. Container adaptors
+    <> stack
+        inherited from underlying container
+    <> queue
+        inherited from underlying container
+    <>priority_queue
+        inherited from underlying container
+===============================================================================
+
+
+===============================================================================
+-*- value categories -*-
+===============================================================================
+*. each C++ expression is characterized by two independent properties:
+   a type and a value category.
+*. lvaue
+    An lvalue is an expression that identifies a non-temporary object
+    or a non-member function
+   [] The name of an object or function in scope, regardless of type.
+   [] Function call/operator expression if the function's or the operator's
+      return type is an lvalue reference.
+   [] Cast expression to lvalue reference type. 
+   [] String litral
+   [] Function call expression if the function's return type is rvalue
+      reference to function type
+   [] Cast expression to rvalue reference to function.
+   [*] Address of an lvalue may be taken
+   [*] A modifiable lvalue may be used as the first (left) argument of the
+       built-in assignment operator.
+   [*] An lvalue may be used to initialze an lvalue reference;
+       this associates a new name with the object identified by the expression.
+*. rvalue (until C++11) / prvalue (since C++11)
+   a prvalue is an expression that identifies a temporary object (or a subobject
+   thereof) or is a value not associated with any object.
+   [] Literal (except string literal)
+   [] Function call/operator expression if the function's or the operator's
+      return type is not a reference
+   [] Cast expression to any type other than reference type.
+   [] Lambda expressions
+*. xvalue
+   An xvalue is an expression that identifies an "eXpiring" object, that is,
+   the object that may be moved from.
+*. glvalue
+    lvalue + xvalue
+*. rvlue (since C++11)
+    prvalue + xvalue
+===============================================================================
+-*- references -*-
+===============================================================================
+*. Rvalue reference may bind only to rvalues
+   Lvalue reference in addition to being able to bind a lvalues,
+   may bind to rvalues only under restricted circumstances(const T&)
+*. named lvalue reference and rvalue refence are both lvalue.
+*. the lvalueness or rvalueness of an expression is independent of its type.
+*. const rvalue reference
+   [] A const rvalue will prefer to bind to the const rvalue reference rather
+      than the const lvalue reference.
+   [] while a const lvalue reference can bind to an rvalue,
+            a const rvalue reference cannot bind to an lvalue.
+*. universal reference
+   [] "&&" in a type declaration sometimes means rvalue reference, but
+      sometimes it means either rvalue or lvalue reference.
+   [] If a variable or parameter is declared to have type "T&&" for some
+      "deduced type T", that variable or parameter is a universal reference.
+   [] universal references are: 
+      <> function templates parameter
+      <> auto-declared variables
+      <> typedef
+      <> decltype
+   [] If the expression initializing a universal reference is an lvalue,
+      the universal reference becomes an lvalue reference.
+      If the expression initializing the universal reference is an rvalue,
+      the universal reference becomes an rvalue reference.
+   [] Universal references can only occur in the form "T&&". Even the simple
+      addition of a const qalifier is enough to disable the interpretation
+      of "&&" as a universal reference.
+      template<typename T>
+      void f(const T&& param); // "&& means rvalue reference.
+   [] the motivation for std::forward: to take a universal reference lvalue
+      and convert it into an rvalue only if the expression it's bound to
+      is an rvalue.
+   [] During type deduction for a template parameter that is a universal
+      reference, lvalues and rvalues of the same type are deduced to have
+      slightly different types. In particular, lvalues of type T are deduced
+      to be of type T&, while rvalues of type T are deduced to be simply of
+      type T. Things get subtler when deducing the type for a variable that
+      is itself a reference. In that case, the reference part of the type
+      is ignored.
+      template<T>
+      void f(T&&);
+      int x;
+      int &&r1 = 10;
+      int &r2 = x;
+      f(r1);
+      f(r2);
+      the type of both r1 and r2 is considered to be int in a call to the
+      template f(reference-stripping)
+*. reference-collapsing
+   [] An rvalue reference to an rvalue reference becomes an rvalue reference.
+   [] All other references to references collapse into a lvalue reference.
+
+===============================================================================
+
+===============================================================================
+-*- <The C++ Programming Language 4th> Notes -*-
+-------------------------------------------------------------------------------
+*. Types and Declarations
+    [] char, unsigned char, signed char are distinct types.
+    [] literal prefix and suffix
+        octal           0776
+        hexadecimal     0xff 0Xff
+        unsigned        10u 10U
+        long            200000l 200000L
+        long long       200000ll 200000LL
+        float           10f 10F
+        char16_t        u'c'
+        char32_t        U'c'
+        wchar_t         L'c'
+        string          "mess"
+        raw string      R"(\b)"
+        utf8 string     u8"foo" u8R"(foo)"
+        utf16 string    u"foo" uR"(foo)"
+        utf32 string    U"foo" UR"(foo)"
+        wchar_t string  L"foo" LR"(foo)"
+===============================================================================
+
+
+
+
+===============================================================================
+-*- <Effective STL> Notes -*-
+-------------------------------------------------------------------------------
+* deque is implemented as a vector of vectors
+
+*. Beware illusion of container-independent code 
+*. Make copying cheap & correct for objects in container
+*. Call empty instead of checking size() against zero
+*. Prefer range member functions to their single-element counterparts
+    <> Range construction
+        container::container(InputIterator begin, InputIterator end);
+*. choose carefully among erasing options
+    <> To eliminate all objects in a container 
+       that have a particular value:
+        [] vector,string,deque            => use the erase-remove idiom
+        [] list                           => use list::remove
+        [] standard associative container => use erase member function
+    <> To eliminate all objects in a container 
+       that satisfy a particular predicate:
+        [] vector,string,deque            => use the erase-remove_if idiom
+        [] list                           => use list::remove_if
+        [] standard associative container => use remove_copy_if and swap
+                                             or write a loop
+    <> To do something inside the loop (in addition to erasing objects)
+        [] If the container is a standard sequence container,
+           write a loop to walk the container elements, being sure to
+           update your iterator with erase's return value each time von
+           call it.
+        [] If the container is a standard associative container,
+           write a loop to walk the container elements, being sure to
+           postincrement your iterator when you pass it to erase.
+*. allocator conventions and restrictions
+    <> make your allocator a template, with the template paramter T
+       representing the type of objects for which you are allocating memory.
+    <> provide the typedefs pointer and reference, but always have pointer
+       be T* and reference be T&
+    <> Never give your allocators per-object state. In general, allocators
+       should hvae no nonstatic data members.
+    <> Remember that an allocator's allocate member functions are passed
+       the number of objects for which memory is required, not the number
+       of bytes needed. Also remmember that these functions return T*
+       pointers Ma the pointer typedef, even though no T objects have yet
+       been constructed.
+    <> Be sure to provide the nested rebind template on which standard
+       containers depend.
+*. thread safety
+    <> Multiple readers are safe.
+          Multiple threads may simultaneously read the contents of a single
+          container, and this will work correctly.
+          Naturally, there must not be any writers acting on the container
+          during the reads.
+    <> Multiple writers to different containers are safe.
+          Multiple threads may simultaneously write to different containers.
+*. use reserve to avoid unnecessary reallocations
+*. use "swap trick" to trim excess capacity
+*. avoid using vecotr<bool>
+    vector<bool> is a specialized version of vector, which is used
+    for elements of type bool and optimizes for space.
+*. understand the difference between equality(相等) and equivalence(等价)
+    <> find()'s definition of "the same" is equality,
+       which is based on operator==
+       set::insert()'s definition of "the same" is equivalence,
+       which is based on operator<
+    <> two objects x and y have equivalent values with respect to an
+       associative container c's sorting criterion if the following evaluates
+       to true:
+       !c.key_comp()(x,y) && !c.key_comp()(y,x)
+*. avoid in-place key modification in set & multiset
+    <> If you want to change an element in a set, multiset, map or
+       multimap in a way that always works and is always safe
+       1. Locate the container element you want to change.
+       2. Make a copy of the element to be modified. In the case of a map
+          or multimap, be sure not to declare the first component of
+          the copy const.
+       3. Remove the element from the container, typically via a call
+          to erase.
+       4. Modify the copy so it has the value you want to be in the container.
+       5. Insert the new value into the container. If the location of the new
+          element in the container's sort order is likely to be the same
+          or adjacent to that of the removed element, use the "hint" form
+          of insert to improve the efficiency of the insertion from
+          logarithmic-time to constant-time. Use the iterator you got
+          from Step 1 as the hint.
+*. specify comparsion types for associative containers of pointers.
+*. always have comparsion functions return false for equal values.
+*. choose carefully between map::operator[] & map-insert
+   when efficiency is important.
+   <> If you're updating an existing map element, operator[] is preferable,
+      but if you're adding a new element, insert has the edge.
+===============================================================================
+
+
+
+
+===============================================================================
+-*- <C++ Templates, The Complete Guide > Notes -*-
+-------------------------------------------------------------------------------
+*. Funciton Templates
+    [] default template arguments may not be used in function templates
+       until c++11
+*. Overloading Function Templates
+    [] a nontemplate function can coexist with a function template that has
+       the same name and can be instantiated with the same type.
+    [] All other factors being equal, use nontemplate version.
+    [] if the template can generate a function with a better match, template
+       version is selected.
+*. Tricky Basics
+    [] you always qualify any symbol that is declared in a base that is somehow
+    dependent on a template parameter with this-> or  Base<T>:: . 
+    If you want to avoid all uncertainty, you may consider qualifying all 
+    member accesses (in templates).
+    [] During argument deduction array-to-pointer conversion
+       (often called decay) occurs only if the parameter does not have a 
+       reference type
+    [] Template versions of assignment operators don't replace 
+       default assignment operators.
+    [] You can also use class templates as template parameters, 
+       as so-called template template parameters.
+    [] Template template arguments must match exactly.
+       Default template arguments of template template arguments are ignored
+    [] By explicitly calling a default constructor, 
+       you can make sure that variables and members of templates are
+       initialized by a default value even if they are instantiated
+       with a built-in type.
+===============================================================================

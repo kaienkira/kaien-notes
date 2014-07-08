@@ -1,0 +1,110 @@
+===============================================================================
+mysql安全设置
+    mysql_secure_installation
+===============================================================================
+重置root密码
+    service mysql stop
+    sudo /usr/sbin/mysqld --skip-grant-tables --skip-networking &
+    UPDATE mysql.user SET Password=PASSWORD('newpwd') WHERE User='root';
+    FLUSH PRIVILEGES;
+===============================================================================
+设置外网可访问
+    vi /etc/mysql/my.cnf
+    bind-address = 0.0.0.0
+===============================================================================
+字符集
+    >show variables like 'collation_%';
+    >show variables like 'character%';
+    >create database <db_name> character set utf8;
+===============================================================================
+取消query cache
+    select sql_no_cache ...
+===============================================================================
+profile
+    set profiling = 1;
+    <db_query>
+    show profiles;
+    show profile for query <query_id>
+===============================================================================
+mysql
+    -r --raw
+    -s --silent
+===============================================================================
+mysqldump [options] <db_name> [table_name]
+    -u <user_name>
+    -p<password>
+    -h <host>
+    -d --no-data           不导出数据, 只导出建表语句
+    -t --no-create-info    只导出数据, 不导出建表语句
+    --tables <table_name>  指定导出的表名
+    --insert-ignore        insert语句将带有ignore选项
+    -T --tab <path>        生成tab分隔的数据文件
+    -R --routines          导出存储过程
+    -w --where <condition> 按条件导出数据
+
+insert into <table_name> values(....)
+on duplicate key update ... = ...
+===============================================================================
+mysql -h 127.0.0.1 -u root -p
+>show databases;
+>create database <db_name>;
+
+>create user '<user_name>' identified by '<password>';
+>alter user 'username'@'localhost' password expire;
+>select host,user,password from mysql.user;
+
+>grant select,insert,update,delete,create,alter,drop on <db_name>.* to '<user_name>'
+ @'localhost' identified by '<user_passwd>';
+>grant all on *.* to root@'%' identified by '<root_passwd>';
+>set password for 'root'@'localhost'=PASSWORD('<root_passwd>');
+>drop user <username>@'localhost';
+>flush privileges;
+>show grants;
+===============================================================================
+*. show full columns from <table_name>;
+===============================================================================
+alter table <table_name> add <column_name> <column_definition>
+      [fisrt | after col_name]
+===============================================================================
+系统表
+information_schema.tables
+===============================================================================
+输入中文
+set names utf8;
+===============================================================================
+select now(), current_date();
+select version();
+select sin(), pi();
+===============================================================================
+配置参数
+
+skip-external-locking
+loose-skip-innodb
+
+# 禁用DNS解析
+skip-name-resolve
+
+# 禁用网络连接
+skip-networking
+===============================================================================
+-*- String Functions -*-
+-------------------------------------------------------------------------------
+*. concat(str1, str2, ...)
+*. substring(str, pos)
+   substring(str, pos, len)
+   <> pos从1开始
+===============================================================================
+-*- 默认字符串字符集在比较时大小写不敏感 -*-
+-------------------------------------------------------------------------------
+*. 将查询条件用binary()括起来
+*. 修改该字段的collation 为 binary 
+   VARCHAR(n) BINARY CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL;
+===============================================================================
+-*- Leftmost Indexes Prefixes -*-
+-------------------------------------------------------------------------------
+In a table that has a composite (multiple column) index, MySQL can use 
+leftmost index prefixes of that index.
+A leftmost prefix of a composite index consists of one or more of the initial
+columns of the index. MySQL's capability to use leftmost index prefixes
+enables you to avoid creating unnecessary indexes.
+===============================================================================

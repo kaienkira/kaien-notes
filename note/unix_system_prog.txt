@@ -1,0 +1,547 @@
+===============================================================================
+Threads
+===============================================================================
+*. 可重入函数必定是线程安全的, 但是线程安全的, 不一定是可重入的
+*. malloc线程安全但不可重入
+*. 基于 NPTL 的线程库, 多线程应用中的每个线程有自己独特的线程ID,
+   并共享同一个进程ID
+*. A thread consists of
+   [] a Thread ID that identifies the thread within a process
+   [] a set of register values
+   [] a stack
+   [] a scheduling priority and policy
+   [] a signal mask
+   [] an errno variable
+   [] thread-specific data
+
+*. POSIX threads / test macro / _POSIX_THREADS / sysconf(_SC_THREADS)
+
+*. With Signal 
+   [] all threads in a process share signal dispositions
+   [] attributes to be distinct for each thread, including:
+      <> signal mask (pthread_sigmask)
+         {} 每个线程可以通过调用pthread_sigmask()设置本线程的信号掩码,
+            一般情况下, 被阻塞的信号将不能中断此线程的执行
+         {} 当一个线程调用pthread_create()创建新的线程时,
+            此线程的信号掩码会被新创建的线程继承.
+      <> alternate signal stack (sigaltstack)
+   [] If your process has set a signal's disposition to SIG_IGN or SIG_DFL,
+      then the signal is ignored (or default -- kill, core, or ignore) for
+      all threads.
+   [] A signal may be generated (and thus pending) for a process as
+      a whole (e.g., when sent using kill(2)) or for a specific
+      thread (e.g., certain signals, such as SIGSEGV and SIGFPE,
+      generated as a consequence of executing a specific machine-
+      language instruction are thread directed, as are signals
+      targeted at a specific thread using pthread_kill(3)).  A
+      process-directed signal may be delivered to any one of the
+      threads that does not currently have the signal blocked.  If
+      more than one of the threads has the signal unblocked, then
+      the kernel chooses an arbitrary thread to which to deliver
+      the signal. 
+
+*. Reentrant functions that may be called from a signal handler
+     accept()
+     fchmod()
+     lseek()
+     sendto()
+     stat()
+     access()
+     fchown()
+     lstat()
+     setgid()
+     symlink()
+     aio_error()
+     fcntl()
+     mkdir()
+     setpgid()
+     sysconf()
+     aio_return()
+     fdatasync()
+     mkfifo()
+     setsid()
+     tcdrain()
+     aio_suspend()
+     fork()
+     open()
+     setsockopt()
+     tcflow()
+     alarm()
+     fpathconf()
+     pathconf()
+     setuid()
+     tcflush()
+     bind()
+     fstat()
+     pause()
+     shutdown()
+     tcgetattr()
+     cfgetispeed()
+     fsync()
+     pipe()
+     sigaction()
+     tcgetpgrp()
+     cfgetospeed()
+     ftruncate()
+     poll()
+     sigaddset()
+     tcsendbreak()
+     cfsetispeed()
+     getegid()
+     posix_trace_event()
+     sigdelset()
+     tcsetattr()
+     cfsetospeed()
+     geteuid()
+     pselect()
+     sigemptyset()
+     tcsetpgrp()
+     chdir()
+     getgid()
+     raise()
+     sigfillset()
+     time()
+     chmod()
+     getgroups()
+     read()
+     sigismember()
+     timer_getoverrun()
+     chown()
+     getpeername()
+     readlink()
+     signal()
+     timer_gettime()
+     clock_gettime()
+     getpgrp()
+     recv()
+     sigpause()
+     timer_settime()
+     close()
+     getpid()
+     recvfrom()
+     sigpending()
+     times()
+     connect()
+     getppid()
+     recvmsg()
+     sigprocmask()
+     umask()
+     creat()
+     getsockname()
+     rename()
+     sigqueue()
+     uname()
+     dup()
+     getsockopt()
+     rmdir()
+     sigset()
+     unlink()
+     dup2()
+     getuid()
+     select()
+     sigsuspend()
+     utime()
+     execle()
+     kill()
+     sem_post()
+     sleep()
+     wait()
+     execve()
+     link()
+     send()
+     socket()
+     waitpid()
+     _Exit() & _exit()
+     listen()
+     sendmsg()
+     socketpair()
+     write()
+*. All functions defined by this volume of IEEE Std 1003.1-2001 shall be
+   thread-safe, except that the following functions need not be thread-safe. 
+     asctime()
+     basename()
+     catgets()
+     crypt()
+     ctime()
+     dbm_clearerr()
+     dbm_close()
+     dbm_delete()
+     dbm_error()
+     dbm_fetch()
+     dbm_firstkey()
+     dbm_nextkey()
+     dbm_open()
+     dbm_store()
+     dirname()
+     dlerror()
+     drand48()
+     ecvt()
+     encrypt()
+     endgrent()
+     endpwent()
+     endutxent()
+     fcvt()
+     ftw()
+     gcvt()
+     getc_unlocked()
+     getchar_unlocked()
+     getdate()
+     getenv()
+     getgrent()
+     getgrgid()
+     getgrnam()
+     gethostbyaddr()
+     gethostbyname()
+     gethostent()
+     getlogin()
+     getnetbyaddr()
+     getnetbyname()
+     getnetent()
+     getopt()
+     getprotobyname()
+     getprotobynumber()
+     getprotoent()
+     getpwent()
+     getpwnam()
+     getpwuid()
+     getservbyname()
+     getservbyport()
+     getservent()
+     getutxent()
+     getutxid()
+     getutxline()
+     gmtime()
+     hcreate()
+     hdestroy()
+     hsearch()
+     inet_ntoa()
+     l64a()
+     lgamma()
+     lgammaf()
+     lgammal()
+     localeconv()
+     localtime()
+     lrand48()
+     mrand48()
+     nftw()
+     nl_langinfo()
+     ptsname()
+     putc_unlocked()
+     putchar_unlocked()
+     putenv()
+     pututxline()
+     rand()
+     readdir()
+     setenv()
+     setgrent()
+     setkey()
+     setpwent()
+     setutxent()
+     strerror()
+     strtok()
+     ttyname()
+     unsetenv()
+     wcstombs()
+     wctomb()
+===============================================================================
+#include <pthread.h>
+
+int pthread_equal(pthread_t tid1, pthread_t tid2); 
+===============================================================================
+I/O Multiplexing
+===============================================================================
+epoll
+select
+===============================================================================
+Record Locking
+===============================================================================
+*. 多个进程在一个给定的字节上可以有一把共享的读锁, 但是在一个给定字节上只能有
+   一个进程独用的一把写锁.
+*. 如果一个进程对一个文件区间已经有了一把锁, 后来进程又企图在同一文件区间再加一
+   把锁, 那么新锁将替换老锁.
+*. 加读锁时, 该描述符必须是读打开; 加写锁时, 该描述符必须是写打开(EBADF)
+*. (1)当一个进程终止时, 它所建立的锁全部释放, 任何时候关闭一个描述符时, 则该进程
+      通过这一描述符可以引用的文件上的任何一把锁都被释放(文件锁是inode级别的)
+   (2)由fork产生的子进程不继承父进程所设置的锁
+   (3)在执行exec后, 新程序可以继承原执行程序的锁, 但是注意, 如果对一个文件描述符
+      设置了close-on-exec标志, 对相应文件的所有锁都将被释放
+*. 对一个特定文件打开其set-group-id位, 关闭group-execute位, 则对该文件开启了
+   强制性文件锁(linux上需要mount -o mand)
+===============================================================================
+I/O Models          
+===============================================================================
+*. five I/O models under unix
+   (1) blocking I/O
+   (2) nonblocking I/O
+   (3) I/O multiplexing (select and poll)
+   (4) signal driven I/O (SIGIO)
+   (5) asynchronous I/O (the POSIX aio_functions)
+   The first four I/O models -- blocking, noblocking, I/O multiplexing,
+   and signal driven I/O are all synchronous because the actual I/O
+   operation blocks the process. Only the asynchronous I/O model mathes 
+   the asynchronous I/O definition.
+*. there are normally two distinct phases for an input operation 
+   (1) Waiting for the data to be ready
+   (2) Copying the data from the kernel to the process
+===============================================================================
+signal
+===============================================================================
+*. 信号处理函数尽量只执行简单的操作, 其他复杂的操作留在信号处理函数之外执行.
+*. errno是线程安全, 即每个线程都有自己的errno, 但不是异步信号安全. 如果信号处理
+   函数比较复杂, 且调用了可能会改变errno值的库函数, 必须考虑在信号处理函数开始
+   时保存, 结束的时候恢复被中断线程的errno值
+*. 信号处理函数只能调用可以重入的C库函数, 不能调用malloc(), free(), 和标准I/O函数
+*. 信号处理函数如果需要访问全局变量, 在定义此全局变量时须将其声明为volatile,
+   以避免编译器不恰当的优化
+*. No signal has a signal number of 0.
+*. We can ignore a signal by setting its disposition to SIG_IGN
+*. We can set the default disposition for a signal by setting its disposition 
+   to SIG_DFL
+*.The only portable use of signal() is to set a signal's disposition
+  to SIG_DFL or SIG_IGN.
+*. If we ignore some of the signals that are generated by a hardware exception,
+   the behavior of the process is undefined.
+*. The core file will not be generated if
+ (a) the process was setuid and the current user is not the owner of the
+     program file
+ (b) the process was setgid and the current user is not the group owner of the
+     file
+ (c) the user does not have permission to write in the current working directory
+ (d) the file already exists and the user does not have permission to write it
+ (e) the file is too big
+*. The exec functions change the disposition of any signals being caught to their
+   default action and leave the status of all other signals alone.
+*. When a process calls fork, the child inherits the parents's signal dispositions.
+*. Most functions that are not reentrant because  
+   (a) they are known to use static data structures
+   (b) they call malloc() or free()
+   (c) they are part of the standard I/O library. Most implementations of the
+       standard I/O library use global data structures in a nonreentrant way.
+*. As a general rule, when calling the functions which can change errno from a
+   signal handler, we should save and restore errno.
+*. Be aware that a commonly caught signal is SIGCHLD, and its signal handler
+   usually calls one of the wait functions, All the wait functions can change
+   errno.
+*. During the time between the generation of a signal and its delivery,
+   the signal is said to be pending.
+*. Blocking a signal means telling the operating system to hold it and deliver
+   it later.
+*. With sigaction, we can set the SA_NOCLDWAIT flag to avoid zombies.
+
+SIGABRT    terminate+core
+    abort()
+SIGALRM    terminate
+    alarm()
+    setitimer()
+SIGCHLD    ignore
+    whenever a process terminates or *stops*, the SIGCHLD signal is sent to
+    the parent
+SIGCONT    continue/ignore
+SIGHUP     terminate
+    This signal is sent to the session leader associated with a controlling
+    terminal if a disconnect is detected by the terminal interface.
+    This signal is also generated if the session leader terminates.  In this
+    case, the signal is sent to each process in the foreground process group
+SIGINT     terminate
+    This signal is generated by the terminal driver when we type the interrput
+    key(ctrl + c). This signal is sent to all processes in the foreground
+    process group
+SIGIO      terminate/ignore 
+    This signal indicates an asynchronous I/O event
+SIGPIPE    terminate
+    If we write to a pipeline but the reader has terminated, SIGPIPE is generated.
+    This signal is also generated when a process writes to a socket of type
+    SOCK_STREAM that is no longer connected.
+SIGPOLL    terminate
+    This signal can be generated when a specific event occurs
+    on a pollable device.
+SIGPROF    terminate
+    setitimer()
+SIGQUIT    terminate+core
+    This signal is generated by the terminal driver when we type the terminal
+    quit key(crtl + \). This signal is sent to all processes in the foreground
+    process group
+SIGTERM    terminate
+    This is the termination signal sent by the kill(1) command by default.
+SIGTSTOP   stop process
+    This interactive stop signal is generated by the terminal driver when
+    we type the terminal suspend key(ctrl + z). This signal is sent to all
+    processes in the foreground process group
+SIGTTIN    stop process
+    This signal is generated by the terminal driver when a process in a
+    background process group tries to read from its controlling terminal.
+SIGTTOU    stop process
+    This signal is generated by the terminal driver when a process in a
+    background process group tries to write to its controlling terminal.
+SIGURG     ignore
+    This signal notifies the process that an urgent condition has occurred.
+    This signal is optionally generated when out-of-band data is received
+    on a network connection.
+SIGUSR1    terminate
+SIGUSR2    terminate
+SIGVTALRM  terminate
+    setitimer
+SIGWINCH   ignore
+    The kernel maintains the size of the window associated with each terminal
+    and pseudo terminal, A process can get and set the window size with the
+    ioctl() function. If a process changes the window size from its previous
+    value using the ioctl() set-window-size command, the kernel generates
+    the SIGWINCH signal for the foreground process group
+SIGXCPU    terminate+core/ignore
+    If the process exceeds its *soft* CPU time limit, the SIGXCPU signal is
+    generated. 
+SIGXFSZ    terminate+core/ignore
+    If the process exceeds its *soft* file size limit, the SIGXFSZ signal is
+    generated.
+
+SIGKILL    terminate
+SIGSTOP    stop process
+
+SIGFPE     terminate+core
+SIGSEGV    terminate+core
+SIGSYS     terminate+core
+    This signals an invalid system call.
+
+SIGBUS     terminate+core
+SIGEMT     terminate+core
+SIGILL     terminate+core
+SIGIOT     terminate+core
+SIGPWR     terminate/ignore
+SIGTRAP    terminate+core
+
+SIGINFO
+SIGCANCEL
+SIGFREEZE
+SIGLWP
+SIGSTKFLT
+SIGTHAW
+SIGWAITING
+SIGXRES
+
+===============================================================================
+daemon process
+===============================================================================
+1. call umask() to set the file mode creation mask to 0. 
+2. call fork() and have the parent exit.
+3. call setsid()
+4. call fork() and have the parent exit.
+5. call chdir() to change the current working directory to the root directory
+6. close unneeded file descriptors
+7. open file descriptors 0,1,2 to /dev/null
+===============================================================================
+-*- _Exit() _exit() exit() -*-
+===============================================================================
+*. exit() calls the functions you added with atexit() and delete files created
+   with tmpfil() and flush the stdio stream
+*. _Exit() is a standard C library(C99), _exit() is a POSIX.1 system call.
+*. The child of fork() should always call _Exit()
+*. exit() should be called only once for each entry into main()
+===============================================================================
+-*- fork() vfork()
+===============================================================================
+*. 在子进程调用exec()或者exit()之前, 它在父进程的空间中运行, vfork保证子进程
+   先运行, 在它调用exec或者exit()之后父进程才可能被调度运行
+===============================================================================
+
+
+
+===============================================================================
+#include <unistd.h>
+#include <fcntl.h>
+int fcntl(int fd, int cmd, ... /* arg */);
+    F_DUPFD(long)
+    F_SETFD(long)
+    F_GETFD(void)
+    F_SETFL(long)
+    F_GETFL(void)
+    F_GETLK(struct flock *)
+    F_SETLK(struct flock *)
+    F_SETLKW(struct flock *)
+
+#include <sys/types.h>
+#include <sys/stat.h>
+mode_t umask(mode_t mask);
+    /* This system call always succeeds 
+       and the previous value of the mask is returned */
+
+#include <sys/resource.h>
+int getrlimit(int resource, struct rlimit *rlim);
+int setrlimit(int resource, const struct rlimit *rlim);
+
+#include <unistd.h>
+unsinged int alarm(unsigned int seconds);
+    /* Be aware that when that time occurs, the signal is generated
+       by the kernel, but there could be addtional time before the 
+       process gets cntrol to handle the signal, because of processor
+       scheduling delays
+     * There is only one of alarm clocks per process. If, when we call
+       alarm, a previously registered alarm clock for the process has
+       not yet expired, the number of seconds left for that alarm clock
+       is returned as the value of this function. That previously
+       registered alarm clock is replaced by the new value.
+     * If a previously registered alarm clock for the process has not yet
+       expired and if the seconds value is 0, the previous alarm clock
+       is canceled. The number of seconds left for that previous alarm
+       clock is still returned as the value of the functon
+     */
+int pause(void);
+    /* suspends the calling process until a signal is caught. */
+int chdir(const char *path);
+
+#include <sys/types.h>
+#include <signal.h>
+int kill(pid_t pid, int sig);
+    /* (1)If pid is positive, then signal sig is sent to the
+          process with the ID specified by pid.
+       (2)If pid equals 0, then sig is sent to every process
+          in the process group of the calling process.
+       (3)If pid equals -1, then sig is sent to every process
+          for which the calling process has permission to send signals,
+          except for process 1 (init)
+       (4)If pid is less than -1, then sig is sent to every process
+          in the process group whose ID is -pid.
+     * If sig is 0, then no signal is sent, but error checking is still
+       performed; this can be used to check for the existence of a process ID
+       or process group ID.
+     * the test for processs existence is not atomic. By the time that kill
+       returns the answer to the caller, the process in question might have
+       existed, so the answer is of limited value
+     * unlocked signal is delivered to the process before kill returns */
+int sigemptyset(sigset *set);
+int sigfillset(sigset *set);
+int sigaddset(sigset *set, int signum);
+int sigdelset(sigset *set, int signum);
+int sigismember(const sigset *set, int signum);
+int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);
+    SIG_BLOCK
+    SIG_UNBLOCK
+    SIG_SETMASK
+    /* The sigprocmask function is defined only for single-threaded processes. */
+int sigpending(sigset_t *set);
+    /* examine pending signals 返回进程的未决信号 */
+int sigaction(int signo, const struct sigaction *act, struct sigaction *oldact);
+    /* 除非指定了SA_RESTART标志, 否则sigactin函数不再重启动被中断的系统调用 */
+    /* 在信号处理程序被调用时, 操作系统建立的新信号屏蔽字包括正被递送的信号
+       因此保证了在处理一个给定的信号时, 如果该信号再次发生, 那么它会被阻塞到
+       对前一个信号处理结束为止 */
+    /* 一旦对给定的信号设置了一个动作, 那么在调用sigaction显式地改变它之前,
+       该设置一直有效 * /
+int sigsetjmp(sigjmp_buf env, int savesigs);
+void siglongjmp(sigjmp_buf env, int val);
+    /* siglongjmp() cannot cause 0 to be returned.
+       If siglongjmp() is invoked with a second argument of 0,
+       1 will be returned instead */
+int sigsuspend(const sigset_t *mask);
+
+#include <sys/select.h>
+
+int select(int maxfdp1, fd_set *readset, fd_set *writeset, fd_set *exceptset,
+           const struct timeval *timeout)
+    /* timeout为NULL时, select将会永远等待下去,
+       仅在一个描述符准备好I/O时才返回 */
+    /* timeval结构能够表示select所不支持的值 */
+    /* select函数修改由指针readset, writeset和exceptset所指向到描述符集,
+       因而这三个参数都是值-结果参数. 调用该函数时, 我们指定所关心的描述符集,
+       该函数返回时, 结果将指示哪些描述符已就绪. */
+    /* 该函数的返回值表示跨所有描述符集的已就绪的总位数. 如果在任何描述符就绪之前
+       定时器到时, 那么返回0, 返回-1表示出错 */

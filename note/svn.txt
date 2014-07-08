@@ -1,0 +1,62 @@
+===============================================================================
+svn diff
+
+--diff-cmd的7个参数
+-u
+-L file_name(revision xxxx) -L file_name(working copy)
+.svn/file_name file_name
+===============================================================================
+svn propset (ps)
+svn propget (pg)
+svn proplist (pl)
+===============================================================================
+*每次运行svn commit, 工作拷贝就会进入混合多个修订版本的状态, 可以使用
+ svn status --verbose来查看
+
+*显示版本库当前版本
+svnversion
+*新建版本库
+svnadmin create <path_to_repos>
+*同步版本库
+svnsync initialize <path_to_mirror_repos> <path_to_source_repos>
+svnsync synchronize <path_to_mirror_repos>
+*删除版本库上的锁定
+svn propdel svn:sync-lock --revprop -r 0 <path_to_repos>
+
+*检查最新的版本信息
+svnlook info <path_to_repos>
+*输出最新的版本号
+svnlook youngest <path_to_repos>
+*删除终止的事务
+svnadmin rmtxns <path_to_repos> `svnadmin lstxns <path_to_repos>`
+
+svnadmin dump <path_to_repos> > <repos_dumpfile>
+svndumpfilter include <file> < <repos_dumpfile_in> > <repos_dumpfile_out>
+
+svn resolved
+
+svn list(ls) <path_to_repos>
+
+*只添加目录本身
+svn add -N <dir_name> 
+*与版本库直接比较显示修改状态, 而非本地缓存
+svn status -u
+
+*察看文件属性
+svn pl -v <file_name>
+
+*设置可执行权限
+svn ps svn:executable on <file_name>
+
+*撤销更改, 反向提交
+svn update
+svn merge -r 150:140
+svn ci -m "Roll back to r140"
+
+*设置代理
+svn --config-option servers:global:http-proxy-host=127.0.0.1
+    --config-option servers:global:http-proxy-port=8118
+
+*设置文件格式
+svn propset svn:mime-type application/octet-stream <filename>
+svn propset svn:mime-type text/plain <filename>

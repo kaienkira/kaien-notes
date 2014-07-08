@@ -1,0 +1,310 @@
+===============================================================================
+-*- package management -*-
+-------------------------------------------------------------------------------
+*. 列出所有安装的软件包
+    dpkg -l
+*. 清除所有被标记为rc的软件包配置
+    aptitude purge "~c"
+*. 列出编译依赖
+    apt-get -s build-dep <package>
+===============================================================================
+-*- system management -*-
+-------------------------------------------------------------------------------
+initctl list
+update-rc.d
+/etc/init.d/*
+/etc/rc[0-6].d/*
+/etc/init/*.conf
+
+*. 从字符界面启动
+    vi /etc/default/grub
+    #GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash text"
+    update-grub
+
+*. 设置时区
+    dpkg-reconfigure tzdata
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+*. 安装32位程序支持
+    apt-get install ia32-libs # WARNING: install useless packages 
+
+*. 设置corefile
+    vi /etc/sysctl.conf
+    kernel.core_uses_pid = 1
+
+===============================================================================
+-*- network management -*-
+-------------------------------------------------------------------------------
+*. 配置静态地址
+    vi /etc/network/interfaces
+      #iface eth0 inet dhcp
+      iface eth0 inet static
+      address 192.168.1.250
+      netmask 255.255.255.0
+      gateway 192.168.1.1
+      dns-nameservers 8.8.8.8
+    vi /etc/resolvconf/resolv.conf.d/base
+      nameserver 8.8.8.8
+    sudo ifdown eth0 && sudo ifup eth0
+    (/etc/init.d/networking restart)
+
+*. 禁用IPv6
+    vi /etc/sysctl.conf
+      net.ipv6.conf.all.disable_ipv6=1
+      net.ipv6.conf.lo.disable_ipv6=1
+      net.ipv6.conf.default.disable_ipv6=1
+
+*. 采用tcp_hybla拥塞控制算法
+    modprobe tcp_hybla
+    cat /proc/sys/net/ipv4/tcp_available_congestion_control
+    sysctl -w net.ipv4.tcp_congestion_control=hybla
+    vi /etc/modules
+      tcp_hybla
+    vi /etc/sysctl.conf
+      net.ipv4.tcp_congestion_control=hybla
+
+*. iptables 规则永久生效
+    iptables-save > /etc/iptables.rules
+    vi /etc/network/if-pre-up.d/iptables.sh
+      #!/bin/bash
+      iptables-restore < /etc/iptables.rules
+
+*. 修改网卡接口名
+    vi /etc/udev/rules.d/70-persistent-net.rules
+
+*. 禁用openssh server版本号
+    vi /etc/ssh/sshd_config
+      DebianBanner no
+
+===============================================================================
+-*- wireless network management -*-
+-------------------------------------------------------------------------------
+*. 启用无限网卡
+    ifconfig wlan0 up
+*. 搜索可用的AP
+    iwlist wlan0 scan
+*. 连接到无线网络
+    iwconfig wlan0 essid "<essid>" key <0000-0000-0000>
+    dhclient wlan0
+
+*. 设置AP模式
+    [] 安装配置hostapd
+        apt-get install hostapd
+        vi /etc/hostapd/hostapd.conf
+            interface=wlan0
+            driver=nl80211
+            ssid=test
+            hw_mode=g
+            channel=1
+            macaddr_acl=0
+            auth_algs=1
+            ignore_broadcast_ssid=0
+            wpa=3
+            wpa_passphrase=1234567890
+            wpa_key_mgmt=WPA-PSK
+            wpa_pairwise=TKIP
+            rsn_pairwise=CCMP
+        vi /etc/default/hostapd
+            DAEMON_CONF="/etc/hostapd/hostapd.conf"
+        # check errors
+        sudo hostapd -B /etc/hostapd/hostapd.conf 
+    [] 设置IP地址
+        vi /etc/network/interfaces
+            auto wlan0
+            iface wlan0 inet static
+            address 192.168.78.1
+            netmask 255.255.255.0
+    [] 安装配置dhcp-server
+        apt-get install isc-dhcp-server
+        vi /etc/default/isc-dhcp-server
+            INTERFACES="wlan0"
+        vi /etc/dhcp/dhcpd.conf
+            #option domain-name
+            #option domain-name-servers
+            #default-lease-time
+            #max-lease-time
+            subnet 192.168.78.0 netmask 255.255.255.0 {
+              range 192.168.78.2 192.168.78.10;
+              option domain-name-servers 8.8.8.8, 208.67.222.222;
+              option routers 192.168.78.1;
+            }
+    [] 设置NAT
+        echo 1| sudo tee /proc/sys/net/ipv4/ip_forward
+        iptables -t nat -A POSTROUTING -s 192.168.78.0/24 -o eth0 -j MASQUERADE
+    [] 启动服务
+        service hostapd start
+        service isc-dhcp-server start
+
+===============================================================================
+-*- ptrace -*-
+-------------------------------------------------------------------------------
+*. In Maverick Meerkat (10.10) Ubuntu introduced a patch to disallow ptracing
+   of non-child processes by non-root users
+
+   echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+   vi /etc/sysctl.d/10-ptrace.conf
+     kernel.yama.ptrace_scope = 0
+   sudo service procps restart 
+===============================================================================
+-*- Font -*-
+-------------------------------------------------------------------------------
+*. 字体存放路径
+    /usr/share/fonts 系统字体
+    ~/.fonts         用户字体
+*. 配置文件
+    /etc/fonts/fonts.conf
+    ~/.fonts.conf
+*. 字体信息缓存文件路径
+    ~/.fontconfig
+*. 更新字体信息缓存文件
+    fc-cache -fv
+*. 列出可用字体
+    fc-list
+===============================================================================
+
+
+
+
+
+
+===============================================================================
+-*- whoopsie -*-
+-------------------------------------------------------------------------------
+vi /etc/default/whoopsie
+    report_crashes=false
+===============================================================================
+-*- fcitx -*-
+-------------------------------------------------------------------------------
+*. Compile
+    sudo apt-get install libxkbfile-dev
+    sudo apt-get install libdbus-1-dev
+    sudo apt-get install libicu-dev
+    mkdir build && cd build
+    cmake .. -DCMAKE_INSTALL_PREFIX=<install_dir>
+        -DENABLE_X11=Off
+        -DENABLE_GLIB2=Off
+        -DENABLE_CAIRO=Off
+        -DENABLE_GTK2_IM_MODULE=Off
+        -DENABLE_QT=Off
+        -DENABLE_QT_IM_MODULE=Off
+        -DENABLE_ICU=Off
+        -DENABLE_OPENCC=Off
+        -DENABLE_ENCHANT=Off
+        -DENABLE_PRESAGE=Off
+===============================================================================
+-*- fbterm -*-
+-------------------------------------------------------------------------------
+*. 启用framebuffer
+    sudo apt-get install v86d
+    sudo vi /etc/default/grub
+        GRUB_CMDLINE_LINUX_DEFAULT=
+            "video=uvesafb:mode_option=1024x768-32,mtrr=3,scroll=ywrap"
+    sudo update-grub2
+    sudo vi /etc/initramfs-tools/modules
+        uvesafb mode_option=1024x768-32 mtrr=3 scroll=ywrap
+    sudo update-initramfs -u
+*. 安装配置fbterm
+    sudo apt-get install fbterm
+    sudo chmod u+s /usr/bin/fbterm
+    sudo adduser <username> video
+*. 安装fbterm-ucimf
+    sudo apt-get install fbterm-ucimf
+    sudo apt-get install ucimf-openvanilla
+===============================================================================
+-*- Mosh -*-
+-------------------------------------------------------------------------------
+*. 依赖
+    sudo apt-get install protobuf-compiler
+    sudo apt-get install libprotobuf-dev
+    sudo apt-get install libncurses5-dev
+    sudo apt-get install zlib1g-dev
+    sudo apt-get install libio-pty-perl
+    sudo apt-get install libssl-dev
+===============================================================================
+-*- tftp -*-
+-------------------------------------------------------------------------------
+*. 安装
+    sudo apt-get install tftpd-hpa tftp-hpa
+*. 配置
+    vi /etc/default/tftpd-hpa
+===============================================================================
+-*- thrift -*-
+-------------------------------------------------------------------------------
+sudo apt-get install libssl-dev
+./configure --prefix=~/local/thrift PY_PREFIX=~/local/python2.7
+===============================================================================
+-*- mysql++ -*-
+-------------------------------------------------------------------------------
+./configure --prefix=~/local/mysql++ --with-mysql-lib=/usr/lib/x86_64-linux-gnu
+===============================================================================
+-*- boost -*-
+-------------------------------------------------------------------------------
+sudo apt-get install python-dev libbz2-dev libzip-dev
+./bootstrap.sh
+./b2 --show-libraries
+./b2 --prefix=~/local/boost --toolset=gcc --without-mpi install
+===============================================================================
+-*- gperftools -*-
+-------------------------------------------------------------------------------
+sudo apt-get install libunwind7 libunwind7-dev
+./configure --prefx=~/local/gperftools
+-Wl,--no-as-needed -lprofiler -Wl,--as-needed
+===============================================================================
+-*- vim -*-
+-------------------------------------------------------------------------------
+sudo apt-get install libncurses5-dev
+./configure --with-features=huge --disable-gui --prefix=~/local/vim
+===============================================================================
+-*- clang -*-
+-------------------------------------------------------------------------------
+svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm
+cd llvm/tools &&
+    svn co http://llvm.org/svn/llvm-project/cfe/trunk clang
+#cd llvm/tools/clang/tools &&
+#    svn co http://llvm.org/svn/llvm-project/clang-tools-extra/trunk extra
+cd llvm/projects
+    svn co http://llvm.org/svn/llvm-project/compiler-rt/trunk compiler-rt
+mkdir build && cd build
+../llvm/configure --enable-optimized --prefix=~/local/llvm
+make
+make check-all
+make update
+
+clang++ -std=c++11 -stdlib=libc++
+===============================================================================
+-*- libcxx -*-
+-------------------------------------------------------------------------------
+svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx
+echo | g++ -Wp,-v -x c++ - -fsyntax-only
+CC=clang CXX=clang++ cmake
+    -G "Unix Makefiles"
+    -DLIBCXX_CXX_ABI=libstdc++
+    -DLIBCXX_LIBSUPCXX_INCLUDE_PATHS=
+        "/usr/include/c++/4.7/;/usr/include/c++/4.7/x86_64-linux-gnu/"
+    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_INSTALL_PREFIX=~/local/libcxx
+make
+make install
+===============================================================================
+-*- cocos2dx -*-
+-------------------------------------------------------------------------------
+sudo apt-get install
+    libx11-dev libxmu-dev libglu1-mesa-dev libgl2ps-dev libxi-dev
+    libglfw-dev libzip-dev libcurl4-gnutls-dev libfontconfig1-dev
+    libsqlite3-dev libglew*-dev
+===============================================================================
+-*- pdf2htmlEx -*-
+-------------------------------------------------------------------------------
+*. libpoppler:
+    sudo apt-get install libfontconfig-dev libpng-dev libjpeg-dev
+    ./configure --prefix=<libpoppler-prefix> --enable-xpdf-headers
+
+sudo apt-get install libfontforge-dev libspiro-dev
+PKG_CONFIG_PATH=<libpoppler-prefix>/pkgconfig cmake \
+    -DCMAKE_INSTALL_PREFIX=<prefix> .
+===============================================================================
+-*- tcpflow -*-
+-------------------------------------------------------------------------------
+./configure --prefix=/home/kaien/local/tcpflow --enable-pcap=false
+===============================================================================

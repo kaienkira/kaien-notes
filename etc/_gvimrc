@@ -1,0 +1,85 @@
+set nocompatible
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,gb18030,cp936,big5,cp932,enc-jp,enc-kr,latin-1
+set termencoding=cp936
+set fileformat=unix
+language messages zh_CN.utf-8
+
+syntax on 
+set number
+set expandtab
+set autoindent
+set tabstop=4
+set backspace=2
+set softtabstop=4
+set shiftwidth=4
+set nowrap
+set ruler
+set laststatus=2
+set statusline=%m%r%h%([File:%F]\ [Col:%v]\ [Lin:%l/%L/%p%%]%)
+set foldmethod=syntax
+set ambiwidth=double
+colorscheme desert
+
+set guioptions-=T
+set winaltkeys=no
+winpos 200 400
+set lines=35
+set columns=120
+set noerrorbells
+set visualbell t_vb=
+
+hi def link doxygenComment Comment
+hi def link doxygenBrief Comment
+hi def link doxygenBody Comment
+hi def link doxygenSpecialTypeOnelineDesc Comment
+hi def link doxygenBOther Comment
+hi def link doxygenParam Identifier
+hi def link doxygenParamName Comment
+hi def link doxygenSpecialOnelineDesc Comment
+hi def link doxygenSpecialHeading Comment
+hi def link doxygenPrev Comment
+
+function! BrickredCFold(lnum)
+    if getline(a:lnum) =~ '^{$'
+        return '>1'
+    endif
+
+    if getline(a:lnum) =~ '^}$'
+        return '<1'
+    endif
+
+    return '-1'
+endfunction
+
+au GuiEnter * set t_vb=
+au BufNewFile,BufRead *.c,*.h,*.cc,*.hpp,*.cpp set syntax=cpp.doxygen
+au BufNewFile,BufRead *.c,*.cc,*.cpp set foldmethod=expr foldexpr=BrickredCFold(v:lnum)
+au BufNewFile,BufRead Makefile,makefile,*.mak set noexpandtab
+
+imap <C-j> <C-x><C-p>
+nmap <A-1> 1gt
+nmap <A-2> 2gt
+nmap <A-3> 3gt
+nmap <A-4> 4gt
+nmap <A-5> 5gt
+nmap <A-6> 6gt
+nmap <A-7> 7gt
+nmap <A-8> 8gt
+nmap <A-9> 9gt
+nmap <A-0> 10gt
+imap <silent><A-1> <ESC>1gt
+imap <silent><A-2> <ESC>2gt
+imap <silent><A-3> <ESC>3gt
+imap <silent><A-4> <ESC>4gt
+imap <silent><A-5> <ESC>5gt
+imap <silent><A-6> <ESC>6gt
+imap <silent><A-7> <ESC>7gt
+imap <silent><A-8> <ESC>8gt
+imap <silent><A-9> <ESC>9gt
+imap <silent><A-0> <ESC>10gt
+nmap <silent><A-m> :tabm 0<CR>
+imap <silent><A-m> <ESC>:tabm 0<CR>
+
+"let c_no_curly_error=1

@@ -1,0 +1,111 @@
+================================================================================
+-*- Git Objects -*-
+================================================================================
+Blob(hashed object)
+    which are the most basic data type in Git.
+    Essentially, a blob is just a bunch of bytes;
+    usually a binary representation of a file.
+Tree object(hashed object)
+    which are a bit like directories.
+    Tree objects can contain pointers to blobs and other tree objects.
+Commit object(hashed object)
+    which point to a single tree object and
+    contain some metadata including the commit author and any parent commits.
+Tag object(hashed object)
+    which point to a single commit object, and contain some metadata.
+Reference(file in .git/refs which contains a hash)
+    which are pointers to a single object (usually a commit or tag object)
+Branch(file in .git/refs/heads)
+    Just a reference. When you create a new commit, Git simply changes the 
+    current branch to point to the newly-created commit object.
+Tag(file in .git/refs/tags)
+    Lightweight tag point to a commit object.
+    Annotated tag point to a tag object.
+HEAD
+    This is a "symbolic" reference which points to
+    the tip of the current branch rather than an actual commit. 
+    It is actually possible for HEAD to point directly to a commit object.
+    When this happens, Git will tell you that you are in a "detached HEAD state". 
+
+================================================================================
+-*- 分支 -*-
+--------------------------------------------------------------------------------
+*. 查看未合并分支
+    git branch --no-merged
+*. 查看已合并分支
+    git branch --merged
+*. 建立远程分支
+    git push -u(--set-upstream) origin dev
+*. 删除远程分支
+    git push origin :dev
+    git branch --unset-upstream
+*. 合并分支
+    git merge <branch>
+    git cherry-pick <branch>
+*. 撤销分支合并
+    git reset --hard <commit_before_merge>
+
+================================================================================
+-*- 冲突解决 -*-
+--------------------------------------------------------------------------------
+*. git pull == git fetch + git merge
+*. 默认情况下, 合并后的结果会自动提交, 除非使用--no-commit
+
+# 列出冲突文件
+# 当合并冲突发生时, 会用到0以上的暂存区编号
+    git ls-files -s
+
+# 察看冲突文件副本
+    git show :1:<file_path> 共同祖先
+    git show :2:<file_path> 本地
+    git show :3:<file_path> remote
+
+# 放弃合并
+    git reset
+    git checkout -- <file>
+
+# 手工编辑, 使用my change或者their changes
+    vi <file>
+    git checkout --ours <file>
+    git checkout --theris <file>
+    git add <file>
+    git commit -m "xx"
+    git push
+
+# 恢复删除的文件
+    git checkout HEAD~1 -- <file>
+
+================================================================================
+-*- Config -*-
+================================================================================
+git config 
+[--global] ~/.gitconfig
+[--system] /etc/gitconfig
+[-e]
+
+================================================================================
+-*- Setup Github -*-
+================================================================================
+cd ~/.ssh
+rm id_rsa*
+ssh-keygen -t rsa -C"youremail@youremail.com"
+#add ~/.ssh/id_rsa.pub to github ssh key
+ssh -T git@github.com
+
+================================================================================
+-*- Misc -*-
+================================================================================
+git show <object>
+
+git remote -v
+
+*file status
+untracked <-> unmodified <-> modified <-> staged
+    git add   <file> #add to stage area
+    git reset <file> #remove from stage area
+
+# 工作区, 暂存区diff
+git diff 
+# 工作区, 版本树diff
+git diff HEAD
+================================================================================

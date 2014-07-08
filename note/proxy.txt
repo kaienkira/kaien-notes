@@ -1,0 +1,47 @@
+===============================================================================
+-*- ssh -*-
+===============================================================================
+/etc/ssh/moduli
+
+ssh
+-f Requests ssh to go to background just before command execution. implies -n
+-n Redirects stdin from /dev/null (actually, prevents reading from stdin).
+-N Do not execute a remote command
+-T Disable pseudo-tty allocation.
+-D [bind_address:]port
+   Specifies a local dynamic application-level port forwarding
+
+ssh -fNT -D <port> <user_name>@<host_name>
+proxychains <prog> <args>
+
+socks4 do not support UDP
+
+正向端口转发
+ssh -L[bind_address:]:<remote_port>:<local_addr>:<local_port>
+    <user_name>@<proxy_name>
+
+反向端口转发
+ssh -C -f -N -g -R[bind_address:]:<remote_port>:<local_addr>:<local_port>
+    <user_name>@<host_name>
+(修改/etc/ssh/sshd_config来监听非localhost地址)
+GatewayPorts yes
+ssh -C -f -N -g -R 0.0.0.0:20000:localhost:22 <user_name>@<host_name>
+
+公钥认证避免密码
+ssh-keygen -t rsa -C "your_email@youremail.com"
+cp ~/.ssh/id_rsa.pub ==> host ~/.ssh/authorized_keys
+
+转发UDP数据
+local# ssh -L <server_tcp_port>:localhost:<local_tcp_port>
+    <username>@<host_name>
+local# mkfifo /tmp/proxy_fifo
+local# nc -u -l <udp_port> < /tmp/proxy_fifo | nc localhost <local_tcp_proxy>
+    > /tmp/proxy_fifo
+server# mkfifo /tmp/proxy_fifo
+server# nc -l <server_tcp_port> < /tmp/proxy_fifo | nc -u 192.168.1.1 53
+    > /tmp/proxy_fifo
+
+===============================================================================
+-*- privoxy -*-
+===============================================================================
+forward-socks5 / 127.0.0.1:9055 .

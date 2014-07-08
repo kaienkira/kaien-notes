@@ -1,0 +1,8 @@
+#!/bin/sh
+
+printf "\033[0m"
+eval "grep -n --color=auto $*"
+ret=$?
+printf "\033[;34m"
+
+exit $ret

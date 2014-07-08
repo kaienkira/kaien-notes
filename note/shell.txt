@@ -1,0 +1,215 @@
+===============================================================================
+-*- bash -*-
+-------------------------------------------------------------------------------
+*. 特殊字符
+    <> : 空命令, 退出码为0
+
+-c <string>
+    commands are read from string, If there are arguments after the string,
+    they are assigned to the positional parameters, starting with $0.
+-H
+    Enable ! style history substitution.
+    !<n>        execute first nth command from the history
+    !-<n>       execute last nth command from the history
+    !!          repeats the last command
+    !<keyword>  search for previous command that *starts with* the <keyword>
+                and execute it
+    !?<keyword> search for previous command that *contains* the <keyword>
+
+*. 特殊变量
+$0 - $9
+$#
+$*
+$@
+$?
+$$
+$!
+$-
+$_
+
+*. I/O重定向
+    <> command >F
+    <> command >>F
+    <> :>F 或者 >F
+    <> 1>F 1>>F
+    <> 2>F 2>>F
+    <> &>F
+        将stdout和stderr都重定向到文件F
+    <> fd>F
+        文件描述符fd被重定向到文件F, fd未指定默认为1
+    <> fd1>&fd2
+        文件描述符fd1重定向到fd2, 指向fd1的所有输出都发送到fd2,
+        fd1未指定默认为1
+    <> command 0<F
+       command <F
+    <> fd<>F
+        为了读写F, 把F打开, 并且将文件描述符fd分配给它, fd未指定默认为0
+    <> fd>&-
+        关闭输出文件描述符fd, fd未指定默认为1
+    <> fd<&-
+
+*. alias
+    <> 不展开alias, 命令前加\来转义
+    <> shopt -s expand_aliases
+
+*. interactive shell && login shell
+    <> a login shell is one whose first character of argument zero is a -
+       or one started with the --login option
+    <> an interactive shell is one whose input and output are both connected
+       to terminals (as determined by isatty) or one started with the '-i'
+       option
+    <> interactive login shell --> bash -il xxx.sh
+        /etc/profile
+        ~/.bash_profile ~/.bash_login ~/.profile
+    <> non-interactive login shell --> bash -l xxx.sh
+        /etc/profile
+        ~/.bash_profile ~/.bash_login ~/.profile
+        $BASH_ENV
+    <> interactive non-login shell --> bash -i xxx.sh
+        ~/.bashrc
+    <> non-interactive non-login shell --> bash xxx.sh
+        $BASH_ENV
+
+*. 历史
+    ^string1^string2
+        Repeat the last command, replacing string1 with string2
+===============================================================================
+-*- find -*-
+-------------------------------------------------------------------------------
+-prune
+    find . -name .snapshot -prune -o -name '*.foo' -print
+    * don't do this
+    find . -name .snapshot -prune -o -name '*.foo'
+    is equivalent to
+    find . \( -name .snapshot -prune -o -name '*.foo' \) -print
+===============================================================================
+-*- screen -*-
+-------------------------------------------------------------------------------
+-ls
+-r
+
+command
+C-a c             create a new window running a shell and switches to that
+                  window immediately.
+C-a n             switch to the next window
+C-a p             switch to the previous window
+C-a a             switch to the last window displayed
+
+C-a N             show the number and title of the current window
+===============================================================================
+-*- free -*-
+-------------------------------------------------------------------------------
+             total       used       free     shared    buffers     cached
+Mem:      16427380   13706296    2721084          0     228016   12074104
+-/+ buffers/cache:    1404176   15023204
+Swap:     18481144       4576   18476568
+
+total: total (physical) RAM (excluding a small bit that the kernel
+       permanently reserves for itself at startup)
+used: memory in use by the OS
+free: memory not in use
+shared/buffers/cached: This shows memory usage for specific purposed.
+                       These values are included in the value for used.
+The second line gives first line values adjusted.
+first = used - (buffers + cached)
+second = free + (buffers + cached)
+===============================================================================
+-*- awk -*-
+-------------------------------------------------------------------------------
+--re-interval
+    interval expressions({n,m}) support - gawk
+gensub() - backreference support - gawk
+===============================================================================
+-*- sed -*-
+-------------------------------------------------------------------------------
+-r, --regexp-extended
+
+*. process steps
+    <> Copy the input line into the pattern space.
+    <> Apply the first sed command on the pattern space,
+       if the address restriction is true.
+    <> Repeat with the next sed expression,
+       again operating on the pattern space.
+    <> When the last operation is performed,
+       write out the pattern space and 
+       read in the next line from the input file.
+
+*. sed commands
+    :label #comment {...}Block
+    =  print line number
+    a \          - Append 
+    c \          - change
+    i \          - Insert
+    x            - Exchange
+    b label      - Branch
+    t label      - Test
+    d and D      - Delete
+    g and G      - Get
+    n and N      - Next
+    p and P      - Print
+    q            - Quit
+    r filename   - Read File
+    w filename   - Write Filename
+    s/../../     - Substitute
+    y/../../     - Transform
+    <> each sed command must start on its own line,
+       and the nested sed commands must be on separate lines.
+*. sed pattern flags
+    /g           - Global
+    /1           - Number Flag
+    /I           - Ignore Case
+    /p           - Print
+    /w filename  - Write Filename
+*. using & as the mathed string
+*. The "\1" doesn't have to be in the replacement string.
+   It can be in the pattern you are searching for
+*. /1,/2, etc, specifying which occurrence
+   The number flag is not restricted to a single digit. 
+   It can be any number from 1 to 512
+*. If the expression starts with a backslash, the next character is the 
+   delimiter
+*. Reversing the restriction with !
+*. Grouping with { and }
+
+===============================================================================
+-*- run-parts -*-
+-------------------------------------------------------------------------------
+run scripts or programs in a directory
+===============================================================================
+-*- tar -*-
+-------------------------------------------------------------------------------
+--exclude PATTERN
+-X, --exclude-from <FILE>
+
+-z --gzip --unzip
+-j --bzip2
+===============================================================================
+-*- date -*-
+-------------------------------------------------------------------------------
+*. Unix时间转换为制定格式时间
+   date -d @<unix_time> +<format>
+*. 指定时间转换为Unix时间
+   date -d 'yyyy-mm-dd HH:MM:SS' +%s
+===============================================================================
+-*- ps -*-
+-------------------------------------------------------------------------------
+f -forest
+    ASCII art process hierarchy (forest)
+===============================================================================
+-*- rsync -*-
+-------------------------------------------------------------------------------
+-I --ignore-times
+-C --cvs-exclude
+-a -rlptgoD
+--exclude=PATTERN
+
+===============================================================================
+-*- 取脚本绝对路径 -*-
+-------------------------------------------------------------------------------
+script=`readlink -f $0`
+script_path=`dirname $script`
+===============================================================================
+-*- 输出16进制流
+-------------------------------------------------------------------------------
+hexdump -ve '1/1 "%02x"' <file>
+===============================================================================

@@ -1,0 +1,64 @@
+set nocompatible
+set encoding=utf-8
+set termencoding=utf-8
+set fileencodings=ucs-bom,utf-8,gb18030,cp936,big5,cp932,enc-jp,enc-kr,latin-1
+set fileencoding=utf-8
+set fileformat=unix
+language C
+
+syntax on
+set number
+set expandtab
+set autoindent
+set backspace=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set nowrap
+set ruler
+set laststatus=2
+set statusline=%m%r%h%([File:%F]\ [Col:%v]\ [Lin:%l/%L/%p%%]%)
+set ambiwidth=double
+
+hi def link doxygenComment Comment
+hi def link doxygenBrief Comment
+hi def link doxygenBody Comment
+hi def link doxygenSpecialTypeOnelineDesc Comment
+hi def link doxygenBOther Comment
+hi def link doxygenParam Identifier
+hi def link doxygenParamName Comment
+hi def link doxygenSpecialOnelineDesc Comment
+hi def link doxygenSpecialHeading Comment
+hi def link doxygenPrev Comment
+
+function! BR_CFold(lnum)
+    if getline(a:lnum) =~ '^{$'
+        return '>1'
+    endif
+
+    if getline(a:lnum) =~ '^}$'
+        return '<1'
+    endif
+
+    return '-1'
+endfunction
+
+function! BR_RelativeNumberToggle()
+    if (&relativenumber == 1)
+        set norelativenumber
+        set number
+    else
+        set number
+        set relativenumber
+    endif
+endfunction
+
+au BufNewFile,BufRead *.c,*.h,*.cc,*.hpp,*.cpp set syntax=cpp.doxygen
+au BufNewFile,BufRead *.c,*.cc,*.cpp set foldmethod=expr foldexpr=BR_CFold(v:lnum)
+au BufNewFile,BufRead Makefile,makefile,*.mak set noexpandtab
+
+inoremap <C-j> <C-x><C-p>
+nnoremap <C-j> :call BR_RelativeNumberToggle()<CR>
+nnoremap <C-k> *N:set hlsearch!<CR>
+
+"let c_no_curly_error=1

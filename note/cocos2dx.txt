@@ -1,0 +1,29 @@
+===============================================================================
+-*- 环境搭建 -*-
+-------------------------------------------------------------------------------
+*. 设置环境变量
+    export ANDROID_SDK_ROOT=~/local/android-sdk-linux
+    export NDK_ROOT=~/local/android-ndk-linux
+    export ANT_ROOT=~/local/apache-ant/bin
+    export COCOS_CONSOLE_ROOT=~/local/cocos2d-x/tools/cocos2d-console
+*. 新建项目
+    cocos new <ProjName> -p com.<compang_name>.<projname> -l cpp -d .
+*. 编译项目
+    cocos compile -p android -j2 -q -m debug
+*. 安装
+    cd proj.android && ant installd
+===============================================================================
+cocos2d::GLView
+    // 打开关闭输入法键盘
+    setIMEKeyboardState() 
+===============================================================================
+cocos2d::Point
+    float x
+    float y
+cocos2d::Size
+    float width
+    float height
+cocos2d::Rect
+    cocos2d::Point origin
+    cocos2d::Size size
+===============================================================================

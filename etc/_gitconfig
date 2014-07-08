@@ -1,0 +1,16 @@
+[user]
+name = kaien
+email = kaienkira@gmail.com
+[alias]
+st = status
+di = diff
+ci = commit
+co = checkout
+br = branch
+[color]
+ui = true
+[core]
+editor = vi
+excludesfile = ~/.gitignore
+[push]
+default = simple

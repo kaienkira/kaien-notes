@@ -1,0 +1,32 @@
+mount -o rw,remount -t ext3 /dev/block/mmcblk1p21 /system
+mount -o rw -t vfat /dev/block/mmcblk0p1 /sdcard
+/system/media/audio/ringtones
+================================================================================
+adb devices
+adb install
+================================================================================
+AndroidX86
+
+*. shortcuts
+    <A-F1>                      console
+    <A-F7>                      gui
+    <A-F9><A-F10><A-F11><A-F12> turn the screen
+
+*. network
+    dhcpcd eth0
+    vi /etc/init.sh
+    setprop net.dns1 8.8.8.8
+
+*. resolution 
+    mkdir /data/fs
+    mount -t ext3 /dev/block/sda1 /data/fs
+    vi /data/fs/grub/menu.lst
+    vga=ask UVESA_MODE=480x800
+
+netcfg
+logcat
+================================================================================
+fastboot -w # 双清除操作
+fastboot flash boot boot.img
+fastboot flash system system.img
+================================================================================

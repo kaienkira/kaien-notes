@@ -1,0 +1,32 @@
+###############################################################################
+User Settings
+###############################################################################
+set -o vi
+ulimit -c unlimited
+
+export PATH=\
+${PATH}
+
+export C_INCLUDE_PATH=\
+${C_INCLUDE_PATH}
+
+export CPLUS_INCLUDE_PATH=\
+${C_INCLUDE_PATH}:\
+${CPLUS_INCLUDE_PATH}
+
+export LIBRARY_PATH=\
+${LIBRARY_PATH}
+
+export LD_LIBRARY_PATH=\
+${LD_LIBRARY_PATH}
+
+alias l='ls -lrt'
+alias c='clear'
+alias vi='vim'
+alias svnbr="svn "\
+"--config-option servers:global:http-proxy-host=127.0.0.1 "\
+"--config-option servers:global:http-proxy-port=8118"
+alias findc="findgrep '*.c'"
+alias findcc="findgrep '*.cc'"
+alias findh="findgrep '*.h'"
+alias finda="findgrep '*.*'"

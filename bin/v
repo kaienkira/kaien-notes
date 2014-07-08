@@ -1,0 +1,22 @@
+#!/bin/sh
+
+usage() {
+    echo 'usage: v <pos>'
+    exit 1
+}
+
+if [ $# -eq 0 ]
+then
+    pos=1
+elif [ $# -eq 1 ]
+then
+    pos=$1
+    if echo $pos | egrep -q -v '^[0-9]+$'
+    then
+        usage
+    fi
+else
+    usage
+fi
+
+vim `ls -lrt | sed '1d' | tail -${pos} | head -1 | awk '{print $NF}'`
