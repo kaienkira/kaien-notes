@@ -1,0 +1,31 @@
+===============================================================================
+The Meta-Object System
+-------------------------------------------------------------------------------
+*. provides
+    <> the signals and slot mechanism for inter-object communication
+    <> run-time type information
+    <> dynamic property system
+*. based on
+    <> QObject
+    <> Q_OBJECT macro
+    <> moc(Meta-Object Compiler)
+===============================================================================
+-*- compile static qt library -*-
+===============================================================================
+$ configure -opensource -static -release -platform win32-g++ -no-exceptions
+$ ming32-make
+===============================================================================
+QApplication
+QWidget
+QPushButton
+QSpinBox
+QSlider
+QPushButton
+===============================================================================
+*. 一个信号可以连接到多个槽
+    当信号发出后, 槽函数都会被调用, 但是调用的顺序是随机的
+*. 多个信号可以连接到一个槽
+*. 一个信号可以和另一个信号相连
+*. 连接可被删除
+*. 信号和槽函数必须有相同的参数类型才能成功连接, 如果信号里的参数个数多于
+   槽函数的参数, 多余的参数被忽略
