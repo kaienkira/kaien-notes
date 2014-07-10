@@ -12,8 +12,11 @@ The Meta-Object System
 ===============================================================================
 -*- compile static qt library -*-
 ===============================================================================
-$ configure -opensource -static -release -platform win32-g++ -no-exceptions
-$ ming32-make
+$ configure -prefix <prefix>
+    -release -static -opensource -platform win32-g++
+    -opengl desktop
+    -nomake examples -nomake tests
+$ mingw32-make
 ===============================================================================
 QApplication
 QWidget
