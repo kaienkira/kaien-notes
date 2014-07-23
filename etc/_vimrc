@@ -60,5 +60,3 @@ au BufNewFile,BufRead Makefile,makefile,*.mak set noexpandtab
 inoremap <C-j> <C-x><C-p>
 nnoremap <C-j> :call BR_RelativeNumberToggle()<CR>
 nnoremap <C-k> *N:set hlsearch!<CR>
-
-"let c_no_curly_error=1

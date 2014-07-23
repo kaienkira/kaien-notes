@@ -1,0 +1,19 @@
+COM
+---
+<objbase.h> - ole32.dll
+CoCreateInstance()
+
+
+OLE
+---
+<ole2.h> - ole32.dll
+OleCreate()
+
+
+WebBrowser Customization
+------------------------
+IOleObject::SetClientSite()
+IDocHostUIHandler
+ICustomDoc::SetUIHandler()
+CWnd::GetControlUnknown()
+CWnd::CreateControl(CLSID_WebBrowser...)

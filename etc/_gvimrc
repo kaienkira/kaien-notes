@@ -53,33 +53,43 @@ function! BrickredCFold(lnum)
     return '-1'
 endfunction
 
+function! BR_RelativeNumberToggle()
+    if (&relativenumber == 1)
+        set norelativenumber
+        set number
+    else
+        set number
+        set relativenumber
+    endif
+endfunction
+
 au GuiEnter * set t_vb=
 au BufNewFile,BufRead *.c,*.h,*.cc,*.hpp,*.cpp set syntax=cpp.doxygen
 au BufNewFile,BufRead *.c,*.cc,*.cpp set foldmethod=expr foldexpr=BrickredCFold(v:lnum)
 au BufNewFile,BufRead Makefile,makefile,*.mak set noexpandtab
 
-imap <C-j> <C-x><C-p>
-nmap <A-1> 1gt
-nmap <A-2> 2gt
-nmap <A-3> 3gt
-nmap <A-4> 4gt
-nmap <A-5> 5gt
-nmap <A-6> 6gt
-nmap <A-7> 7gt
-nmap <A-8> 8gt
-nmap <A-9> 9gt
-nmap <A-0> 10gt
-imap <silent><A-1> <ESC>1gt
-imap <silent><A-2> <ESC>2gt
-imap <silent><A-3> <ESC>3gt
-imap <silent><A-4> <ESC>4gt
-imap <silent><A-5> <ESC>5gt
-imap <silent><A-6> <ESC>6gt
-imap <silent><A-7> <ESC>7gt
-imap <silent><A-8> <ESC>8gt
-imap <silent><A-9> <ESC>9gt
-imap <silent><A-0> <ESC>10gt
-nmap <silent><A-m> :tabm 0<CR>
-imap <silent><A-m> <ESC>:tabm 0<CR>
-
-"let c_no_curly_error=1
+inoremap <C-j> <C-x><C-p>
+nnoremap <C-j> :call BR_RelativeNumberToggle()<CR>
+nnoremap <C-k> *N:set hlsearch!<CR>
+nnoremap <A-1> 1gt
+nnoremap <A-2> 2gt
+nnoremap <A-3> 3gt
+nnoremap <A-4> 4gt
+nnoremap <A-5> 5gt
+nnoremap <A-6> 6gt
+nnoremap <A-7> 7gt
+nnoremap <A-8> 8gt
+nnoremap <A-9> 9gt
+nnoremap <A-0> 10gt
+inoremap <silent><A-1> <ESC>1gt
+inoremap <silent><A-2> <ESC>2gt
+inoremap <silent><A-3> <ESC>3gt
+inoremap <silent><A-4> <ESC>4gt
+inoremap <silent><A-5> <ESC>5gt
+inoremap <silent><A-6> <ESC>6gt
+inoremap <silent><A-7> <ESC>7gt
+inoremap <silent><A-8> <ESC>8gt
+inoremap <silent><A-9> <ESC>9gt
+inoremap <silent><A-0> <ESC>10gt
+nnoremap <silent><A-m> :tabm 0<CR>
+inoremap <silent><A-m> <ESC>:tabm 0<CR>
