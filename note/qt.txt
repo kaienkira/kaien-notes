@@ -12,10 +12,13 @@ The Meta-Object System
 ===============================================================================
 -*- compile static qt library -*-
 ===============================================================================
+$ vi qtbase\mkspecs\win32-g++\qmake.conf
+    QMAKE_CFLAGS_RELEASE = -Os -fomit-frame-pointer
 $ configure -prefix <prefix>
-    -release -static -opensource -platform win32-g++
+    -debug-and-release -opensource -static -platform win32-g++
     -opengl desktop
-    -nomake examples -nomake tests
+    -no-icu -nomake examples -nomake tests -no-compile-examples
+    -skip qtwebkit -skip qtwebkit-examples
 $ mingw32-make
 ===============================================================================
 QApplication

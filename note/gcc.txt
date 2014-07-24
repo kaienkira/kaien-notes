@@ -1,0 +1,2 @@
+# 查看O3选项开启了哪些优化器
+gcc -c -Q -O3 --help=optimizers
