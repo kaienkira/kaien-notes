@@ -96,10 +96,15 @@ ssh -T git@github.com
 -*- Proxy -*-
 ================================================================================
 vi git_proxy.sh
-  #!/bin/sh
-  nc -x 127.0.0.1:9050 -X5 $*
+    #!/bin/sh
+    nc -x 127.0.0.1:9050 -X5 $*
+vi git_ssh_proxy.sh
+    #!/bin/sh
+    ssh -o ProxyCommand="git_proxy.sh %h %p" $*
+
+# git config --global core.gitproxy git_proxy.sh
 export GIT_PROXY_COMMAND=git_proxy.sh
-git config --global core.gitproxy git_proxy.sh
+export GIT_SSH=git_ssh_proxy.sh
 
 ================================================================================
 -*- Misc -*-
