@@ -99,7 +99,7 @@ vi git_proxy.sh
   #!/bin/sh
   nc -x 127.0.0.1:9050 -X5 $*
 export GIT_PROXY_COMMAND=git_proxy.sh
-git config -global core.gitproxy git_proxy.sh
+git config --global core.gitproxy git_proxy.sh
 
 ================================================================================
 -*- Misc -*-
