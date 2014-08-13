@@ -1,0 +1,11 @@
+===============================================================================
+-*- about:config -*-
+===============================================================================
+general.warnOnAboutConfig 显示修改配置警告
+extensions.logging.enabled 扩展日志输出到控制台
+
+===============================================================================
+-*- Compartments -*-
+===============================================================================
+*. All objects created by a website reiside within the same compartment.
+*. js objects are only allowed to touch objects in the same compartment.

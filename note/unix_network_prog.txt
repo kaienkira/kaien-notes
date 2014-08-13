@@ -88,6 +88,9 @@
    "when an I/O operation that I request cannot be completed without putting
    the process to sleep, do not put the process to sleep, but return an error
    instead."
+*. 读缓冲区中仍有数据时调用close(), 将直接向对端发送RST
+*. 调用shutdown(fd, SHUT_RD)后, 调用recv读不到任何数据, 但是对端发送的数据
+   仍然在缓冲区中, 此时调用close(), 仍然向对端发送RST
 ===============================================================================
 -*- SOCKET_OPTIONS -*-
 ===============================================================================
