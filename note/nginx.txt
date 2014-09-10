@@ -1,5 +1,5 @@
 ===============================================================================
--*- Install && configure -*-
+-*- Quick Start -*-
 ===============================================================================
 sudo apt-get install nginx php5-cli php5-fpm
 vi /etc/nginx/sites-available/default
@@ -24,3 +24,30 @@ vi /etc/nginx/sites-available/default
         }
     } 
 ===============================================================================
+-*- Compilation from source
+===============================================================================
+./configure --prefix=<prefix> --with-http_ssl_module
+
+===============================================================================
+-*- Controlling nginx by signal -*-
+===============================================================================
+nginx -s <signal>
+    stop    <SIGINT, SIGTERM>    fast shutdown
+    quit    <SIGQUIT>            graceful shutdown
+    reload  <SIGHUP>             reload the configuration file
+    reopen  <SIGUSR1>            reopening the log files
+    -       <SIGUSR2>            upgrading an executable file
+    -       <SIGWINCH>           graceful shutdown of worker processes
+
+# 平滑升级
+kill -s SIGUSR2 <nginx-old-master>
+    rename nginx.pid to nginx.pid.oldbin start new master process
+kill -s SIGWINCH <nginx-old-master>
+    recover: kill -s SIGHUP <nginx-old-master>
+kill -s SIGQUIT <nginx-old-master>
+
+===============================================================================
+-*- Directives -*-
+===============================================================================
+# 指定pid文件路径
+pid <pid-file-path>;
