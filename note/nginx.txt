@@ -47,7 +47,35 @@ kill -s SIGWINCH <nginx-old-master>
 kill -s SIGQUIT <nginx-old-master>
 
 ===============================================================================
+-*- Virtual server match rule
+===============================================================================
+*. ip and port
+*. server_name directives
+    [] exact name
+    [] longest wildcard name starting with an asterisk
+    [] longest wildcard name ending with an asterisk
+    [] first mathcing regular expression (order in config file)
+*. wildcard names
+    [] A wildcard name may contain an asterisk only on the name’s start or end
+       and only on a dot border
+    [] An asterisk can match several name parts
+*. regular expression names
+    [] start with a ~
+    [] quoted when use { and }
+    [] use ^ and $
+    [] a named re capture can be used later as a variable
+        ?<name>
+        ?'name'
+        ?P<name>
+
+===============================================================================
 -*- Directives -*-
 ===============================================================================
-# 指定pid文件路径
+# 指定pid文件路径 (main)
 pid <pid-file-path>;
+
+# 工作进程最大连接数 (events)
+worker_connections <max_connection_num>;
+
+# 设置默认虚拟服务器 (server)
+listen <address:port> default_server 
