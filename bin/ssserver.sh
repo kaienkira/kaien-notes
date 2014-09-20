@@ -1,8 +1,8 @@
 #!/bin/bash
 
-ss_path=shadowsocks
-config_path=/tmp
-run_path=/tmp
+ss_path=/home/kaien/proj/shadowsocks
+config_path=/home/kaien/etc
+run_path=/home/kaien/run
 
 script_name=`basename $0`
 prog=${ss_path}/shadowsocks/server.py
@@ -35,7 +35,7 @@ op_start()
     then
         show_error '[already started]'
     else
-        start-stop-daemon -SmbC -p $pid_file -a $prog -- $args >${run_path}/ss.log 2>&1
+        start-stop-daemon -Smb -p $pid_file -a $prog -- $args >${run_path}/ss.log 2>&1
         if [ $? -eq 0 ]
         then
             show_success '[success]'
