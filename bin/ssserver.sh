@@ -80,7 +80,7 @@ then
     usage
 fi
 
-case $1 in
+case "$1" in
     start)
         op_start
         ;;
