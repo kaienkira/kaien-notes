@@ -113,6 +113,14 @@ shared/buffers/cached: This shows memory usage for specific purposed.
 The second line gives first line values adjusted.
 first = used - (buffers + cached)
 second = free + (buffers + cached)
+
+===============================================================================
+-*- grep -*-
+===============================================================================
+-A --after-context <num>
+-B --before-context <num>
+-C --context <num>
+
 ===============================================================================
 -*- awk -*-
 -------------------------------------------------------------------------------

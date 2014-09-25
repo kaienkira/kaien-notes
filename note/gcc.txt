@@ -1,2 +1,4 @@
 # 查看O3选项开启了哪些优化器
 gcc -c -Q -O3 --help=optimizers
+# 察看预定义宏
+cpp -dM < /dev/null
