@@ -1,0 +1,7 @@
+===============================================================================
+p4 client
+===============================================================================
+export P4PORT=<server-addr>
+export P4USER=<username>
+export P4PASSWD=<passwd>
+export P4CLIENT=<workspace>
