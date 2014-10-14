@@ -2,3 +2,5 @@
 gcc -c -Q -O3 --help=optimizers
 # 察看预定义宏
 cpp -dM < /dev/null
+# 察看动态库配置
+sudo ldconfig -p
