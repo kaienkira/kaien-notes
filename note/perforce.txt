@@ -1,7 +1,17 @@
 ===============================================================================
-p4 client
+-*- p4 client env setting -*-
 ===============================================================================
 export P4PORT=<server-addr>
 export P4USER=<username>
 export P4PASSWD=<passwd>
 export P4CLIENT=<workspace>
+export p4IGNORE=<ignore-file>
+
+===============================================================================
+-*- changelist -*-
+===============================================================================
+*. The default changelist is assigned a changelist number when you check
+   its files back into the depot
+*. pending changelists other than the default changelist are assigned numbers
+   when you create the changelist. A new number may be assigned to a pending
+   changelist when you submit the changelist to the depot
