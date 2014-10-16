@@ -14,6 +14,13 @@ rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-5.rpm
 yum --enablerepo=remi install httpd php php-common
 
 ===============================================================================
+-*- package management -*-
+===============================================================================
+*. 设置yum代理
+vi /etc/yum.conf
+    proxy=http://<addr>:<port>
+
+===============================================================================
 -*- network management -*-
 -------------------------------------------------------------------------------
 vi /etc/sysconfig/network

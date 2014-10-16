@@ -9,6 +9,9 @@
     apt-get -s build-dep <package>
 *. 列出包属于哪个源
     grep -l <package> /var/lib/apt/lists/*
+*. 设置apt代理
+    vi /etc/apt/apt.conf
+        Acquire::http::Proxy "http://<addr>:<port>";
 ===============================================================================
 -*- system management -*-
 -------------------------------------------------------------------------------
