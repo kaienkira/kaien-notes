@@ -72,3 +72,17 @@ i_<C_O>            执行一条指令后返回插入模式
 -*- Pyclewn -*-
 ===============================================================================
 EDITOR=vim vimdir=$HOME/.vim python3 setup.py install --force --home=$HOME
+
+===============================================================================
+-*- Cscope -*-
+===============================================================================
+*. 建立索引
+cscope -Rbq -f <ref_file>
+*. 查询已经建立的索引
+cscope -d -P <prepend_path> -f <ref_file>
+
+*. 添加cscope连接
+vi ~/.vimrc
+    set nocsverb
+    :cs add <ref_file> <prepend_path>
+    sete csverb

@@ -15,3 +15,11 @@ export p4IGNORE=<ignore-file>
 *. pending changelists other than the default changelist are assigned numbers
    when you create the changelist. A new number may be assigned to a pending
    changelist when you submit the changelist to the depot
+
+# To list all the files included in a changelist
+p4 opened -c <changelist>
+
+# To list all pending changelists
+p4 changes -s pending
+
+===============================================================================
