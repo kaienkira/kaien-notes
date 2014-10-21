@@ -187,8 +187,19 @@ preg_replace('/(?:^|_)([a-z])/e', "strtoupper('\\1')", strtolower($const_name))
 func_get_args()
 func_num_args()
 
-#删除变量
+# 删除变量
 unset()
+
+# 字符串转化成流
+$string = "I should have really done some laundry tonight.";
+$stream = fopen('data://text/plain;base64,'.base64_encode($string), 'r');
+echo stream_get_contents($stream);
+
+$string = 'Some bad-ass string';
+$stream = fopen('php://memory', 'r+');
+fwrite($stream, $string);
+rewind($stream);
+echo stream_get_contents($stream);
 
 ================================================================================
 超级变量
