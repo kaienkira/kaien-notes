@@ -42,7 +42,10 @@ HEAD
     git push origin :dev
     git branch --unset-upstream
 *. 合并分支
+    # 保留提交历史
     git merge <branch>
+    # 不保留提交历史
+    git merge --squash <branch>
     git cherry-pick <branch>
 *. 撤销分支合并
     git reset --hard <commit_before_merge>
