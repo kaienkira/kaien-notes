@@ -351,8 +351,13 @@ void f4(X) {}          // ILLEGAL: *definitions* require complete types
 *. reference-collapsing
    [] An rvalue reference to an rvalue reference becomes an rvalue reference.
    [] All other references to references collapse into a lvalue reference.
-
 ===============================================================================
+-*- reverse iterator -*-
+===============================================================================
+*. The fundamental relation between a reverse iterator and its corresponding 
+   iterator i is established by the identity:
+   &*(reverse_iterator(i)) == &*(i - 1)
+*. std::reverse_iterator(it).base() == it
 
 ===============================================================================
 -*- <The C++ Programming Language 4th> Notes -*-
