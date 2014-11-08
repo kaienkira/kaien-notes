@@ -99,7 +99,13 @@ RULE SPEC
   [!] -d <dest_addr>
   -j <target>
 ===============================================================================
--*- network -*-
+-*- network routing -*-
 ===============================================================================
 *. 显示默认网关
 route -n
+*. 显示本地路由表
+ip route show table local
+*. 显示已存在的路由表列表
+cat /etc/iproute2/rt_tables
+*. 禁止路由IP
+ip route add prohibit <ip>
