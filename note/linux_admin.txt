@@ -108,4 +108,6 @@ ip route show table local
 *. 显示已存在的路由表列表
 cat /etc/iproute2/rt_tables
 *. 禁止路由IP
-ip route add prohibit <ip>
+ip route add prohibit <ip> [from <ip>]
+*. 获取路由信息
+ip route get <ip>
