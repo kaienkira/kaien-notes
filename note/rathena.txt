@@ -1,0 +1,7 @@
+*. create db
+create user `ragnarok`@`localhost` identify by 'ragnarok';
+grant all on ragnarok.* to `ragnarok`@`localhost`;
+drop database if exists ragnarok;
+create database ragnarok charset utf8;
+use ragnarok;
+source main.sql; ...
