@@ -111,3 +111,10 @@ cat /etc/iproute2/rt_tables
 ip route add prohibit <ip> [from <ip>]
 *. 获取路由信息
 ip route get <ip>
+===============================================================================
+-*- hardware info -*-
+===============================================================================
+* cpu信息
+cat /proc/cpuinfo
+* 内存信息
+cat /proc/meminfo
