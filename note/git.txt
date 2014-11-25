@@ -35,7 +35,14 @@ HEAD
 *. 查看已合并分支
     git branch --merged
 *. 获取远程分支
-    git pull origin dev:dev
+    git fetch
+    git checkout dev
+    <1.6.6
+    git fetch origin
+    git branch -v -a
+    git checkout -b dev origin/dev 
+    (git branch dev origin/dev)(do not switch to branch)
+
 *. 建立远程分支
     git push -u(--set-upstream) origin dev
 *. 删除远程分支
