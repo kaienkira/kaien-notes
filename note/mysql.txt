@@ -29,6 +29,8 @@ profile
 mysql
     -r --raw
     -s --silent
+
+    *. Typing Control+C causes mysql to attempt to kill the current statement
 ===============================================================================
 mysqldump [options] <db_name> [table_name]
     -u <user_name>
@@ -46,6 +48,7 @@ insert into <table_name> values(....)
 on duplicate key update ... = ...
 ===============================================================================
 mysql -h 127.0.0.1 -u root -p
+>status
 >show databases;
 >create database <db_name>;
 
@@ -107,4 +110,23 @@ leftmost index prefixes of that index.
 A leftmost prefix of a composite index consists of one or more of the initial
 columns of the index. MySQL's capability to use leftmost index prefixes
 enables you to avoid creating unnecessary indexes.
+===============================================================================
+-*- Dead Lock -*-
+-------------------------------------------------------------------------------
+>show processlist;
+>show engine innodb status\G
+>show open tables;
+>show status like '%lock%';
+===============================================================================
+-*- InnoDB Isolation Level -*-
+-------------------------------------------------------------------------------
+>set transaction isolation level <level>
+
+* Read Uncommitted
+    dirty read
+* Read Committed
+    phantom read
+* Repeatable Read (default)
+    no phantom read because of mvcc
+* Serialize
 ===============================================================================
