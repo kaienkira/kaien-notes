@@ -1,0 +1,274 @@
+================================================================================
+****** overview *****
+================================================================================
+source files --> <autoscan> --> [configure.scan] --> [configure.ac]
+
+[acinclude.m4] --.
+|
+[configure.ac] --+--> <aclocal> --> [aclocal.m4]
+
+[Makefile.am] --.
+|
+[configure.ac] --+--> <automake> --> [Makefile.in]
+|
+[aclocal.m4] --+
+
+[configure.ac] --.
+| .--> <autoconf> --> [configure*]
+[aclocal.m4] ---+--+
+| '--> <autoheader> --> [config.h.in]
+[acsite.m4] ---'
+
+.-------------------> [config.cache]
+[configure*] --------------+-------------------> [config.log]
+|
+[config.h.in] --. v .--> [config.h] -.
++--> [config.status*] -+ +--> <make*>
+[Makefile.in] --' '--> [Makefile] -'
+
+===============================================================================
+***** autoconf *****
+===============================================================================
+
+[-*- Commnd Line Options -*-]
+-f
+Remake 'configure' even if newer than its input files
+-Wall
+Report all the warnings
+
+
+*.When calling macros that take arguments, there must not be any white space
+between the macro name and the open parenthesis.
+*.You should always quote an argument that might contain a macro name, comma,
+parenthesis, or a leading blank or newline.
+*.有[]的字符常量需要quote 2次
+*.Every 'configure.ac' must contain a call to AC_INIT before the checks, and
+a call to AC_OUTPUT at the end.
+
+[-*- Suggested order for calling the autoconf macros -*-]
+AC_INIT
+checks for programs
+checks for libraries
+checks for header files
+checks for types
+checks for structures
+checks for compiler characteristics
+checks for library fucntions
+checks for system services
+AC_CONFIG_FILES([file...])
+AC_OUTPUT
+
+===============================================================================
+***** automake *****
+===============================================================================
+[-*- Commnd Line Options -*-]
+-a / --add-missing
+-c / --copy
+-f / --force-missing
+caused standard files to be reinstalled even if they already exist in
+the source tree
+
+*.The variable definitions and rules in the 'Makefile.am' are copied mostly
+verbatim into the generated file
+*.Note that most GNU make extensions are not recognized by Automake
+A special exception is that the GNU make append operator "+=" is supported
+*.Automake also allows a form of comment that is *not* copied into the output;
+all lines beginning with '##'(leading spaces allowed) are completely ignored
+by automake
+*.All characters in the name except for letters, numbers, the strudel(@), and
+the underscore are turned into undersores when making variable references
++.For example, if your program is named 'sniff-glue', the derived variable
+name would be 'sniff_glue_SOURCES', not 'sniff-glue_SOURCES', Similarly the
+sources for a library named 'libmumble++.a' should be listed in the
+'libmumble___a_SOURCES' variable
+*.Do not set variables reserved for the user (like CFLAGS)
+*.Note that automake has a rather simplistic view of what constitutes a
+package; it assumes that a package has only one 'configure.ac', at the top.
+If your package has multiple 'configure.ac's, then you must run automake in
+each directory holding a 'configure.ac'
+*.automake will run autoconf to scan 'configure.ac' and its dependencies
+(aclocal.m4 and any included file), therefore autoconf must be in your PATH
+if there is an AUTOCONF variable in your environment it will be used instead
+of autoconf, this allows you to select a particular version of autoconf
+
+[-*- The Uniform Naming Schema -*-]
+<prefix>_<PRIMARY>
++.A given prefix (e.g. 'zar') is valid if a variable of the same name with
+'dir' appended is defined(e.g. 'zardir')
++.special prefix
+check_ build when 'make check'
+noinst_ should be built but not installed at all
++.primary names
+PROGRAMS
+LIBRARIES
+LTLIBRARIES
+LISP
+PYTHON
+JAVA
+SCRIPTS
+DATA
+HEADERS
+MANS
+TEXINFOS
++.<primary>_SOURCES
+<primary>_CPPFLAGS
+
+[-*- Programs automake might require -*- ]
++.ar-lib This is a wrapper primarily for the Micorosoft lib archiver,
+to make if more POSIX-like.
++.compile This is a wrapper for compilers that do not accept options
+'-c' and '-o' at the same time.
++.config.guess
+config.sub
++.depcomp This program understands how to run a compiler so that it
+will generate not only the desired output but also dependency
+information that is then used by the automatic dependency
+tracking feature
++.install-sh This is a replacement for the install program that works on
+platforms where install is unavailable or unusable
++.missing
+===============================================================================
+***** aclocal *****
+===============================================================================
+*.The aclocal program lets you put your own macros into 'acinclude.m4'
+
+
+===============================================================================
+Objects files, programs and libraries are built where configure was run.
+Builds for multiple architectures can share the same source tree.
+'make install' = 'make install-exec' + 'make install-data'
+===============================================================================
+Standard Makefile Targets
+make all
+make install
+make install-strip
+make uninstall
+make clean
+make distclean
+make check
+make installcheck
+make dist
+===============================================================================
+Standard Directory Varibles
+$(prefix) /usr/local
+$(exec_prefix) $(prefix)
+$(bindir) $(exec_prefix)/bin
+$(libdir) $(exec_prefix)/lib
+$(includedir) $(prefix)/include
+$(datarootdir) $(prefix)/share
+$(datadir) $(datarootdir)
+$(mandir) $(datarootdir)/man
+$(infodir) $(datarootdir)/info
+$(docdir) $(datarootdir)/doc/${PACKAGE}
+===============================================================================
+Standard Configuration Varibles
+CC C compiler command
+CFLAGS C compiler flags
+CXX C++ compiler command
+CXXFLAGS C++ compiler flags
+CPPFLAGS C/C++ preprocesser flags
+===============================================================================
+GNU Autoconf
+
+'autoconf' create configure from configure.ac
+'autoheader' create config.h.in from configure.ac
+'autoreconf' run all tools in the right order
+'autoscan' scan sources for common portability problems,
+and relate macros missing from configure.ac
+'autoupdate' update obsolete macros in configure.ac
+'ifnames' gather identifiers from all #if/#ifdef/ ... directives
+'autom4te' the hearf of autoconf. It drives M4 and implements the
+features used by most of the above tools. useful for
+creating more than just configure files
+
+GNU Automake
+'automake' create Makefile.in from Makefile.am and configure.ac
+'aclocal' scan configure.ac for uses of third-party macros, and
+gather definitions in aclocal.m4
+===============================================================================
+config.status will actually process the templates
+config.cache speeds up reconfigurations
+*.in template files
+aclocal.m4 definitions for third-party macros used in configure.ac
+depcomp -|
+install-sh -|-> auxiliary tools used during the build
+missing -|
+autom4te.cache autotools cache files
+===============================================================================
+./configure --build i686-pc-linux-gnu --host i586-mingw32msvc
+--program-prefix=PREFIX
+prepend PREFIX to installed program names
+--program-suffix=SUFFIX
+append SUFFIX to installed program names
+--program-transform-name=PROGRAM
+run 'sed PROGRAM' on installed program names
+===============================================================================
+configure.ac
+
+AC_INIT([amhello], [1.0], [bug-report@address])
+AM_INIT_AUTOMAKE([foreign -Wall -Werror])
+AC_PROG_CC
+AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_FILES([Makefile src/Makefile])
+AC_OUTPUT
+===============================================================================
+Makefile.am
+
+SUBDIRS = src
+bin_PROGRAMS = hello
+hello_SOURCES = main.c
+
+where_PRIMARY = target
+===============================================================================
+AC_INIT(<package>, <version>, <bug_report_address>)
+mandatory autoconf initialization
+
+AC_PREREQ(<version>)
+require a minimum autoconf version
+
+AC_PROG_CC, AC_PROG_CXX, AC_PROG_F77
+compiler checks
+AC_PROG_SED, AC_PROG_YACC, AC_PROG_LEX
+find good implementaions and set $SED, $YACC, $LEX etc
+AC_CHECK_PROGS(<var>, <progs>, [<val_if_not_found>])
+define <var> to the first <progs> found, or to <val_if_not_found>
+AC_CHECK_LIB(<library>, <func>, <act_if_found>, <act_if_not>)
+check whether <library> exists and contains <func>.
+excute <act_if_found> if it does, <act_if_not> otherwise.
+AC_CHECK_HEADERS(<headers>)
+check for <headers> and #define HAVE_<headers>_H for each header found.
+AC_CONFIG_SRCDIR(<file>)
+a safety check. <file> should be a distributed source file.
+AC_CONFIG_AUX_DIR(<directory>)
+auxiliary scripts such as install-sh and depcomp should be in <directory>
+AC_CONFIG_HEADERS()
+declare output header
+AC_CONFIG_FILES()
+declare output files
+AC_OUTPUT
+actually output all declared files
+
+AC_MSG_ERROR(<error_description>, [<exit_status>])
+print <error_description>(also to config.log) and abort 'configure'
+AC_MSG_WARN(<error_description>)
+like AC_MSG_ERROR, but don't abort
+AC_DEFINE(<variable>, <value>, <description>)
+output #define to config.h
+AC_SUBSET(<variable>, [<value>])
+define variable in Makefile
+===============================================================================
+AM_INIT()
+initialize automake.
+foreign ---> a foreign package, ignores some GNU coding standards
+-Wall ---> turn on all automake warnings
+-Werror ---> report warnings as errors
+===============================================================================
+
+
+
+
+
+===============================================================================
+build debug version
+CFLAGS="-g -O0" CXXFLAGS="-g -O0" ./configure
+===============================================================================
