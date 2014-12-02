@@ -336,6 +336,14 @@ SIGALRM    terminate
 SIGCHLD    ignore
     whenever a process terminates or *stops*, the SIGCHLD signal is sent to
     the parent
+    *. SIGCHLD vs SIGCLD
+    Today, it's an alias, the exact system signal.
+    Fact is, SIGCLD was the System V name for the today, SIGCHLD.
+    Historically, SIGCHLD originated on BSD and was the name adopted by POSIX.
+    Based on System V SIGCLD the only differences happens when the signal
+    is set to *SIG_IGN*:
+    BSD would generate zombies, System-V wouldn't.
+
 SIGCONT    continue/ignore
 SIGHUP     terminate
     This signal is sent to the session leader associated with a controlling
