@@ -67,7 +67,7 @@ mysql -h 127.0.0.1 -u root -p
 *. show full columns from <table_name>;
 ===============================================================================
 alter table <table_name> add <column_name> <column_definition>
-      [fisrt | after col_name]
+      [first | after col_name]
 ===============================================================================
 系统表
 information_schema.tables
