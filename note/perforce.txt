@@ -8,6 +8,15 @@ export P4CLIENT=<workspace>
 export p4IGNORE=<ignore-file>
 
 ===============================================================================
+-*- admin -*-
+===============================================================================
+p4d -p tcp4:<ip>:<port> -r <depot_dir> &
+p4 admin stop
+p4 admin restart
+p4 protect
+p4 configure set dm.user.noautocreate=1
+
+===============================================================================
 -*- changelist -*-
 ===============================================================================
 *. The default changelist is assigned a changelist number when you check
