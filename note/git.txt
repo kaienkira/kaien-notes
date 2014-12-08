@@ -134,4 +134,8 @@ untracked <-> unmodified <-> modified <-> staged
 git diff 
 # 工作区, 版本树diff
 git diff HEAD
+
+git stash
+git stash list
+git stash pop
 ================================================================================
