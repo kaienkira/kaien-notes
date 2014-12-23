@@ -101,7 +101,10 @@ skip-networking
 -------------------------------------------------------------------------------
 *. 将查询条件用binary()括起来
 *. 修改该字段的collation 为 binary 
-   VARCHAR(n) BINARY CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL;
+   VARCHAR(n) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL;
+   VARCHAR(n) CHARACTER SET utf8 BINARY;
+   (BINARY is shorthand for specifying the binary collation of
+    the column character set)
 ===============================================================================
 -*- Leftmost Indexes Prefixes -*-
 -------------------------------------------------------------------------------
