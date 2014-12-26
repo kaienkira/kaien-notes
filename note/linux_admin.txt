@@ -119,7 +119,9 @@ cat /proc/cpuinfo
 * 内存信息
 cat /proc/meminfo
 ===============================================================================
--*- open files -*-
+-*- max open sockets -*-
 ===============================================================================
+ulimit -n
 cat /proc/sys/fs/file-nr
 cat /proc/sys/fs/file-max
+cat /proc/sys/net/ipv4/ip_local_port_range 
