@@ -1,0 +1,111 @@
+===============================================================================
+*. JavaScript只有单一的数字类型, 它在内部被表示为64位的浮点数
+*. 值NaN是一个数值, 它表示一个不能产生正常结果的运算结果. NaN不等于任何值, 包括
+它自己, 可以使用isNaN()检测NaN
+*. 值Infinity表示所有大于1.79769313486231570e+308的值
+*. JavaScript中所有的字符都是16位的, 字符串是不可变的
+*. 当var语句被用在函数的内部时, 它定义了这个函数的私有变量
+*. switch, while, for和do语句语句允许有一个可选的前置标签, 它配合break语句来使用
+*. JavaScript中的代码块不会创建一个新的作用域
+*. JavaScript不允许在return关键字和表达式之间换行
+*. JavaScript不允许在break关键字和标签之间换行
+*. JavaScript的简单类型包括数字, 字符串, 布尔值, null和undefined, 其他所有的值都
+是对象, 对象是容器的属性
+*. 对象通过引用来传递, 他们永远不会被拷贝
+*. 每个对象都连接到一个原型对象, 并且它可以从中继承属性. 所有通过对象字面量创建
+的对象都连接到Object.prototype这个JavaScript中标准的对象
+*. 原型连接在更新时是不起作用的, 当我们对某个对象作出改变时, 不会触及到该对象的
+原型, 原型连接只有在检索值的时候才会被用到, 如果我们尝试去获取对象的某个
+属性值, 且改对象没有此属性名, 那么JavaScript会试着从原型对象中获取属性值,
+如果那个原型对象也没有该属性, 那么再从它的原型重寻找, 依此类推, 直到该过程
+最后达到终点Object.protype. 如果想要的属性完全不存在于原型链中, 那么结果就是
+undefined, 这个过程称为委托
+*. hasOwnProperty()方法不会检查原型链
+*. for in语句可用来遍历一个对象中的所有属性名, 常用的过滤器是hasOwnProperty()方法
+以及使用typeof来排除函数, 属性名出现的次序是不确定的, 因此要对任何可能出现的顺序
+有所准备
+*. delete运算符可以用来删除对象的属性, 它将会移除对象中确定包含的属性, 它不会触及
+原型链中的任何对象
+*. 对象字面量产生的对象连接到Object.prototype, 函数对象连接到Function.prototype
+(该原型对象本省连接到Object.prototype), 每个函数对象在创建时也随带有一个prototype
+属性。它的值是一个拥有constructor属性且值即为该函数的对象.
+*. 函数字面量可以出现在任何允许表达式出现的地方, 函数也可以被定义在其他函数中,
+一个内部函数自然可以访问自己的参数和变量, 同时它也能方便地访问它被嵌套在其中的
+那个函数的参数与变量. 通过函数字面量创建的函数对象包含一个连到外部上下文的连接,
+这被称为闭包. 它是JavaScript强大表现力的根基.
+*. 每个函数接收两个附加的参数: this和arguments, this到对象的绑定发生在调用的时候
+*. 当函数被调用时, 会得到一个"免费"奉送的arguments数组. 通过它函数可以访问它被
+调用时传递给他的参数列表, 包括那些没有被分配给函数声明时定义的形式参数的多余
+参数. arguments并不是一个真正的数组, 它只是一个"类似数组"的对象, 它有一个
+length属性, 但它缺少所有的数组方法
+
+*js没有块作用域
+*false, 0, null, undefined, NaN, ""6种值被视做假,其余都为真
+
+---Function---
+prop:
+constructor: Specifies the function that creates an object's prototype.
+length: Specifies the number of arguments expected by the function.
+methods
+
+---Array---
+concat(array)
+indexOf(element[, fromIndex])
+lastIndexOf(element[, fromIndex])
+join(separator)
+slice(begin[, end])
+===============================================================================
+JSON.parse(), which is defined in ECMA-262 5th Edition
+obj = JSON.parse(json);
+===============================================================================
+encodeURI()
+encodeURIComponent()
+===============================================================================
+window.onbeforeunload
+window.onunload
+===============================================================================
+navigator.userAgent
+===============================================================================
+-*- 正则表达式 -*-
+-------------------------------------------------------------------------------
+*. 默认情况下正则是贪心的, 如果需要非贪心(尽量少地匹配字符, 那么就可以在表示
+数字的符号后面加上一个?
+{n, }? , *? , +? , ?? , {m,n}?
+* 不记录正则表达式的匹配结果
+(?:pattern)
+* 正向预查
+(?=pattern)
+(?!pattern)
+
+===============================================================================
+IIFE(Immediately-Invoked Function Expression)
+-------------------------------------------------------------------------------
+    (function(){})()
+    (function(){}())
+    function(){}() // SyntaxError: Unexpected token )
+===============================================================================
+What's the difference between .call and .apply
+-------------------------------------------------------------------------------
+    apply lets you invoke the function with arguments as an array;
+    call requires the parameters be listed explicitly
+===============================================================================
+Hoisting
+-------------------------------------------------------------------------------
+    Function declarations and variable declarations are always
+    moved (hoisted) invisibly to the top of their containing scope
+
+    (function test() {
+        foo(); // TypeError "foo is not a function"
+        bar(); // "this will run!"
+
+        // only 'foo' will be hoisted
+        var foo = function () {
+            alert("this won't run!");
+        }
+
+        // 'bar' and entire function body will be hoisted
+        function bar() {
+            alert("this will run!");
+        }
+    }())
+===============================================================================
