@@ -4,3 +4,6 @@ gcc -c -Q -O3 --help=optimizers
 cpp -dM < /dev/null
 # 察看动态库配置
 sudo ldconfig -p
+# 生成gmon.out
+gdb <prog>
+> call write_gmon()
