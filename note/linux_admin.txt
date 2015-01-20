@@ -130,3 +130,14 @@ ulimit -n
 cat /proc/sys/fs/file-nr
 cat /proc/sys/fs/file-max
 cat /proc/sys/net/ipv4/ip_local_port_range 
+cat /proc/sys/net/ipv4/ip_local_reserved_ports
+===============================================================================
+-*- time_wait status -*-
+===============================================================================
+net.ipv4.tcp_tw_recycle
+    Enabling this option is not recommended since this causes problems
+    when working with NAT
+net.ipv4.tcp_tw_reuse
+    server_side useless with for incoming connections
+    client_side almost-safe solution an outgoing connection in the TIME-WAIT
+                state can be reused after just one second
