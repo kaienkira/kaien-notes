@@ -141,3 +141,5 @@ net.ipv4.tcp_tw_reuse
     server_side useless with for incoming connections
     client_side almost-safe solution an outgoing connection in the TIME-WAIT
                 state can be reused after just one second
+net.ipv4.tcp_fin_timeout
+    FIN_WAIT_2 status timeout
