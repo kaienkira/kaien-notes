@@ -263,7 +263,7 @@ void f4(X) {}          // ILLEGAL: *definitions* require complete types
 
 ===============================================================================
 -*- value categories -*-
-===============================================================================
+-------------------------------------------------------------------------------
 *. each C++ expression is characterized by two independent properties:
    a type and a value category.
 *. lvaue
@@ -299,7 +299,7 @@ void f4(X) {}          // ILLEGAL: *definitions* require complete types
     prvalue + xvalue
 ===============================================================================
 -*- references -*-
-===============================================================================
+-------------------------------------------------------------------------------
 *. Rvalue reference may bind only to rvalues
    Lvalue reference in addition to being able to bind a lvalues,
    may bind to rvalues only under restricted circumstances(const T&)
@@ -351,13 +351,52 @@ void f4(X) {}          // ILLEGAL: *definitions* require complete types
 *. reference-collapsing
    [] An rvalue reference to an rvalue reference becomes an rvalue reference.
    [] All other references to references collapse into a lvalue reference.
+       T& & = T&
+       T& && = T&
+       T&& & = T&
+       T&& && = T&&
+===============================================================================
+
+
+===============================================================================
+-*- template argument deduction -*-
+-------------------------------------------------------------------------------
+*. SFINAE(Substitution Failure Is Not An Error)
+*. before deduction begins, the following adjustments to P and A are made:
+
+   template<class T> void f(T p);
+   func(a);
+
+    1. if P is not a reference type
+        a) if A is an array type, A is replaced by the pointer type obtained
+           from array-to-pointer conversion
+        b) if A is a function type, A is replaced by the pointer type obtained
+           from function-to-pointer conversion
+        c) if A is a cv-qualified type, the top-level cv-qualifiers are
+           ignored for deduction
+    2. if P is a cv-qualified type, the top-level cv qualifiers are ignored
+       for deduction
+    3. if P is a reference type, the type refered to by P is used for deduction
+    4. if P is an rvalue reference to a cv-unqualifed template parameter
+       ("forwaring reference"), and the corresponding function call arguments
+       is an lvalue, the type lvalue reference to A is used in place of A for
+       deduction
+
+*. Type deduction does not consider implicit conversions
+===============================================================================
+
+
 ===============================================================================
 -*- reverse iterator -*-
-===============================================================================
+-------------------------------------------------------------------------------
 *. The fundamental relation between a reverse iterator and its corresponding 
    iterator i is established by the identity:
    &*(reverse_iterator(i)) == &*(i - 1)
 *. std::reverse_iterator(it).base() == it
+===============================================================================
+
+
+
 
 ===============================================================================
 -*- <The C++ Programming Language 4th> Notes -*-
