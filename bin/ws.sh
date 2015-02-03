@@ -1,3 +1,3 @@
 #!/bin/sh
 
-grep -n '^\s\+$' $*
+grep -n '\s\+$' $*
