@@ -23,6 +23,7 @@ ${LD_LIBRARY_PATH}
 alias l='ls -lrt'
 alias c='clear'
 alias vi='vim'
+alias vi2="vim -c 'syntax off'"
 alias svnbr="svn "\
 "--config-option servers:global:http-proxy-host=127.0.0.1 "\
 "--config-option servers:global:http-proxy-port=8118"
