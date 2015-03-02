@@ -53,6 +53,7 @@ function! BR_RelativeNumberToggle()
     endif
 endfunction
 
+"au BufRead,BufNewFile *.as set filetype=as3
 au BufNewFile,BufRead *.c,*.h,*.cc,*.hpp,*.cpp set syntax=cpp.doxygen
 au BufNewFile,BufRead *.c,*.cc,*.cpp set foldmethod=expr foldexpr=BR_CFold(v:lnum)
 au BufNewFile,BufRead Makefile,makefile,*.mak set noexpandtab
