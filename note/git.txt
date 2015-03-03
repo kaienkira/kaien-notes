@@ -28,6 +28,17 @@ HEAD
     When this happens, Git will tell you that you are in a "detached HEAD state". 
 
 ================================================================================
+-*- 历史 -*-
+================================================================================
+*. 清除所有历史
+    git checkout --orphan newBranch
+    git add -A  # Add all files and commit them
+    git commit
+    git branch -D master  # Deletes the master branch
+    git branch -m master  # Rename the current branch to master
+    git push -f origin master
+
+================================================================================
 -*- 分支 -*-
 ================================================================================
 *. 查看未合并分支
@@ -86,6 +97,14 @@ HEAD
 
 # 恢复删除的文件
     git checkout HEAD~1 -- <file>
+
+================================================================================
+-*- Submodule -*-
+================================================================================
+*. stored in .gitmodule, use `git submodule sync` to update .git/config
+*. remove the submodule
+    git submodule deinit <module>
+    git rm <module>
 
 ================================================================================
 -*- Config -*-
