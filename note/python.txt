@@ -3,6 +3,34 @@
 -------------------------------------------------------------------------------
 *. install at user site
     pip install --user <package_name>
+
+-------------------------------------------------------------------------------
+-*- uwsgi -*-
+-------------------------------------------------------------------------------
+*. install
+    pip install --user uwsgi
+
+    sudo apt-get install uwsgi uwsgi-plugin-python3
+    sudo vi /etc/uwsgi/apps-avaliable/site.ini
+    sudo ln -s /etc/uwsgi/apps-avaliable/site.ini
+               /etc/uwsgi/apps-enabled/site.ini
+
+*. nginx
+    server {
+        listen 80;
+        server_name localhost;
+    
+        location / { 
+            uwsgi_pass unix:/var/run/uwsgi/app/site/socket;
+            include uwsgi_params;
+        }   
+    } 
+
+*. deploy one file
+    uwsgi --http :<port> --wsgi-file <file>
+*. concurrency
+    --proccesses <num> --threads <num>
+
 ===============================================================================
 
 
