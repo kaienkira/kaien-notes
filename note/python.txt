@@ -3,6 +3,8 @@
 -------------------------------------------------------------------------------
 *. install at user site
     pip install --user <package_name>
+*. prevent pip install to real system
+    export PIP_REQUIRE_VIRTUALENV=true
 
 -------------------------------------------------------------------------------
 -*- uwsgi -*-
@@ -26,10 +28,38 @@
         }   
     } 
 
-*. deploy one file
-    uwsgi --http :<port> --wsgi-file <file>
+*. django
+    [uwsgi]
+    harakiri = 20
+    max-requests = 5000
+    vacuum = true
+    chdir = <proj_dir>
+    wsgi-file = <proj_name>/wsgi.py
+    virtualenv = <env_path>
+    
+*. server
+    --http <ip>:<port>
+    --socket <unix_socket_path>
+    --wsgi-file <file>
 *. concurrency
-    --proccesses <num> --threads <num>
+    --worker <num>
+    --proccesses <num>
+    --threads <num>
+
+-------------------------------------------------------------------------------
+-*- virualenv -*-
+-------------------------------------------------------------------------------
+*. install
+    sudo apt-get install python-virtualenv
+*. create
+    virtualenv -p python3 <env>
+
+-------------------------------------------------------------------------------
+-*- django -*-
+-------------------------------------------------------------------------------
+*. create
+    django-admin.py startproject <proj>
+    manage.py migrate
 
 ===============================================================================
 
