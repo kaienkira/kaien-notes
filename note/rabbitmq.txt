@@ -1,0 +1,7 @@
+* listen on localhost
+    vi /etc/rabbitmq/rabbitmq-env.conf
+        export RABBITMQ_NODENAME=rabbit@localhost
+        export RABBITMQ_NODE_IP_ADDRESS=127.0.0.1
+        export export ERL_EPMD_ADDRESS=127.0.0.1
+* crach dump
+    /var/lib/rabbitmq/erl_crash.dump
