@@ -1,0 +1,4 @@
+SET <key> <value>
+GET <key>
+EXPIRE <key> <sec>
+TTL <key>

@@ -59,8 +59,13 @@
 -------------------------------------------------------------------------------
 *. create
     django-admin.py startproject <proj>
-    manage.py migrate
+    manage.py startapp <app>
+    manage.py check
 
+    manage.py migrate
+    manage.py migrate app zero
+    manage.py makemigrations <app>
+    manage.py sqlmigrate <app> <migration_name>
 ===============================================================================
 
 
