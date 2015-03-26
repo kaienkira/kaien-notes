@@ -1,4 +1,43 @@
-SET <key> <value>
-GET <key>
-EXPIRE <key> <sec>
-TTL <key>
+===============================================================================
+install
+sudo apt-get install redis-server
+===============================================================================
+SET
+APPEND
+GET
+EXSITS
+
+
+EXPIRE
+TTL
+
+INCR INCRBY
+DECR DECRBY
+
+*. list
+RPUSH LPUSH
+RPOP LPOP
+LLEN
+LRANGE
+
+*. set 
+SADD
+SREM
+SISMEMBER
+SMEMBERS
+SUNION
+
+*. sorted set
+ZADD
+ZREM
+ZRANGE
+
+* hash
+HSET
+HMSET
+HDEL
+HINCR HINCRBY
+HDECR HDECRBY
+HGETALL
+
+===============================================================================
