@@ -18,10 +18,9 @@ AndroidX86
     setprop net.dns1 8.8.8.8
 
 *. resolution 
-    mkdir /data/fs
-    mount -t ext3 /dev/block/sda1 /data/fs
-    vi /data/fs/grub/menu.lst
-    vga=ask UVESA_MODE=480x800
+    <debug mode>
+    vi /mnt/grub/menu.lst
+    vga=ask UVESA_MODE=1024x768x32
 
 netcfg
 logcat
