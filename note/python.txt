@@ -5,6 +5,13 @@
     pip install --user <package_name>
 *. prevent pip install to real system
     export PIP_REQUIRE_VIRTUALENV=true
+*. use mirror
+    vi ~/.pip/pip.conf
+        [global]
+        index-url = http://<mirror>/simple
+* wheel
+    pip install wheel
+    pip wheel -w <wheel_dir> -r requirement.txt
 
 pip freeze > dep.txt
 

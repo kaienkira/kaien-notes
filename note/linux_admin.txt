@@ -145,3 +145,10 @@ net.ipv4.tcp_tw_reuse
                 state can be reused after just one second
 net.ipv4.tcp_fin_timeout
     FIN_WAIT_2 status timeout
+===============================================================================
+-*- dynamic library -*-
+===============================================================================
+* add path
+    /etc/ld.so.conf.d/
+* reload config
+    ldconfig
