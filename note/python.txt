@@ -12,6 +12,7 @@
 * wheel
     pip install wheel
     pip wheel -w <wheel_dir> -r requirement.txt
+    pip install --no-index --find-links=<wheel_dir>
 
 pip freeze > dep.txt
 
