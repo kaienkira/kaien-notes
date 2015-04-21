@@ -540,6 +540,26 @@ __doc__  docstring
         [] env variable PYTHONPATH
         [] the installation-dependent default
 *. dir(builtins)
+*. A Python module can be imported twice if the module 
+   is *found twice* in the path.
+   For example, say your project is laid out like so:
+       src/
+           package1/
+               spam.py
+               eggs.py
+
+   Suppose your PYTHONPATH (sys.path) includes src and src/package1:
+   PYTHONPATH=/path/to/src:/path/to/src/package1
+   If that's the case, you can import the same module twice like this:
+       from package1 import spam
+       import spam
+   
+   And Python will think they are different modules. Is that what's going on?
+   Also, per the discussion below (for users searching this question),
+   another way a module can be imported twice is if there is an exception
+   midway through the first import. For example, if spam imports eggs,
+   but importing eggs results in an exception inside the module,
+   it can be imported again.
 ===============================================================================
 -*- Packages -*-
 -------------------------------------------------------------------------------
@@ -713,5 +733,4 @@ __doc__  docstring
 ===============================================================================
 PEP3132 Extended Iterable Unpacking
 ===============================================================================
-
 
