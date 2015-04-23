@@ -1,12 +1,22 @@
 #!/bin/sh
 
-if [ $# -ne 2 ]
+if [ $# -lt 2 ]
 then
     echo 'usage: findgrep <filename> <keyword>'
     exit 1
 fi
 
-find . -name "$1" -exec grep_color "'$2'" {} \; -print
+filename=$1
+keyword=$2
+grep_args=
+
+if [ $# -ge 3 ]
+then
+    shift 2
+    grep_args=$*
+fi
+
+find . -name "$filename" -exec grep_color $grep_args "'$keyword'" {} \; -print
 ret=$?
 printf "\033[0m"
 
