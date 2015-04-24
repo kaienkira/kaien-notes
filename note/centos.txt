@@ -1,18 +1,12 @@
 ===============================================================================
--*- install epel repos -*-
+-*- install extra repos -*-
 -------------------------------------------------------------------------------
-#rpm -Uvh epel-release-6-8.noarch.rpm
-#yum install yum-plugin-priorities
-#priority=10
+*. epel
 yum install epel-release
-
-===============================================================================
--*- install remi repos -*-
--------------------------------------------------------------------------------
-rpm -Uvh http://dl.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
-rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-5.rpm
-
-yum --enablerepo=remi install httpd php php-common
+*. remi
+rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+*. rpmforge
+rpm -Uvh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
 
 ===============================================================================
 -*- package management -*-
@@ -23,6 +17,12 @@ vi /etc/yum.conf
 
 *. 列出所有安装的软件包
 rpm -qa
+
+*. 列出所有版本的软件包
+yum list --showduplicates <package>
+
+*. 启用指定源
+yum --enablerepo=<repo> install <package> 
 
 ===============================================================================
 -*- network management -*-
