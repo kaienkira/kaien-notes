@@ -25,6 +25,7 @@
    server, whereas many web browsers have a limit on how big cookies can be
    to stop rogue web sites chewing up gigabytes of data with meaningless
    cookie information.
+*. session_save_path()
 ===============================================================================
 -*- Cookies -*-
 -------------------------------------------------------------------------------
