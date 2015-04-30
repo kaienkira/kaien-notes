@@ -53,11 +53,13 @@ function! BR_RelativeNumberToggle()
     endif
 endfunction
 
-"au BufRead,BufNewFile *.as set filetype=as3
 au BufNewFile,BufRead *.c,*.h,*.cc,*.hpp,*.cpp set syntax=cpp.doxygen
 au BufNewFile,BufRead *.c,*.cc,*.cpp set foldmethod=expr foldexpr=BR_CFold(v:lnum)
 au BufNewFile,BufRead Makefile,makefile,*.mak set noexpandtab
+au BufNewFile,BufRead *.html,*.xml,*.volt set tabstop=2 softtabstop=2 shiftwidth=2
+"au BufRead,BufNewFile *.as set filetype=as3
 
 inoremap <C-j> <C-x><C-p>
 nnoremap <C-j> :call BR_RelativeNumberToggle()<CR>
 nnoremap <C-k> *N:set hlsearch!<CR>
+"nnoremap <F2> Oimport pdb; pdb.set_trace()<ESC>
