@@ -125,6 +125,8 @@ can not be override.
 *. remove last char in stringstream 
     ss.seekp(-1, std::ios_base::end);
     ss << "1";
+*. clear stringstream
+    std::stringstream().swap(ss);
 ===============================================================================
 
 
