@@ -122,6 +122,9 @@ can not be override.
    (void (A::*)(int)) &A::f
    function pointers and member function pointers have this feature:
    the overload can be resolved by to what the result was assigned or cast.
+*. remove last char in stringstream 
+    ss.seekp(-1, std::ios_base::end);
+    ss << "1";
 ===============================================================================
 
 
