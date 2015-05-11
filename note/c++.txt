@@ -127,6 +127,7 @@ can not be override.
     ss << "1";
 *. clear stringstream
     std::stringstream().swap(ss);
+    ss.str(std::string());
 ===============================================================================
 
 
