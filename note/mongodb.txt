@@ -8,3 +8,10 @@ sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list
 sudo apt-get install mongodb-org
 
 ===============================================================================
+-*- uninstall -*-
+-------------------------------------------------------------------------------
+sudo apt-key del 7F0CEB10
+sudo rm -f /etc/apt/sources.list.d/mongodb-org-3.0.list
+sudo rm -f /etc/apt/sources.list.d/mongodb-org-3.0.list.save
+
+===============================================================================
