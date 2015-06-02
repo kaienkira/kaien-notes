@@ -1,0 +1,9 @@
+===============================================================================
+-*- Build -*-
+-------------------------------------------------------------------------------
+./configure --disable-ftp --disable-file --disable-ldap --disable-ldaps
+    --disable-rtsp --disable-proxy --disable-dict --disable-telnet
+    --disable-tftp --disable-pop3 --disable-imap --disable-smb
+    --disable-smtp --disable-gopher -disable-unix-sockets
+    --without-ssl --without-zlib --disable-shared
+===============================================================================
