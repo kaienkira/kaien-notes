@@ -1,11 +1,11 @@
 #!/bin/bash
 
-service_desc="shadowsocks server"
+service_desc="net_speeder server"
 script_name=`basename $0`
-prog=/home/kaien/proj/shadowsocks/shadowsocks/server.py
-args="-c /home/kaien/etc/config.json"
-pid_file=/home/kaien/run/ss.pid
-log_file=/dev/null
+prog=/home/kaien/bin/net_speeder
+args="eth0 ip"
+pid_file=/home/kaien/run/net_speeder.pid
+log_file=/home/kaien/run/net_speeder.log
 
 usage()
 {
