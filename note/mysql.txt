@@ -20,12 +20,6 @@ mysql安全设置
 取消query cache
     select sql_no_cache ...
 ===============================================================================
-profile
-    set profiling = 1;
-    <db_query>
-    show profiles;
-    show profile for query <query_id>
-===============================================================================
 mysql
     -r --raw
     -s --silent
@@ -136,4 +130,19 @@ enables you to avoid creating unnecessary indexes.
 -*- Pagination -*-
 -------------------------------------------------------------------------------
 sql_calc_found_rows
+===============================================================================
+
+===============================================================================
+-*- Optimization -*-
+-------------------------------------------------------------------------------
+my.cnf
+    [mysqld]
+    log_slow_queries = /var/log/mysql/mysql-slow.log
+    long_query_time = 1
+    log-queries-not-using-indexes
+profile
+    set profiling = 1;
+    <db_query>
+    show profiles;
+    show profile for query <query_id>
 ===============================================================================
