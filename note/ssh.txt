@@ -1,0 +1,13 @@
+authorized_keys
+
+===============================================================================
+sshd_config
+===============================================================================
+Subsystem sftp internal-sftp
+
+Match User <user>
+    ChrootDirectory <dir>
+    AllowTCPForwarding no
+    X11Forwarding no
+    ForceCommand internal-sftp
+===============================================================================
