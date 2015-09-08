@@ -86,3 +86,14 @@ vi ~/.vimrc
     set nocsverb
     :cs add <ref_file> <prepend_path>
     sete csverb
+
+===============================================================================
+-*- Vundle -*-
+===============================================================================
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+call vundle#end()
+filetype plugin indent on
