@@ -37,6 +37,7 @@ update-rc.d
 *. 设置corefile
     vi /etc/sysctl.conf
     kernel.core_uses_pid = 1
+    *. executable was modified after program start, ignoring
 
 ===============================================================================
 -*- network management -*-
