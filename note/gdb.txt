@@ -1,0 +1,2 @@
+#显示完整字符串
+set print element 0
