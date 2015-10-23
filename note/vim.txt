@@ -101,3 +101,9 @@ call vundle#end()
 filetype on
 
 :PluginInstall
+
+===============================================================================
+-*- YouCompleteMe -*-
+===============================================================================
+Plugin 'Valloric/YouCompleteMe'
+./install.py --clang-completer
