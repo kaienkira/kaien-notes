@@ -27,6 +27,10 @@ yum --enablerepo=<repo> install <package>
 ===============================================================================
 -*- network management -*-
 -------------------------------------------------------------------------------
+*. 察看网络地址
+ip addr
+ip link
+
 vi /etc/sysconfig/network
     NETWORKING_IPV6=off
     HOSTNAME=<host_name>
