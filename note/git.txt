@@ -38,6 +38,9 @@ HEAD
     git branch -m master  # Rename the current branch to master
     git push -f origin master
 
+*. 列出log中的文件名
+    git log --name-only
+
 ================================================================================
 -*- 分支 -*-
 ================================================================================
