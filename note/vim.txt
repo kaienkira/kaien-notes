@@ -107,3 +107,10 @@ filetype on
 ===============================================================================
 Plugin 'Valloric/YouCompleteMe'
 ./install.py --clang-completer
+
+cd ~
+mkdir ycm_build
+cd ycm_build
+cmake -DPATH_TO_LLVM_ROOT=~/ycm_build/llvm_root_dir . \
+    ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
+cmake --build . --target ycm_support_libs --config Release

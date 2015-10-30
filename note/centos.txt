@@ -31,6 +31,8 @@ yum --enablerepo=<repo> install <package>
 ip addr
 ip link
 
+vi /etc/udev/rules.d/60-net.rules
+
 vi /etc/sysconfig/network
     NETWORKING_IPV6=off
     HOSTNAME=<host_name>

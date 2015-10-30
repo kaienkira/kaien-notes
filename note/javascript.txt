@@ -57,6 +57,7 @@ slice(begin[, end])
 ===============================================================================
 JSON.parse(), which is defined in ECMA-262 5th Edition
 obj = JSON.parse(json);
+json = JSON.stringify(obj)
 ===============================================================================
 encodeURI()
 encodeURIComponent()
