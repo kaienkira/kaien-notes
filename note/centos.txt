@@ -24,6 +24,11 @@ yum list --showduplicates <package>
 *. 启用指定源
 yum --enablerepo=<repo> install <package> 
 
+*. 安装历史
+yum history list all
+yum history packages-list '*' | less | grep '| Install'
+yum history undo <id>
+
 ===============================================================================
 -*- network management -*-
 -------------------------------------------------------------------------------

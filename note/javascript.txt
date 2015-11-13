@@ -54,6 +54,10 @@ indexOf(element[, fromIndex])
 lastIndexOf(element[, fromIndex])
 join(separator)
 slice(begin[, end])
+
+---Number--
+toPrecision()
+toFixed()
 ===============================================================================
 JSON.parse(), which is defined in ECMA-262 5th Edition
 obj = JSON.parse(json);

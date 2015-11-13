@@ -90,3 +90,21 @@ worker_connections <max_connection_num>;
 
 # 设置默认虚拟服务器 (server)
 listen <address:port> default_server 
+
+===============================================================================
+-*- SSL -*-
+===============================================================================
+# generate key
+openssl req -x509 -newkey rsa:2048 -sha256 \
+        -keyout ssl.key -out ssl.crt -days 365 -nodes \
+        -subj "/C=<CN>
+               /ST=<State>
+               /L=<Locality>
+               /O=<Organization Name>
+               /OU=<Organizational Unit Name>
+               /CN=<Common Name>"
+
+listen 443 ssl;
+ssl_certificate ssl.crt;
+ssl_certificate_key ssl.key;
+error_page 497 https://$host:$server_port$request_uri;
