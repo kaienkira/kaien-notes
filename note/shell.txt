@@ -73,6 +73,21 @@ $_
 *. 历史
     ^string1^string2
         Repeat the last command, replacing string1 with string2
+
+*. 变量替换
+    ${var#Pattern}
+        Remove from $var the shortest part of $Pattern
+        that matches the front end of $var
+    ${var##Pattern}
+        Remove from $var the longest part of $Pattern
+        that matches the front end of $var
+    ${var%Pattern}
+        Remove from $var the shortest part of $Pattern
+        that matches the back end of $var
+    ${var%%Pattern}
+        Remove from $var the longest part of $Pattern
+        that matches the back end of $var
+
 ===============================================================================
 -*- find -*-
 -------------------------------------------------------------------------------

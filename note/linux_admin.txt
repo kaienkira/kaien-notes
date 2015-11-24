@@ -85,3 +85,8 @@ net.ipv4.tcp_fin_timeout
     /etc/ld.so.conf.d/
 * reload config
     ldconfig
+===============================================================================
+-*- diff large files -*-
+===============================================================================
+grep -Fxvf file1 file2 > <diff_file>
+rdiff signature <file1> | rdiff delta -- - <file2> <diff_file>
