@@ -94,8 +94,8 @@ listen <address:port> default_server
 ===============================================================================
 -*- SSL -*-
 ===============================================================================
-# generate key
-openssl req -x509 -newkey rsa:2048 -sha256 \
+# generate key in one command
+openssl req -x509 -newkey rsa:4096 -sha256 \
         -keyout ssl.key -out ssl.crt -days 365 -nodes \
         -subj "/C=<CN>
                /ST=<State>
@@ -104,7 +104,39 @@ openssl req -x509 -newkey rsa:2048 -sha256 \
                /OU=<Organizational Unit Name>
                /CN=<Common Name>"
 
+
+# client authentication 
+# generate ca key
+openssl genrsa -out ca.key 4096
+openssl req -new -x509 -days 365 -key ca.key -out ca.crt \
+        -subj "/CN=enjoymi.com"
+
+# generate server key
+openssl genrsa -out server.key 4096
+openssl req -new -key server.key -out server.csr \
+        -subj "/CN=ssl.enjoymi.com"
+# sign server key
+openssl x509 -req -days 365 -in server.csr -CA ca.crt -CAkey ca.key \
+             -set_serial 01 -out server.crt
+
+# generate client key
+openssl genrsa -out client.key 4096
+openssl req -new -key client.key -out client.csr \
+        -subj "/CN=client.enjoymi.com"
+# sign client key
+openssl x509 -req -days 365 -in client.csr -CA ca.crt -CAkey ca.key \
+             -set_serial 02 -out client.crt
+# convert client key to pkcs
+openssl pkcs12 -export -clcerts -passout pass: \
+               -in client.crt -inkey client.key -out client.p12
+
+
+# nginx conf
 listen 443 ssl;
-ssl_certificate ssl.crt;
-ssl_certificate_key ssl.key;
+ssl_certificate server.crt;
+ssl_certificate_key server.key;
+ssl_client_certificate ca.crt;
+ssl_verify_client on;
+ssl_session_cache shared:SSL:10m;
+ssl_session_timeout 10m;
 error_page 497 https://$host:$server_port$request_uri;
