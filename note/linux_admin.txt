@@ -1,4 +1,16 @@
 ===============================================================================
+-*- lvm -*-
+-------------------------------------------------------------------------------
+cfdisk /dev/sda (create new partition)
+fdisk /dev/sda (delete cfdisk's created partition, then create new one)
+p -> l -> t -> 8e
+pvcreate /dev/sda6
+vgextend <vg_name> /dev/sda6
+vgs (see size)
+lvs (see size)
+lvextend /dev/<vg_name>/root /dev/sda6
+resize2fs /dev/<vg_name>/root
+===============================================================================
 -*- coredump -*-
 -------------------------------------------------------------------------------
 /proc/sys/kernel/core_pattern
