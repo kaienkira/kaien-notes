@@ -150,6 +150,9 @@ second = free + (buffers + cached)
 --re-interval
     interval expressions({n,m}) support - gawk
 gensub() - backreference support - gawk
+
+*. remove first column
+    {$1=""; print}
 ===============================================================================
 -*- sed -*-
 -------------------------------------------------------------------------------
