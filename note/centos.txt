@@ -15,6 +15,9 @@ rpm -Uvh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6
 vi /etc/yum.conf
     proxy=http://<addr>:<port>
 
+*. 列出包中所有的文件
+rpm -ql <package_name>
+
 *. 列出所有安装的软件包
 rpm -qa
 
