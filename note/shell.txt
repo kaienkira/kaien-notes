@@ -151,6 +151,10 @@ second = free + (buffers + cached)
     interval expressions({n,m}) support - gawk
 gensub() - backreference support - gawk
 
+match($0, /regexp/, m) {
+    print m[0];
+}
+
 *. remove first column
     {$1=""; print}
 ===============================================================================
