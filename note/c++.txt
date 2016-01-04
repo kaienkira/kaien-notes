@@ -529,7 +529,7 @@ void f4(X) {}          // ILLEGAL: *definitions* require complete types
 
 
 ===============================================================================
--*- <C++ Templates, The Complete Guide > Notes -*-
+-*- <C++ Templates, The Complete Guide> Notes -*-
 -------------------------------------------------------------------------------
 *. Funciton Templates
     [] default template arguments may not be used in function templates
@@ -559,3 +559,10 @@ void f4(X) {}          // ILLEGAL: *definitions* require complete types
        initialized by a default value even if they are instantiated
        with a built-in type.
 ===============================================================================
+
+===============================================================================
+-*- <Effective Modern C++> Notes -*-
+Item1:
+    *. passing a const object to a template taking a T& parameter is safe
+       the constness of the object becomes part of the type deduced for T
+-------------------------------------------------------------------------------
