@@ -565,4 +565,8 @@ void f4(X) {}          // ILLEGAL: *definitions* require complete types
 Item1:
     *. passing a const object to a template taking a T& parameter is safe
        the constness of the object becomes part of the type deduced for T
+Item3:
+    *. applying decltype to a name yields the declared type for that name
+    *. for lvalue expressions decltype ensures that the type reported
+       is always an lvalue reference
 -------------------------------------------------------------------------------
