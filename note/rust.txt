@@ -1,0 +1,59 @@
+===============================================================================
+cargo new --bin --name <package_name>
+===============================================================================
+*. a let can only begin a statement, not an expression
+*. the value of an assignment is an empty tuple ()
+*. Using a return as the last line of a function works
+   but is considered poor style
+*. diverging functions: functions that do not return
+    fn diverges() -> ! {}
+
+===============================================================================
+-*- Primitive type -*-
+-------------------------------------------------------------------------------
+bool
+char
+     represents a single Unicode scalar value
+     Rust's char is not a single byte, but four
+i8,i16,i32,i64
+u8,u16,u32,u64
+isize,usize
+    size depends on the size of a pointer of the underlying machine
+f32,f64
+str
+array [T; N]
+    fixed-size list of elements of the same type
+    indexing: a[0]
+tuple (...)
+    indexing: t.0
+slice
+    a reference to (or 'view' into) another data structure
+function
+
+===============================================================================
+-*- Control flow -*-
+-------------------------------------------------------------------------------
+for i in iterator
+Loop labels
+'label:
+    continue 'label;
+
+===============================================================================
+-*- Ownership -*-
+-------------------------------------------------------------------------------
+
+
+===============================================================================
+* Rust has two main types of strings: &str and String
+  &str is called "string slices"
+    [] statically allocated string
+    [] have a fixed size, and cannot be mutated
+  String 
+    [] heap-allocated string
+    [] commonly created by converting from a string slice
+       using the to_string method
+    [] Strings will coerce into &str with an &
+*. All strings are guaranteed to be a valid encoding of UTF-8 sequences
+*. Viewing a String as a &str is cheap,
+   but converting the &str to a String involves allocating memory
+*. Because strings are valid UTF-8, strings do not support indexing
