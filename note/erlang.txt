@@ -1,1 +1,11 @@
  *. = is not an assignment operator; it's actually a pattern matching operator
+ *. N / M    => float
+    N div M  => integer
+    N rem M  => integer
+*. Variable: X
+   atom: atom
+   tuple: {1,2,3}
+   list: [1,2,3] [H|T]
+
+*. io:format("~ts~n",[L]).
+   io:format("~w~n",[L]).
