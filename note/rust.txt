@@ -41,6 +41,17 @@ Loop labels
 ===============================================================================
 -*- Ownership -*-
 -------------------------------------------------------------------------------
+*. variable bindings 'have ownership' of what they are bound to
+   when a binding goes out of scope, Rust will free the bound resources
+*. Rust ensures that there is exactly one binding to any given resource
+*. All primitive types implement the Copy trait and
+   their ownership is therefore not moved
+
+*. any borrow must last for a scope no greater than that of the owner
+*. the mutable borrow prevents subsequent moves, borrows, or modification
+   until the borrow ends
+*. one or more references (&T) to a resource
+   exactly one mutable reference (&mut T)
 
 
 ===============================================================================

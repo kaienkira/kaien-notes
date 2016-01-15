@@ -7,3 +7,5 @@ sudo ldconfig -p
 # 生成gmon.out
 gdb <prog>
 > call write_gmon()
+# 转换函数签名
+c++filt <func_sign>
