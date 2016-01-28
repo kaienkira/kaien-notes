@@ -9,3 +9,29 @@
 
 *. io:format("~ts~n",[L]).
    io:format("~w~n",[L]).
+
+*. funs are "anonymous" functions
+
+Guard
+-----
+*. A guard sequence is either a single guard or a series of guards, separated by
+   semicolons (;). The guard sequence  G1; G2; ...; Gn is  true if at least one of the
+   guards— G1 ,  G2 , …—evaluates to  true.
+*. A guard is a series of guard expressions, separated by commas (,). The guard
+   GuardExpr1, GuardExpr2, …, GuardExprN is  true if all the guard expressions— GuardExpr1,
+   GuardExpr2 , …—evaluate to true
+*. The following syntactic forms are legal in a guard expression:
+
+case Expression of
+    Pattern1 [when Guard1] -> Expr_seq1;
+    Pattern2 [when Guard2] -> Expr_seq2;
+    ...
+end
+
+if
+    Guard1 ->
+        Expr_seq1;
+    Guard2 ->
+        Expr_seq2;
+    ...
+end
