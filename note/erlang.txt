@@ -35,3 +35,13 @@ if
         Expr_seq2;
     ...
 end
+
+Map
+---
+*. NewMap = OldMap # { K1 Op V1,...,Kn Op Vn }
+*. K => V
+    update or add a completely new  K-V pair to the map.
+    This operation always succeeds.
+*. K := V
+    update the value of an existing key  K with a new value  V.
+    This operation fails if the map being updated does not contain the key K 

@@ -350,3 +350,12 @@ cat <file> | parallel --pipe grep <pattern>
 *. speed up sort use large buffer size
     sort -S1G
 ===============================================================================
+-*- mail -*-
+--------------------------------------------------------------------------------
+vi /etc/mail.rc
+set from=yourname@your-domain.com
+set smtp=mail.your-domain.com
+set smtp-auth-user=yourname
+set smtp-auth-password=yourpasswd
+set smtp-auth=login
+===============================================================================
