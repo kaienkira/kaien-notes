@@ -55,6 +55,9 @@ update-rc.d
     sudo ifdown eth0 && sudo ifup eth0
     (/etc/init.d/networking restart)
 
+*. 重启网络
+    sudo ifdown eth0 && sudo ifup eth0
+
 *. 禁用IPv6
     vi /etc/sysctl.conf
       net.ipv6.conf.all.disable_ipv6=1
