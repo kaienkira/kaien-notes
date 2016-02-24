@@ -15,14 +15,14 @@ usage()
 
 show_error()
 {
-  local message=$1
-  printf "\033[;31m%s\033[0m\n" "$message"
+    local message=$1
+    printf "\033[;31m%s\033[0m\n" "$message"
 }
 
 show_success()
 {
-  local message=$1
-  printf "\033[;32m%s\033[0m\n" "$message"
+    local message=$1
+    printf "\033[;32m%s\033[0m\n" "$message"
 }
 
 op_start()
