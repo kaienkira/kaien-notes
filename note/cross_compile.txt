@@ -1,0 +1,9 @@
+# 安装ARM工具链
+sudo apt-get install gcc-arm-linux-gnueabi
+# 安装objc编译器
+sudo apt-get install gobjc gobjc++
+
+# cctools port
+https://github.com/tpoechtrager/cctools-port
+# 分离多个cpu架构的.a文件
+lipo xx.a -thin armv7 -output xx_armv7.a

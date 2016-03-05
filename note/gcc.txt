@@ -9,8 +9,3 @@ gdb <prog>
 > call write_gmon()
 # 转换函数签名
 c++filt <func_sign>
-
-# 安装ARM工具链
-sudo apt-get install gcc-arm-linux-gnueabi
-# 安装objc编译器
-sudo apt-get install gobjc gobjc++
