@@ -9,3 +9,6 @@ Windows Registry Editor Version 5.00
 "Enabled"=dword:00000001
 
 net start w32time
+
+*. 由于没有远程桌面授权服务器可以提供许可证 远程会话被中断
+mstsc /v:<ip> /admin

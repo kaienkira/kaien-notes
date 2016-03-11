@@ -25,7 +25,26 @@ resize2fs /dev/<vg_name>/root
 ===============================================================================
 -*- iptables -*-
 -------------------------------------------------------------------------------
-iptables
+iptables->tables->chains->rules
+
+*. built in tables and chains 
+[] filter
+    INPUT
+    OUTPUT
+    FORWARD
+[] nat
+    PREROUTING
+    POSTROUTING
+    OUTPUT
+[] mangle
+    PREROUTING
+    POSTROUTING
+    INPUT
+    OUTPUT
+    FORWARD
+[] raw
+    PREROUTING
+    OUTPUT
 
 COMMAND
  -L [chains] 
