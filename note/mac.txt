@@ -1,0 +1,6 @@
+umount /Volumes/<disk_name>
+hdiutil attach /dev/disk0s2 -mountpoint /Volumes/mnt
+cp /Backup/Kexts/*.kext /Volumes/mnt/System/Library/Extensions
+chmod ..
+chown ..
+hdiutil detach /Volumes/mnt
