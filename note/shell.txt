@@ -350,6 +350,14 @@ cat <file> | parallel --pipe grep <pattern>
 *. speed up sort use large buffer size
     sort -S1G
 ===============================================================================
+-*- join -*-
+--------------------------------------------------------------------------------
+join <FILE1> <FILE2> -a1 -a2 -e '-' -o '0,1.2,2.2'
+join <FILE1> <FILE2> -a1 -a2 -e '-' -o auto
+
+*. FILE1 and FILE2 must be sorted on the join fields
+*. option -e is badly documented -- only works in conjunction with -o
+===============================================================================
 -*- mail -*-
 --------------------------------------------------------------------------------
 vi /etc/mail.rc
