@@ -43,6 +43,7 @@ reference(\)
    foreach my $i (0 .. n) {}
    foreach my $k (keys %hash) {}
    foreach my $k (sort keys %hash) {}
+   foreach my $k (sort {$a <=> $b} (keys %hash)) {}
    foreach (@array) { $_ }
 * next (loop continue)
 * last (loop break)
@@ -89,3 +90,10 @@ $string =~ s/regex/replacement/
 *. .pm文件必须包含且仅包含一个package声明, 且包名与它的文件名, 所在的位置一致
 *. use只是BEGIN块的伪装, 同样的警告对此也适用
    use语句必须总是放在文件开头, 并且永远不要放在条件分支里
+
+===============================================================================
+-*- Misc -*-
+===============================================================================
+while (<>) {
+    my @line_parts = split;
+}
