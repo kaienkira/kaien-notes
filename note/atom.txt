@@ -1,0 +1,18 @@
+===============================================================================
+-*- add proxy -*-
+===============================================================================
+vi .apmrc
+    http-proxy=http://user:pass@host:port
+    https-proxy=http://user:pass@host:port
+===============================================================================
+<c+s+p>   Open Command Palette
+<c+,>     Open Settings
+<c+.>     Open/Close Key Binding Resolver
+
+<c+p>     Find File
+<c+f>     Find In File
+<c+s+f>   Find In Project
+
+<c+a+o>   Application: Add Project Folder
+<c+s+m>   Open Markdown preview
+===============================================================================

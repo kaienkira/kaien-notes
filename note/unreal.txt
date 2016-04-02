@@ -1,5 +1,11 @@
+UWorld
+    Spawn
+
 UObject
-Actor
+    PostInitProperties();
+AActor
+UActorComponent
+
 Pawn
 Character
 Brush
