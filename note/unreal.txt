@@ -47,6 +47,17 @@ UFUNCTION()
 ===============================================================================
 -*- Memory Management & Garbage collection -*-
 ===============================================================================
+FPlatformMemory
+    FMemory *BaseAllocator();
+FMalloc
+    <>--FMallocAnsi
+FMemory
+
+*. FUseSystemMallocForNew
+    Inherit from FUseSystemMallocForNew if you want your objects to 
+    be placed in memory alloced by the system malloc routines
+    bypassing GMalloc
+
 *. Any UObject pointer stored in a UPROPERTY counts as a "reference"
 *. Actors are not usually garbage collected
    must manually call Destroy() on them.  They will not be deleted immediately,
