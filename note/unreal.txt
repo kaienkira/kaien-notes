@@ -3,20 +3,20 @@ UWorld
 
 UObject
     PostInitProperties()
+    CreateDefaultSubobject()
 AActor
+
 UActorComponent
+UCameraComponent
+USceneComponent
 
 Pawn
+    AutoPossessPlayer
 Character
 Brush
 
-Component
-PlayerController
-AIController
-
-GameMode
-GameState
-PlayerState
+FVector
+FRotator
 
 FString
     TEXT()
@@ -25,6 +25,15 @@ FText
     NSLOCTEXT()
     LOCTEXT()
 FNAME
+
+TArray
+TMap
+TSet
+
+TEnumAsByte
+
+EAutoReceiveInput
+EObjectFlags
 
 ===============================================================================
 -*- Reflection -*-
@@ -46,6 +55,13 @@ UFUNCTION()
    all UPROPERTY references to it will be set to nullptr
 *. UStructs cannot be garbage collected
 *. FGCObject::AddReferencedObjects
+
+*. Every member of a class should be declared as a UPROPERTY
+*. Member pointers should only point at UObject or UObject-derived objects
+*. The garbage collector could delete the object that owns
+   what a non-UObject pointer pointing at
+*. The only container that is safe to
+   have UObject or UObject-derived pointers in is a TArray
 
 ===============================================================================
 -*- Object/Actor Iterator -*-
