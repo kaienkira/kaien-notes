@@ -1,8 +1,8 @@
 UWorld
-    Spawn
+    SpawnActor()
 
 UObject
-    PostInitProperties();
+    PostInitProperties()
 AActor
 UActorComponent
 
@@ -17,3 +17,38 @@ AIController
 GameMode
 GameState
 PlayerState
+
+FString
+    TEXT()
+FText
+    LOCTEXT_NAMESPACE
+    NSLOCTEXT()
+    LOCTEXT()
+FNAME
+
+===============================================================================
+-*- Reflection -*-
+===============================================================================
+UCLASS()
+USTRUCT()
+GENERATED_BODY()
+UPROPERTY()
+UFUNCTION()
+
+===============================================================================
+-*- Memory Management & Garbage collection -*-
+===============================================================================
+*. Any UObject pointer stored in a UPROPERTY counts as a "reference"
+*. Actors are not usually garbage collected
+   must manually call Destroy() on them.  They will not be deleted immediately,
+   and instead will be cleaned up during the next garbage collection phase
+*. When a UObject is garbage collected
+   all UPROPERTY references to it will be set to nullptr
+*. UStructs cannot be garbage collected
+*. FGCObject::AddReferencedObjects
+
+===============================================================================
+-*- Object/Actor Iterator -*-
+===============================================================================
+for (TObjectIterator<UObject> It; It; ++It) {}
+for (TActorIterator<AActor> It; It; ++It) {}
