@@ -47,11 +47,17 @@ UFUNCTION()
 ===============================================================================
 -*- Memory Management & Garbage collection -*-
 ===============================================================================
-FPlatformMemory
-    FMemory *BaseAllocator();
-FMalloc
-    <>--FMallocAnsi
+    FPlatformMemory
+        FMalloc *BaseAllocator();
+    FMalloc
+        <>--FMallocAnsi
+        <>--FMallocTBB
 FMemory
+    SystemMalloc() SystemFree()
+    Malloc() Realloc() Free()
+    Memmove() Memcmp() Memset() Memzero()
+    Memcpy() BigBlockMemcpy() StreamingMemcpy()
+    Memswap()
 
 *. FUseSystemMallocForNew
     Inherit from FUseSystemMallocForNew if you want your objects to 
