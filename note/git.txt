@@ -128,11 +128,23 @@ git config
 ================================================================================
 -*- Setup Github -*-
 ================================================================================
+# generate ssh key
 cd ~/.ssh
 rm id_rsa*
 ssh-keygen -t rsa -C"youremail@youremail.com"
-#add ~/.ssh/id_rsa.pub to github ssh key
+# add ~/.ssh/id_rsa.pub to github ssh key
 ssh -T git@github.com
+
+# generate gpg key
+gpg --gen-key
+# export public key
+gpg --armor --export <you@example.com> > <public_key_filename>
+# export private key
+gpg --armor --export-secret-keys <you@example.com> > <private_key_filename>
+# import secret key (which contains the public key)
+gpg --import <private_key_filename>
+# list keys
+gpg --list-keys
 
 ================================================================================
 -*- Proxy -*-
