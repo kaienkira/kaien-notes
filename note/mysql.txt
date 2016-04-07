@@ -63,6 +63,8 @@ mysql -h 127.0.0.1 -u root -p
 alter table <table_name> add <column_name> <column_definition>
       [first | after col_name]
 ===============================================================================
+create [unique] index <index_name> on <table_name>(<index_col_name>, ...)
+===============================================================================
 系统表
 information_schema.tables
 ===============================================================================
