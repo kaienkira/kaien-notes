@@ -82,6 +82,7 @@ loose-skip-innodb
 
 # 禁用DNS反向解析
 skip-name-resolve
+GRANT ALL on *.* to 'root'@'127.0.0.1' identified by '' WITH GRANT OPTION;
 
 # 禁用网络连接
 skip-networking
