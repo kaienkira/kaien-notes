@@ -80,7 +80,7 @@ select sin(), pi();
 skip-external-locking
 loose-skip-innodb
 
-# 禁用DNS解析
+# 禁用DNS反向解析
 skip-name-resolve
 
 # 禁用网络连接
