@@ -1,0 +1,11 @@
+===============================================================================
+The binary comparison and branch operations only work on
+* int32
+* int64
+* native int
+* native floating point
+* object
+* managed reference
+These operands are 32-bits or 64-bits on any current CPU core,
+ensuring the JIT compiler can generate efficient machine code.
+===============================================================================
