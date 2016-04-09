@@ -151,8 +151,13 @@ second = free + (buffers + cached)
     interval expressions({n,m}) support - gawk
 gensub() - backreference support - gawk
 
+*. match pattern
 match($0, /regexp/, m) {
     print m[0];
+}
+
+*. read file
+while(( getline line < file ) > 0 ) {
 }
 
 *. remove first column
