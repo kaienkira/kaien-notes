@@ -60,3 +60,6 @@ svn --config-option servers:global:http-proxy-host=127.0.0.1
 *设置文件格式
 svn propset svn:mime-type application/octet-stream <filename>
 svn propset svn:mime-type text/plain <filename>
+
+*强制解锁
+svn unlock --force <file>
