@@ -9,3 +9,43 @@ The binary comparison and branch operations only work on
 These operands are 32-bits or 64-bits on any current CPU core,
 ensuring the JIT compiler can generate efficient machine code.
 ===============================================================================
+*. using statement
+ensures the correct use of IDisposable objects
+*. dispose pattern
+
+using System;
+
+class BaseClass : IDisposable
+{
+   // Flag: Has Dispose already been called?
+   bool disposed = false;
+
+   // Public implementation of Dispose pattern callable by consumers.
+   public void Dispose()
+   { 
+      Dispose(true);
+      GC.SuppressFinalize(this);           
+   }
+
+   // Protected implementation of Dispose pattern.
+   protected virtual void Dispose(bool disposing)
+   {
+      if (disposed)
+         return; 
+
+      if (disposing) {
+         // Free any other managed objects here.
+         //
+      }
+
+      // Free any unmanaged objects here.
+      //
+      disposed = true;
+   }
+
+   ~BaseClass()
+   {
+      Dispose(false);
+   }
+}
+===============================================================================
