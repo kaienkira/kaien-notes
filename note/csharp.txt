@@ -9,6 +9,11 @@ The binary comparison and branch operations only work on
 These operands are 32-bits or 64-bits on any current CPU core,
 ensuring the JIT compiler can generate efficient machine code.
 ===============================================================================
+process constant overflow
+
+byte b = (255 << 1) & 0xff
+byte b = unchecked((byte)(255 << 1));
+===============================================================================
 *. using statement
 ensures the correct use of IDisposable objects
 *. dispose pattern
