@@ -157,7 +157,7 @@ match($0, /regexp/, m) {
 }
 
 *. read file
-while(( getline line < file ) > 0 ) {
+while (( getline line < file ) > 0 ) {
 }
 
 *. remove first column
