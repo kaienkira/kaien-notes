@@ -39,6 +39,12 @@ update-rc.d
     kernel.core_uses_pid = 1
     *. executable was modified after program start, ignoring
 
+*. NTP设置
+    sudo apt-get install ntp
+    vi /etc/ntp.conf
+    sudo systemctl reload ntp.service(service ntp restart)
+    sudo ntpq -p
+
 ===============================================================================
 -*- network management -*-
 -------------------------------------------------------------------------------
