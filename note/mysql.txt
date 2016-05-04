@@ -38,8 +38,9 @@ mysqldump [options] <db_name> [table_name]
     -R --routines          导出存储过程
     -w --where <condition> 按条件导出数据
 
-insert into <table_name> values(....)
+insert into <table_name>(...) values(...)
 on duplicate key update ... = ...
+replace into <table_name>(...) values(...)
 ===============================================================================
 mysql -h 127.0.0.1 -u root -p
 >status
