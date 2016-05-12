@@ -33,6 +33,19 @@ yum history packages-list '*' | less | grep '| Install'
 yum history undo <id>
 
 ===============================================================================
+-*- system management -*-
+-------------------------------------------------------------------------------
+*. 显示当前时区
+cat /etc/sysconfig/clock
+*. 设置当前时区
+cp -p /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+*. 同步硬件时钟
+hwclock --systohc
+*. 设置语言
+vi /etc/sysconfig/i18n
+    LANG="en_US.UTF-8"
+
+===============================================================================
 -*- network management -*-
 -------------------------------------------------------------------------------
 *. 察看网络地址
@@ -52,16 +65,6 @@ vi /etc/sysconfig/network-scripts/ifcfg-eth0
     GATEWAY=192.168.0.1
 vi /etc/resolv.conf
     nameserver 8.8.8.8
-
-===============================================================================
--*- time -*-
--------------------------------------------------------------------------------
-*. 显示当前时区
-cat /etc/sysconfig/clock
-*. 设置当前时区
-cp -p /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-*. 同步硬件时钟
-hwclock --systohc
 
 ===============================================================================
 -*- iptables -*-

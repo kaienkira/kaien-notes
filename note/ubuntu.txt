@@ -45,6 +45,10 @@ update-rc.d
     sudo systemctl reload ntp.service(service ntp restart)
     sudo ntpq -p
 
+*. 设置语言
+    vi /etc/default/locale
+        LANG="en_US.UTF-8"
+
 ===============================================================================
 -*- network management -*-
 -------------------------------------------------------------------------------
