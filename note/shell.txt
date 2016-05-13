@@ -262,6 +262,8 @@ f -forest
 -------------------------------------------------------------------------------
 * gziped response
 curl -sH 'Accept-encoding: gzip' http://example.com/ | gunzip -
+* post 
+curl -X POST --data '...' <url>
 
 ===============================================================================
 -*- telnet -*-
