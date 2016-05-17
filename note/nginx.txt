@@ -140,3 +140,8 @@ ssl_verify_client on;
 ssl_session_cache shared:SSL:10m;
 ssl_session_timeout 10m;
 error_page 497 https://$host:$server_port$request_uri;
+
+# generate rsa key
+openssl genrsa -out private_key.pem 1024
+openssl pkcs8 -topk8 -inform PERM -in private_key.pem -outform PEM -nocrypt > pkcs8_private_key.txt
+openssl rsa -in private_key.pem -pubout -out public_key.pem
