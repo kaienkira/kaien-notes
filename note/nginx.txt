@@ -145,3 +145,9 @@ error_page 497 https://$host:$server_port$request_uri;
 openssl genrsa -out private_key.pem 1024
 openssl pkcs8 -topk8 -inform PERM -in private_key.pem -outform PEM -nocrypt > pkcs8_private_key.txt
 openssl rsa -in private_key.pem -pubout -out public_key.pem
+
+===============================================================================
+-*- http limit req -*-
+===============================================================================
+limit_conn perip 8;
+limit_req zone=perreq nodelay;
