@@ -374,3 +374,6 @@ set smtp-auth-user=yourname
 set smtp-auth-password=yourpasswd
 set smtp-auth=login
 ===============================================================================
+-*- trap signal -*-
+===============================================================================
+trap "pkill -P $$; exit 0 " SIGINT
