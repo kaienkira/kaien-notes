@@ -275,6 +275,8 @@ sudo apt-get install python-dev libbz2-dev libzip-dev
 sudo apt-get install libunwind7 libunwind7-dev
 ./configure --prefx=~/local/gperftools
 -Wl,--no-as-needed -lprofiler -Wl,--as-needed
+
+sudo apt-install libgoogle-perftools-dev google-perftools
 ===============================================================================
 -*- vim -*-
 -------------------------------------------------------------------------------
