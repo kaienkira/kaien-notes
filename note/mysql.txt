@@ -26,6 +26,13 @@ mysql安全设置
 转换为整数
     TRUNCATE(double, 0);
 ===============================================================================
+Row Size > 8192
+    [mysqld]
+    innodb_file_per_table
+    innodb_file_format = Barracuda
+
+    alter table <table_name> ENGINE=InnoDB ROW_FORMAT=COMPRESSED
+===============================================================================
 mysql
     -r --raw
     -s --silent
