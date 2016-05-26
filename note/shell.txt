@@ -332,6 +332,11 @@ openssl rand -base64 32
 
  -A
     Enables OS detection and Version detection, Script scanning and Traceroute
+
+--reason
+    Display the reason a port is in a particular state
+--packet-trace
+    Show all packets sent and received
 ===============================================================================
 -*- traceroute -*-
 -------------------------------------------------------------------------------
