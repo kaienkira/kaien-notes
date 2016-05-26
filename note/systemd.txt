@@ -22,6 +22,19 @@ loginctl show-user <user_name>
 ===============================================================================
 -*- Unit -*-
 ===============================================================================
+* service
+* target
+* device
+* mount
+* automount
+* path
+* scope
+* slice
+* snapshot
+* socket
+* swap
+* timer
+
 /usr/lib/systemd/system/: 软件包安装的单元
 /etc/systemd/system/: 系统管理员安装的单元
 

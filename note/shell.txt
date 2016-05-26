@@ -311,26 +311,34 @@ openssl rand -base64 32
 ===============================================================================
 -*- nmap -*-
 -------------------------------------------------------------------------------
- -n
-    No DNS resolution
- -PN
-    Treat all hosts as online, skip host discovery
- -sP
-    Skip port scan
+-n
+   No DNS resolution
+-PN(Pn)
+   Treat all hosts as online, skip host discovery
+-sP
+   Skip port scan
 
- -T[0-5]     
-    Set a timing template
-    0 - paranoid
-    1 - sneaky
-    2 - polite
-    3 - normal
-    4 - aggressive
-    5 - insane
- -D <decoy_list> -D RND:<number>
-    Cloak a scan with decoys
- --randomize-hosts
+-sS - TCP SYN
+-sA - TCP ACK
+-sF - TCP FIN
+-sW - TCP Window
+-sO - IP protocol
 
- -A
+-g/--source-port  use given port number
+
+-T[0-5]     
+   Set a timing template
+   0 - paranoid
+   1 - sneaky
+   2 - polite
+   3 - normal
+   4 - aggressive
+   5 - insane
+-D <decoy_list> -D RND:<number>
+   Cloak a scan with decoys
+--randomize-hosts
+
+-A
     Enables OS detection and Version detection, Script scanning and Traceroute
 
 --reason
