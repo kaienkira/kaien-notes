@@ -10,7 +10,7 @@
 *. 列出包属于哪个源
     grep -l <package> /var/lib/apt/lists/*
 *. 设置apt代理
-    vi /etc/apt/apt.conf
+    vi /etc/apt/apt.conf.d/00http-proxy
         Acquire::http::Proxy "http://<addr>:<port>";
 *. 恢复中断的安装
     sudo dpkg --configure -a
