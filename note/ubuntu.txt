@@ -54,6 +54,10 @@ update-rc.d
 ===============================================================================
 -*- network management -*-
 -------------------------------------------------------------------------------
+ip addr
+route -n
+cat /etc/resolv.conf
+
 *. 配置静态地址
     vi /etc/network/interfaces
       #iface eth0 inet dhcp
