@@ -418,6 +418,13 @@ void f4(X) {}          // ILLEGAL: *definitions* require complete types
     a future is a read-only placeholder view of a variable,
     while a promise is a writable, single assignment container
     which sets the value of the future
+
+                future      shared state      std::promise
+    caller <-------------- callee's result <---------------- callee
+
+    The destructor for the last future referring to a shared state for a
+    non-deferred task lauched via std::async blocks until the task completes
+
 ===============================================================================
 
 
