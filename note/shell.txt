@@ -213,6 +213,8 @@ while (( getline line < file ) > 0 ) {
    delimiter
 *. Reversing the restriction with !
 *. Grouping with { and }
+*. add bomb
+    sed -i '1s/^/\xef\xbb\xbf/' <file>
 
 ===============================================================================
 -*- run-parts -*-
