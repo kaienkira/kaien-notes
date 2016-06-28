@@ -8,3 +8,9 @@ but no physics rigid body is expected to be static.
 Any time we move, rotate, or scale a static collider
 Unity will recalculate all the static colliders again
 and update the static collider cache
+
+===============================================================================
+Lights
+===============================================================================
+diffuse
+specular

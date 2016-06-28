@@ -4,8 +4,15 @@ gcc -c -Q -O3 --help=optimizers
 cpp -dM < /dev/null
 # 察看动态库配置
 sudo ldconfig -p
+# 察看ld搜索路径
+ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012
 # 生成gmon.out
 gdb <prog>
 > call write_gmon()
 # 转换函数签名
 c++filt <func_sign>
+# 打印搜索路径
+gcc -print-search-dirs
+
+# msys hack
+LIBRARY_PATH必须使用\;分割路径, 必须使用c:/(not /c/)

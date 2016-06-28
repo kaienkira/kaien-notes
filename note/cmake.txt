@@ -1,2 +1,9 @@
 * set install prefix
 cmake -DCMAKE_INSTALL_PREFIX=<prefix>
+* set tool generators
+cmake -G "Unix Makefiles"
+      -G "MSYS Makefiles"
+      -G "MinGW Makefiles"
+      -G "Visual Studio 10 2010"
+      -G "Xcode"
+

@@ -1,0 +1,77 @@
+===============================================================================
+Pipeline
+===============================================================================
+vertex data               顶点数据
+vertex shader             顶点着色器      *
+shape assembly            图元装配
+geometry shader           几何着色器      *
+tesselation shader        细分着色器      *
+rasterization             光栅化
+fragment shader           片断着色器      *
+alpha tests and blending  alpha测试与混合
+
+===============================================================================
+Immediate Mode
+===============================================================================
+GL_POINTS
+GL_LINES
+GL_LINE_STRIP
+GL_LINE_LOOP
+GL_TRIANGLES
+GL_TRIANGLE_STRIP
+GL_TRIANGLE_FAN
+GL_QUADS
+GL_QUAD_STRIP
+GL_PLOYGON
+===============================================================================
+NDC (Normalized Device Coordinates) 标准化设备坐标
+                  (0, 1)
+
+
+
+
+(-1, 0)           (0, 0)           (1, 0)
+
+
+
+
+                  (0, -1)
+===============================================================================
+VBO(Vertex Buffer Objects)
+VAO(Vertex Array Object)
+===============================================================================
+GL_STATIC_DRAW:  数据不会或几乎不会改变
+GL_DYNAMIC_DRAW: 数据会被改变很多
+GL_STREAM_DRAW:  数据每次绘制时都会改变
+===============================================================================
+Shader
+===============================================================================
+*. program template
+    #version version_number
+
+    in type in_var1_name;
+    in type in_var2_name;
+
+    out type out_var_name;
+
+    uniform type uniform_name;
+
+    int main()
+    {
+        ...
+        out_var_name = ...;
+    }
+
+* var type
+    float bool int unit bool double
+    vecn bvecn ivecn uvecn dvecn
+    sampler1D sampler2D sampler3D
+
+* vector Swizzling
+    v4 = v3.xyyz
+===============================================================================
+
+===============================================================================
+Texture
+===============================================================================
+*. Mipmaps 多极渐远纹理
