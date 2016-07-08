@@ -1,0 +1,40 @@
+pacman -Syuu
+pacman -S base-devel
+pacman -S mingw-w64-x86_64-toolchain
+pacman -S mingw64/mingw-w64-x86_64-cmake
+pacman -S msys/vim
+
+*. glfw
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=<prefix> -G "MSYS Makefiles" ..
+make && make install
+
+*. glew
+make install GLEW_PREFIX=<prefix> GLEW_DEST=<prefix>
+
+*. soil
+make install LOCAL=<prefix>
+
+*. glm
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=<prefix> -G "MSYS Makefiles" ..
+make install
+
+export C_INCLUDE_PATH=\
+<prefix>/glew/include/:\
+<prefix>/glfw/include/:\
+<prefix>/glm/include/:\
+<prefix>/soil/include/:\
+${C_INCLUDE_PATH}
+
+export CPLUS_INCLUDE_PATH=\
+${C_INCLUDE_PATH}:\
+${CPLUS_INCLUDE_PATH}
+
+export LIBRARY_PATH=\
+<prefix>/glew/lib\;\
+<prefix>/glfw/lib\;\
+<prefix>/soil/lib\;\
+${LIBRARY_PATH}
