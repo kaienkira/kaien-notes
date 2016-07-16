@@ -22,7 +22,14 @@ cd build
 cmake -DCMAKE_INSTALL_PREFIX=<prefix> -G "MSYS Makefiles" ..
 make install
 
+*. assimp
+cmake -DBUILD_SHARED_LIBS=OFF -DASSIMP_BUILD_SAMPLES=OFF
+      -DASSIMP_BUILD_TESTS=OFF
+      -DCMAKE_INSTALL_PREFIX=<prefix> -G "MSYS Makefiles"
+make install
+
 export C_INCLUDE_PATH=\
+<prefix>/assimp/include/:\
 <prefix>/glew/include/:\
 <prefix>/glfw/include/:\
 <prefix>/glm/include/:\
@@ -34,6 +41,7 @@ ${C_INCLUDE_PATH}:\
 ${CPLUS_INCLUDE_PATH}
 
 export LIBRARY_PATH=\
+<prefix>/assimp/lib\;\
 <prefix>/glew/lib\;\
 <prefix>/glfw/lib\;\
 <prefix>/soil/lib\;\
