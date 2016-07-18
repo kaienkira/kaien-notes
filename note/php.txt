@@ -250,3 +250,13 @@ element of array returned from function   $blah()[expr] 'Not legal syntax'
 There is no controlling terminal when you are doing passthrough, so there is on
 way for less to determine how 'big' your screen is so it can start paging
 ================================================================================
+
+================================================================================
+PHP-FPM
+================================================================================
+pm.max_children
+pm.start_servers
+    (min_spare_servers + (max_spare_servers - min_spare_servers) / 2)
+pm.min_spare_servers
+pm.max_spare_servers
+pm.max_requests
