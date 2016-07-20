@@ -71,6 +71,7 @@ cat /etc/resolv.conf
       dns-nameservers 8.8.8.8
     vi /etc/resolvconf/resolv.conf.d/base
       nameserver 8.8.8.8
+      options timeout:1 rotate
     sudo ifdown eth0 && sudo ifup eth0
     (/etc/init.d/networking restart)
 
