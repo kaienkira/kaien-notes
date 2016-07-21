@@ -147,6 +147,14 @@ gpg --import <private_key_filename>
 gpg --list-keys
 
 ================================================================================
+-*- Setup Gitlab -*-
+================================================================================
+wget https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+sudo bash script.deb.sh
+sudo apt-get install gitlab-ce
+sudo gitlab-ctl reconfigure
+
+================================================================================
 -*- Proxy -*-
 ================================================================================
 vi git_proxy.sh
