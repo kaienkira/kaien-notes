@@ -151,3 +151,10 @@ openssl rsa -in private_key.pem -pubout -out public_key.pem
 ===============================================================================
 limit_conn perip 8;
 limit_req zone=perreq nodelay;
+
+===============================================================================
+-*- force file download -*-
+===============================================================================
+if ($request_filename ~ ^.*/(?P<request_basename>[^/]+\.(txt|xls|xlsx))$) {
+    add_header Content-Disposition 'attachment; filename="$request_basename"';
+}
