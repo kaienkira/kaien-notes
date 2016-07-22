@@ -158,3 +158,7 @@ limit_req zone=perreq nodelay;
 if ($request_filename ~ ^.*/(?P<request_basename>[^/]+\.(txt|xls|xlsx))$) {
     add_header Content-Disposition 'attachment; filename="$request_basename"';
 }
+if ($request_filename ~ "^.*/(.+\.zip|tgz|iso|gz)$"){
+    set $fname $1;
+    add_header Content-Disposition 'attachment; filename="$fname"';
+}
