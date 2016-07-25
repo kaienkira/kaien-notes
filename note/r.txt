@@ -1,0 +1,4 @@
+sudo apt-get install gfortran openjdk-9-jdk-headless libreadline-dev \
+    libbz2-dev liblzma-dev libpcre3-dev libcurl4-openssl-dev \
+    libpng-dev libjpeg-dev libtiff-dev
+./configure --prefix=<prefix> --with-x=no
