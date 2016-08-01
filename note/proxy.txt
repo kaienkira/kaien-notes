@@ -58,3 +58,17 @@ hts -p <pid_file> -k 1 -M 57600 -F <forward_addr>:<forward_port> <listen_addr>
 ===============================================================================
 -*- haproxy -*-
 ===============================================================================
+defaults
+        log                     global
+        mode                    tcp
+        option                  dontlognull
+        timeout connect         10000
+        timeout client          150000
+        timeout server          150000
+
+frontend ss-in
+        bind *:<port>
+        default_backend ss-out
+
+backend ss-out
+        server server1 <host>:<port> maxconn 20480

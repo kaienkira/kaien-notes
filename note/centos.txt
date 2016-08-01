@@ -63,6 +63,11 @@ vi /etc/sysconfig/network-scripts/ifcfg-eth0
     IPADDR=192.168.0.2
     NETMASK=255.255.255.0
     GATEWAY=192.168.0.1
+    DNS1=223.5.5.5
+    DNS2=223.6.6.6
+vi /etc/sysconfig/network-scripts/route-eth0
+    default via 192.168.0.1 dev eth0
+    192.168.100.0/24 via 192.168.0.1 dev eth0
 vi /etc/resolv.conf
     nameserver 8.8.8.8
 
