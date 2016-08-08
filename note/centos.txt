@@ -4,9 +4,7 @@
 *. epel
 yum install epel-release
 *. remi
-rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
-*. rpmforge
-rpm -Uvh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-6.rpm
 
 ===============================================================================
 -*- package management -*-
