@@ -88,6 +88,10 @@ $_
         Remove from $var the longest part of $Pattern
         that matches the back end of $var
 
+*. printf
+    直接把结果存到变量
+        printf -v <var_name> '<format>' ....
+
 ===============================================================================
 -*- find -*-
 -------------------------------------------------------------------------------
