@@ -91,6 +91,7 @@
 *. 读缓冲区中仍有数据时调用close(), 将直接向对端发送RST
 *. 调用shutdown(fd, SHUT_RD)后, 调用recv读不到任何数据, 但是对端发送的数据
    仍然在缓冲区中, 此时调用close(), 仍然向对端发送RST
+
 ===============================================================================
 -*- SOCKET_OPTIONS -*-
 ===============================================================================
@@ -259,4 +260,13 @@ int accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
    Portable programs should not rely on inheritance or noninheritance of file 
    status flags and always explicitly set all required flags on the socket
    returned from accept().
+===============================================================================
+
+===============================================================================
+-*- Half open connection -*-
+===============================================================================
+There are situations when one side believes a TCP connection is established,
+but the other side does not, and where this situation will **never** be
+automatically resolved.
+It's possible to manage this problem using TCP or application-level keep-alive.
 ===============================================================================
