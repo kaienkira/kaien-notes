@@ -263,10 +263,20 @@ int accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
 ===============================================================================
 
 ===============================================================================
--*- Half open connection -*-
+-*- Exceptions -*-
 ===============================================================================
-There are situations when one side believes a TCP connection is established,
-but the other side does not, and where this situation will **never** be
-automatically resolved.
-It's possible to manage this problem using TCP or application-level keep-alive.
+*. Peer Power cycling
+   There are situations when one side believes a TCP connection is established,
+   but the other side does not, and where this situation will **never** be
+   automatically resolved.  It's possible to manage this problem using TCP
+   or application-level keep-alive.
+*. Peer Power Off
+   When the remote system is powered off instead of power cycled, again,
+   the first system only finds out if it's trying to send data.
+   If it doesn't send packets, it will never find out about the terminated
+   connections
+   When the system has been attempting to send data for long enough without
+   receiving acknowledgments from the remote side,
+   the TCP connection will be terminated and a socket operation on them
+   will fail with ETIMEDOUT.
 ===============================================================================

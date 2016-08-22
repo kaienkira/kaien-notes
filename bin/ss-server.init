@@ -7,10 +7,11 @@ script_path=`dirname $script_abs_name`
 
 desc=ss-server
 prog=${script_path}/shadowsocks/shadowsocks/server.py
-config_file=${script_path}/config.json
-pid_file=${script_path}/${desc}.pid
+config_file=${script_path}/etc/config.json
+user=shadowsocks
+pid_file=${script_path}/run/${desc}.pid
 log_file=/dev/null
-args="-c $config_file --pid-file $pid_file --log-file $log_file"
+args="-c $config_file --user $user --pid-file $pid_file --log-file $log_file"
 wait_tick=0.1
 wait_tick_count=200
 
