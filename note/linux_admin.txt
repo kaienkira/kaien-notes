@@ -22,6 +22,16 @@ e2fsck -C 0 -f /dev/<vg_name>/<root>
 resize2fs -p /dev/<vg_name>/<root> <new_size>
 lvreduce -L <new_size> /dev/<vg_name>/<root>
 ===============================================================================
+-*- udev -*-
+-------------------------------------------------------------------------------
+*. 修改硬盘名字
+udevadm info -a -p $(udevadm info -q path -n </dev/sda>)
+vi /etc/udev/rules.d/00-disk.rules
+    KERNEL=="sda", NAME="vda"
+    KERNEL=="sda?", NAME="vda%n"
+    KERNEL=="sdb", NAME="vdb"
+    KERNEL=="sdb?", NAME="vdb%n"
+===============================================================================
 -*- coredump -*-
 -------------------------------------------------------------------------------
 /proc/sys/kernel/core_pattern
