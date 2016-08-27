@@ -31,6 +31,10 @@ vi /etc/udev/rules.d/00-disk.rules
     KERNEL=="sda?", NAME="vda%n"
     KERNEL=="sdb", NAME="vdb"
     KERNEL=="sdb?", NAME="vdb%n"
+*. 等待内核处理完udev事件
+udevadm settle
+    settle waits for udevd to finish processing any uevents queued
+    by the kernel when it is called.
 ===============================================================================
 -*- coredump -*-
 -------------------------------------------------------------------------------
