@@ -11,6 +11,17 @@ mysql安全设置
 设置外网可访问
     vi /etc/mysql/my.cnf
     bind-address = 0.0.0.0
+
+mysql 5.5
+    grant all on *.* to root@'%' identified by '';
+    flush privileges;
+    show grants;
+mysql 5.7
+    create user 'root'@'%' identified by '';
+    # alter user 'root'@'%' identified by '';
+    grant all on *.* to 'root'@'%';
+    flush privileges;
+    show grants;
 ===============================================================================
 字符集
     >show variables like 'collation_%';
