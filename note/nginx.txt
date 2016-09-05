@@ -146,6 +146,9 @@ openssl genrsa -out private_key.pem 1024
 openssl pkcs8 -topk8 -inform PERM -in private_key.pem -outform PEM -nocrypt > pkcs8_private_key.txt
 openssl rsa -in private_key.pem -pubout -out public_key.pem
 
+# parse csr file
+openssl req -in <csr_file> -noout -text
+
 ===============================================================================
 -*- http limit req -*-
 ===============================================================================
