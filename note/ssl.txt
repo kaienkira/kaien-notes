@@ -46,10 +46,27 @@ openssl req -in <csr_file> -noout -text
 ===============================================================================
 -*- RSA -*-
 ===============================================================================
+# 算法描述
+N = pq (p, q为质数)
+r = φ(N) = (p - 1)(q - 1)
+ed = 1 (mod r) (e, r互质)
+公钥: (N, e)
+私钥: (N, d)
+加密: C = (P ^ e) (mod N)
+解密: P = (C ^ d) (mod N)
+
 # generate rsa key
 openssl genrsa -out private_key.pem 4096
 # show rsa key
 openssl rsa -in domain.key -noout -text
+    modulus:         N
+    publicExponent:  e
+    privateExponent: d
+    prime1:          p
+    prime2:          q
+    exponent1:       d (mod (p - 1))
+    exponent2:       d (mod (q - 1))
+    coefficient:     (inverse of q) (mod p)
 # generate public key from private key
 openssl rsa -in private_key.pem -pubout -out public_key.pem
 
