@@ -166,6 +166,7 @@ while (( getline line < file ) > 0 ) {
 
 *. remove first column
     {$1=""; print}
+
 ===============================================================================
 -*- sed -*-
 -------------------------------------------------------------------------------
@@ -221,6 +222,8 @@ while (( getline line < file ) > 0 ) {
     sed -i '1s/^/\xef\xbb\xbf/' <file>
 *. loop
     :loop; /<pattern>/! { N; bloop; };
+*. transliterate the characters
+    y/source/dest/
 
 ===============================================================================
 -*- run-parts -*-
