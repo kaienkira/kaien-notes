@@ -47,13 +47,18 @@ openssl req -in <csr_file> -noout -text
 -*- RSA -*-
 ===============================================================================
 # 算法描述
-N = pq (p, q为质数)
-r = φ(N) = (p - 1)(q - 1)
-ed = 1 (mod r) (e, r互质)
+随机生成大质数p,q
+计算N = pq
+计算r = φ(N) = (p - 1)(q - 1)
+随机选择 1 < e < r, 且e,r互质
+计算e的模反元素d(满足ed = 1 (mod r))
+    使用扩展欧几里德算法计算ed + ry = 1得到d
 公钥: (N, e)
 私钥: (N, d)
 加密: C = (P ^ e) (mod N)
 解密: P = (C ^ d) (mod N)
+    证明: P ^ (ed) = P (mod N)
+    P ^ (1 + hφ(N)) = P * (P ^ φ(N)) ^ h = P (mod N)
 
 # generate rsa key
 openssl genrsa -out private_key.pem 4096
