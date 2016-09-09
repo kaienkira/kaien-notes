@@ -3,16 +3,16 @@
 function urlbase64($bin)
 {
     return str_replace(
-        array("+", "/", "="),
-        array("-", "_", ""),
+        array('+', '/', '='),
+        array('-', '_', ''),
         base64_encode($bin));
 }
 
 function runCommand($command, &$stdout, &$stderr)
 {
     $proc = proc_open($command, array(
-        1 => array("pipe", "w"),
-        2 => array("pipe", "w")
+        1 => array('pipe', 'w'),
+        2 => array('pipe', 'w')
     ), $pipes);
     if ($proc === false) {
         return false;
