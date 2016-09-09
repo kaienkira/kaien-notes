@@ -43,6 +43,15 @@ openssl pkcs12 -export -clcerts -passout pass: \
 # show csr file
 openssl req -in <csr_file> -noout -text
 
+# generate csr
+## single domain
+openssl req -new -sha256 -key domain.key -out domain.csr -subj "/CN=domain"
+## multiple domain
+cp /etc/ssl/openssl.cnf domain.conf
+printf "[SAN]\nsubjectAltName=DNS:domain.com,DNS:www.domain.com" >> domain.conf
+openssl req -new -sha256 -key domain.key -out domain.csr -subj "/" \
+        -reqexts SAN -config domain.conf
+
 ===============================================================================
 -*- RSA -*-
 ===============================================================================
