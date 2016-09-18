@@ -30,17 +30,6 @@ set columns=120
 set noerrorbells
 set visualbell t_vb=
 
-hi def link doxygenComment Comment
-hi def link doxygenBrief Comment
-hi def link doxygenBody Comment
-hi def link doxygenSpecialTypeOnelineDesc Comment
-hi def link doxygenBOther Comment
-hi def link doxygenParam Identifier
-hi def link doxygenParamName Comment
-hi def link doxygenSpecialOnelineDesc Comment
-hi def link doxygenSpecialHeading Comment
-hi def link doxygenPrev Comment
-
 function! BrickredCFold(lnum)
     if getline(a:lnum) =~ '^{$'
         return '>1'
@@ -64,7 +53,6 @@ function! BR_RelativeNumberToggle()
 endfunction
 
 au GuiEnter * set t_vb=
-au BufNewFile,BufRead *.c,*.h,*.cc,*.hpp,*.cpp set syntax=cpp.doxygen
 au BufNewFile,BufRead *.c,*.cc,*.cpp set foldmethod=expr foldexpr=BrickredCFold(v:lnum)
 au BufNewFile,BufRead Makefile,makefile,*.mak set noexpandtab
 
