@@ -1,0 +1,7 @@
+interface: <master_ip>
+
+master: <master_ip>
+log_level: all
+
+===============================================================================
+salt '*' saltutil.sync_modules
