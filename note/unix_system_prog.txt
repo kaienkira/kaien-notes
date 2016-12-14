@@ -40,6 +40,10 @@ Threads
       the kernel chooses an arbitrary thread to which to deliver
       the signal. 
 
+*. With Fork
+    仅复制当前线程到子进程
+    所有父进程中别的线程, 到了子进程中都是突然蒸发掉的
+
 *. Reentrant functions that may be called from a signal handler
      accept()
      fchmod()
