@@ -1,1 +1,3 @@
 valgrind --leak-check=full <prog>
+
+LD_LIBRARY_PATH must add a ':'
