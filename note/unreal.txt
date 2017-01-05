@@ -1,3 +1,22 @@
+===============================================================================
+-*- Unreal Build System -*-
+===============================================================================
+source -> UHT(UnrealHeaderTool) -> c++ compiler
+
+[AppName]\[AppName].Target.cs
+
+===============================================================================
+-*- Modules -*-
+===============================================================================
+[GameName]\Source\[ModuleName]\[ModuleName].h
+[GameName]\Source\[ModuleName]\[ModuleName].cpp
+[GameName]\Source\[ModuleName]\[ModuleName].Build.cs
+IMPLEMENT_PRIMARY_GAME_MODULE
+IMPLEMENT_GAME_MODULE
+
+===============================================================================
+-*- Classes -*-
+===============================================================================
 UWorld
     SpawnActor()
 
