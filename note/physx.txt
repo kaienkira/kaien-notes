@@ -1,1 +1,11 @@
 AABB axis aligned bounding box
+
+Geometry Queries
+*. raycast queries
+    PxGeometryQuery::raycast
+*. sweep queries
+*. overlap queries
+*. minimal translational distance queries (MTD)
+
+*. compute the AABB of a geometry object
+*. compute the distance between a point and a geometry object
