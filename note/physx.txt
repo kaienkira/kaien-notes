@@ -9,3 +9,16 @@ Geometry Queries
 
 *. compute the AABB of a geometry object
 *. compute the distance between a point and a geometry object
+
+Quaternion
+q = (x, y, z, w)
+w = cos(theta/2)
+x  = ax * sin(theta/2)
+y  = ay * sin(theta/2)
+z  = az * sin(theta/2)
+
+q* = (-x, -y, -z, w)
+q^-1 = q* / |q|^2
+
+v = (x, y, z, 0)
+v' = q * v * q^-1
