@@ -63,3 +63,8 @@ svn propset svn:mime-type text/plain <filename>
 
 *强制解锁
 svn unlock --force <file>
+
+*checkout部分目录
+svn co <url> --depth immediates
+svn up --set-depth=exclude <dir1> <dir2> ...
+svn up --set-depth infinity <dir1> <dir2> ...
