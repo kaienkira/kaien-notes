@@ -16,7 +16,7 @@ then
     grep_args=$*
 fi
 
-find . -name "$filename" -type f -exec grep_color $grep_args "'$keyword'" {} \; -print
+find . -name "$filename" -type f -exec grep_color $grep_args "'$keyword'" \'{}\' \; -print
 ret=$?
 printf "\033[0m"
 
