@@ -59,6 +59,17 @@ openssl req -new -sha256 -key domain.key -out domain.csr -subj "/" \
 openssl x509 -in <crt_file> -noout -text
 
 ===============================================================================
+-*- PKCS -*-
+===============================================================================
+openssl pkcs8 -topk8 -inform PERM -in private_key.pem
+        -outform PEM -nocrypt > pkcs8_private_key.txt
+
+
+
+
+
+
+===============================================================================
 -*- RSA -*-
 ===============================================================================
 # 算法描述
@@ -91,7 +102,32 @@ openssl rsa -in domain.key -noout -text
 openssl rsa -in private_key.pem -pubout -out public_key.pem
 
 ===============================================================================
--*- PKCS -*-
+-*- Block cipher mode of operation -*-
 ===============================================================================
-openssl pkcs8 -topk8 -inform PERM -in private_key.pem
-        -outform PEM -nocrypt > pkcs8_private_key.txt
+ECB (Electronic Codebook)
+CBC (Cipher Block Chaining)
+    C(0) = Encrypt(P(0) ^ IV), C(n) = Encrypt(P(n) ^ C(n-1))
+    P(0) = Decrypt(C(0)) ^ IV, P(n) = Decrypt(C(n)) ^ C(n-1)
+PCBC (Propagating Cipher Block Chaining)
+    C(0) = Encrypt(P(0) ^ IV), C(n) = Encrypt(P(n) ^ P(n - 1) ^ C(n - 1))
+    P(0) = Decrypt(C(0)) ^ IV, P(n) = Decrypt(C(n)) ^ P(n - 1) ^ C(n - 1)
+CFB (Cipher Feedback)
+    C(0) = Encrypt(IV) ^ P(0), C(n) = Encrypt(C(n - 1)) ^ P(n)
+    P(0) = Encrypt(IV) ^ C(0), P(n) = Encrypt(C(n - 1)) ^ C(n)
+    ---------------------------------------------------------------------------
+    S(0) = IV, C(0) = head(Encrypt(S(0)), x) ^ P(0),
+    S(n) = (S(n - 1) << x) + C(n - 1), C(n) = head(Encrypt(S(n)), x) ^ P(n)
+    S(0) = IV, P(0) = head(Encrypt(S(0)), x) ^ C(0),
+    S(n) = (S(n - 1) << x) + C(n - 1), P(n) = head(Encrypt(S(n)), x) ^ C(n)
+OFB (Output Feedback)
+    O(0) = Encrypt(IV), C(0) = O(0) ^ P(0)
+    O(n) = Encrypt(O(n - 1)), C(n) = O(n) ^ P(n)
+    ---------------------------------------------------------------------------
+    O(0) = Encrypt(IV), P(0) = O(0) ^ C(0)
+    O(n) = Encrypt(O(n - 1)), P(n) = O(n) ^ C(n)
+CTR (Counter Mode)
+    N(0) = IV, C(0) = Encrypt(N(0)) ^ P(0)
+    N(n) = N(n - 1) + 1, C(n) = Encrypt(N(n)) ^ P(n)
+    ---------------------------------------------------------------------------
+    N(0) = IV, P(0) = Encrypt(N(0)) ^ C(0)
+    N(n) = N(n - 1) + 1, P(n) = Encrypt(N(n)) ^ C(n)
