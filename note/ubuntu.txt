@@ -23,6 +23,7 @@
 -------------------------------------------------------------------------------
 initctl list
 update-rc.d
+    update-rc.d <target> defaults
 /etc/init.d/*
 /etc/rc[0-6].d/*
 /etc/init/*.conf
