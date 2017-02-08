@@ -1,12 +1,7 @@
 ===============================================================================
-cargo new --bin --name <package_name>
+cargo new --bin --name <package_name> <path>
 ===============================================================================
-*. a let can only begin a statement, not an expression
-*. the value of an assignment is an empty tuple ()
-*. Using a return as the last line of a function works
-   but is considered poor style
-*. diverging functions: functions that do not return
-    fn diverges() -> ! {}
+
 
 ===============================================================================
 -*- Primitive type -*-
@@ -24,11 +19,34 @@ str
 array [T; N]
     fixed-size list of elements of the same type
     indexing: a[0]
+    let a = [0; 5] // equal to [0,0,0,0,0]
 tuple (...)
     indexing: t.0
-slice
+slice &[T]
     a reference to (or 'view' into) another data structure
 function
+
+===============================================================================
+-*- Unsized Types -*-
+-------------------------------------------------------------------------------
+
+===============================================================================
+-*- Statement and Expression -*-
+-------------------------------------------------------------------------------
+There are two kinds of statements in Rust:
+1) declaration statements
+2) expression statements
+
+*. a let can only begin a statement, not an expression
+*. the value of an assignment is an empty tuple ()
+
+===============================================================================
+-*- Function -*-
+-------------------------------------------------------------------------------
+*. Using a return as the last line of a function works
+   but is considered poor style
+*. diverging functions: functions that do not return
+    fn diverges() -> ! {}
 
 ===============================================================================
 -*- Control flow -*-
@@ -68,3 +86,10 @@ Loop labels
 *. Viewing a String as a &str is cheap,
    but converting the &str to a String involves allocating memory
 *. Because strings are valid UTF-8, strings do not support indexing
+
+===============================================================================
+-*- Disable warning -*-
+-------------------------------------------------------------------------------
+#![allow(dead_code)]
+#![allow(unused_variables)]
+===============================================================================
