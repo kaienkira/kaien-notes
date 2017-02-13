@@ -21,14 +21,44 @@ array [T; N]
     indexing: a[0]
     let a = [0; 5] // equal to [0,0,0,0,0]
 tuple (...)
-    indexing: t.0
+    indexing: t.0, t.1, t.2 ...
 slice &[T]
     a reference to (or 'view' into) another data structure
 function
 
+reference &T &mut T
+
+===============================================================================
+-*- Struct -*-
+-------------------------------------------------------------------------------
+Update syntax
+    let p1 = Point { x: 0, y: 0 };
+    let p2 = Point { x: 1, .. p };
+Tuple structs
+    struct Point(i32, i32, i32);
+Unit-like structs
+    struct Point;
+    struct Point {}
+
+===============================================================================
+-*- Enum -*-
+-------------------------------------------------------------------------------
+Sum type
+    *. A value of the enum can match any of the variants.
+       For this reason, an enum is sometimes called a `sum type`,
+    *. the set of possible values of the enum is the sum of
+       the sets of possible values for each variant.
+Tagged union
+
 ===============================================================================
 -*- Unsized Types -*-
 -------------------------------------------------------------------------------
+*. We can only manipulate an instance of an unsized type via a pointer.
+   An &[T] works fine, but a [T] does not
+*. Variables and arguments cannot have dynamically sized types
+*. Only the last field in a struct may have a dynamically sized type;
+   the other fields must not.
+*. Enum variants must not have dynamically sized types as data
 
 ===============================================================================
 -*- Statement and Expression -*-
@@ -41,6 +71,35 @@ There are two kinds of statements in Rust:
 *. the value of an assignment is an empty tuple ()
 
 ===============================================================================
+-*- Comment -*-
+-------------------------------------------------------------------------------
+//  comment
+/// doc comment
+//! module comment
+
+===============================================================================
+-*- Control flow -*-
+-------------------------------------------------------------------------------
+*. An if without an else always results in () as the value
+
+if ... {
+} else {
+}
+
+loop {
+}
+
+while ... {
+}
+
+for i in iterator {
+}
+
+Loop labels
+'label:
+    continue 'label;
+
+===============================================================================
 -*- Function -*-
 -------------------------------------------------------------------------------
 *. Using a return as the last line of a function works
@@ -49,16 +108,24 @@ There are two kinds of statements in Rust:
     fn diverges() -> ! {}
 
 ===============================================================================
--*- Control flow -*-
+-*- Pattern -*-
 -------------------------------------------------------------------------------
-for i in iterator
-Loop labels
-'label:
-    continue 'label;
+_             any case
+a | b         multiple patterns
+T { .. }      destructure
+ref r         reference
+ref mut r
+1 ... n       range
+e @ 1 ... n   binding
+a if cond     guard
 
 ===============================================================================
 -*- Ownership -*-
 -------------------------------------------------------------------------------
+RAII
+Move semantics
+Copy trait
+
 *. variable bindings 'have ownership' of what they are bound to
    when a binding goes out of scope, Rust will free the bound resources
 *. Rust ensures that there is exactly one binding to any given resource
@@ -66,11 +133,12 @@ Loop labels
    their ownership is therefore not moved
 
 *. any borrow must last for a scope no greater than that of the owner
+*. you may have one or the other of these two kinds of borrows,
+   but not both at the same time
+    1)one or more references (&T) to a resource
+    2)exactly one mutable reference (&mut T)
 *. the mutable borrow prevents subsequent moves, borrows, or modification
    until the borrow ends
-*. one or more references (&T) to a resource
-   exactly one mutable reference (&mut T)
-
 
 ===============================================================================
 * Rust has two main types of strings: &str and String
