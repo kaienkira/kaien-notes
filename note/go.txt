@@ -1,0 +1,117 @@
+===============================================================================
+-*- Array -*-
+-------------------------------------------------------------------------------
+*. Arrays are values. Assigning one array to another copies all the elements.
+*. In particular, if you pass an array to a function,
+   it will receive a copy of the array, not a pointer to it
+*. The size of an array is part of its type
+===============================================================================
+-*- Slice -*-
+-------------------------------------------------------------------------------
+*. Slices hold references to an underlying array
+===============================================================================
+-*- Map -*-
+-------------------------------------------------------------------------------
+*. Like slices, maps hold references to an underlying data structure
+*. Slices cannot be used as map keys, because equality is not defined on them
+*. fetch a map value with a key that is not present in the map will
+   return the zero value for the type of the entries in the map
+*. "comma ok" idiom
+   v, ok = m[k]
+*. delete(m, k)
+
+===============================================================================
+-*- Control flow -*-
+-------------------------------------------------------------------------------
+if ... {
+} else {
+}
+if err := false; err == false {
+}
+
+switch ... {
+case <cond>, <cond>:
+}
+switch {
+case <cond>:
+}
+switch t := t.(type) {
+case <type>:
+}
+
+for init; condition; post {
+}
+for condition {
+}
+for {
+}
+for key, value := range m {
+}
+for key := range m {
+}
+for pos, char : range "String" {
+}
+
+===============================================================================
+-*- Function -*-
+-------------------------------------------------------------------------------
+func (t *T) funcName(<argument_list>) (<return_value_list>) {
+}
+
+Multiple return values
+Named result parameters
+Defer
+    *. The arguments to the deferred function
+    (which include the receiver if the function is a method)
+    are evaluated when the defer executes, not when the call executes
+    *. Deferred functions are executed in LIFO order
+
+*. pointer methods can modify the receiver
+*. value methods can be invoked on pointers and values,
+   but pointer methods can only be invoked on pointers
+*. When the value is addressable, the language takes care of
+   the common case of invoking a pointer method on a value
+   by inserting the address operator automatically
+
+===============================================================================
+-*- Package -*-
+-------------------------------------------------------------------------------
+init() function
+
+===============================================================================
+-*- Allocation -*-
+-------------------------------------------------------------------------------
+new
+    it does not initialize the memory, it only zeros it
+    return *T
+make
+    creates slices, maps and channels only
+    it initialize the memory
+    return T
+
+if the compiler cannot prove that the variable is not referenced
+after the function returns, then the compiler must allocate the variable
+on the garbage-collected heap to avoid dangling pointer errors.
+
+===============================================================================
+-*- print -*-
+-------------------------------------------------------------------------------
+%v    default
+%+v   annotates the fields of the structure with their names
+%#v   prints the value in full Go syntax
+%T    type
+%q    quoted string format (string or []byte)
+%#q   use backquotes instead of quote
+%x    hexdump
+% x   hexdump with space
+
+*. format for a custom type
+    func (t *T) String() string
+*. printf signature
+    func Printf(format string, v ...interface{}) (n int, err error)
+
+===============================================================================
+-*- Concurrency -*-
+-------------------------------------------------------------------------------
+Do not communicate by sharing memory; instead, share memory by communicating
+===============================================================================
