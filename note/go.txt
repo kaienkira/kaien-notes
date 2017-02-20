@@ -8,10 +8,14 @@
 ===============================================================================
 -*- Slice -*-
 -------------------------------------------------------------------------------
+s := make([]byte, 100)
+
 *. Slices hold references to an underlying array
 ===============================================================================
 -*- Map -*-
 -------------------------------------------------------------------------------
+m := make(map[int]string)
+
 *. Like slices, maps hold references to an underlying data structure
 *. Slices cannot be used as map keys, because equality is not defined on them
 *. fetch a map value with a key that is not present in the map will
@@ -19,6 +23,10 @@
 *. "comma ok" idiom
    v, ok = m[k]
 *. delete(m, k)
+===============================================================================
+-*- Channel *-
+-------------------------------------------------------------------------------
+c := make(chan int, 10)
 
 ===============================================================================
 -*- Control flow -*-
