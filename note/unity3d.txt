@@ -7,8 +7,10 @@ Edit->Project Settings->Editor->Asset Serialization Mode->Force Text
 ===============================================================================
 -*- Resource Path -*-
 ===============================================================================
-Application.dataPath                  /Assets
-Application.streamingAssetsPath       /Assets/StreamingAssets
+Application.dataPath            \Assets
+Application.streamingAssetsPath \Assets\StreamingAssets
+Application.persistentDataPath  C:\Users\<u>\AppData\LocalLow\<company>\<proj>
+Application.temporaryCachePath  C:\Users\<u>\AppData\Local\Temp\<company>\<proj>
 
 
 ===============================================================================
