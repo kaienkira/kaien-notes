@@ -12,6 +12,49 @@ Application.streamingAssetsPath \Assets\StreamingAssets
 Application.persistentDataPath  C:\Users\<u>\AppData\LocalLow\<company>\<proj>
 Application.temporaryCachePath  C:\Users\<u>\AppData\Local\Temp\<company>\<proj>
 
+===============================================================================
+-*- Load Asset Bundle -*-
+===============================================================================
+AssetBundle.LoadFromMemoryAsync()
+    AssetBundle.CreateFromMemory()
+AssetBundle.LoadFromFile()
+    AssetBundle.CreateFromFile()
+    loading uncompressed AssetBundle from local storage
+WWW.LoadFromCacheOrDownload()
+    loading Objects both from remote servers and from local storage
+    the WWW object will keep a full copy of the AssetBundle's bytes in native memory
+    Each call to this API will spawn a new worker thread
+
+*. ensure that the project's AssetBundles remain smaller
+   than 2-3% of the project's maximum memory budget
+*. For most projects, AssetBundles should not exceed 5MB in file size,
+   and no more than 1-2 AssetBundles should be downloaded simultaneously
+*. ensure that the downloader code properly calls Dispose after loading the AssetBundle
+
+===============================================================================
+-*- Load Assets -*-
+===============================================================================
+AssetBundle.LoadAsset()
+AssetBundle.LoadAllAssets()
+AssetBundle.LoadAssetWithSubAssets()
+AssetBundle.LoadAssetAsync()
+AssetBundle.LoadAllAssetsAsync()
+AssetBundle.LoadAssetWithSubAssetsAsync()
+
+*. The synchronous API will always be faster than the asynchronous API
+   by at least one frame
+*. Before Unity 5.2, all asynchronous APIs would load at most one Object per frame
+*. an Object's data is read from storage on a worker thread
+
+Application.backgroundLoadingPriority
+ThreadPriority.High:        Maximum 50ms per frame
+ThreadPriority.Normal:      Maximum 10ms per frame
+ThreadPriority.BelowNormal: Maximum  4ms per frame
+ThreadPriority.Low:         Maximum  2ms per frame
+
+===============================================================================
+-*- AssetBundle dependencies -*-
+===============================================================================
 
 ===============================================================================
 Physics
