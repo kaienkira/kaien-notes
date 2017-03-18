@@ -403,3 +403,18 @@ set smtp-auth=login
 -*- trap signal -*-
 ===============================================================================
 trap "pkill -P $$; exit 0 " SIGINT
+===============================================================================
+-*- tmux -*-
+===============================================================================
+tmux new -s <session_name>
+tmux list-sessions (tmux ls)
+tmux attach -t <session_name>
+tmux kill-session -t <session_name>
+
+<prefix> d      detach session
+<prefix> c      create window
+<prefix> n      next window
+<prefix> p      previous window
+<prefix> f      find window
+<prefix> w      select window
+<prefix> %      split window
