@@ -68,7 +68,42 @@ Unity will recalculate all the static colliders again
 and update the static collider cache
 
 ===============================================================================
+Meterials
+===============================================================================
+Standard Shader(PBS):
+    Rendering Mode:
+        Opaque:
+            solid objects with no transparent areas
+        Cutout:
+            the texture is either 100% opaque or invisible
+        Transparent:
+            based on the texture’s alpha channel and
+            the alpha of the tint colour
+            DiffuseColor * Alpha + RefColor * (1 - Alpha)
+        Fade:
+            Allows the transparency values to entirely fade an object out,
+            including any specular highlights or reflections it may have. 
+            DiffuseColor * Alpha + RefColor * Alpha
+    Albedo: base color of the surface
+        Albedo texture should not contain any lighting
+    Transparency
+
+===============================================================================
 Lights
 ===============================================================================
 diffuse
 specular
+
+===============================================================================
+NGUI
+===============================================================================
+UIGeometry
+  ** UIWidget geometry
+    verts
+    uvs
+    cols
+    ApplyTransform()
+    WriteToBuffers()
+
+UIDrawCall : MonoBehaviour
+===============================================================================
