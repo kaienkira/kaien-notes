@@ -85,3 +85,18 @@ IEnumerator func()
 Conditional
 Obsolete
 ===============================================================================
+
+===============================================================================
+-*- Multithread -*-
+===============================================================================
+ManualResetEvent
+System.Threading.Monitor
+
+
+*. lock is just shortcut for Monitor.Enter with try + finally and Monitor.Exit
+*. the lack of condition variable makes it impossible to distinguish
+   between the various cases where threads wait on the same shared resource/lock,
+   but for different reasons.
+   All waiting threads are place on a big waiting queue for that shared resource,
+   which undermines efficiency.
+===============================================================================
