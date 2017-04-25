@@ -28,7 +28,8 @@ AssetBundle打包
     assetImporter.assetBundleName = assetBundleName;
 (3) 打包
     BuildPipeline.BuildAssetBundles(outputPath, assetBundleOptions, targetPlatform)
-        UncompressedAssetBundle - 不压缩
+        UncompressedAssetBundle     - 不压缩
+        DisableWriteTypeTree        - 不写入TypeTree
         DeterministicAssetBundle
         StrictMode
     BuildPipeline.BuildAssetBundles(outputPath, assetBundleOptions, builds, targetPlatform)
@@ -62,6 +63,11 @@ AssetBundle.LoadFromFile(path, crc, offset)
 AssetBundle.LoadFromMemory(byte[], crc)
     完成后会在内存中创建较大的WebStream
     后续的AssetBundle.Load直接在内存中进行
+
+--------------------------------------------------------------------------------------------------------------
+Shader striping
+--------------------------------------------------------------------------------------------------------------
+Edit->Project Settings->Graphics->ShaderStripping->Manual
 
 ==============================================================================================================
 -*- Version Control -*-
