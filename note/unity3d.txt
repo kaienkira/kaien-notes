@@ -1,64 +1,85 @@
-===============================================================================
+==============================================================================================================
+-*- Resource Management -*-
+==============================================================================================================
+Object.Instantiate                     ->     GameObject                -> Object.Destory
+
+AssetBundle.LoadAsset                  ->     Object,Audio,Animation,   -> Resources.UnloadAsset(obj)
+AssetBundle.LoadAllAssets                     Texture,Material          -> Resources.UnloadUnusedAssets()
+                                                                           AssetBundle.Unload(true)
+
+WWW.assetBundle                        ->     AssetBundle               -> AssetBundle.Unload(false)
+AssetBundle.LoadFromFile                                                   AssetBundle.Unload(true)
+AssetBundle.LoadFromMemory
+
+new WWW                                ->     WebStream
+AssetBundle.LoadFromMeory
+
+new WWW
+WWW.LoadFromCacheOrDownload            ->     WWW                       -> WWW.Dispose()
+                                                                           WWW = null
+--------------------------------------------------------------------------------------------------------------
+AssetBundle打包
+--------------------------------------------------------------------------------------------------------------
+(1) 清除AssetBundleName
+    AssetDatabase.GetAllAssetBundleNames()
+    AssetDatabase.RemoveAssetBundleName()
+(2) 设置资源AssetBundleName
+    var assetImporter = AssetImporter.GetAtPath(assetPath);
+    assetImporter.assetBundleName = assetBundleName;
+(3) 打包
+    BuildPipeline.BuildAssetBundles(outputPath, assetBundleOptions, targetPlatform)
+        UncompressedAssetBundle - 不压缩
+        DeterministicAssetBundle
+        StrictMode
+    BuildPipeline.BuildAssetBundles(outputPath, assetBundleOptions, builds, targetPlatform)
+        AssetBundleBuild
+
+--------------------------------------------------------------------------------------------------------------
+AssetBundle加载
+--------------------------------------------------------------------------------------------------------------
+(1)
+WWW(string url)
+WWW.assetBundle
+    能处理压缩的AssetBundle文件
+    完成后会在内存中创建较大的WebStream
+    后续的AssetBundle.Load直接在内存中进行
+(2)
+WWW.LoadFromCacheOrDownload(url, version, crc)
+WWW.assetBundle
+    能处理压缩的AssetBundle文件
+    将解压形式的Bundle内容存入磁盘中作为缓存
+    完成后只会在内存中创建较小的SerializedFile
+    后续的AssetBundle.Load需要通过IO从磁盘中的缓存获取
+    Caching.compressionEnabled控制磁盘缓存是否压缩(fast LZ4)
+    缓存文件使用文件名(域名和路径将被忽略)和版本号唯一确定
+    磁盘缓存使用LRU策略, 如果缓存用尽将在内存中操作(同方法1)
+(3)
+AssetBundle.LoadFromFile(path, crc, offset)
+    如果assetbundle使用了压缩, 则解压到内存
+    完成后只会在内存中创建较小的SerializedFile
+    后续的AssetBundle.Load需要通过IO从磁盘中的缓存获取
+(4)
+AssetBundle.LoadFromMemory(byte[], crc)
+    完成后会在内存中创建较大的WebStream
+    后续的AssetBundle.Load直接在内存中进行
+
+==============================================================================================================
 -*- Version Control -*-
-===============================================================================
+==============================================================================================================
 Edit->Project Settings->Editor->Visible Meta Files
 Edit->Project Settings->Editor->Asset Serialization Mode->Force Text
 
-===============================================================================
+==============================================================================================================
 -*- Resource Path -*-
-===============================================================================
+==============================================================================================================
 Application.dataPath            \Assets
 Application.streamingAssetsPath \Assets\StreamingAssets
 Application.persistentDataPath  C:\Users\<u>\AppData\LocalLow\<company>\<proj>
 Application.temporaryCachePath  C:\Users\<u>\AppData\Local\Temp\<company>\<proj>
 
-===============================================================================
--*- Load Asset Bundle -*-
-===============================================================================
-AssetBundle.LoadFromMemoryAsync()
-    AssetBundle.CreateFromMemory()
-AssetBundle.LoadFromFile()
-    AssetBundle.CreateFromFile()
-    loading uncompressed AssetBundle from local storage
-WWW.LoadFromCacheOrDownload()
-    loading Objects both from remote servers and from local storage
-    the WWW object will keep a full copy of the AssetBundle's bytes in native memory
-    Each call to this API will spawn a new worker thread
-
-*. ensure that the project's AssetBundles remain smaller
-   than 2-3% of the project's maximum memory budget
-*. For most projects, AssetBundles should not exceed 5MB in file size,
-   and no more than 1-2 AssetBundles should be downloaded simultaneously
-*. ensure that the downloader code properly calls Dispose after loading the AssetBundle
-
-===============================================================================
--*- Load Assets -*-
-===============================================================================
-AssetBundle.LoadAsset()
-AssetBundle.LoadAllAssets()
-AssetBundle.LoadAssetWithSubAssets()
-AssetBundle.LoadAssetAsync()
-AssetBundle.LoadAllAssetsAsync()
-AssetBundle.LoadAssetWithSubAssetsAsync()
-
-*. The synchronous API will always be faster than the asynchronous API
-   by at least one frame
-*. Before Unity 5.2, all asynchronous APIs would load at most one Object per frame
-*. an Object's data is read from storage on a worker thread
-
-Application.backgroundLoadingPriority
-ThreadPriority.High:        Maximum 50ms per frame
-ThreadPriority.Normal:      Maximum 10ms per frame
-ThreadPriority.BelowNormal: Maximum  4ms per frame
-ThreadPriority.Low:         Maximum  2ms per frame
-
-===============================================================================
--*- AssetBundle dependencies -*-
-===============================================================================
-
-===============================================================================
+==============================================================================================================
 Physics
-===============================================================================
+==============================================================================================================
 Any game object with a collider and a rigid body is considered dynamic.
 Any game object with a collider attached
 but no physics rigid body is expected to be static.
@@ -67,9 +88,9 @@ Any time we move, rotate, or scale a static collider
 Unity will recalculate all the static colliders again
 and update the static collider cache
 
-===============================================================================
+==============================================================================================================
 Meterials
-===============================================================================
+==============================================================================================================
 Standard Shader(PBS):
     Rendering Mode:
         Opaque:
@@ -88,15 +109,15 @@ Standard Shader(PBS):
         Albedo texture should not contain any lighting
     Transparency
 
-===============================================================================
+==============================================================================================================
 Lights
-===============================================================================
+==============================================================================================================
 diffuse
 specular
 
-===============================================================================
+==============================================================================================================
 NGUI
-===============================================================================
+==============================================================================================================
 UIGeometry
   ** UIWidget geometry
     verts
@@ -106,4 +127,4 @@ UIGeometry
     WriteToBuffers()
 
 UIDrawCall : MonoBehaviour
-===============================================================================
+==============================================================================================================
