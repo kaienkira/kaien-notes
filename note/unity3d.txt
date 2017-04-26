@@ -30,6 +30,8 @@ AssetBundle打包
     BuildPipeline.BuildAssetBundles(outputPath, assetBundleOptions, targetPlatform)
         UncompressedAssetBundle     - 不压缩
         DisableWriteTypeTree        - 不写入TypeTree
+        ChunkBasedCompression       - 使用LZ4压缩
+        ForceRebuildAssetBundle     - 强制重新打包
         DeterministicAssetBundle
         StrictMode
     BuildPipeline.BuildAssetBundles(outputPath, assetBundleOptions, builds, targetPlatform)
