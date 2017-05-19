@@ -70,6 +70,7 @@ AssetBundle.LoadFromMemory(byte[], crc)
 Shader striping
 --------------------------------------------------------------------------------------------------------------
 Edit->Project Settings->Graphics->ShaderStripping->Manual
+    LightmapModes -> Manual
 
 ==============================================================================================================
 -*- Version Control -*-
