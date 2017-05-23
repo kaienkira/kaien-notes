@@ -16,6 +16,15 @@ alpha tests and blending  alpha测试与混合
     blending
     dithering
     logic op
+
+应用阶段(Application Stage)
+几何阶段(Geometry Stage)
+  *. 顶点着色器(vertex shader)
+      [] 坐标变换
+         把顶点坐标从模型空间转化到齐次裁减空间,
+         再由硬件做透视除法, 得到NDC坐标
+  *. 裁减(clipping)
+光栅化阶段(Rasterizer Stage)
 ===============================================================================
 Buffers
 ===============================================================================
