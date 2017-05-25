@@ -7,7 +7,7 @@ shape assembly            图元装配
 geometry shader           几何着色器      *
 tesselation shader        细分着色器      *
 rasterization             光栅化
-fragment shader           片断着色器      *
+fragment shader           片元着色器      *
 alpha tests and blending  alpha测试与混合
     scissor test
     alpha test
@@ -22,31 +22,40 @@ alpha tests and blending  alpha测试与混合
 -------------------------------------------------------------------------------
 几何阶段(Geometry Stage)
 -------------------------------------------------------------------------------
-  LocalSpace
-      * (ModelMatrix 模型矩阵) ->
-  WorldSpace
-      * (ViewMatrix 观察矩阵) ->
-  ViewSpace
-      * (ProjectionMatrix 投影矩阵)->
-  ClipSpace
-      * (透视除法)-> NDC坐标 -> 屏幕坐标
-  ScreenSpace
+LocalSpace
+    * (ModelMatrix 模型矩阵) ->
+WorldSpace
+    * (ViewMatrix 观察矩阵) ->
+ViewSpace
+    * (ProjectionMatrix 投影矩阵)->
+ClipSpace
+    * (透视除法)-> NDC坐标 -> 屏幕坐标
+ScreenSpace
 
-  *. 顶点着色器(vertex shader)
-     [] 坐标变换
-        把顶点坐标从模型空间转化到齐次裁减空间
-  *. 裁减(clipping)
-  *. 屏幕映射
-     [] 硬件做透视除法, 得到NDC坐标
-     [] NDC坐标转换为窗口坐标
+*. 顶点着色器(vertex shader)
+   [] 坐标变换
+      把顶点坐标从模型空间转化到齐次裁减空间
+*. 裁减(clipping)
+*. 屏幕映射
+   [] 硬件做透视除法, 得到NDC坐标
+   [] NDC坐标转换为窗口坐标
 -------------------------------------------------------------------------------
 光栅化阶段(Rasterizer Stage)
-===============================================================================
-Buffers
-===============================================================================
-Color Buffer   颜色缓冲
-Stencil Buffer 模板缓冲
-Depth Buffer   深度缓冲
+-------------------------------------------------------------------------------
+*. 三角形设置(triangle setup)
+    计算光栅化一个三角网格所需的信息
+*. 三角形遍历(triangle traversal)
+    根据上一个阶段的计算结果来判断一个三角网格覆盖了哪些像素,
+    并使用三角网格3个顶点的顶点信息对整个覆盖区域的像素进行插值
+    对于每个被覆盖的像素会生成一个片元(fragment)
+*. 片元着色器(fragment shader)
+    输出一个或多个颜色值
+*. 逐片元操作(per-fragment operations)
+    模板测试(stencil test) 模板缓冲(stencil buffer)
+    深度测试(depth test)   深度缓冲(depth buffer)
+    混合(blending)         颜色缓冲(color buffer)
+    虽然从逻辑上说这些测试是在fragment shader之后进行的,
+    但对于大多数GPU来说会尽可能在执行frament shader之前就进行这些测试
 
 ===============================================================================
 Immediate Mode
