@@ -136,4 +136,26 @@ UIGeometry
     WriteToBuffers()
 
 UIDrawCall : MonoBehaviour
+
 ==============================================================================================================
+-*- Shader -*-
+==============================================================================================================
+Shader "<shader_name>" {
+    Properties {
+    }
+
+    SubShader {
+        [Tags]
+        [RenderSetup]
+
+        Pass {
+            [Name]
+            [Tags]
+            [RenderSetup]
+
+            ...
+        }
+    }
+
+    Fallback ""
+}
