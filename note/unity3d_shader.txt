@@ -1,0 +1,26 @@
+===============================================================================
+appdata_base
+appdata_tan
+appdata_full
+appdata_img
+v2f_img
+===============================================================================
+_WorldSpaceCameraPos
+===============================================================================
+float4 UnityObjectToClipPos(float3 objPos)
+float4 UnityObjectToClipPos(float4 objPos)
+    (P * V) * (M * objPos)
+
+float3 UnityWorldSpaceViewDir(float4 worldPos)
+    _WorldSpaceCameraPos - worldPos
+
+float3 ObjSpaceViewDir(float4 objPos)
+    _WorldSpaceCameraPos -> objSpaceCameraPos
+    objSpaceCameraPos - objPos
+
+===============================================================================
+//直接根据UV坐标取该点的深度值
+float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);
+//将深度值变为线性01空间
+depth = Linear01Depth(depth);
+===============================================================================
