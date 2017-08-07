@@ -78,6 +78,18 @@ HEAD
 ================================================================================
 *. 当前所在标签
 git describe --tags
+*. 同步远程服务器标签
+git pull --tags
+git pull --prune --tags
+git push --tags
+*. 重命名标签
+git tag <new> <old>
+git tag -d <old>
+git push origin :refs/tags/<old>
+git push --tags
+*. 显示提交
+git tag -n99
+git show <tag>
 
 ================================================================================
 -*- 冲突解决 -*-
