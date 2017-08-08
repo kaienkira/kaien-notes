@@ -33,6 +33,18 @@ function! BR_CFold(lnum)
     return '-1'
 endfunction
 
+function! BR_CSharpFold(lnum)
+    if getline(a:lnum) =~ '^ \{8\}{$'
+        return '>1'
+    endif
+
+    if getline(a:lnum) =~ '^ \{8\}}$'
+        return '<1'
+    endif
+
+    return '-1'
+endfunction
+
 function! BR_RelativeNumberToggle()
     if (&relativenumber == 1)
         set norelativenumber
@@ -44,6 +56,7 @@ function! BR_RelativeNumberToggle()
 endfunction
 
 au BufNewFile,BufRead *.c,*.cc,*.cpp set foldmethod=expr foldexpr=BR_CFold(v:lnum)
+au BufNewFile,BufRead *.cs set foldmethod=expr foldexpr=BR_CSharpFold(v:lnum)
 au BufNewFile,BufRead Makefile,makefile,*.mak set noexpandtab
 "au BufNewFile,BufRead *.html,*.xml,*.volt set tabstop=2 softtabstop=2 shiftwidth=2
 "au BufRead,BufNewFile *.as set filetype=as3
