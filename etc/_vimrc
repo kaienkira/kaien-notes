@@ -34,15 +34,15 @@ function! BR_CFold(lnum)
 endfunction
 
 function! BR_CSharpFold(lnum)
-    if getline(a:lnum) =~ '^ \{8\}{$'
-        return '>1'
+    if getline(a:lnum) =~ '^\( \{4\}\)\{1,2\}{$'
+        return '>' . (indent(a:lnum) / &shiftwidth)
     endif
 
-    if getline(a:lnum) =~ '^ \{8\}}$'
-        return '<1'
+    if getline(a:lnum) =~ '^\( \{4\}\)\{1,2\}}$'
+        return '<' . (indent(a:lnum) / &shiftwidth)
     endif
 
-    return '-1'
+    return '='
 endfunction
 
 function! BR_RelativeNumberToggle()
