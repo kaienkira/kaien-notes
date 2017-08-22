@@ -68,3 +68,48 @@ svn unlock --force <file>
 svn co <url> --depth immediates
 svn up --set-depth=exclude <dir1> <dir2> ...
 svn up --set-depth infinity <dir1> <dir2> ...
+
+===============================================================================
+setup svn server on centos
+===============================================================================
+yum install subversion httpd mod_dav_svn
+
+mkdir /opt/svn
+svnadmin create /opt/svn/<repo_name>
+chown -R apache:apache /opt/svn/<repo_name>
+
+mkdir /opt/svn/etc
+# svn-auth file
+>/opt/svn/etc/svn-auth
+chown root:apache /opt/svn/etc/svn-auth
+chmod 640 /opt/svn/etc/svn-auth
+# svn-access file
+vi /opt/svn/etc/svn-access
+    [groups]
+        group1=user1,user2,user3
+        group2=user4,user5
+    [<repo_name>:/<path>]
+    @group1 = rw
+    @group2 = r
+chown root:apache /opt/svn/etc/svn-access
+chmod 640 /opt/svn/etc/svn-access
+
+# module config file
+vi /etc/httpd/conf.modules.d/10-subversion.conf
+    <Location /svn>
+        DAV svn
+        SVNParentPath /opt/svn
+        AuthName "SVN Repos"
+        AuthType Basic
+        AuthUserFile /opt/svn/etc/svn-auth
+        AuthzSVNAccessFile /opt/svn/etc/svn-access
+        Require valid-user
+    </Location>
+
+# add user
+htpasswd -m /opt/svn/etc/svn-auth <user_name>
+
+systemctl start httpd
+systemctl enable httpd
+firewall-cmd --zone=public --permanent --add-service=http
+firewall-cmd --reload

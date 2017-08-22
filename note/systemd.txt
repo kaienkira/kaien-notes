@@ -19,8 +19,12 @@ timedatectl
 loginctl
 loginctl show-user <user_name>
 # 开机启动
-sytemctl enable <service>
-sytemctl disable <service>
+systemctl enable <service>
+systemctl disable <service>
+# 启动服务
+systemctl start <service>
+# 关闭服务
+systemctl stop <service>
 
 ===============================================================================
 -*- Unit -*-
