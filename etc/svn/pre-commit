@@ -7,7 +7,7 @@ SVNLOOK=/usr/bin/svnlook
 # Get log message
 LOG_MESSAGE=`$SVNLOOK log -t "$TXN" "$REPOS"`
 # Check log message format
-echo "$LOG_MESSAGE" | egrep '\[.{2,}\]: .{2,}' >/dev/null
+echo "$LOG_MESSAGE" | egrep '^\[.{2,}\]: .{2,}$' >/dev/null
 if [ $? -ne 0 ]
 then
     echo "请按照正确的格式填写提交日志" >&2
