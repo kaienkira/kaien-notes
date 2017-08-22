@@ -69,6 +69,10 @@ svn co <url> --depth immediates
 svn up --set-depth=exclude <dir1> <dir2> ...
 svn up --set-depth infinity <dir1> <dir2> ...
 
+*修改已提交的日志
+# set pre-revprop-change hook
+$svn propedit -r N --revprop svn:log URL
+$svn propset -r N --revprop svn:log "new log message" URL
 
 ===============================================================================
 -*- setup svn server on centos7 -*-
