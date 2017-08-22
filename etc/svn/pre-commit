@@ -1,0 +1,24 @@
+#!/bin/sh
+
+REPOS="$1"
+TXN="$2"
+SVNLOOK=/usr/bin/svnlook
+
+# Get log message
+LOG_MESSAGE=`$SVNLOOK log -t "$TXN" "$REPOS"`
+# Check log message format
+echo "$LOG_MESSAGE" | egrep '\[.{2,}\]: .{2,}' >/dev/null
+if [ $? -ne 0 ]
+then
+    echo "请按照正确的格式填写提交日志" >&2
+    echo "格式: [功能模块名]: 功能修改内容" >&2
+    echo "冒号为英文冒号, 注意空格" > &2
+    exit 1
+fi
+
+# Check that the author of this commit has the rights to perform
+# the commit on the files and directories being modified.
+commit-access-control.pl "$REPOS" "$TXN" commit-access-control.cfg || exit 1
+
+# All checks passed, so allow the commit.
+exit 0

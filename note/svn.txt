@@ -69,15 +69,18 @@ svn co <url> --depth immediates
 svn up --set-depth=exclude <dir1> <dir2> ...
 svn up --set-depth infinity <dir1> <dir2> ...
 
+
 ===============================================================================
-setup svn server on centos
+-*- setup svn server on centos7 -*-
 ===============================================================================
 yum install subversion httpd mod_dav_svn
 
+# 创建版本库
 mkdir /opt/svn
 svnadmin create /opt/svn/<repo_name>
 chown -R apache:apache /opt/svn/<repo_name>
 
+# 创建user-auth和user-access配置
 mkdir /opt/svn/etc
 # svn-auth file
 >/opt/svn/etc/svn-auth
@@ -94,7 +97,7 @@ vi /opt/svn/etc/svn-access
 chown root:apache /opt/svn/etc/svn-access
 chmod 640 /opt/svn/etc/svn-access
 
-# module config file
+# 模块配置文件
 vi /etc/httpd/conf.modules.d/10-subversion.conf
     <Location /svn>
         DAV svn
@@ -106,10 +109,14 @@ vi /etc/httpd/conf.modules.d/10-subversion.conf
         Require valid-user
     </Location>
 
-# add user
+# 新增用户
 htpasswd -m /opt/svn/etc/svn-auth <user_name>
 
+# 服务配置
 systemctl start httpd
 systemctl enable httpd
 firewall-cmd --zone=public --permanent --add-service=http
 firewall-cmd --reload
+
+# 预提交钩子
+vi /opt/svn/repo/hooks/pre-commit
