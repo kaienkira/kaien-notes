@@ -16,9 +16,4 @@ then
     exit 1
 fi
 
-# Check that the author of this commit has the rights to perform
-# the commit on the files and directories being modified.
-commit-access-control.pl "$REPOS" "$TXN" commit-access-control.cfg || exit 1
-
-# All checks passed, so allow the commit.
 exit 0
