@@ -35,3 +35,5 @@ batch
 * 读文件所有内容到变量
     setlocal enabledelayedexpansion
     for /f "tokens=* delims=" %%a in (file.txt) do set v=!v!%%a
+* 遍历文件
+    for /r %%i in (*) do echo %%i

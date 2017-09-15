@@ -16,3 +16,7 @@ gcc -print-search-dirs
 
 # msys hack
 LIBRARY_PATH必须使用\;分割路径, 必须使用c:/(not /c/)
+
+# asan
+g++-4.8 -o main-gcc -lasan -O -g -fsanitize=address -fno-omit-frame-pointer main.cpp && \
+ASAN_OPTIONS=symbolize=1 ASAN_SYMBOLIZER_PATH=$(shell which llvm-symbolizer) ./main-gcc
