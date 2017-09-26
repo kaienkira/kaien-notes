@@ -159,3 +159,29 @@ Shader "<shader_name>" {
 
     Fallback ""
 }
+==============================================================================================================
+
+
+
+==============================================================================================================
+-*- Compile mono -*-
+==============================================================================================================
+# install android-sdk-25.2.0 android-ndk-r10e
+# apt-get install autoconf automake bison build-essential gettext libtool zip
+
+export ANDROID_NDK_ROOT=<ndk_root>
+vi $ANDROID_NDK_ROOT/RELEASE.TXT
+    r10e-rc4 (64-bit) -> r10e
+
+git clone https://github.com/Unity-Technologies/mono.git unity-mono
+git checkout unity-5.6
+cp external/buildscripts/build_runtime_android.sh .
+vi build_runtime_android.sh
+    KRAIT_PATCH_PATH="${CWD}/../../android_krait_signal_handler/build" ->
+    KRAIT_PATCH_PATH="${CWD}/android_krait_signal_handler/build"
+    (cd "$KRAIT_PATCH_PATH" && ./build.pl) ->
+    (cd "$KRAIT_PATCH_PATH" && perl -w ./build.pl)
+    git clone --branch "master" "$KRAIT_PATCH_REPO" "$KRAIT_PATCH_PATH" ->
+    git clone --branch "unity-master-android2" "$KRAIT_PATCH_REPO" "$KRAIT_PATCH_PATH"
+./build_runtime_android.sh
+cd builds/embedruntimes/android
