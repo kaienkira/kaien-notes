@@ -185,3 +185,8 @@ vi build_runtime_android.sh
     git clone --branch "unity-master-android2" "$KRAIT_PATCH_REPO" "$KRAIT_PATCH_PATH"
 ./build_runtime_android.sh
 cd builds/embedruntimes/android
+
+==============================================================================================================
+-*- command line mode -*-
+==============================================================================================================
+Unity.exe -batchmode -quit -projectPath <project_path> -logFile <log_file>
