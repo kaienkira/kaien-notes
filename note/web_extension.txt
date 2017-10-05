@@ -1,0 +1,7 @@
+about:debugging
+
+manifest.json
+  required fields
+    manifest_version
+    name
+    version
