@@ -1,0 +1,15 @@
+===============================================================================
+-*- startx, xinit -*-
+===============================================================================
+starts the X Window System server and works as first client program
+on systems that are not using a display manager
+
+~/.xserverrc
+/etc/X11/xinit/xserverrc
+
+~/.xinitrc
+/etc/X11/xinit/xinitrc
+===============================================================================
+-*- Xorg -*-
+===============================================================================
+X11R7 X server
