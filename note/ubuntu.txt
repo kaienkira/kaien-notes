@@ -171,6 +171,13 @@ cat /etc/resolv.conf
         service isc-dhcp-server start
 
 ===============================================================================
+-*- desktop -*-
+-------------------------------------------------------------------------------
+sudo apt-get install xorg
+sudo apt install --no-install-recommends openbox
+
+
+===============================================================================
 -*- ptrace -*-
 -------------------------------------------------------------------------------
 *. In Maverick Meerkat (10.10) Ubuntu introduced a patch to disallow ptracing
