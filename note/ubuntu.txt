@@ -176,6 +176,13 @@ cat /etc/resolv.conf
 sudo apt-get install xorg
 sudo apt install --no-install-recommends openbox
 
+*. 修改分辨率
+vi ~/.xsessionrc
+    xrandr --output <screen> --mode <resolution>
+*. 安装中文字体
+sudo apt-get install fonts-wqy-microhei ttf-wqy-microhei
+
+
 
 ===============================================================================
 -*- ptrace -*-
