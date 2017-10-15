@@ -1,11 +1,29 @@
 #!/bin/bash
+# description: tl-server
+### BEGIN INIT INFO
+# Provides:             tl-server
+# Required-Start:       pid-cleanup
+# Required-Stop:
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    tl-server
+### END INIT INFO
 
-service_desc="shadowsocks server"
 script_name=`basename $0`
-prog=/home/kaien/proj/shadowsocks/shadowsocks/server.py
-args="-c /home/kaien/etc/config.json"
-pid_file=/home/kaien/run/ss.pid
+script_abs_name=`readlink -f $0`
+script_path=`dirname $script_abs_name`
+
+desc=tl-server
+service_desc=$desc
+prog=${script_path}/bin/twilight-line-server
+config_file=${script_path}/etc/config.json
+user=shadowsocks
+pid_file=${script_path}/run/${desc}.pid
 log_file=/dev/null
+error_log_file=${script_path}/run/${desc}.error.log
+args="-e $config_file"
+wait_tick=0.1
+wait_tick_count=200
 
 usage()
 {
@@ -28,13 +46,13 @@ show_success()
 op_start()
 {
     printf "[starting $service_desc]"
-    start-stop-daemon -T -p $pid_file
+    start-stop-daemon -T -p $pid_file -c $user
     if [ $? -eq 0 ]
     then
         show_error '[already started]'
     else
-        start-stop-daemon -Smb -p $pid_file -a /bin/bash -- \
-                          -c "exec $prog $args >$log_file 2>&1"
+        start-stop-daemon -Smb -p $pid_file -c $user -a /bin/bash -- \
+                          -c "exec $prog $args >>$log_file 2>>$error_log_file"
         if [ $? -eq 0 ]
         then
             show_success '[success]'
@@ -47,10 +65,10 @@ op_start()
 op_stop()
 {
     printf "[stoping $service_desc]"
-    start-stop-daemon -T -p $pid_file
+    start-stop-daemon -T -p $pid_file -c $user
     if [ $? -eq 0 ]
     then
-        start-stop-daemon -K -p $pid_file
+        start-stop-daemon -K -p $pid_file -c $user
         if [ $? -eq 0 ]
         then
             show_success '[success]'
@@ -65,7 +83,7 @@ op_stop()
 op_status()
 {
     printf "[$service_desc status]"
-    start-stop-daemon -T -p $pid_file
+    start-stop-daemon -T -p $pid_file -c $user
     if [ $? -eq 0 ]
     then
         show_success "[started]"
