@@ -1,2 +1,4 @@
 *. finder显示路径
-defaults write com.apple.finder _FXShowPosixPathInTitle TRUE
+    defaults write com.apple.finder _FXShowPosixPathInTitle TRUE
+*. 显示系统版本
+    sw_vers

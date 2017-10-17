@@ -41,6 +41,8 @@ svn list(ls) <path_to_repos>
 svn add -N <dir_name> 
 *与版本库直接比较显示修改状态, 而非本地缓存
 svn status -u
+*列出被忽略的文件
+svn status --no-ignore | grep '^I'
 
 *察看文件属性
 svn pl -v <file_name>

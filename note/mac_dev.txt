@@ -1,0 +1,3 @@
+*. 切换xcode环境
+    sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+    sudo xcode-select -s /Library/Developer/CommandLineTools
