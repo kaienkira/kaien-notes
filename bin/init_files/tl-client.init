@@ -1,0 +1,119 @@
+#!/bin/bash
+# description: tl-client
+### BEGIN INIT INFO
+# Provides:             tl-client
+# Required-Start:       pid-cleanup
+# Required-Stop:
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    tl-client
+### END INIT INFO
+
+script_name=`basename $0`
+script_abs_name=`readlink -f $0`
+script_path=`dirname $script_abs_name`
+
+desc=tl-client
+service_desc=$desc
+prog=${script_path}/bin/twilight-line-client
+config_file=${script_path}/etc/config.json
+user=shadowsocks
+pid_file=${script_path}/run/${desc}.pid
+log_file=/dev/null
+#log_file=${script_path}/run/${desc}.log
+args="-e $config_file"
+wait_tick=0.1
+wait_tick_count=200
+
+usage()
+{
+    printf "usage: $script_name [start|stop|restart|status]\n"
+    exit 1
+}
+
+show_error()
+{
+    local message=$1
+    printf "\033[;31m%s\033[0m\n" "$message"
+}
+
+show_success()
+{
+    local message=$1
+    printf "\033[;32m%s\033[0m\n" "$message"
+}
+
+op_start()
+{
+    printf "[starting $service_desc]"
+    start-stop-daemon -T -p $pid_file -c $user
+    if [ $? -eq 0 ]
+    then
+        show_error '[already started]'
+    else
+        start-stop-daemon -Smb -p $pid_file -c $user -a /bin/bash -- \
+                          -c "exec $prog $args >>$log_file 2>&1"
+        if [ $? -eq 0 ]
+        then
+            show_success '[success]'
+        else
+            show_error '[failed]'
+        fi
+    fi
+}
+
+op_stop()
+{
+    printf "[stoping $service_desc]"
+    start-stop-daemon -T -p $pid_file -c $user
+    if [ $? -eq 0 ]
+    then
+        start-stop-daemon -K -p $pid_file -c $user
+        if [ $? -eq 0 ]
+        then
+            show_success '[success]'
+        else
+            show_error '[failed]'
+        fi
+    else
+        show_error '[not started]'
+    fi
+}
+
+op_status()
+{
+    printf "[$service_desc status]"
+    start-stop-daemon -T -p $pid_file -c $user
+    if [ $? -eq 0 ]
+    then
+        show_success "[started]"
+    else
+        show_error "[stopped]"
+    fi
+}
+
+if [ $# -ne 1 ]
+then
+    usage
+fi
+
+case "$1" in
+    start)
+        op_start
+        ;;
+    stop)
+        op_stop
+        ;;
+    restart)
+        op_stop
+        op_start
+        ;;
+    status)
+        op_status
+        ;;
+    *)
+        usage
+        ;;
+esac
+
+exit 0
