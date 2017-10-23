@@ -1,3 +1,7 @@
 *. 切换xcode环境
     sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
     sudo xcode-select -s /Library/Developer/CommandLineTools
+*. 解锁keychain
+    security unlock-keychain ~/Library/Keychains/login.keychain-db
+*. ProvisionProfile路径
+    ~/Library/MobileDevice/Provisioning Profiles
