@@ -3,6 +3,7 @@
     sudo xcode-select -s /Library/Developer/CommandLineTools
 *. 解锁keychain
     security unlock-keychain ~/Library/Keychains/login.keychain-db
+    security show-keychain-info ~/Library/Keychains/login.keychain-db
 *. ProvisionProfile路径
     ~/Library/MobileDevice/Provisioning Profiles
 *. 解密ProvisionProfile文件
