@@ -5,3 +5,5 @@
     security unlock-keychain ~/Library/Keychains/login.keychain-db
 *. ProvisionProfile路径
     ~/Library/MobileDevice/Provisioning Profiles
+*. 解密ProvisionProfile文件
+    security cms -D -i <file>
