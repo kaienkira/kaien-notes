@@ -87,6 +87,12 @@ Application.persistentDataPath  C:\Users\<u>\AppData\LocalLow\<company>\<proj>
 Application.temporaryCachePath  C:\Users\<u>\AppData\Local\Temp\<company>\<proj>
 
 ==============================================================================================================
+Editor
+==============================================================================================================
+hierarchy search box
+    t:Collider
+
+==============================================================================================================
 Physics
 ==============================================================================================================
 Any game object with a collider and a rigid body is considered dynamic.
