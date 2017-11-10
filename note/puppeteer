@@ -1,0 +1,10 @@
+===============================================================================
+-*- install -*-
+===============================================================================
+sudo apt-get install \
+    libpangocairo-1.0-0 \
+    libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxss1 libxrandr2 \
+    libgconf-2-4 libasound2 libatk1.0-0 libgtk-3-0
+sudo apt-get install fonts-wqy-microhei ttf-wqy-microhei
+npm install puppeteer
+===============================================================================
