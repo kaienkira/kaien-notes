@@ -13,6 +13,9 @@ gdb <prog>
 c++filt <func_sign>
 # 打印搜索路径
 gcc -print-search-dirs
+# 删除符号表
+strip --strip-all -R .note -R .comment <exec_file>
+strip --strip-unneeded -R .note -R .comment <so_file>
 
 # msys hack
 LIBRARY_PATH必须使用\;分割路径, 必须使用c:/(not /c/)
