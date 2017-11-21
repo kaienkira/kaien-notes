@@ -3,7 +3,7 @@ tools/bin/sdkmanager
 ===============================================================================
 sdkmanager --list
 sdkmanager --update
-sdkmanager --install \
+sdkmanager \
     "build-tools;<version>" \
     "platforms;android-<version>" \
 ===============================================================================
