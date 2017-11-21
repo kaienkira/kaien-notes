@@ -4,6 +4,13 @@ pacman -S mingw-w64-x86_64-toolchain
 pacman -S mingw64/mingw-w64-x86_64-cmake
 pacman -S msys/vim
 
+*. clean package cache
+pacman -Sc
+*. search package 
+pacman -Ss <pacakge>
+*. list package file
+pacman -Ql <pacakge>
+
 *. glfw
 mkdir build
 cd build
