@@ -7,9 +7,11 @@ pacman -S msys/vim
 *. clean package cache
 pacman -Sc
 *. search package 
-pacman -Ss <pacakge>
+pacman -Ss <package>
 *. list package file
-pacman -Ql <pacakge>
+pacman -Ql <package>
+*. remove package cascade
+pacman -Rcns <package>
 
 *. glfw
 mkdir build
