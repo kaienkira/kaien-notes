@@ -8,6 +8,8 @@ pacman -S msys/vim
 pacman -Sc
 *. search package 
 pacman -Ss <package>
+*. list installed package
+pacman -Q
 *. list package file
 pacman -Ql <package>
 *. remove package cascade
