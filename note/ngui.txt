@@ -6,3 +6,9 @@ UIRoot
     <s> Broadcast(string funcName, object param);
 UICamera
     *. sends out NGUI events to all the objects seen by the camera it's attached to
+
+
+*. 当前屏幕坐标
+UICamera.currentTouch.pos
+*. 当前世界坐标
+UICamera.lastHit.point
