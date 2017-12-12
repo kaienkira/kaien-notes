@@ -8,3 +8,7 @@
     ~/Library/MobileDevice/Provisioning Profiles
 *. 解密ProvisionProfile文件
     security cms -D -i <file>
+*. 察看console日志
+    brew install --HEAD libimobiledevice
+    chmod 777 /var/db/lockdown
+    idevicesyslog
