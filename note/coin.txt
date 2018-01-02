@@ -1,0 +1,2 @@
+xmrig-cpu
+    cmake -DWITH_HTTPD=OFF -DUV_LIBRARY=/usr/lib/x86_64-linux-gnu/libuv.a
