@@ -1,5 +1,7 @@
 *. Homebrew
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+*. Profile
+    export PS1='\u@\h:\w\$ '
 *. 切换xcode环境
     sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
     sudo xcode-select -s /Library/Developer/CommandLineTools
