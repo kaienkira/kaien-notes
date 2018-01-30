@@ -2,6 +2,19 @@
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 *. Profile
     export PS1='\u@\h:\w\$ '
+*. libimobiledevice
+    brew install --HEAD libimobiledevice
+    chmod 777 /var/db/lockdown
+    # 查看日志
+    idevicesyslog
+    # 列出设备
+    idevice_id -l
+*. ios-deploy
+    brew install npm
+    npm install -g ios-deploy
+*. xcodeproj
+    brew install gem
+    gem install xcodeproj
 *. 切换xcode环境
     sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
     sudo xcode-select -s /Library/Developer/CommandLineTools
@@ -12,7 +25,3 @@
     ~/Library/MobileDevice/Provisioning Profiles
 *. 解密ProvisionProfile文件
     security cms -D -i <file>
-*. 察看console日志
-    brew install --HEAD libimobiledevice
-    chmod 777 /var/db/lockdown
-    idevicesyslog
