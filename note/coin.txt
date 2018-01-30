@@ -2,4 +2,5 @@ xmrig-cpu
     ubuntu
         cmake -DWITH_HTTPD=OFF -DUV_LIBRARY=/usr/lib/x86_64-linux-gnu/libuv.a
     macOS
+        brew install libuv
         cmake -DWITH_HTTPD=OFF -DUV_LIBRARY=/usr/local/opt/libuv/lib/libuv.a

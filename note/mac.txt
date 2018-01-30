@@ -3,5 +3,3 @@
 *  finder显示隐藏文件
     defaults write com.apple.finder AppleShowAllFiles TRUE
     键盘快捷建<command + shift + .>
-*. 显示系统版本
-    sw_vers

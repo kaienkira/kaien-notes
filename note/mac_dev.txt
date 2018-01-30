@@ -26,3 +26,6 @@
     ~/Library/MobileDevice/Provisioning Profiles
 *. 解密ProvisionProfile文件
     security cms -D -i <file>
+*. 系统信息
+    sw_vers
+    system_profiler -detailLevel basic
