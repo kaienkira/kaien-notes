@@ -12,6 +12,7 @@
 *. ios-deploy
     brew install npm
     npm install -g ios-deploy
+    ios-deploy -b <bundle_app>
 *. xcodeproj
     brew install gem
     gem install xcodeproj
