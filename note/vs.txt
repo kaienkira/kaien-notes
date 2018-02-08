@@ -1,5 +1,9 @@
 ===============================================================================
 c+k,c+o    Toggle Header Code File
+
+fold
+c+m,c+o    collapse all
+c+m,c+l    expland all
 ===============================================================================
 VS未能加载包
 visual Studio Tools-> devenv/resetuserdata
