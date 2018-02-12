@@ -13,3 +13,6 @@ implication(实质条件)
 
 axiom(公理)
     def: a proposition that is assumed to be true
+    axioms should be *consistent* and *complete*
+    a set of axioms is consistent if no proposition can be proved to be both true and false
+    A set of axioms is said to be complete if it can be used to prove every proposition is either true or false
