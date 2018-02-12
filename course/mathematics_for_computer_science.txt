@@ -1,0 +1,15 @@
+MIT 6.042J / 18.062J
+
+mathematical proof
+    def: a verification of a proposition by a chain of logical deductions from a set of axioms
+
+proposition(命题)
+    def: a statement that is either true or false
+    ex: a^4 + b^4 + c^4  = d^4 has no positive integer solutions
+        a = 95800, b = 217519, c = 414560, d = 422481
+
+implication(实质条件)
+    def: (p => q) p implies q is said to be true if p is false or q is true
+
+axiom(公理)
+    def: a proposition that is assumed to be true
