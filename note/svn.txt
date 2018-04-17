@@ -142,3 +142,14 @@ firewall-cmd --reload
 
 # 预提交钩子
 vi /opt/svn/repo/hooks/pre-commit
+
+===============================================================================
+-*- setup svn mirror -*-
+===============================================================================
+svnadmin create <repo_mirror>
+cp <repo_mirror>/hooks/pre-revprop-change.tmpl \
+   <repo_mirror>/hooks/pre-revprop-change
+vi <repo_mirror>/hooks/pre-revprop-change
+    exit 1 -> exit 0
+svnsync init <repo_mirror> <repo_source>
+svnsync sync <repo_mirror>
