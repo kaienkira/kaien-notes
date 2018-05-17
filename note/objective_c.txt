@@ -1,0 +1,2 @@
+clang -fobjc-arc <src_file>
+clang -rewrite-objc <src_file>
