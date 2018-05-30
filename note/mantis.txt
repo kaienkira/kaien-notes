@@ -13,3 +13,4 @@ vi config_defaults_inc.php
     $g_send_reset_password  = OFF;
 vi config_inc.php
     $g_show_realname = ON;
+    $g_show_user_realname_threshold = ANYBODY;
