@@ -1,2 +1,4 @@
 *. 修改存储目录
     export JENKINS_HOME=<jenkins_data_dir>
+*. 不杀死子进程
+    BUILD_ID=DONTKILLME <cmd>
