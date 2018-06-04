@@ -382,6 +382,8 @@ cat <file> | parallel --pipe grep <pattern>
     export LC_COLLATE=C
 *. speed up sort use large buffer size
     sort -S1G
+*. sort and uniq
+    LC_ALL=C sort <file> | LC_ALL=C uniq -u
 ===============================================================================
 -*- join -*-
 --------------------------------------------------------------------------------
