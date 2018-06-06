@@ -196,3 +196,25 @@ cd builds/embedruntimes/android
 -*- command line mode -*-
 ==============================================================================================================
 Unity.exe -batchmode -quit -projectPath <project_path> -logFile <log_file>
+
+
+==============================================================================================================
+-*- texture compression method -*-
+==============================================================================================================
+pvrtc_2bit    rgb         0.25B/pixel   2bit
+pvrtc_4bit    rgb         0.50B/pixel   4bit
+etc1_4bit     rgb         0.50B/pixel   4bit
+rgb_16bit     rgb(565)    2.00B/pixel  16bit
+rgb_24bit     rgb(888)    3.00B/pixel  24bit
+
+pvrtc_2bit    rgba        0.25B/pixel   2bit
+pvrtc_4bit    rgba        0.50B/pixel   4bit
+etc2_8bit     rgba        1.00B/pixel   8bit
+rgba_16bit    rgba(4444)  2.00B/pixel  16bit
+rgba_32bit    rgba(8888)  4.00B/pixel  32bit
+
+astc_12x12    rgba        0.11B/pixel   0.89bit
+astc_8x8      rgba        0.25B/pixel   2bit
+astc_6x6      rgba        0.45B/pixel   3.56bit
+astc_4x4      rgba        1.00B/pixel   8bit
+
