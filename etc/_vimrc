@@ -24,6 +24,11 @@ set background=light
 set noerrorbells
 set visualbell t_vb=
 
+if &term == 'linux'
+    set t_ti=[?1049h
+    set t_te=[?1049l
+endif  
+
 function! BR_CFold(lnum)
     if getline(a:lnum) =~ '^{$'
         return '>1'
