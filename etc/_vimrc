@@ -20,6 +20,7 @@ set laststatus=2
 set statusline=%m%r%h%([File:%F]\ [Col:%v]\ [Lin:%l/%L/%p%%]%)
 set ambiwidth=double
 set wildmenu
+set background=light
 set noerrorbells
 set visualbell t_vb=
 
