@@ -25,7 +25,7 @@ adb -s <device_name> logcat
 ===============================================================================
 -*- sign apk -*-
 ===============================================================================
-keytool -genkey -keystore test.keystore -alias test -keyalg RSA -validity 10000
+keytool -genkey -keystore test.keystore -alias test -keyalg RSA -keysize 2048 -validity 10000
 keytool -list -keystore test.keystore
 jarsigner -verbose -keystore test.keystore -signedjar signed.apk t.apk 'test'
 
