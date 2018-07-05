@@ -184,6 +184,7 @@ sudo gitlab-ctl reconfigure
 vi git_proxy.sh
     #!/bin/sh
     nc -x 127.0.0.1:9050 -X5 $*
+    nc --proxy 127.0.0.1:9050 --proxy-type socks5 $*
 vi git_ssh_proxy.sh
     #!/bin/sh
     ssh -o ProxyCommand="git_proxy.sh %h %p" $*
