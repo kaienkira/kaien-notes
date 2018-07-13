@@ -139,6 +139,12 @@ A leftmost prefix of a composite index consists of one or more of the initial
 columns of the index. MySQL's capability to use leftmost index prefixes
 enables you to avoid creating unnecessary indexes.
 ===============================================================================
+-*- Trailing spaces in comparison -*-
+-------------------------------------------------------------------------------
+All MySQL collations are of type PADSPACE.
+This means that all CHAR, VARCHAR, and TEXT values in MySQL
+are compared without regard to any trailing spaces. 
+===============================================================================
 -*- Dead Lock -*-
 -------------------------------------------------------------------------------
 >show processlist;
