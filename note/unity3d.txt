@@ -218,3 +218,10 @@ astc_8x8      rgba        0.25B/pixel   2bit
 astc_6x6      rgba        0.45B/pixel   3.56bit
 astc_4x4      rgba        1.00B/pixel   8bit
 
+==============================================================================================================
+-*- Symbolicate Android crash -*-
+==============================================================================================================
+addr2line -fCe libunity.sym.so <addr>
+    -f Show function names
+    -C Demangle function names
+    -e Set the input file name
