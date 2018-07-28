@@ -1,102 +1,4 @@
 ===============================================================================
-tools/bin/sdkmanager
-===============================================================================
-sdkmanager --list
-sdkmanager --update
-sdkmanager \
-    "build-tools;<version>" \
-    "platforms;android-<version>" \
-===============================================================================
-
-===============================================================================
-tools/android
-===============================================================================
-android list sdk
-android update sdk -u -t <package_number>
-===============================================================================
-
-===============================================================================
-platform-tools/adb
-===============================================================================
-adb devices
-adb -s <device_name> logcat
-===============================================================================
-
-===============================================================================
--*- sign apk -*-
-===============================================================================
-keytool -genkey -keystore test.keystore -alias test -keyalg RSA -keysize 2048 -validity 10000
-keytool -list -keystore test.keystore
-jarsigner -verbose -keystore test.keystore -signedjar signed.apk t.apk 'test'
-
-===============================================================================
-# 32位程序支持
-    sudo apt-get install libc6:i386 libstdc++6:i386 lib32z1
-
-# 代理设置
-    vi ~/.android/androidtool.cfg
-      http.proxyHost=127.0.0.1
-      http.proxyPort=8118
-
-# 更新sdk
-    android list sdk
-    android update sdk --no-ui --filter <package>
-
-# 编写udev规则
-    vi /etc/udev/rules.d/51-android.rules
-      SUBSYSTEM=="usb", ATTR{idVendor}=="22b8", MODE="0666", GROUP="plugdev"
-
-# 新建项目
-    android list target
-    android create project
-        --target <target_id>
-        --name <proj_name>
-        --path <proj_path>
-        --activity MainActivity
-        --package <package_name>
-# 编译运行
-    ant debug
-    ant installd(adb install bin/<proj_name>.apk)
-
-# 通过网络adb
-    device:
-        su
-        setprop service.adb.tcp.port 5555
-        stop adbd
-        start adbd
-    pc:
-        adb tcpip 5555
-        adb connect <device_ip>:5555
-
-===============================================================================
--*- Android.mk
--------------------------------------------------------------------------------
-LOCAL_PATH := $(call my-dir)
-LOCAL_CPP_EXTENSION := .cc .cpp .cxx
-
-include $(CLEAR_VARS)
-include $(BUILD_SHARED_LIBRARY)
-include $(BUILD_STATIC_LIBRARY)
-===============================================================================
--*- Application.mk -*-
--------------------------------------------------------------------------------
-APP_ABI := armeabi-v7a armeabi
-NDK_TOOLCHAIN_VERSION := 4.8
-===============================================================================
--*- ndk-build
--------------------------------------------------------------------------------
-ndk-build clean
-ndk-build -B                              # force a complete build
-ndk-build -C <project>
-ndk-build V=1 
-ndk-build NDK_DEBUG=0
-ndk-build NDK_DEBUG=1
-ndk-build NDK_APPLICATION_MK=<file>
-===============================================================================
-
-
-
-===============================================================================
 -*- Activity Lifecycle -*-
 -------------------------------------------------------------------------------
 NotRunning
@@ -132,14 +34,11 @@ Stopped(hidden) ---------------------------------------'
 NotRunning
 ===============================================================================
 
-
-
-
-
 ===============================================================================
-App component
-===============================================================================
+-*- App component -*-
+-------------------------------------------------------------------------------
 *. Activity <activity>
 *. Service  <service>
 *. BroadcastReceiver <receiver>
 *. ContentProvider <provider>
+===============================================================================
