@@ -1,3 +1,43 @@
+===============================================================================
+-*- IP Protocol -*-
+===============================================================================
+*. IPv4数据报的最大大小是65535字节, 包括IPv4首部, IPv4数据报的最小大小是576字节
+   IPv6数据报的最大大小是65575字节，包括40字节的IPv6首部, IPv6数据报的最小大小是
+   1500字节
+*. IPv4要求的最小MTU为68字节, IPv6要求的最小MTU为1280字节
+*. 在两个主机之间的路径中最小的MTU称为路径MTU(path MTU)
+*. IPv4主机对其产生的数据报执行分片, IPv4路由器则对其转发的数据报执行分片
+   然而IPv6只有主机对其产生的数据报执行分片, IPv6路由器不对其转发的数据报
+   执行分片
+*. IPv4首部的DF位(Don't fragment)若被设置, 那么不管是发送这些数据报的主机还是
+   转发他们的路由器, 都不允许对它们分片
+*. length("FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:255.255.255.255\0") == 46 == INET6_ADDRSTRLEN
+
+===============================================================================
+-*- TCP States -*-
+===============================================================================
+TCP_SYN_SENT        sent a connection request, waiting for ack
+TCP_SYN_RECV        received a connection request, sent ack,
+                    waiting for final ack in three-way handshake.
+TCP_ESTABLISHED     connection established
+TCP_FIN_WAIT1       our side has shutdown, waiting to complete
+                    transmission of remaining buffered data
+TCP_FIN_WAIT2       all buffered data sent, waiting for remote to shutdown
+TCP_CLOSING         both sides have shutdown but we still have
+                    data we have to finish sending
+TCP_TIME_WAIT       timeout to catch resent junk before entering
+                    closed, can only be entered from FIN_WAIT2
+                    or CLOSING.  Required because the other end
+                    may not have gotten our last ACK causing it
+                    to retransmit the data packet (which we ignore)
+TCP_CLOSE_WAIT      remote side has shutdown and is waiting for
+                    us to finish writing our data and to shutdown
+                    (we have to close() to move on to LAST_ACK)
+TCP_LAST_ACK        out side has shutdown after remote has
+                    shutdown.  There may still be data in our
+                    buffer that we have to finish sending
+TCP_CLOSE           socket is finished
+
 [CLOSED]
     |___[LISTEN] <被动打开>
     |   <appl: passive open>
@@ -78,22 +118,62 @@
         <send: nothing>
 
 ===============================================================================
+-*- Tcp Exceptions
+===============================================================================
+*. Peer Power cycling
+   There are situations when one side believes a TCP connection is established,
+   but the other side does not, and where this situation will **never** be
+   automatically resolved.  It's possible to manage this problem using TCP
+   or application-level keep-alive.
+*. Peer Power Off
+   When the remote system is powered off instead of power cycled, again,
+   the first system only finds out if it's trying to send data.
+   If it doesn't send packets, it will never find out about the terminated
+   connections
+   When the system has been attempting to send data for long enough without
+   receiving acknowledgments from the remote side,
+   the TCP connection will be terminated and a socket operation on them
+   will fail with ETIMEDOUT.
+
+===============================================================================
+-*- Tcp Reset
+===============================================================================
 *. when a process writes to a socket that has received an RST, the SIGPIPE
    signal is sent to the process. If the process either catches the signal 
    and returns from the signal handler, or ignores the signal, the write
    operation returns EPIPE. It's okay to write to a socket that has received
    a FIN, but it is an error to write to a socket that has received an RST
-*. By default, all sockets are blocking
-*. When we set a socket to be nonblocking, we are telling the kernel
-   "when an I/O operation that I request cannot be completed without putting
-   the process to sleep, do not put the process to sleep, but return an error
-   instead."
 *. 读缓冲区中仍有数据时调用close(), 将直接向对端发送RST
 *. 调用shutdown(fd, SHUT_RD)后, 调用recv读不到任何数据, 但是对端发送的数据
    仍然在缓冲区中, 此时调用close(), 仍然向对端发送RST
 
 ===============================================================================
--*- SOCKET_OPTIONS -*-
+-*- Tcp Socket Accept -*-
+===============================================================================
+*. On Linux, the new socket returned by accept() does not inherit file status 
+   flags such as O_NONBLOCK and O_ASYNC from the listening socket.
+   This behavior differs from the canonical BSD sockets implementation.
+   Portable programs should not rely on inheritance or noninheritance of file 
+   status flags and always explicitly set all required flags on the socket
+   returned from accept().
+*. 内核为任何一个给定的监听套接字维护两个队列
+   (1)未完成连接队列，这些套接字处于SYN_RCVD状态
+   (2)已完成连接队列，这些套接字处于ESTABLISHED状态
+*. 当进程调用accept时, 已完成连接队列中的队头项将返回给进程, 如果该队列为空,
+   那么进程将被投入睡眠, 直到TCP在该队列中放入一项才唤醒它
+
+===============================================================================
+-*- Tcp Misc -*-
+===============================================================================
+*. 伴随对端ACK的不断到达, 本端TCP才能从套接字发送缓冲区中丢弃已确认的数据
+*. 从写一个TCP套接字的write调用成功返回表示应用进程缓冲区中的所有数据都已经
+   复制到了套接字发送缓冲区, 我们可以重新使用原来的应用进程缓冲区, 这并不表明
+   对端的TCP或应用进程已接受到数据.
+*. TCP的TIME_WAIT状态是为了实现TCP的全双工连接终止(处理最后一个ACK丢失的情况),
+   并允许老的重复分节从网络中消逝
+
+===============================================================================
+-*- Tcp Socket Options -*-
 ===============================================================================
 *. SO_REUSEADDR
     A TCP/UDP connection is identified by a tuple of five values: 
@@ -117,9 +197,15 @@
     Basically SO_REUSEPORT allows you to bind an arbitrary number of sockets 
     to exactly the same source address and port as long as all prior bound
     sockets also had SO_REUSEPORT set before they were bound.
+
 ===============================================================================
--*- 非阻塞式IO -*-
--------------------------------------------------------------------------------
+-*- Nonblocking IO -*-
+===============================================================================
+*. By default, all sockets are blocking
+*. When we set a socket to be nonblocking, we are telling the kernel
+   "when an I/O operation that I request cannot be completed without putting
+   the process to sleep, do not put the process to sleep, but return an error
+   instead."
 *. 套接字的默认状态是阻塞的, 可能阻塞的套接字调用有
     <> 输入操作read, readv, recv, recvfrom, recvmsg
        [] 如果某个进程对一个阻塞的TCP套接字调用这些输入函数之一, 而且该套接字
@@ -140,47 +226,17 @@
           将是内核能够复制到该缓冲区中的字节数.
     <> 接受外来连接accept
     <> 发起外出连接connect
-===============================================================================
-*.IPv4数据报的最大大小是65535字节, 包括IPv4首部, IPv4数据报的最小大小是576字节
-  IPv6数据报的最大大小是65575字节，包括40字节的IPv6首部, IPv6数据报的最小大小是
-  1500字节
-*.IPv4要求的最小MTU为68字节, IPv6要求的最小MTU为1280字节
-*.在两个主机之间的路径中最小的MTU称为路径MTU(path MTU)
-*.IPv4主机对其产生的数据报执行分片, IPv4路由器则对其转发的数据报执行分片
-  然而IPv6只有主机对其产生的数据报执行分片, IPv6路由器不对其转发的数据报
-  执行分片
-*.IPv4首部的DF位(Don't fragment)若被设置, 那么不管是发送这些数据报的主机还是
-  转发他们的路由器, 都不允许对它们分片
-*.伴随对端ACK的不断到达, 本端TCP才能从套接字发送缓冲区中丢弃已确认的数据
-*.既然UDP是不可靠的, 它不必保存应用进程数据的一个副本, 因此无需一个真正的
-  发送缓冲区
-*.从写一个TCP套接字的write调用成功返回表示应用进程缓冲区中的所有数据都已经
-  复制到了套接字发送缓冲区, 我们可以重新使用原来的应用进程缓冲区, 这并不表明
-  对端的TCP或应用进程已接受到数据.
-*.从写一个UDP套接字的write调用成功返回表示所写的数据报或其他所有片段已被加入
-  数据链路层的输出队列
-*.TCP的TIME_WAIT状态是为了实现TCP的全双工连接终止(处理最后一个ACK丢失的情况),
-  并允许老的重复分节从网络中消逝
-*.length("FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:255.255.255.255\0") == 46 == INET6_ADDRSTRLEN
-*.内核为任何一个给定的监听套接字维护两个队列
-  (1)未完成连接队列，这些套接字处于SYN_RCVD状态
-  (2)已完成连接队列，这些套接字处于ESTABLISHED状态
-*.当进程调用accept时, 已完成连接队列中的队头项将返回给进程, 如果该队列为空,
-  那么进程将被投入睡眠, 直到TCP在该队列中放入一项才唤醒它
-===============================================================================
-RFC2373 - IP Version 6 Addressing Architecture
-*.three type of addressing
-  unicast
-  anycast
-  multicast
-*.The use of "::" indicates multiple groups of 16-bits of zeros
-  The "::" can only appear once in an address. The "::" can also
-  be used to compress the leading and/or trailing zeros in an address
-*.special address
-  ::1 loopback address
 
 ===============================================================================
-RFC4632 - Classless Inter-domain Routing (CIDR)
+-*- UDP Misc -*-
+===============================================================================
+*. 既然UDP是不可靠的, 它不必保存应用进程数据的一个副本, 因此无需一个真正的
+   发送缓冲区
+*. 从写一个UDP套接字的write调用成功返回表示所写的数据报或其他所有片段已被加入
+   数据链路层的输出队列
+
+===============================================================================
+-*- Socket API -*-
 ===============================================================================
 #define AF_INET
 #define AF_INET6
@@ -252,31 +308,18 @@ int accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
     /* ECONNABORTED: (POSIX) Connection Abort before accept Returns(get a RST)*/
 
 ===============================================================================
--*- Accept inherit -*-
+RFC2373 - IP Version 6 Addressing Architecture
 ===============================================================================
-*. On Linux, the new socket returned by accept() does not inherit file status 
-   flags such as O_NONBLOCK and O_ASYNC from the listening socket.
-   This behavior differs from the canonical BSD sockets implementation.
-   Portable programs should not rely on inheritance or noninheritance of file 
-   status flags and always explicitly set all required flags on the socket
-   returned from accept().
-===============================================================================
+*.three type of addressing
+  unicast
+  anycast
+  multicast
+*.The use of "::" indicates multiple groups of 16-bits of zeros
+  The "::" can only appear once in an address. The "::" can also
+  be used to compress the leading and/or trailing zeros in an address
+*.special address
+  ::1 loopback address
 
 ===============================================================================
--*- Exceptions -*-
-===============================================================================
-*. Peer Power cycling
-   There are situations when one side believes a TCP connection is established,
-   but the other side does not, and where this situation will **never** be
-   automatically resolved.  It's possible to manage this problem using TCP
-   or application-level keep-alive.
-*. Peer Power Off
-   When the remote system is powered off instead of power cycled, again,
-   the first system only finds out if it's trying to send data.
-   If it doesn't send packets, it will never find out about the terminated
-   connections
-   When the system has been attempting to send data for long enough without
-   receiving acknowledgments from the remote side,
-   the TCP connection will be terminated and a socket operation on them
-   will fail with ETIMEDOUT.
+RFC4632 - Classless Inter-domain Routing (CIDR)
 ===============================================================================
