@@ -1,4 +1,16 @@
 ===============================================================================
+-*- network settings -*-
+===============================================================================
+recv buffer
+    /proc/sys/net/core/rmem_default
+    /proc/sys/net/core/rmem_max
+
+send buffer
+    /proc/sys/net/core/wmem_default
+    /proc/sys/net/core/wmem_max
+    /proc/sys/net/ipv4/tcp_wmem (min default max)
+
+===============================================================================
 -*- lvm -*-
 -------------------------------------------------------------------------------
 *. extend lv
