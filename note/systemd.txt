@@ -72,3 +72,12 @@ systemctl list-units --type=timer
 /etc/systemd/journald.conf
 
 journalctl
+
+===============================================================================
+-*- Network -*-
+===============================================================================
+/etc/systemd/network/*.network
+
+*. 关闭IPv6
+    LinkLocalAddressing=no
+    IPv6AcceptRA=no
