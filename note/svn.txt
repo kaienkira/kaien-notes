@@ -153,3 +153,7 @@ vi <repo_mirror>/hooks/pre-revprop-change
     exit 1 -> exit 0
 svnsync init <repo_mirror> <repo_source>
 svnsync sync <repo_mirror>
+
+svnsync relocated
+svn pg --revprop -r0 svn:sync-from-url file://<repo_mirror>
+svn ps --revprop -r0 svn:sync-from-url <repo_source> file://<repo_mirror>
