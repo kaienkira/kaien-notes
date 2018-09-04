@@ -19,6 +19,7 @@
 *. platform-tools/adb
     adb devices
     adb -s <device_name> logcat
+    adb -s <device_name> forward tcp:55000 localabstract:Unity-<package-name>
 
 *. ndk-build
     ndk-build clean
