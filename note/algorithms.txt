@@ -1,0 +1,4 @@
+LSM-Tree
+    The log-structured merge-tree is an immutable
+    disk-resident write-optimized data structure
+
