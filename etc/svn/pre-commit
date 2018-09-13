@@ -3,6 +3,7 @@
 REPOS="$1"
 TXN="$2"
 SVNLOOK=/usr/bin/svnlook
+MAX_FILE_SIZE=62914560
 
 # Get log message
 LOG_MESSAGE=`$SVNLOOK log -t "$TXN" "$REPOS"`
@@ -15,6 +16,19 @@ then
     echo "冒号为英文冒号, 注意空格" >&2
     exit 1
 fi
+
+# Check file size
+$SVNLOOK changed -t "$TXN" "$REPOS" | \
+while read status file
+do
+    file_size=`$SVNLOOK filesize -t "$TXN" "$REPOS" "$file"`
+    if [ "$file_size" -gt $MAX_FILE_SIZE ]
+    then
+        echo "上传文件大小超过上限" >&2
+        exit 1
+    fi
+done
+if [ $? -ne 0 ]; then exit 1; fi
 
 # Check that the author of this commit has the rights to perform
 # the commit on the files and directories being modified.
