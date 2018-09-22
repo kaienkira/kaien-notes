@@ -70,7 +70,7 @@ au BufNewFile,BufRead Makefile,makefile,*.mak set noexpandtab
 "au BufRead,BufNewFile *.as set filetype=as3
 "au BufRead,BufNewFile *.rs set filetype=rust
 "au BufRead,BufNewFile *.volt set filetype=volt
-"au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+"au FileType * set formatoptions-=ro
 
 inoremap <C-j> <C-x><C-p>
 nnoremap <C-j> :call BR_RelativeNumberToggle()<CR>
