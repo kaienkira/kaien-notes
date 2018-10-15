@@ -1,9 +1,9 @@
 xmrig-cpu
     ubuntu
-        cmake -DWITH_HTTPD=OFF -DUV_LIBRARY=/usr/lib/x86_64-linux-gnu/libuv.a
+        cmake -DWITH_HTTPD=OFF -DWITH_TLS=OFF -DUV_LIBRARY=/usr/lib/x86_64-linux-gnu/libuv.a
     centos
         yum install libstdc++-static libuv-static
-        cmake -DWITH_HTTPD=OFF -DUV_LIBRARY=/usr/lib64/libuv.a
+        cmake -DWITH_HTTPD=OFF -DWITH_TLS=OFF -DUV_LIBRARY=/usr/lib64/libuv.a
     macOS
         brew install libuv
-        cmake -DWITH_HTTPD=OFF -DUV_LIBRARY=/usr/local/opt/libuv/lib/libuv.a
+        cmake -DWITH_HTTPD=OFF -DWITH_TLS=OFF -DUV_LIBRARY=/usr/local/opt/libuv/lib/libuv.a
