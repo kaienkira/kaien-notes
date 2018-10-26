@@ -4,6 +4,10 @@ User Settings
 set -o vi
 ulimit -c unlimited
 
+export PS1='\u@\h:\w\$ '
+export PROMPT_COMMAND='printf "\033]0;%s@%s\007" "${USER}" "${HOSTNAME%%.*}"'
+export EDITOR=vim
+
 export PATH=\
 ${PATH}
 
