@@ -100,3 +100,11 @@ frontend ss-in
 
 backend ss-out
         server server1 <host>:<port> maxconn 20480
+
+===============================================================================
+-*- socks5 to global -*-
+===============================================================================
+badvpn-tun2socks
+socks5proxy
+unbound
+ip_forward
