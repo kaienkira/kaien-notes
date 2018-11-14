@@ -1,0 +1,90 @@
+===============================================================================
+-*- Install -*-
+===============================================================================
+# Disk (uefi+gpt+lvm)
+    # show disk info
+    lsblk
+    fdisk -l /dev/sda
+
+    # partition
+    fdisk
+        g -> create a new empty GPT partition table
+        # create esp
+        n -> add a new partition
+            1     -> partition number
+            enter -> first sector(default)
+            +550M -> last sector
+        t -> change a partition type
+            1     -> partition number
+            1     -> partition type
+                     (EFI System: C12A7328-F81F-11D2-BA4B-00A0C93EC93B)
+        # create lvm partition
+        n -> add a new partition
+            2     -> partition number
+            enter -> first sector(default)
+            enter -> last sector(default)
+        t -> change a partition type
+            2     -> partition number
+            31    -> partition type
+                     (Linux LVM: E6D6D379-F807-44C2-A23C-238F2A3DF928)
+
+    # setup lvm
+    lvmdiskscan
+    pvcreate /dev/sda2
+    pvdisplay
+    vgcreate vg0 /dev/sda2
+    vgdisplay
+    lvcreate -L 2G vg0 -n swap
+    lvcreate -l +100%FREE vg0 -n root
+    vgdisplay
+
+    # format file system 
+    mkfs.vfat /dev/sda1
+    mkfs.ext4 /dev/mapper/vg0-root
+    mkswap /dev/mapper/vg0-swap
+
+    # mount
+    mount /dev/mapper/vg0-root /mnt
+    mkdir /mnt/boot
+    mount /dev/sda1 /mnt/boot
+    swapon /dev/mapper/vg0-swap
+
+# Time
+    timedatectl set-ntp true
+
+# Select Mirror 
+    vi /etc/pacman.d/mirrorlist
+
+# Install base packages
+    pacstrap /mnt base
+    genfstab -U /mnt >> /mnt/etc/fstab
+    arch-chroot /mnt
+    vi /etc/mkinitcpio.conf
+        HOOKS="base udev autodetect modconf block lvm2 filesystems keyboard fsck"
+    mkinitcpio -p linux
+
+# Boot Loader
+    pacman -S grub efibootmgr
+    grub-install --efi-directory=/boot --bootloader-id=grub
+    grub-mkconfig -o /boot/grub/grub.cfg
+
+# Time Zone
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+# Localization
+    vi /etc/locale.gen
+    locale.gen
+    vi /etc/locale.conf
+    LANG=en_US.UTF-8
+
+# Network
+    vi /etc/hostname
+        ArchDev
+    vi /etc/hosts
+        127.0.0.1 localhost
+        ::1       localhost
+        127.0.1.1 ArchDev
+    systemctl enable dhcpcd
+
+# Root Password
+    passwd
