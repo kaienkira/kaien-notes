@@ -93,3 +93,11 @@
 ===============================================================================
 -*- GUI -*-
 ===============================================================================
+pacman -S xf86-video-vesa
+pacman -S xf86-video-intel
+pacman -S xorg-server xorg-xinit
+pacman -S openbox
+pacman -S ttf-dejavu
+
+vi ~/.xinitrc
+    exec openbox-session
