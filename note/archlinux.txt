@@ -51,6 +51,7 @@
 
 # Time
     timedatectl set-ntp true
+    timedatectl set-local-rtc true
 
 # Select Mirror 
     vi /etc/pacman.d/mirrorlist
