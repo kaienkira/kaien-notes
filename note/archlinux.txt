@@ -73,7 +73,7 @@
 
 # Localization
     vi /etc/locale.gen
-    locale.gen
+    locale-gen
     vi /etc/locale.conf
     LANG=en_US.UTF-8
 
