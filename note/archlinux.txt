@@ -36,7 +36,7 @@
     vgdisplay
     lvcreate -L 2G vg0 -n swap
     lvcreate -l +100%FREE vg0 -n root
-    vgdisplay
+    lvdisplay
 
     # format file system 
     mkfs.vfat /dev/sda1
