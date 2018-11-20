@@ -91,6 +91,20 @@
 # Root Password
     passwd
 
+# Dual Boot
+    vi /etc/grub.d/40_custom
+        menuentry 'Windows 10' {
+            echo 'Loading Windows 10...'
+            insmod part_gpt
+            insmod fat
+            insmod search_fs_uuid
+            insmod chain
+            search --fs-uuid --set=root $hints_string $fs_uuid
+            chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+        }
+    grub-probe --target=fs_uuid /boot/EFI/Microsoft/Boot/bootmgfw.efi
+    grub-probe --target=hints_string /boot/EFI/Microsoft/Boot/bootmgfw.efi
+
 ===============================================================================
 -*- Hardware -*-
 ===============================================================================
