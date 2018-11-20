@@ -106,6 +106,10 @@
     grub-probe --target=hints_string /boot/EFI/Microsoft/Boot/bootmgfw.efi
     grub-mkconfig -o /boot/grub/grub.cfg
 
+# Reinstall all packages
+    pacman -Qeq | pacman -S -
+    pacman -Qdq | pacman -S --asdeps -
+
 ===============================================================================
 -*- Hardware -*-
 ===============================================================================
