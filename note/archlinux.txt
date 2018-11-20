@@ -92,6 +92,18 @@
     passwd
 
 ===============================================================================
+-*- Hardware -*-
+===============================================================================
+# disable Nvidia card
+    pacman -S bbswitch
+    vi /etc/modules-load.d/bbswitch.conf
+        bbswitch
+    vi /etc/modprobe.d/bbswitch.conf
+        options bbswitch load_state=0
+    vi /etc/modprobe.d/nouveau_blacklist.conf
+        blacklist nouveau
+
+===============================================================================
 -*- GUI -*-
 ===============================================================================
 pacman -S xf86-video-vesa
