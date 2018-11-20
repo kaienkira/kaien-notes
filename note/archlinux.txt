@@ -121,6 +121,9 @@
         options bbswitch load_state=0
     vi /etc/modprobe.d/nouveau_blacklist.conf
         blacklist nouveau
+    vi /etc/default/grub
+        GRUB_CMDLINE_LINUX_DEFAULT="quiet acpi_osi=! acpi_osi=\"Windows 2009\""
+    grub-mkconfig -o /boot/grub/grub.cfg
 
 ===============================================================================
 -*- GUI -*-
