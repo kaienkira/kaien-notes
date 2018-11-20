@@ -104,6 +104,7 @@
         }
     grub-probe --target=fs_uuid /boot/EFI/Microsoft/Boot/bootmgfw.efi
     grub-probe --target=hints_string /boot/EFI/Microsoft/Boot/bootmgfw.efi
+    grub-mkconfig -o /boot/grub/grub.cfg
 
 ===============================================================================
 -*- Hardware -*-
