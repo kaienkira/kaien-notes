@@ -149,6 +149,10 @@ vi ~/.xinitrc
 # list all foreign packages(eg: aur)
     pacman -Qm
 
+# list all user installed packages
+    comm -23 <(pacman -Qqett | sort) \
+             <(pacman -Qqg base -g base-devel | sort | uniq)
+
 ===============================================================================
 -*- System Maintenance -*-
 ===============================================================================
