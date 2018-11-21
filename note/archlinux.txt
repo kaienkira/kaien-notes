@@ -132,9 +132,12 @@ pacman -S xf86-video-vesa
 pacman -S xf86-video-intel
 pacman -S xorg-server xorg-xinit
 pacman -S openbox
+pacman -S tint2
 pacman -S ttf-dejavu
+pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
 
 vi ~/.xinitrc
+    tint2 &
     exec openbox-session
 
 ===============================================================================
