@@ -136,3 +136,24 @@ pacman -S ttf-dejavu
 
 vi ~/.xinitrc
     exec openbox-session
+
+===============================================================================
+-*- Package Manager -*-
+===============================================================================
+# install package
+    pacman -S <package_name>
+
+# check package integrity
+    pacman -Qkk [package_name]
+
+# list all foreign packages(eg: aur)
+    pacman -Qm
+
+===============================================================================
+-*- System Maintenance -*-
+===============================================================================
+# list failed state services
+    systemctl --failed
+
+# system error log
+    journalctl
