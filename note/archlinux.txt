@@ -135,6 +135,10 @@ pacman -S openbox
 pacman -S tint2
 pacman -S ttf-dejavu
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
+pacman -S terminus-font
+
+vi /etc/vconsole.conf
+    FONT=ter-122b
 
 vi ~/.xinitrc
     tint2 &
