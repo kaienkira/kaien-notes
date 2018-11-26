@@ -146,6 +146,7 @@ vi ~/.xinitrc
     export QT_IM_MODULE=fcitx
     export XMODIFIERS="@im=fcitx"
     tint2 &
+    fcitx &
     exec openbox-session
 
 ===============================================================================
