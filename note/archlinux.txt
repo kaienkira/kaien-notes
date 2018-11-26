@@ -133,6 +133,7 @@ pacman -S xf86-video-intel
 pacman -S xorg-server xorg-xinit
 pacman -S openbox
 pacman -S tint2
+pacman -S fcitx
 pacman -S ttf-dejavu
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
 pacman -S terminus-font
@@ -141,6 +142,9 @@ vi /etc/vconsole.conf
     FONT=ter-122b
 
 vi ~/.xinitrc
+    export GTK_IM_MODULE=fcitx
+    export QT_IM_MODULE=fcitx
+    export XMODIFIERS="@im=fcitx"
     tint2 &
     exec openbox-session
 
