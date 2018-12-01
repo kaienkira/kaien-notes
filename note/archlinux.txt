@@ -133,9 +133,10 @@ pacman -S xf86-video-intel
 pacman -S xorg-server xorg-xinit
 pacman -S openbox
 pacman -S tint2
-pacman -S fcitx-im fcitx-googlepinyin
+pacman -S fcitx-im fcitx-googlepinyin fcitx-configtool
 pacman -S ttf-dejavu
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
+pacman -S wqy-microhei
 pacman -S terminus-font
 
 vi /etc/vconsole.conf
