@@ -1,0 +1,5 @@
+urxvt*font: xft:Dejavu Sans Mono:size=12:antialias=true, \
+            xft:WenQuanYi Micro Hei Mono:size=12:antialias=true
+
+xterm*faceName: Dejavu Sans Mono:size=12:antialias=true
+xterm*faceNameDoublesize: WenQuanYi Micro Hei Mono:size=12:antialias=true
