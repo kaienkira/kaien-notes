@@ -181,3 +181,10 @@ alsamixer
 
 # system error log
     journalctl
+
+===============================================================================
+-*- Android -*-
+===============================================================================
+pacman -S jdk8-openjdk
+pacman -S gradle
+pacman -S android-udev
