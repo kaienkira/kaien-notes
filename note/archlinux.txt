@@ -133,6 +133,7 @@ pacman -S xf86-video-intel
 pacman -S xorg-server xorg-xinit
 pacman -S openbox
 pacman -S tint2
+pacman -S thunar
 pacman -S fcitx-im fcitx-googlepinyin fcitx-configtool
 pacman -S terminus-font
 pacman -S ttf-dejavu
