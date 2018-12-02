@@ -1,0 +1,6 @@
+[Unit]
+Description=Twilight Client Daemon
+
+[Service]
+ExecStart=%h/local/tl-client/twilight-line-client -e \
+          %h/local/tl-client/config.json
