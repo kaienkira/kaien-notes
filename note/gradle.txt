@@ -2,8 +2,8 @@
 ~/.gradle/gradle.properties
 ===============================================================================
 *. 代理设置
-    systemProp.socks.proxyHost=127.0.0.1
-    systemProp.socks.proxyPort=1080
+    systemProp.socksProxyHost=127.0.0.1
+    systemProp.socksProxyPort=1080
 *. 堆内存设置
     org.gradle.jvmargs=\
         -Xmx2048m -XX:MaxPermSize=512m \
