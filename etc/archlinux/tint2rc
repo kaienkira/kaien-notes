@@ -38,6 +38,7 @@ launcher_padding = 2 2 3
 launcher_tooltip = 1
 launcher_item_app = Thunar.desktop
 launcher_item_app = firefox.desktop
+launcher_item_app = firefox-1.desktop
 launcher_item_app = sakura.desktop
 
 # Taskbar
