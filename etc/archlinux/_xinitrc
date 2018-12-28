@@ -7,4 +7,5 @@ export XMODIFIERS="@im=fcitx"
 tint2 &
 fcitx &
 volumeicon &
+~/.fehbg &
 exec openbox-session
