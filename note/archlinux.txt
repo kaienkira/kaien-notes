@@ -135,6 +135,7 @@ pacman -S openbox
 pacman -S tint2
 pacman -S thunar
 pacman -S fcitx-im fcitx-googlepinyin fcitx-configtool
+pacman -S volumeicon
 pacman -S terminus-font
 pacman -S ttf-dejavu
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
@@ -150,6 +151,7 @@ vi ~/.xinitrc
     export XMODIFIERS="@im=fcitx"
     tint2 &
     fcitx &
+    volumeicon &
     exec openbox-session
 
 ===============================================================================
