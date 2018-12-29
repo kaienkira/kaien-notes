@@ -17,6 +17,7 @@
         "platforms;android-<version>" \
 
 *. tools/bin/avdmanager
+    avdmanager list
     avdmanager list avd
     avdmanager list target
     avdmanager create avd \
