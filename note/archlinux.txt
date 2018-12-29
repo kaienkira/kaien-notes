@@ -196,3 +196,4 @@ alsamixer
 pacman -S jdk8-openjdk
 pacman -S gradle
 pacman -S android-udev
+pacman -S gvfs-mtp
