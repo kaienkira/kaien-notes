@@ -16,6 +16,14 @@
         "build-tools;<version>" \
         "platforms;android-<version>" \
 
+*. tools/bin/avdmanager
+    avdmanager list avd
+    avdmanager list target
+    avdmanager create avd -n <avd_name> -d <device_id> -k <package_name>
+
+* emulator/emulator
+    emulator -avd <avd_name>
+
 *. platform-tools/adb
     adb devices
     adb -s <device_name> logcat
@@ -29,6 +37,7 @@
     ndk-build NDK_DEBUG=0
     ndk-build NDK_DEBUG=1
     ndk-build NDK_APPLICATION_MK=<file>
+
 ===============================================================================
 
 ===============================================================================
