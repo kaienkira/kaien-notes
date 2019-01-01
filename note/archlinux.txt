@@ -142,6 +142,7 @@ pacman -S ttf-dejavu
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
 pacman -S wqy-microhei
 pacman -S xterm rxvt-unicode sakura
+pacman -S transmission-gtk
 pacman -S vlc
 
 vi /etc/vconsole.conf
