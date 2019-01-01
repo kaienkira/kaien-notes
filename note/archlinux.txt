@@ -171,6 +171,9 @@ alsamixer
 # install package
     pacman -S <package_name>
 
+# force reinstall package
+    pacman -S --overwrite '*' <pacakge_name>
+
 # check package integrity
     pacman -Qkk [package_name]
 
