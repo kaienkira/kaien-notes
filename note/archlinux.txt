@@ -27,6 +27,7 @@
             2     -> partition number
             31    -> partition type
                      (Linux LVM: E6D6D379-F807-44C2-A23C-238F2A3DF928)
+        w
 
     # setup lvm
     lvmdiskscan
@@ -68,6 +69,11 @@
     pacman -S grub efibootmgr
     grub-install --efi-directory=/boot --bootloader-id=grub
     grub-mkconfig -o /boot/grub/grub.cfg
+        # Hang fix
+        mkdir /mnt/hostlvm
+        mount --bind /run/lvm /mnt/hostlvm
+        arch-chroot /mnt
+        ln -s /hostlvm /run/lvm
 
 # Time Zone
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
