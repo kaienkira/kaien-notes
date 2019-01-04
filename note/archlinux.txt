@@ -179,6 +179,9 @@ alsamixer
 # install package
     pacman -S <package_name>
 
+# remove package
+    pacman -Rs <package_name>
+
 # force reinstall package
     pacman -S --overwrite '*' <pacakge_name>
 
