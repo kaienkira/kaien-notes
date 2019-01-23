@@ -23,3 +23,10 @@
         [Install]
         WantedBy=multi-user.target
         ```
+*. 插件
+    Folders
+    Matrix Authorization Strategy
+    AnsiColor
+    categorized-view
+    Extensible Choice Parameter
+    Simple Theme
