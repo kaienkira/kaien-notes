@@ -9,8 +9,10 @@ yum install --enablerepo=remi-php56 \
 vi /etc/php.ini
     date.timezone = '<time_zone>'
 
-vi config_defaults_inc.php
-    $g_send_reset_password  = OFF;
 vi config_inc.php
-    $g_show_realname = ON;
+    $g_allow_signup                 = OFF;
+    $g_show_realname                = ON;
     $g_show_user_realname_threshold = ANYBODY;
+    $g_send_reset_password          = OFF;
+    $g_allow_blank_email            = ON;
+    $g_window_title                 = 'Title';
