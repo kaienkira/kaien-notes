@@ -44,6 +44,8 @@ systemctl stop <service>
 
 /usr/lib/systemd/system/: 软件包安装的单元
 /etc/systemd/system/: 系统管理员安装的单元
+~/.local/share/systemd/user/
+~/.config/systemd/user/
 
 systemctl list-units
 systemctl list-unit-files
