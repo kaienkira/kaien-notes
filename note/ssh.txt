@@ -11,3 +11,6 @@ Match User <user>
     X11Forwarding no
     ForceCommand internal-sftp
 ===============================================================================
+~/.ssh/config
+===============================================================================
+IPQoS lowdelay throughput
