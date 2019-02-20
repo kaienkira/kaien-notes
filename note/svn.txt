@@ -146,6 +146,7 @@ vi /opt/svn/repo/hooks/pre-commit
 ===============================================================================
 -*- setup svn mirror -*-
 ===============================================================================
+*. create mirror
 svnadmin create <repo_mirror>
 cp <repo_mirror>/hooks/pre-revprop-change.tmpl \
    <repo_mirror>/hooks/pre-revprop-change
@@ -154,6 +155,9 @@ vi <repo_mirror>/hooks/pre-revprop-change
 svnsync init <repo_mirror> <repo_source>
 svnsync sync <repo_mirror>
 
-svnsync relocated
+*. relocate url
 svn pg --revprop -r0 svn:sync-from-url file://<repo_mirror>
 svn ps --revprop -r0 svn:sync-from-url <repo_source> file://<repo_mirror>
+
+*. move mirror to live
+svn proplist --revprop -r0
