@@ -75,6 +75,8 @@ au BufNewFile,BufRead Makefile,makefile,*.mak set noexpandtab
 inoremap <C-j> <C-x><C-p>
 nnoremap <C-j> :call BR_RelativeNumberToggle()<CR>
 nnoremap <C-k> *N:set hlsearch!<CR>
+"vmap <silent> ,y "xy<CR>:wviminfo! ~/.viminfo<CR>
+"nmap <silent> ,p :rviminfo! ~/.viminfo<CR>"xp<CR>
 
 "filetype off
 "set rtp+=~/.vim/bundle/Vundle.vim
