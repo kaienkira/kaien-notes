@@ -4,6 +4,7 @@
 # Disk (uefi+gpt+lvm)
     # show disk info
     lsblk
+    blkid
     fdisk -l /dev/sda
 
     # partition
