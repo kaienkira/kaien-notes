@@ -12,7 +12,7 @@ AssetBundle.LoadFromFile                                                   Asset
 AssetBundle.LoadFromMemory
 
 new WWW                                ->     WebStream
-AssetBundle.LoadFromMeory
+AssetBundle.LoadFromMemory
 
 new WWW
 WWW.LoadFromCacheOrDownload            ->     WWW                       -> WWW.Dispose()
