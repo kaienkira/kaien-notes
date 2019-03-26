@@ -175,6 +175,7 @@
 -*- Server -*-
 ===============================================================================
 pacman -S linux-lts
+pacman -R linux
 pacman -S net-tools
 pacman -S openssh
 
