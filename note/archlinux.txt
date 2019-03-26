@@ -40,7 +40,7 @@
     lvcreate -l +100%FREE vg0 -n root
     lvdisplay
 
-    # format file system 
+    # format file system
     mkfs.vfat /dev/sda1
     mkfs.ext4 /dev/mapper/vg0-root
     mkswap /dev/mapper/vg0-swap
@@ -50,6 +50,40 @@
     mkdir /mnt/boot
     mount /dev/sda1 /mnt/boot
     swapon /dev/mapper/vg0-swap
+
+# Disk (bios + mbr)
+    # partition
+    fdisk
+        o -> create a new empty DOS partition table
+        # create swap partition
+        n -> add a new partition
+            p -> primary
+            1 -> partition number
+            enter -> first sector(default)
+            +2G   -> last sector
+        t -> change a partition type
+            1     -> partition number
+            82    -> partition type
+                     (Linux Swap)
+        # create root partition
+        n -> add a new partition
+            p -> primary
+            2 -> partition number
+            enter -> first sector(default)
+            enter -> last sector(default)
+        t -> change a partition type
+            2     -> partition number
+            83    -> partition type
+                     (Linux)
+        w
+
+    # format file system
+    mkswap /dev/sda1
+    mkfs.ext4 /dev/sda2
+
+    # mount
+    mount /dev/sda2 /mnt
+    swapon /dev/sda1
 
 # Time
     timedatectl set-ntp true
@@ -62,11 +96,11 @@
     pacstrap /mnt base
     genfstab -U /mnt >> /mnt/etc/fstab
     arch-chroot /mnt
+
+# Boot Loader (uefi+gpt+lvm)
     vi /etc/mkinitcpio.conf
         HOOKS="base udev autodetect modconf block lvm2 filesystems keyboard fsck"
     mkinitcpio -p linux
-
-# Boot Loader
     pacman -S grub efibootmgr
     grub-install --efi-directory=/boot --bootloader-id=grub
     grub-mkconfig -o /boot/grub/grub.cfg
@@ -75,6 +109,11 @@
         mount --bind /run/lvm /mnt/hostlvm
         arch-chroot /mnt
         ln -s /hostlvm /run/lvm
+
+# Boot Loader (bios+mbr)
+    pacman -S grub
+    grub-install /dev/sda
+    grub-mkconfig -o /boot/grub/grub.cfg
 
 # Time Zone
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
