@@ -175,18 +175,27 @@
 -*- Server -*-
 ===============================================================================
 pacman -S linux-lts
-grub-mkconfig -o /boot/grub/grub.cfg
 pacman -R linux
+grub-mkconfig -o /boot/grub/grub.cfg
 
 pacman -S net-tools
 pacman -S openssh
 
-systemctl enable sshd
-vi /etc/ssh/sshd
-    Port 22
-    Listen 0.0.0.0
-    PermitRootLogin no
-systemctl start sshd
+# ssh
+    systemctl enable sshd
+    vi /etc/ssh/sshd
+        Port 22
+        Listen 0.0.0.0
+        PermitRootLogin no
+    systemctl start sshd
+
+# mode tcp_bbr
+    modinfo tcp_bbr
+    sysctl net.ipv4.tcp_congestion_control
+    modeprobe tcp_bbr
+    sysctl net.ipv4.tcp_congestion_control=bbr
+    echo "tcp_bbr" > /etc/modules-load.d/tcp_bbr.conf
+    echo "net.ipv4.tcp_congestion_control=bbr" > /etc/sysctl.d/tcp_bbr.conf
 
 ===============================================================================
 -*- GUI -*-
