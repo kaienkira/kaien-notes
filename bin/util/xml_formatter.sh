@@ -18,7 +18,7 @@ function print_line(indent, line)
     for (i = 0; i < indent; ++i) {
         printf(" ");
     }
-    printf("%s\r\n", line);
+    printf("%s\n", line);
 }
 
 BEGIN{
@@ -27,13 +27,13 @@ BEGIN{
 }
 
 /^(\s*)$/ {
-    printf("\r\n");
+    printf("\n");
     next;
 }
 
 # <!--
 /^(\s*)<!--.*$/ {
-    printf("%s\r\n", $0);
+    printf("%s\n", $0);
     next;
 }
 
@@ -74,17 +74,21 @@ match($0, /^(\s*)([^<]*\/>.*)$/, m) {
 }
 
 match($0, /^(\s*)(.*)$/, m) {
-    print_line(indent2, m[2]);
+    if (indent2 > 0) {
+        print_line(indent2, m[2]);
+    } else {
+        printf("%s\n", $0);
+    }
     next;
 }
 
 {
-    printf("%s\r\n", $0);
+    printf("%s\n", $0);
 }
-' > "$xml_file.bak"
+' | sed 's/\s\+$//g' > "$xml_file.bak"
 if [ $? -ne 0 ]; then exit 1; fi
 
-vim -e -s -c ':set nobomb' -c ':set fenc=utf-8' -c ':wq' "$xml_file.bak"
+vim -e -s -c ':set nobomb' -c ':set ff=dos' -c ':set fenc=utf-8' -c ':wq' "$xml_file.bak"
 if [ $? -ne 0 ]; then exit 1; fi
 
 mv "$xml_file.bak" "$xml_file"
