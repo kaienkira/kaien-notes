@@ -180,6 +180,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 pacman -S net-tools
 pacman -S openssh
+pacman -S cronie
 
 # ssh
     systemctl enable sshd
@@ -188,6 +189,9 @@ pacman -S openssh
         Listen 0.0.0.0
         PermitRootLogin no
     systemctl start sshd
+
+# cronie
+    systemctl enable cronie
 
 # mode tcp_bbr
     modinfo tcp_bbr
