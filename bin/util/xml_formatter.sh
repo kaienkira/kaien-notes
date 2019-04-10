@@ -81,7 +81,13 @@ match($0, /^(\s*)(.*)$/, m) {
 {
     printf("%s\r\n", $0);
 }
-'
+' > "$xml_file.bak"
+if [ $? -ne 0 ]; then exit 1; fi
+
+vim -e -s -c ':set nobomb' -c ':set fenc=utf-8' -c ':wq' "$xml_file.bak"
+if [ $? -ne 0 ]; then exit 1; fi
+
+mv "$xml_file.bak" "$xml_file"
 if [ $? -ne 0 ]; then exit 1; fi
 
 exit 0
