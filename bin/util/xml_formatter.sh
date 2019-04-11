@@ -37,12 +37,6 @@ BEGIN{
     next;
 }
 
-# -->
-/^.*-->.*$/ {
-    printf("%s\n", $0);
-    next;
-}
-
 # <tag/>
 match($0, /^(\s*)(<\w+.*\/>.*)$/, m) {
     print_line(indent * 2, m[2]);
