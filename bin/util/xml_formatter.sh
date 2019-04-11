@@ -24,6 +24,25 @@ function print_line(indent, line)
 BEGIN{
     indent = 0;
     indent2 = 0;
+    current_line_in_comment = 0;
+    next_line_in_comment = 0;
+}
+
+{
+    current_line_in_comment = next_line_in_comment;
+
+    s = gensub(/<!--.*-->/, "", "g", $0);
+
+    if (match(s, /<!--/)) {
+        next_line_in_comment = 1;
+    } else if (match(s, /-->/)) {
+        next_line_in_comment = 0;
+    }
+
+    if (current_line_in_comment) {
+        printf("%s\n", $0);
+        next;
+    }
 }
 
 /^(\s*)$/ {
@@ -65,6 +84,12 @@ match($0, /^(\s*)(<\/\w+.*>.*)$/, m) {
     indent -= 1;
     indent2 = 0;
     print_line(indent * 2, m[2]);
+    next;
+}
+
+# /> -->
+match($0, /^.*\/>.*-->.*$/, m) {
+    printf("%s\n", $0);
     next;
 }
 
