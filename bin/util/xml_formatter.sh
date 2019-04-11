@@ -48,6 +48,7 @@ match($0, /^(\s*)(<\w+.*\/>.*)$/, m) {
 match($0, /^(\s*)(<\w+.*>.*)$/, m) {
     print_line(indent * 2, m[2]);
     indent += 1;
+    indent2 = 0;
     next;
 }
 
@@ -62,6 +63,7 @@ match($0, /^(\s*)(<\w+)(.*)$/, m) {
 # </tag>
 match($0, /^(\s*)(<\/\w+.*>.*)$/, m) {
     indent -= 1;
+    indent2 = 0;
     print_line(indent * 2, m[2]);
     next;
 }
