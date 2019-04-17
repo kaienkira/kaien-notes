@@ -7,3 +7,6 @@
 *. 查看网络监听端口
     netstat -ap tcp | grep -i "listen"
     sudo lsof -PiTCP -sTCP:LISTEN
+
+*. 修改IP地址
+    networksetup -setmanual "Ethernet" <ip> <netmask> <gateway>
