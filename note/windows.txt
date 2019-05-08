@@ -22,9 +22,9 @@ mstsc /v:<ip> /admin
 
 *. 创建USB3.0 Win7安装盘
 dism /mount-wim /wimfile:<boot.wim/install.wim> /index:2 /mountdir:mount
-dism /image:mount /add-driver x64\iusb3hub.inf
-dism /image:mount /add-driver x64\iusb3xhc.inf
-dism /image:mount /add-driver x64\iusb3hcs.inf
+dism /image:mount /add-driver /driver:d:\x64\iusb3hub.inf
+dism /image:mount /add-driver /driver:d:\x64\iusb3xhc.inf
+dism /image:mount /add-driver /driver:d:\x64\iusb3hcs.inf
 dism /unmount-wim /mountdir:mount /commit
 
 *. Excel单独打开csv文件
