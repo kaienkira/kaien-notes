@@ -120,6 +120,8 @@ chmod 640 /opt/svn/etc/svn-access
 vi /etc/httpd/conf.d/subversion.conf
 (vi /etc/httpd/conf.modules.d/10-subversion.conf)
     SVNUseUTF8 on
+    LimitXMLRequestBody 0
+    LimitRequestBody 0
 
     <Location /svn>
         DAV svn
