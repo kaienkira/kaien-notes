@@ -184,7 +184,7 @@ pacman -S cronie
 
 # ssh
     systemctl enable sshd
-    vi /etc/ssh/sshd
+    vi /etc/ssh/sshd_config
         Port 22
         Listen 0.0.0.0
         PermitRootLogin no
