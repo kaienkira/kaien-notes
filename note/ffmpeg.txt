@@ -1,0 +1,1 @@
+ ffmpeg -y -i input.mkv -map_metadata -1 -vf subtitles=subtitles.srt -crf 28 -c:v h264 -c:a aac output.mp4
