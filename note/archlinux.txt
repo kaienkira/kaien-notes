@@ -274,10 +274,14 @@ alsamixer
 # system error log
     journalctl
 
+# disable automatic mount /tmp on ram
+    systemctl mask tmp.mount
+
 ===============================================================================
--*- Android -*-
+-*- Dev -*-
 ===============================================================================
 pacman -S jdk8-openjdk
 pacman -S gradle
+pacman -S go
 pacman -S android-udev
 pacman -S gvfs-mtp
