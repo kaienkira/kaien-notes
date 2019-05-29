@@ -60,48 +60,6 @@ udevadm settle
 /proc/sys/kernel/shmmni    max number of shared memory segments system-wide
 /proc/sys/kernel/shmall    (shmmax / page_size)
 ===============================================================================
--*- iptables -*-
--------------------------------------------------------------------------------
-iptables->tables->chains->rules
-
-*. built in tables and chains 
-[] filter
-    INPUT
-    OUTPUT
-    FORWARD
-[] nat
-    PREROUTING
-    POSTROUTING
-    OUTPUT
-[] mangle
-    PREROUTING
-    POSTROUTING
-    INPUT
-    OUTPUT
-    FORWARD
-[] raw
-    PREROUTING
-    OUTPUT
-
-COMMAND
- -L [chains] 
-    List all rules in the selected chain
-    If no chain is selected, all chains are listed
- -F [chains]
-    deleting all the rules one by one in the selected chain
- -A <chains> <rule-spec>
-     Append one or more rules to the end of the selected chain.
-
-RULE SPEC
-  [!] -p <protocol>
-    tcp/udp/udplite/icmp/esp/ah/sctp/all
-    map-file /etc/protocols
-  [!] -s <src_addr>
-  [!] -d <dest_addr>
-  -j <target>
-
-iptables -A INPUT -s <ip_addr> -j DROP
-===============================================================================
 -*- ip command -*-
 -------------------------------------------------------------------------------
 ip link show
