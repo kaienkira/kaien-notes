@@ -1,4 +1,38 @@
-iptables->tables->chains->rules
+                               XXXXXXXXXXXXXXXXXX
+                             XXX     Network    XXX
+                               XXXXXXXXXXXXXXXXXX
+                                       +
+                                       |
+                                       v
+ +-------------+              +------------------+
+ |table: filter| <---+        | table: nat       |
+ |chain: INPUT |     |        | chain: PREROUTING|
+ +-----+-------+     |        +--------+---------+
+       |             |                 |
+       v             |                 v
+ [local process]     |           ****************          +--------------+
+       |             +---------+ Routing decision +------> |table: filter |
+       v                         ****************          |chain: FORWARD|
+****************                                           +------+-------+
+Routing decision                                                  |
+****************                                                  |
+       |                                                          |
+       v                        ****************                  |
++-------------+       +------>  Routing decision  <---------------+
+|table: nat   |       |         ****************
+|chain: OUTPUT|       |               +
++-----+-------+       |               |
+      |               |               v
+      v               |      +-------------------+
++--------------+      |      | table: nat        |
+|table: filter | +----+      | chain: POSTROUTING|
+|chain: OUTPUT |             +--------+----------+
++--------------+                      |
+                                      v
+                               XXXXXXXXXXXXXXXXXX
+                             XXX    Network     XXX
+                               XXXXXXXXXXXXXXXXXX
+
 
 *. built in tables and chains 
 [] filter
@@ -19,21 +53,10 @@ iptables->tables->chains->rules
     PREROUTING
     OUTPUT
 
-COMMAND
- -L [chains] 
-    List all rules in the selected chain
-    If no chain is selected, all chains are listed
- -F [chains]
-    deleting all the rules one by one in the selected chain
- -A <chains> <rule-spec>
-     Append one or more rules to the end of the selected chain.
-
-RULE SPEC
-  [!] -p <protocol>
-    tcp/udp/udplite/icmp/esp/ah/sctp/all
-    map-file /etc/protocols
-  [!] -s <src_addr>
-  [!] -d <dest_addr>
-  -j <target>
-
+# 丢弃某个ip的数据包
 iptables -A INPUT -s <ip_addr> -j DROP
+
+# Tcp端口转发(A:PA -> B:PB)
+iptables -t nat -F
+iptables -t nat -A PREROUTING  -p tcp -d <A> --dport <PA> -j DNAT --to-destination <B>:<PB>
+iptables -t nat -A POSTROUTING -p tcp -d <B> --dport <PB> -j SNAT --to <A>
