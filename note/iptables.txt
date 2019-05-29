@@ -1,39 +1,58 @@
-                               XXXXXXXXXXXXXXXXXX
-                             XXX     Network    XXX
-                               XXXXXXXXXXXXXXXXXX
-                                       +
-                                       |
-                                       v
- +-------------+              +------------------+
- |table: filter| <---+        | table: nat       |
- |chain: INPUT |     |        | chain: PREROUTING|
- +-----+-------+     |        +--------+---------+
-       |             |                 |
-       v             |                 v
- [local process]     |           ****************          +--------------+
-       |             +---------+ Routing decision +------> |table: filter |
-       v                         ****************          |chain: FORWARD|
-****************                                           +------+-------+
-Routing decision                                                  |
-****************                                                  |
-       |                                                          |
-       v                        ****************                  |
-+-------------+       +------>  Routing decision  <---------------+
-|table: nat   |       |         ****************
-|chain: OUTPUT|       |               +
-+-----+-------+       |               |
-      |               |               v
-      v               |      +-------------------+
-+--------------+      |      | table: nat        |
-|table: filter | +----+      | chain: POSTROUTING|
-|chain: OUTPUT |             +--------+----------+
-+--------------+                      |
-                                      v
-                               XXXXXXXXXXXXXXXXXX
-                             XXX    Network     XXX
-                               XXXXXXXXXXXXXXXXXX
+                                     XXXXXXXXXXXXXXXXXX
+                                   XXX     Network    XXX
+                                     XXXXXXXXXXXXXXXXXX
+                                             +
+                                             |
+                                    +------------------+
+                                    | table: raw       |
+                                    | chain: PREROUTING|
+                                    +--------+---------+
+                                             |
+                                             v
+  +------------------+              +------------------+
+  | table: mangle    | <---+        | table: mangle    |
+  | chain: INPUT     |     |        | chain: PREROUTING|
+  +--------+---------+     |        +--------+---------+
+           |               |                 |
+           v               |                 v
+  +------------------+     |        +------------------+             +------------------+
+  |table: filter     |     |        | table: nat       |       +---> | table: mangle    |
+  |chain: INPUT      |     |        | chain: PREROUTING|       |     | chain: FORWARD   |
+  +--------+---------+     |        +--------+---------+       |     +--------+---------+
+           |               |                 |                 |              |
+           v               |                 v                 |              v
+    [local process]        |          ****************         |     +------------------+
+           |               +--------+ Routing decision +-------+     | table: filter    |
+           v                          ****************               | chain: FORWARD   |
+   ****************                                                  +--------+---------+
+   Routing decision                                                           |
+   ****************                                                           |
+           |                                                                  |
+           v                          ****************                        |
+  +------------------+     +--------> Routing decision  <---------------------+
+  |table: raw        |     |          ****************
+  |chain: OUTPUT     |     |                 +
+  +--------+---------+     |                 |
+           |               |                 v
+           v               |        +-------------------+
+  +------------------+     |        | table: mangle     |
+  |table: mangle     |     |        | chain: POSTROUTING|
+  |chain: OUTPUT     |     |        +--------+----------+
+  +--------+---------+     |                 |
+           |               |                 v
+           v               |        +-------------------+
+  +------------------+     |        | table: nat        |
+  |table: nat        |     |        | chain: POSTROUTING|
+  |chain: OUTPUT     |     |        +--------+----------+
+  +--------+---------+     |                 |           
+           |               |                 v           
+           v               |          XXXXXXXXXXXXXXXXXX   
+  +------------------+     |        XXX    Network     XXX 
+  |table: filter     |+----+          XXXXXXXXXXXXXXXXXX   
+  |chain: OUTPUT     |
+  +------------------+
 
-
+===============================================================================
 *. built in tables and chains 
 [] filter
     INPUT
@@ -53,6 +72,7 @@ Routing decision                                                  |
     PREROUTING
     OUTPUT
 
+===============================================================================
 # 丢弃某个ip的数据包
 iptables -A INPUT -s <ip_addr> -j DROP
 
