@@ -220,6 +220,7 @@ pacman -S wqy-microhei
 pacman -S xterm rxvt-unicode sakura
 pacman -S transmission-gtk
 pacman -S vlc
+pacman -S evince
 
 vi /etc/vconsole.conf
     FONT=ter-122b
