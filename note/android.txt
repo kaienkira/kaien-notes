@@ -22,6 +22,7 @@
     avdmanager list target
     avdmanager create avd \
         -n <avd_name> -d <device_id> -k <package_name> -p <path>
+        -netspeed full -netdelay none -debug-init -logcat '*:v'
 
 * emulator/emulator
     emulator -avd <avd_name>
