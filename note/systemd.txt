@@ -76,6 +76,7 @@ systemctl list-units --type=timer
 /etc/systemd/journald.conf
 
 journalctl
+journalctl -xe
 
 ===============================================================================
 -*- Network -*-
