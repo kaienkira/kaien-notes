@@ -47,6 +47,7 @@ systemctl stop <service>
 ~/.local/share/systemd/user/
 ~/.config/systemd/user/
 
+man systemd.service
 systemctl list-units
 systemctl list-unit-files
 
