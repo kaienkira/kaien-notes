@@ -1,5 +1,5 @@
 [Unit]
-Description=Twilight Client Daemon
+Description=Twilight Client Service
 
 [Service]
 ExecStart=%h/local/tl-client/twilight-line-client -e \
