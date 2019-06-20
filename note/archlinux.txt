@@ -89,6 +89,12 @@
     timedatectl set-ntp true
     timedatectl set-local-rtc true
 
+# Static Network
+    systemctl stop dhcpcd@<interface>.service
+    ip link set <interface> up
+    ip addr add <ip>/24 dev <interface>
+    ip route add default via <gateway>
+
 # Select Mirror 
     vi /etc/pacman.d/mirrorlist
 
@@ -115,14 +121,16 @@
     grub-install /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
 
-# Time Zone
+# Time
+    timedatectl set-ntp true
+    timedatectl set-local-rtc true
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # Localization
     vi /etc/locale.gen
     locale-gen
     vi /etc/locale.conf
-    LANG=en_US.UTF-8
+        LANG=en_US.UTF-8
 
 # Network
     vi /etc/hostname
@@ -131,8 +139,29 @@
         127.0.0.1 localhost
         ::1       localhost
         127.0.1.1 ArchDev
+
+    ---------------------------------------------------------------------------
     systemctl enable dhcpcd
-    timedatectl set-ntp true
+    ---------------------------------------------------------------------------
+    systemctl mask dhcpcd
+    systemctl enable systemd-networkd.service
+    systemctl start systemd-networkd.service
+    systemctl enable systemd-resolved.service
+    systemctl start systemd-resolved.service
+
+    vi /etc/systemd/network/10-<interface>.network
+        [Match]
+        Name=<interface>
+
+        [Network]
+        DHCP=ipv4
+
+        [Network]
+        Address=<ip>/<mask>
+        Gateway=<gateway_ip>
+        DNS=<DNS1>
+        DNS=<DNS2>
+    ---------------------------------------------------------------------------
 
 # Root Password
     passwd
