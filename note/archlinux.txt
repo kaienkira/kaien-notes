@@ -235,6 +235,7 @@ pacman -S cronie
 ===============================================================================
 pacman -S xf86-video-vesa
 pacman -S xf86-video-intel
+pacman -S alsa-utils
 pacman -S xorg-server xorg-xinit
 pacman -S openbox
 pacman -S tint2
@@ -247,6 +248,7 @@ pacman -S ttf-dejavu
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
 pacman -S wqy-microhei
 pacman -S xterm rxvt-unicode sakura
+pacman -S firefox
 pacman -S transmission-gtk
 pacman -S vlc
 pacman -S evince
@@ -270,7 +272,6 @@ killall -SIGUSR1 tint2
 ===============================================================================
 -*- Audio -*-
 ===============================================================================
-pacman -S alsa-utils
 alsamixer
 
 ===============================================================================
@@ -302,7 +303,7 @@ alsamixer
     systemctl --failed
 
 # system error log
-    journalctl
+    journalctl -xe
 
 # disable automatic mount /tmp on ram
     systemctl mask tmp.mount
