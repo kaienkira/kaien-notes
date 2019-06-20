@@ -203,6 +203,7 @@
 ===============================================================================
 -*- Server -*-
 ===============================================================================
+pacman -S archlinux-keyring
 pacman -S linux-lts
 pacman -R linux
 grub-mkconfig -o /boot/grub/grub.cfg
