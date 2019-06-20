@@ -249,9 +249,14 @@ pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
 pacman -S wqy-microhei
 pacman -S xterm rxvt-unicode sakura
 pacman -S firefox
+pacman -S virtualbox
+-------------------------------------------------------------------------------
 pacman -S transmission-gtk
 pacman -S vlc
 pacman -S evince
+pacman -S blender
+pacman -S gimp
+-------------------------------------------------------------------------------
 
 vi /etc/vconsole.conf
     FONT=ter-122b
