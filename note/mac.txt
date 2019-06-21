@@ -4,6 +4,9 @@
     defaults write com.apple.finder AppleShowAllFiles TRUE
     键盘快捷建<command + shift + .>
 
+*. 查看CPU型号
+    sysctl -n machdep.cpu.brand_string
+
 *. 查看网络监听端口
     netstat -ap tcp | grep -i "listen"
     sudo lsof -PiTCP -sTCP:LISTEN
