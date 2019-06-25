@@ -235,7 +235,7 @@ pacman -S cronie
 -*- GUI -*-
 ===============================================================================
 pacman -S xf86-video-vesa
-pacman -S xf86-video-intel
+pacman -S xf86-video-intel mesa vulkan-intel
 pacman -S alsa-utils
 pacman -S xorg-server xorg-xinit
 pacman -S openbox
