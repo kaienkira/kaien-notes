@@ -23,3 +23,6 @@
     VBoxManage setextradata macos-dev "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
     VBoxManage setextradata macos-dev VBoxInternal2/EfiGopMode 4
     VBoxManage setextradata macos-dev VBoxInternal2/EfiGraphicsResolution 1440x900
+    # 无法登录Appstore
+    sudo pkill -9 -f Account
+    sudo rm $HOME/Library/Accounts/*
