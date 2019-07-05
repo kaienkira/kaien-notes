@@ -103,6 +103,7 @@ $_
     find . \( -name .snapshot -prune -o -name '*.foo' \) -print
 
 find . -maxdepth 1 ! -newer '<dir>' -type d -exec rm -rf {} \;
+find . -maxdepth 1 -type d -printf '%P\n'
 ===============================================================================
 -*- screen -*-
 -------------------------------------------------------------------------------
