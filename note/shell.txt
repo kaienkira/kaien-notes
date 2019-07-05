@@ -87,6 +87,11 @@ $_
     ${var%%Pattern}
         Remove from $var the longest part of $Pattern
         that matches the back end of $var
+    ${var/Pattern/Replacement}
+        First match of Pattern, within var replaced with Replacement
+    ${var//Pattern/Replacement}
+        Global replacement. All matches of Pattern
+        within var replaced with Replacement
 
 *. printf
     直接把结果存到变量
