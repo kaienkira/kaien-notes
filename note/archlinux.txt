@@ -200,6 +200,11 @@
         GRUB_CMDLINE_LINUX_DEFAULT="quiet acpi_osi=! acpi_osi=\"Windows 2009\""
     grub-mkconfig -o /boot/grub/grub.cfg
 
+# hardware sensor
+    pacman -S lm_sensors
+    sensors-detect
+    sensors
+
 ===============================================================================
 -*- Server -*-
 ===============================================================================
