@@ -280,6 +280,12 @@ vi ~/.xinitrc
 # reload tint2
 killall -SIGUSR1 tint2
 
+# wine
+vi /etc/pacman.conf
+    [multilib]
+    Include = /etc/pacman.d/mirrorlist
+pacman -S wine
+
 ===============================================================================
 -*- Audio -*-
 ===============================================================================
