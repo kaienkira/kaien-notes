@@ -307,6 +307,10 @@ alsamixer
     comm -23 <(pacman -Qqett | sort) \
              <(pacman -Qqg base -g base-devel | sort | uniq)
 
+# check file belongs to which package
+    pacman -Fy
+    pacman -Fs <file>
+
 ===============================================================================
 -*- System Maintenance -*-
 ===============================================================================
