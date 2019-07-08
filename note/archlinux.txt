@@ -308,8 +308,7 @@ alsamixer
              <(pacman -Qqg base -g base-devel | sort | uniq)
 
 # check file belongs to which package
-    pacman -Fy
-    pacman -Fs <file>
+    pacman -Qo <file>
 
 ===============================================================================
 -*- System Maintenance -*-
