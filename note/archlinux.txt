@@ -256,6 +256,7 @@ pacman -S wqy-microhei
 pacman -S xterm rxvt-unicode sakura
 pacman -S firefox
 pacman -S virtualbox virtualbox-guest-iso
+pacman -S ntfs-3g
 -------------------------------------------------------------------------------
 pacman -S transmission-gtk
 pacman -S vlc
