@@ -335,4 +335,5 @@ pacman -S jdk8-openjdk
 pacman -S gradle
 pacman -S android-udev
 pacman -S gvfs-mtp
+pacman -S lib32-gcc-libs lib32-zlib (for old android sdk)
 -------------------------------------------------------------------------------
