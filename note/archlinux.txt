@@ -241,6 +241,7 @@ pacman -S cronie
 ===============================================================================
 pacman -S xf86-video-vesa
 pacman -S xf86-video-intel mesa vulkan-intel
+pacman -S xf86-video-vmware xf86-input-vmmouse open-vm-tools
 pacman -S alsa-utils
 pacman -S xorg-server xorg-xinit
 pacman -S openbox
