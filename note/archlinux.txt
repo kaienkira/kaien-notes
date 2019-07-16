@@ -265,7 +265,6 @@ pacman -S evince
 pacman -S blender
 pacman -S gimp
 -------------------------------------------------------------------------------
-
 vi /etc/vconsole.conf
     FONT=ter-122b
 
@@ -278,10 +277,12 @@ vi ~/.xinitrc
     volumeicon &
     ~/.fehbg &
     exec openbox-session
-
+-------------------------------------------------------------------------------
 # reload tint2
-killall -SIGUSR1 tint2
+    killall -SIGUSR1 tint2
 
+# vmtools
+    systemctl enable vmtoolsd
 ===============================================================================
 -*- Audio -*-
 ===============================================================================
