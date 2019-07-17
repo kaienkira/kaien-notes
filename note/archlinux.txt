@@ -176,9 +176,14 @@
         ctrl_interface=/var/run/wpa_supplicant
         ctrl_interface_group=root
         update_config=1
-        eapol_version=1
-        ap_scan=1
-        fast_reauth=1
+    wpa_cli
+        scan
+        scan_result
+        add_network
+        set_network <network_id> ssid '<ssid>'
+        set_network <network_id> psk '<ssid>'
+        enable_network <network_id> 
+        save_config
 
     *. use network-manager
     pacman -S NetworkManager
