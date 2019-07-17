@@ -1,0 +1,2 @@
+* phicomm-n1
+    dtc -I dtb -O dts -o /tmp/n1.dts /boot/dtb/meson-gxl-s905d-phicomm-n1.dtb
