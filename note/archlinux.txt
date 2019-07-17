@@ -133,7 +133,7 @@
         LANG=en_US.UTF-8
 
 # Network
-    # Host
+    *. hostname
     vi /etc/hostname
         ArchDev
     vi /etc/hosts
@@ -141,36 +141,54 @@
         ::1       localhost
         127.0.1.1 ArchDev
 
-    # DHCP
-    ---------------------------------------------------------------------------
+    *. wifi
+    pacman -S wpa_supplicant
+
+    *. use dhcpcd
     systemctl enable dhcpcd
-    ---------------------------------------------------------------------------
+
+    *. use systemd-networkd
     systemctl mask dhcpcd
     systemctl enable systemd-networkd.service
-    systemctl start systemd-networkd.service
     systemctl enable systemd-resolved.service
+    systemctl enable wpa_supplicant@<wireless_interface>.service
+    systemctl start systemd-networkd.service
     systemctl start systemd-resolved.service
-    vi /etc/systemd/network/10-<interface>.network
+    systemctl start wpa_supplicant@<wireless_interface>.service
+    vi /etc/systemd/network/10-<wired_interface>.network
         [Match]
         Name=<interface>
-
         [Network]
         DHCP=ipv4
-
+        RouteMetric=10
         [Network]
         Address=<ip>/<mask>
         Gateway=<gateway_ip>
         DNS=<DNS1>
         DNS=<DNS2>
-    ---------------------------------------------------------------------------
-    # Wifi
-    pacman -S wpa_supplicant
+    vi /etc/systemd/network/20-<wireless_interface>.network
+        [Match]
+        Name=<interface>
+        [Network]
+        DHCP=ipv4
+        RouteMetric=20
+    vi /etc/wpa_supplicant/wpa_supplicant-<wireless_interface>.conf
+        ctrl_interface=/var/run/wpa_supplicant
+        ctrl_interface_group=root
+        update_config=1
+        eapol_version=1
+        ap_scan=1
+        fast_reauth=1
+
+    *. use network-manager
     pacman -S NetworkManager
+    systemctl mask dhcpcd
     systemctl enable wpa_supplicant.service
     systemctl start wpa_supplicant.service
     systemctl enable NetworkManager.service
     systemctl start NetworkManager.service
     nmtui
+    ---------------------------------------------------------------------------
 
 # Root Password
     passwd
