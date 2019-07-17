@@ -133,6 +133,7 @@
         LANG=en_US.UTF-8
 
 # Network
+    # Host
     vi /etc/hostname
         ArchDev
     vi /etc/hosts
@@ -140,6 +141,7 @@
         ::1       localhost
         127.0.1.1 ArchDev
 
+    # DHCP
     ---------------------------------------------------------------------------
     systemctl enable dhcpcd
     ---------------------------------------------------------------------------
@@ -148,7 +150,6 @@
     systemctl start systemd-networkd.service
     systemctl enable systemd-resolved.service
     systemctl start systemd-resolved.service
-
     vi /etc/systemd/network/10-<interface>.network
         [Match]
         Name=<interface>
@@ -162,6 +163,10 @@
         DNS=<DNS1>
         DNS=<DNS2>
     ---------------------------------------------------------------------------
+    # Wifi
+    pacman -S wpa_supplicant
+    systemctl enable wpa_supplicant@<interface>.service
+    systemctl start wpa_supplicant@<interface>.service
 
 # Root Password
     passwd
@@ -204,6 +209,8 @@
     pacman -S lm_sensors
     sensors-detect
     sensors
+
+# wifi wpa network
 
 ===============================================================================
 -*- Server -*-
