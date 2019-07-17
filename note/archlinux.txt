@@ -165,8 +165,12 @@
     ---------------------------------------------------------------------------
     # Wifi
     pacman -S wpa_supplicant
-    systemctl enable wpa_supplicant@<interface>.service
-    systemctl start wpa_supplicant@<interface>.service
+    pacman -S NetworkManager
+    systemctl enable wpa_supplicant.service
+    systemctl start wpa_supplicant.service
+    systemctl enable NetworkManager.service
+    systemctl start NetworkManager.service
+    nmtui
 
 # Root Password
     passwd
