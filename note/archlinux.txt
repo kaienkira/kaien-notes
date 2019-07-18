@@ -204,6 +204,9 @@
     systemctl enable NetworkManager.service
     systemctl start NetworkManager.service
     nmtui
+    nmcli connection
+    nmcli connection modify <uuid> ipv4.route-metric 500
+    nmcli connection modify <uuid> ipv6.route-metric 500
     ---------------------------------------------------------------------------
 
 # Root Password
