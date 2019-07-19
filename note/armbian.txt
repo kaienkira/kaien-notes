@@ -8,4 +8,4 @@
         deb https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free
 
 apt-get install openbox
-apt-get install tightvncserver
+apt-get install tightvncserver xfonts-base
