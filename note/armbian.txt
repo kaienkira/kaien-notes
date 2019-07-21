@@ -10,3 +10,4 @@
 apt-get install openbox
 apt-get install tightvncserver xfonts-base
 apt-get install cifs-utils
+apt-get install samba
