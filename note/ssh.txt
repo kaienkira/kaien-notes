@@ -2,11 +2,12 @@
 
 ssh
 -f Requests ssh to go to background just before command execution. implies -n
+-g Allows remote hosts to connect to local forwarded ports
 -n Redirects stdin from /dev/null (actually, prevents reading from stdin).
 -N Do not execute a remote command
--T Disable pseudo-tty allocation.
 -D [bind_address:]port
    Specifies a local dynamic application-level port forwarding
+-T Disable pseudo-tty allocation.
 
 ssh -fNT -D <port> <user_name>@<host_name>
 proxychains <prog> <args>
