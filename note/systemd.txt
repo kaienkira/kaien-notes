@@ -25,9 +25,10 @@ systemctl disable <service>
 systemctl start <service>
 # 关闭服务
 systemctl stop <service>
-
 # 重置失败状态
 systemctl reset-failed
+# 列出依赖关系
+systemctl list-dependencies
 
 ===============================================================================
 -*- Unit -*-
