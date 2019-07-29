@@ -4,7 +4,8 @@ Description=Twilight Client Service
 [Service]
 Type=exec
 ExecStart=%h/local/tl-client/twilight-line-client -e \
-          %h/local/tl-client/config.json >/dev/null
+          %h/local/tl-client/config.json
+StandardOutput=null
 
 [Install]
 WantedBy=multi-user.target
