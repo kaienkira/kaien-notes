@@ -310,6 +310,7 @@ pacman -S virtualbox virtualbox-guest-iso
 pacman -S ntfs-3g
 -------------------------------------------------------------------------------
 pacman -S transmission-gtk
+pacman -S amule
 pacman -S vlc
 pacman -S evince
 pacman -S blender
@@ -335,6 +336,10 @@ vi ~/.xinitrc
 
 # vmtools
     systemctl enable vmtoolsd
+
+# amule
+    amuleweb --write-config --host=localhost
+             --password=password --admin-pass=anotherpassword
 ===============================================================================
 -*- Audio -*-
 ===============================================================================
