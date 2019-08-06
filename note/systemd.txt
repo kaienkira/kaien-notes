@@ -90,3 +90,9 @@ journalctl -xe
 *. 关闭IPv6
     LinkLocalAddressing=no
     IPv6AcceptRA=no
+
+===============================================================================
+-*- Login -*-
+===============================================================================
+vi /etc/systemd/logind.conf
+    HandlePowerKey=ignore
