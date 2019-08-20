@@ -370,6 +370,9 @@ alsamixer
 # check file belongs to which package
     pacman -Qo <file>
 
+# list all files owned by a given package
+    pacman -Ql <package_name>
+
 ===============================================================================
 -*- System Maintenance -*-
 ===============================================================================

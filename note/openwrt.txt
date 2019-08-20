@@ -1,0 +1,3 @@
+*. run in vmware
+    pacman -S qemu
+    qemu-img convert -f raw -O vmdk openwrt.img openwrt.vmdk
