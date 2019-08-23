@@ -253,7 +253,9 @@
     sensors-detect
     sensors
 
-# wifi wpa network
+# disk smart
+    pacman -S smartmontools
+    smartctl --info /dev/<device>
 
 ===============================================================================
 -*- Server -*-
