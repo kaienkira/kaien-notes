@@ -1,1 +1,2 @@
 monitor_control.restrict_backdoor = "true"
+mainMem.useNamedFile = "FALSE"
