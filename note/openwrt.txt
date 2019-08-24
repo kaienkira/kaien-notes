@@ -1,5 +1,6 @@
 *. run in vmware
     pacman -S qemu
+    zcat openwrt.img.gz | dd bs=1G count=1 conv=sync of=openwrt.img
     qemu-img convert -f raw -O vmdk openwrt.img openwrt.vmdk
     vi openwrt.vmx
         ethernet0.virtualDev = "e1000"
