@@ -4,3 +4,7 @@
     qemu-img convert -f raw -O vmdk openwrt.img openwrt.vmdk
     vi openwrt.vmx
         ethernet0.virtualDev = "e1000"
+
+*. opkg
+    opkg update
+    opkg list-upgradable | awk -F ' - ' '{print $1}' | xargs opkg upgrade
