@@ -7,3 +7,6 @@ xmrig-cpu
     macOS
         brew install libuv
         cmake -DWITH_HTTPD=OFF -DWITH_TLS=OFF -DUV_LIBRARY=/usr/local/opt/libuv/lib/libuv.a
+    windows
+        cmake .. -G "Unix Makefiles" -DWITH_HTTPD=OFF -DWITH_TLS=OFF \
+                 -DXMRIG_DEPS=<xmrig-deps/gcc/x64>
