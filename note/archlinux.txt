@@ -163,7 +163,6 @@
 
         [Network]
         DHCP=ipv4
-        RouteMetric=10
         [DHCP]
         RouteMetric=10
 
