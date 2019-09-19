@@ -3,7 +3,8 @@
 *. Profile
     export PS1='\u@\h:\w\$ '
 *. libimobiledevice
-    brew install --HEAD libimobiledevice
+    brew uninstall -f libimobiledevice ideviceinstaller usbmuxd
+    brew install -v --HEAD --build-from-source usbmuxd libimobiledevice ideviceinstaller
     chmod 777 /var/db/lockdown
     # 查看日志
     idevicesyslog
