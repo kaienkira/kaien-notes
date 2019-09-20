@@ -4,3 +4,5 @@
 *. 时序
     CL: CAS#延迟
     tRCD: RAS#到CAS#
+                       时钟        带宽
+DDR4-3200(PC4-25600)   1600MHz     25600MB/s
