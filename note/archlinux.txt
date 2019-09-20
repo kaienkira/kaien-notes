@@ -163,7 +163,9 @@
 
         [Network]
         DHCP=ipv4
+        DNS=8.8.8.8
         [DHCP]
+        UseDNS=false
         RouteMetric=10
 
         [Network]
