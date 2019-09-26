@@ -8,3 +8,8 @@
 *. opkg
     opkg update
     opkg list-upgradable | awk -F ' - ' '{print $1}' | xargs opkg upgrade
+
+*. capture packets
+    opkg install tcpdump
+    killall tcpdump; tcpdump -n -i eth1
+    ssh user@myledebox tcpdump -i eth1 -U -s0 -w - 'not port 22' | sudo wireshark -k -i -
