@@ -3,3 +3,9 @@ set print element 0
 
 *. TUI-Key
 c+x c+a
+
+# 打印va_args
+    # first long
+    p *(long *)(((char *)args[0].reg_save_area)+args[0].gp_offset)
+    # sencod char *
+    p *(char **)(((char *)args[0].reg_save_area)+args[0].gp_offset+8)
