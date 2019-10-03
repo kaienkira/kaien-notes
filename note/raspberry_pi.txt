@@ -8,7 +8,7 @@ vi /etc/apt/sources.list.d/raspi.list
     vncserver -Encryption PreferOff -Authentication VncAuth
 
 *. 5inch HDMI(MPI5001)
-    vi /boot/config.txt
+    sudo vi /boot/config.txt
         hdmi_force_edid_audio=1
         max_usb_current=1
         hdmi_force_hotplug=1
@@ -18,3 +18,9 @@ vi /etc/apt/sources.list.d/raspi.list
         hdmi_mode=87
         hdmi_drive=1
         hdmi_cvt 800 480 60 6 0 0 0
+
+*. bluetooth device
+    sudo bluetoothctl
+    scan on
+    devices
+    connect to <device_id>
