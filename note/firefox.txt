@@ -1,6 +1,11 @@
 ===============================================================================
 -*- about:config -*-
 ===============================================================================
+*. 禁用磁盘缓存
+browser.cache.disk.enable false
+browser.cache.memory.enable true
+browser.cache.memory.max_entry_size -1
+
 general.warnOnAboutConfig 显示修改配置警告
 extensions.logging.enabled 扩展日志输出到控制台
 
