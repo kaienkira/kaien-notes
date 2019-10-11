@@ -43,8 +43,8 @@ K2P-5G
 Device               RAM      ROM      GbE   DR              Soc
 ======================================================================================================================================================
 Netgear R7800        512MB    128MB      5   800+1733        CPU:      IPQ8065(28nm;32bit;Krait300x2;4C;1728MHz)
-                                                             2.4G:     QCA9984(800Mbps;40MHz;256-QAM;4x4mimo;PA/LNA)
-                                                             5G:       QCA9984(1733Mbps;160MHz;256-QAM;4x4mimo;PA/LNA)
+                                                             2.4G:     QCA9984(800Mbps;40MHz;256-QAM;4x4mimo;SKY2623L;PA/LNA)
+                                                             5G:       QCA9984(1733Mbps;160MHz;256-QAM;4x4mimo;PA5542;PA/LNA)
                                                              Switch:   QCA8337
                                                              Port:     USB3.0   x2
                                                                        eSATA    x1
