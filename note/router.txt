@@ -1,6 +1,41 @@
-===============================================================================
-CPU             Core  Thread  Frequency  Bit
-MTK7621AT          2       4     880Mhz  32-bit
-===============================================================================
-Device          CPU
-Phicomm K2P     MTK7621AT
+频宽(spectral bandwidth)
+    子载波数(number of subcarriers)
+    数据子载波数(number of data subcarriers)
+    实际用于数据传输的通道数量
+    802.11g   20MHz OFDM    48条数据子载波数
+    802.11n   20MHz OFDM    52条数据子载波数
+    802.11n   40MHz OFDM   108条数据子载波数
+    802.11ac  40MHz OFDM   108条数据子载波数
+    802.11ac  80MHz OFDM   234条数据子载波数
+    802.11ac 160MHz OFDM   234*2条数据子载波数
+    802.11ax  80MHz OFDMA  980条数据子载波数
+    802.11ax 160MHz OFDMA  980*2条数据子载波数
+子载波间距(subcarrier spacing)
+    T-IFFT(逆向快速傅里叶变换(Inverse FFT)有效符号时间)
+    T-IFFT = 1 / f = 1 / (subcarrier spacing)
+    802.11a/g/n/ac   312.500KHz   3.2us
+    802.11ax          78.125KHz  12.8us
+保护间隔(time guard interval)
+    T-GI(两次传输之间用于保护频带(guard band)的时间)
+    802.11a/g        0.8us
+    802.11n/ac       0.4us(Short GI)/0.8(Long GI)
+    802.11ax         0.8us/1.6us/3.2us
+空间流(spatial streams) 
+通带调制(passband modulation)
+       BPSK  1bit/symbol
+       QPSK  2bit/symbol
+     16-QAM  4bit/symbol
+     64-QAM  6bit/symbol
+    256-QAM  8bit/symbol
+   1024-QAM 10bit/symbol
+调制技术的编码率(coding rate) 
+    编码率决定了有效编码位数的比例，如 1/2, 3/4, 5/6等
+    例如 5/6 表示每5位编码使用1位冗余码
+
+K2P-2.4G
+256QAM   40MHz          ShortGI                   2x2-mimo
+     8 * 108 * 312500 * 3.2 / (3.2 + 0.4) * 5/6 * 2 = 400Mbps
+====================================================================================================================================================================
+Device               RAM    ROM   GbE   Soc                            2.4G                                         5G
+====================================================================================================================================================================
+Phicomm K2P(A1/A2)   128MB  16MB    5   MTK7621AT(32bit;2C4T;880MHz)   MT7615DN(400Mbps;40MHz;256-QAM;2x2mimo)
