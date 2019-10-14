@@ -48,6 +48,11 @@ Netgear R7800        512MB    128MB      5   800+1733        CPU:      IPQ8065(2
                                                              Switch:   QCA8337
                                                              Port:     USB3.0   x2
                                                                        eSATA    x1
+Netgear R6900v2      256MB    128MB      5   800+1733        CPU:      MTK7621AT(65nm;32bit;2C4T;880MHZ)
+(Netgear R6700v2)                                            2.4G:     MT7615N(800Mbps;40MHz;256-QAM;4x4mimo;集成PA/LNA)
+(Netgear R6800)                                              5G:       MT7615N(1733Mbps;160Hz;256-QAM;4x4mimo;QPF4519;PA/LNA)
+                                                             Port:     USB3.0   x1
+                                                                       USB2.0   x1
 D-Team Newifi3       512MB     32MB      5   300+867         CPU:      MTK7621AT(65nm;32bit;2C4T;880MHZ)
                                                              2.4G:     MT7603EN(300Mbps;40MHz;64-QAM;2x2mimo;SIGE-2576L;PA)
                                                              5G:       MT7612EN(867Mbps;80MHz;256-QAM;2x2mimo;SKY85717-21;PA/LNA)
