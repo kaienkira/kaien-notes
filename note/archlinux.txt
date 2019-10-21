@@ -1,6 +1,50 @@
 ===============================================================================
 -*- Install -*-
 ===============================================================================
+# Disk (uefi+gpt)
+    # partition
+    fdisk
+        g -> create a new empty GPT partition table
+        # create esp
+        n -> add a new partition
+            1     -> partition number
+            enter -> first sector(default)
+            +550M -> last sector
+        t -> change a partition type
+            1     -> partition number
+            1     -> partition type
+                     (EFI System: C12A7328-F81F-11D2-BA4B-00A0C93EC93B)
+        # create swap partition
+        n -> add a new partition
+            2     -> partition number
+            enter -> first sector(default)
+            +2G   -> last sector
+        t -> change a partition type
+            2     -> partition number
+            19    -> partition type
+                     (Linux swap: 0657FD6D-A4AB-43C4-84E5-0933C84B4F4F)
+        # create root partition
+        n -> add a new partition
+            3     -> partition number
+            enter -> first sector(default)
+            enter -> last sector(default)
+        t -> change a partition type
+            3     -> partition number
+            20    -> partition type
+                     (Linux filesystem: 0FC63DAF-8483-4772-8E79-3D69D8477DE4)
+        w
+
+    # format file system
+    mkfs.vfat /dev/sda1
+    mkswap /dev/sda2
+    mkfs.ext4 /dev/sda3
+
+    # mount
+    mount /dev/sda3 /mnt
+    mkdir /mnt/boot
+    mount /dev/sda1 /mnt/boot
+    swapon /dev/sda2
+
 # Disk (uefi+gpt+lvm)
     # show disk info
     lsblk
@@ -102,6 +146,11 @@
     pacstrap /mnt base
     genfstab -U /mnt >> /mnt/etc/fstab
     arch-chroot /mnt
+
+# Boot Loader (uefi+gpt)
+    pacman -S grub efibootmgr
+    grub-install --efi-directory=/boot --bootloader-id=grub
+    grub-mkconfig -o /boot/grub/grub.cfg
 
 # Boot Loader (uefi+gpt+lvm)
     vi /etc/mkinitcpio.conf
