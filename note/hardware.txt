@@ -6,3 +6,25 @@
     tRCD: RAS#到CAS#
                        时钟        带宽
 DDR4-3200(PC4-25600)   1600MHz     25600MB/s
+
+-------------------------------------------------------------------------------
+-*- PCIe (Peripheral Component Interconnect Express) -*-
+-------------------------------------------------------------------------------
+               频率       每次有效传输字节     带宽
+PCIe 1.0 x1    2.5GHz     0.8bit(8b/10b)        250MB/s
+PCIe 1.0 x4    2.5GHz     3.2bit(8b/10b)       1000MB/s
+PCIe 1.0 x8    2.5GHz     6.4bit(8b/10b)       2000MB/s
+PCIe 1.0 x16   2.5GHz    12.8bit(8b/10b)       4000MB/s
+PCIe 2.0 x1    5.0GHz     0.8bit(8b/10b)        500MB/s
+PCIe 2.0 x4    5.0GHz     3.2bit(8b/10b)       2000MB/s   
+PCIe 2.0 x8    5.0GHz     6.4bit(8b/10b)       4000MB/s
+PCIe 2.0 x16   5.0GHz    12.8bit(8b/10b)       8000MB/s
+PCIe 3.0 x1    8.0GHz    0.9846bit(128b/130b)   984.6MB/s
+PCIe 3.0 x4    8.0GHz    3.9385bit(128b/130b)  3938.5MB/s
+PCIe 3.0 x8    8.0GHz    7.8769bit(128b/130b)  7876.9MB/s
+PCIe 3.0 x16   8.0GHz   15.7538bit(128b/130b) 15753.8MB/s
+PCIe 4.0 x1   16.0GHz    0.9846bit(128b/130b)  1969.2MB/s
+PCIe 4.0 x4   16.0GHz    3.9385bit(128b/130b)  7876.9MB/s
+PCIe 4.0 x8   16.0GHz    7.8769bit(128b/130b) 15753.8MB/s
+PCIe 4.0 x16  16.0GHz   15.7538bit(128b/130b) 31507.7MB/s
+-------------------------------------------------------------------------------
