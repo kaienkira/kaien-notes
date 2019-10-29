@@ -1,30 +1,41 @@
-=====================================================================================================================================================
-Device                         RAM      FLASH    GbE   DR                   Soc
-=====================================================================================================================================================
-Netgear R7800                  512MB    128MB      5   800+1733(n+ac)       CPU:      IPQ8065(28nm;32bit;Krait300x2;4C;1728MHz)
-                                                                            2.4G:     QCA9984(800Mbps;40MHz;256-QAM;4x4mimo;SKY2623L;PA/LNA)
-                                                                            5G:       QCA9984(1733Mbps;160MHz;256-QAM;4x4mimo;PA5542;PA/LNA)
-                                                                            Switch:   QCA8337
-                                                                            Port:     USB3.0   x2
-                                                                                      eSATA    x1
-Netgear R6900v2                256MB    128MB      5   800+1733(n+ac)       CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
-                                                                            2.4G:     MT7615N(800Mbps;40MHz;256-QAM;4x4mimo;集成PA/LNA)
-                                                                            5G:       MT7615N(1733Mbps;160Hz;256-QAM;4x4mimo;QPF4519;PA/LNA)
-                                                                            Port:     USB3.0   x1
-Netgear WNDR4500v3             128MB    128MB      5   450+450(n+n)         CPU:      QCA9563(65nm;32bit;750MHz)
-                                                                            2.4G:     QCA9563(450Mbps;3x3mimo)
-                                                                            5G:       AR9580(450Mbps;3x3mimo)
-                                                                            Switch:   QCA8337N
-                                                                            Port:     USB2.0   x2
-D-Team Newifi3                 512MB     32MB      5   300+867(n+ac)        CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
-                                                                            2.4G:     MT7603EN(300Mbps;40MHz;64-QAM;2x2mimo;SIGE-2576L;PA)
-                                                                            5G:       MT7612EN(867Mbps;80MHz;256-QAM;2x2mimo;SKY85717-21;PA/LNA)
-                                                                            Port:     USB3.0   x1
-=====================================================================================================================================================
-Phicomm K2P(A1/A2)             128MB     16MB      5   400+867(n+ac)        CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
-                                                                            2.4G:     MT7615DN(400Mbps;40MHz;256-QAM;2x2mimo;SKY2623L;PA/LNA)
-                                                                            5G:       MT7615DN(867Mbps;80MHz;256-QAM;2x2mimo;QPF4519;PA/LNA)
-=====================================================================================================================================================
+============================================================================================================================================
+Device                         RAM      FLASH   DR                   Soc
+============================================================================================================================================
+Netgear R7800                  512MB    128MB   800+1733(n+ac)       CPU:      IPQ8065(28nm;32bit;Krait300x2;4C;1728MHz)
+                                                                     2.4G:     QCA9984(800Mbps;40MHz;256-QAM;4x4mimo;SKY2623L;PA/LNA)
+                                                                     5G:       QCA9984(1733Mbps;160MHz;256-QAM;4x4mimo;PA5542;PA/LNA)
+                                                                     Switch:   QCA8337
+                                                                     Port:     GbE      x5
+                                                                               USB3.0   x2
+                                                                               eSATA    x1
+Netgear R6900v2                256MB    128MB   800+1733(n+ac)       CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
+                                                                     2.4G:     MT7615N(800Mbps;40MHz;256-QAM;4x4mimo;集成PA/LNA)
+                                                                     5G:       MT7615N(1733Mbps;160Hz;256-QAM;4x4mimo;QPF4519;PA/LNA)
+                                                                     Port:     GbE      x5
+                                                                               USB3.0   x1
+Netgear WNDR4500v3             128MB    128MB   450+450(n+n)         CPU:      QCA9563(65nm;32bit;750MHz)
+                                                                     2.4G:     QCA9563(450Mbps;3x3mimo)
+                                                                     5G:       AR9580(450Mbps;3x3mimo)
+                                                                     Switch:   QCA8337N
+                                                                     Port:     GbE      x5
+                                                                               USB2.0   x2
+D-Team Newifi3                 512MB     32MB   300+867(n+ac)        CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
+                                                                     2.4G:     MT7603EN(300Mbps;40MHz;64-QAM;2x2mimo;SIGE-2576L;PA)
+                                                                     5G:       MT7612EN(867Mbps;80MHz;256-QAM;2x2mimo;SKY85717-21;PA/LNA)
+                                                                     Port:     GbE      x5
+                                                                               USB3.0   x1
+============================================================================================================================================
+ASUS TUF-AX3000                512MB    256MB   574+2402(ax+ax)      CPU:      BCM6750(32bit;3C;1500MHz)
+                                                                     2.4G      BCM6750(574Mps;40MHz;1024-QAM;2x2mimo;SKY85331-11;PA/LNA)
+                                                                     5G:       BCM43684(2402Mps;160MHz;1024-QAM;2x2mimo;SKY85743-21;PA/LNA)
+                                                                     Port:     GbE      x5
+                                                                               USB3.0   x1
+============================================================================================================================================
+Phicomm K2P(A1/A2)             128MB     16MB   400+867(n+ac)        CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
+                                                                     2.4G:     MT7615DN(400Mbps;40MHz;256-QAM;2x2mimo;SKY2623L;PA/LNA)
+                                                                     5G:       MT7615DN(867Mbps;80MHz;256-QAM;2x2mimo;QPF4519;PA/LNA)
+                                                                     Port:     GbE      x5
+============================================================================================================================================
 频宽(spectral bandwidth)
     子载波数(number of subcarriers)
     数据子载波数(number of data subcarriers)
@@ -32,9 +43,12 @@ Phicomm K2P(A1/A2)             128MB     16MB      5   400+867(n+ac)        CPU:
     802.11g   20MHz OFDM    48条数据子载波数
     802.11n   20MHz OFDM    52条数据子载波数
     802.11n   40MHz OFDM   108条数据子载波数
+    802.11ac  20MHz OFDM    52条数据子载波数
     802.11ac  40MHz OFDM   108条数据子载波数
     802.11ac  80MHz OFDM   234条数据子载波数
     802.11ac 160MHz OFDM   234*2条数据子载波数
+    802.11ax  20MHz OFDMA  234条数据子载波数
+    802.11ax  40MHz OFDMA  468条数据子载波数
     802.11ax  80MHz OFDMA  980条数据子载波数
     802.11ax 160MHz OFDMA  980*2条数据子载波数
 子载波间距(subcarrier spacing)
@@ -58,10 +72,16 @@ Phicomm K2P(A1/A2)             128MB     16MB      5   400+867(n+ac)        CPU:
 调制技术的编码率(coding rate) 
     编码率决定了有效编码位数的比例，如 1/2, 3/4, 5/6等
     例如 5/6 表示每5位编码使用1位冗余码
-
+============================================================================================================================================
 K2P-2.4G
-256QAM   40MHz          ShortGI                   2x2-mimo
-     8 * 108 * 312500 * 3.2 / (3.2 + 0.4) * 5/6 * 2 = 400Mbps
+    256QAM 40MHz 2x2-mimo
+    8 * 108 * 312500 * 3.2 / (3.2 + 0.4) * 5/6 * 2 = 400Mbps
 K2P-5G
-256QAM   80MHz          ShortGI                   2x2-mimo
-     8 * 234 * 312500 * 3.2 / (3.2 + 0.4) * 5/6 * 2 = 867Mbps
+    256QAM 80MHz 2x2-mimo
+    8 * 234 * 312500 * 3.2 / (3.2 + 0.4) * 5/6 * 2 = 867Mbps
+TUF-AX3000-2.4G
+    1024QAM 40MHz 2x2-mimo
+    10 * 468 * 78125 * 12.8 / (12.8 + 0.8) * 5/6 * 2 = 574Mbps
+TUF-AX3000-5G
+    1024QAM 160MHz 2x2-mimo
+    10 * 1960 * 78125 * 12.8 / (12.8 + 0.8) * 5/6 * 2 = 2402Mps
