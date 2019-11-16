@@ -2,6 +2,9 @@
 mysql安全设置
     mysql_secure_installation
 ===============================================================================
+获取所有参数
+    echo "show variables" | mysql -uroot
+===============================================================================
 重置root密码
     service mysql stop
     sudo /usr/sbin/mysqld --skip-grant-tables --skip-networking &
