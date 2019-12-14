@@ -76,6 +76,10 @@ svn up --set-depth infinity <dir1> <dir2> ...
 $svn propedit -r N --revprop svn:log URL
 $svn propset -r N --revprop svn:log "new log message" URL
 
+*. Checksum mismatch while updating
+svn update --set-depth empty
+svn update --set-depth infinity
+
 ===============================================================================
 -*- client config -*-
 ===============================================================================
