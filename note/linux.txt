@@ -22,7 +22,8 @@ vgextend <vg_name> /dev/sda6
 vgs (see size)
 lvs (see size)
 lvextend /dev/<vg_name>/<root> /dev/sda6
-resize2fs -p /dev/<vg_name>/<root>
+resize2fs -p /dev/<vg_name>/<root> (for ext4)
+xfs_growfs /dev/<vg_name>/<root> (for xfs)
 
 *. reduce lv
 # reboot use rescue mode, skip mount
