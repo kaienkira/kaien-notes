@@ -5,6 +5,14 @@
     vi openwrt.vmx
         ethernet0.virtualDev = "e1000"
 
+*. run in docker
+    pacman -S docker
+    systemctl enable docker
+    systemctl start docker
+    docker info
+    docker pull openwrtorg/rootfs:x86-64
+    docker images
+
 *. opkg
     opkg update
     opkg list-upgradable | awk -F ' - ' '{print $1}' | xargs opkg upgrade
