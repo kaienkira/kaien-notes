@@ -10,10 +10,12 @@
     systemctl enable docker
     systemctl start docker
     docker info
-    docker pull openwrtorg/rootfs:x86-64
+    # docker pull openwrtorg/rootfs:x86-64
     docker import https://downloads.openwrt.org/releases/19.07.2/targets/x86/64/openwrt-19.07.2-x86-64-generic-rootfs.tar.gz openwrt-19.07.2 
     docker images
+    docker run -it --rm openwrt-19.07.2 /sbin/init
     docker ps
+    docket exec -it <container_id> /bin/sh
 
 *. opkg
     opkg update
