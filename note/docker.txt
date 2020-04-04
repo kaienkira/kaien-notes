@@ -1,9 +1,16 @@
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) stable"
-sudo apt-get update
+pacman -S docker
+systemctl enable docker
+systemctl start docker
 
-sudo apt-get install docker-ce
-sudo apt-get install docker-ce=<VERSION>
-    apt-cache madison docker-ce
+docker import
+docker images
+docker ps
+docker run
+docker exec
+
+/var/lib/docker/containers
+
+/etc/docker/daemon.json
+{
+    "bip": "172.0.0.1/24"
+}
