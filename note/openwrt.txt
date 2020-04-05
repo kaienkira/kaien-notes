@@ -23,7 +23,7 @@
     docker network create \
         --driver bridge -o 'com.docker.network.bridge.name=docker1'
         --subnet=172.0.1.1/24 docker1
-    docker network connect openwrt-19.07.2 docker1
+    docker network connect docker1 openwrt-19.07.2
     docker exec -it openwrt-19.07.2 /bin/sh
 
 *. opkg
