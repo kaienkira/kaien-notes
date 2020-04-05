@@ -2,6 +2,7 @@ pacman -S docker
 systemctl enable docker
 systemctl start docker
 
+docker info
 docker import
 docker images
 docker ps
@@ -9,8 +10,3 @@ docker run
 docker exec
 
 /var/lib/docker/containers
-
-/etc/docker/daemon.json
-{
-    "bip": "172.0.0.1/24"
-}

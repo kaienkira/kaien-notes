@@ -7,16 +7,24 @@
 
 *. run in docker
     pacman -S docker
+    vi /etc/docker/daemon.json
+    {
+        "bip": "172.0.0.1/24"
+    }
     systemctl enable docker
     systemctl start docker
-    docker info
-    # docker pull openwrtorg/rootfs:x86-64
-    docker import https://downloads.openwrt.org/releases/19.07.2/targets/x86/64/openwrt-19.07.2-x86-64-generic-rootfs.tar.gz openwrt-19.07.2 
-    docker images
-    docker run -it --rm openwrt-19.07.2 /sbin/init
-    docker run -d --restart always --name openwrt-19.07.2 openwrt-19.07.2 /sbin/init
-    docker ps
-    docket exec -it <container_id> /bin/sh
+    docker import https://downloads.openwrt.org/releases/19.07.2/targets/x86/64/openwrt-19.07.2-x86-64-generic-rootfs.tar.gz openwrt-19.07.2
+    docker run -d \
+        --restart always \
+        --name openwrt-19.07.2 \
+        --ip 172.0.0.2 \
+        --privileged \
+        openwrt-19.07.2 /sbin/init
+    docker network create \
+        --driver bridge -o 'com.docker.network.bridge.name=docker1'
+        --subnet=172.0.1.1/24 docker1
+    docker network connect openwrt-19.07.2 docker1
+    docker exec -it openwrt-19.07.2 /bin/sh
 
 *. opkg
     opkg update
