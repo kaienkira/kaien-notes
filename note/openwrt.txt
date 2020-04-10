@@ -33,7 +33,7 @@
 *. capture packets
     opkg install tcpdump
     killall tcpdump; tcpdump -n -i eth1
-    ssh user@myledebox tcpdump -i eth1 -U -s0 -w - 'not port 22' | sudo wireshark -k -i -
+    ssh user@myledebox tcpdump -i eth1 -U -s0 -w - 'not port 22' | sudo XAUTHORITY=~/.Xauthority wireshark -k -i -
 
 *. wndr3700v2
     pacman -S tftp-hpa
