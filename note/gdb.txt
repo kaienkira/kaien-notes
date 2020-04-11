@@ -1,10 +1,12 @@
-#显示完整字符串
+*. 显示完整字符串
 set print element 0
+*. 跟随子进程
+set follow-fork-mode child
 
 *. TUI-Key
 c+x c+a
 
-# 打印va_args
+*. 打印va_args
     # first long
     p *(long *)(((char *)args[0].reg_save_area)+args[0].gp_offset)
     # sencod char *
