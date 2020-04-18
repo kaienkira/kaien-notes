@@ -460,3 +460,9 @@ pacman -S android-udev
 pacman -S gvfs-mtp
 pacman -S lib32-gcc-libs lib32-zlib (for old android sdk)
 -------------------------------------------------------------------------------
+
+===============================================================================
+-*- Trouble shooting -*-
+===============================================================================
+*. mesa-20 iris driver bug
+    ESA_LOADER_DRIVER_OVERRIDE=i965 startx
