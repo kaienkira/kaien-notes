@@ -418,21 +418,24 @@ alsactl store
 # force reinstall package
     pacman -S --overwrite '*' <pacakge_name>
 
+# check package info
+    pacman -Qi [pacakge_name]
+
 # check package integrity
     pacman -Qkk [package_name]
 
 # list all foreign packages(eg: aur)
     pacman -Qm
 
-# list all user installed packages
-    comm -23 <(pacman -Qqett | sort) \
-             <(pacman -Qqg base -g base-devel | sort | uniq)
-
 # check file belongs to which package
     pacman -Qo <file>
 
 # list all files owned by a given package
     pacman -Ql <package_name>
+
+# list all user installed packages
+    comm -23 <(pacman -Qqett | sort) \
+             <(pacman -Qqg base -g base-devel | sort | uniq)
 
 ===============================================================================
 -*- System Maintenance -*-
