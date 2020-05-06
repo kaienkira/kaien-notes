@@ -4,7 +4,7 @@ fifo(first in, first out; named pipe)
 *. create
     mkfifo(pathname, mode)
     mkfifoat(dirfd, pathname, mode)
-*. open blocking
+*. open
     open(pathname, O_RDONLY)
     open(pathname, O_WRONLY)
     [] The FIFO must be opened on both ends (reading and writing)
