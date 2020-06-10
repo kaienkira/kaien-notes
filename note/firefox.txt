@@ -7,7 +7,7 @@ browser.cache.memory.enable true
 browser.cache.memory.max_entry_size -1
 
 *. 禁用url栏缩放
-browser.urlbar.update1 false
+browser.urlbar.disableExtendForTests true
 
 general.warnOnAboutConfig 显示修改配置警告
 extensions.logging.enabled 扩展日志输出到控制台
