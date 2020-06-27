@@ -193,6 +193,9 @@ vi git_ssh_proxy.sh
 export GIT_PROXY_COMMAND=git_proxy.sh
 export GIT_SSH=git_ssh_proxy.sh
 
+# use plink pageant
+GIET_SSH=\TortoiseGit\bin\TortoiseGitPlink.exe
+
 ================================================================================
 -*- Misc -*-
 ================================================================================
