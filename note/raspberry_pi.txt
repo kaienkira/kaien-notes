@@ -7,6 +7,9 @@ vi /etc/apt/sources.list.d/raspi.list
     vi /etc/wpa_supplicant/wpa_supplicant.conf
         country=US
 
+*. temperature monitor
+    sudo vcgencmd measure_temp
+
 *. vnc
     sudo apt-get install realvnc-server realvnc-viewer
     vncserver -Encryption PreferOff -Authentication VncAuth
