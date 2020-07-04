@@ -3,6 +3,9 @@ vi /etc/apt/sources.list
 vi /etc/apt/sources.list.d/raspi.list
     deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main ui
 
+*. network
+    sudo raspi-config
+
 *. vnc
     sudo apt-get install realvnc-server realvnc-viewer
     vncserver -Encryption PreferOff -Authentication VncAuth
