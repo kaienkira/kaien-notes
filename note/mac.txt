@@ -11,6 +11,9 @@
     netstat -ap tcp | grep -i "listen"
     sudo lsof -PiTCP -sTCP:LISTEN
 
+*. 关闭SIP
+    csrutil disable
+
 *. 修改IP地址
     networksetup -setmanual "Ethernet" <ip> <netmask> <gateway>
 
