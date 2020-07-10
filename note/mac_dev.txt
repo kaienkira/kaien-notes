@@ -1,5 +1,6 @@
 *. Homebrew
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    ALL_PROXY=socks5://127.0.0.1:9050 brew upgrade
 *. Profile
     export PS1='\u@\h:\w\$ '
 *. libimobiledevice
