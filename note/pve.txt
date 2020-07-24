@@ -23,7 +23,7 @@ pvedaemon.service
 ===============================================================================
 /etc/pve/storage.cfg
     dir: local-pve
-        path /opt/pve/
+        path /opt/pve
         content iso,images
 
     zfspool: local-zfs
