@@ -1,16 +1,19 @@
+# install
+    dd bs=1M conv=fdatasync if=./proxmox-ve_*.iso of=/dev/XYZ
+
 # no-subscription repository
-vi /etc/apt/sources.list.d/pve-enterprise.list
-    deb http://download.proxmox.com/debian/pve buster pve-no-subscription
+    vi /etc/apt/sources.list.d/pve-enterprise.list
+        deb http://download.proxmox.com/debian/pve buster pve-no-subscription
 
 # clear rrdcached data
-service rrdcached stop
-rm -rf /var/lib/rrdcached
-service rrdcached start
+    service rrdcached stop
+    rm -rf /var/lib/rrdcached
+    service rrdcached start
 
 # zfs
-zpool status
-zpool list
-zfs list
+    zpool status
+    zpool list
+    zfs list
 
 ===============================================================================
 /etc/pve/nodes

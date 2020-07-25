@@ -11,6 +11,9 @@
     netstat -ap tcp | grep -i "listen"
     sudo lsof -PiTCP -sTCP:LISTEN
 
+*. 查看磁盘
+    diskutil list
+
 *. 关闭SIP
     csrutil disable
 
@@ -29,3 +32,9 @@
     # 无法登录Appstore
     sudo pkill -9 -f Account
     sudo rm $HOME/Library/Accounts/*
+
+*. 刻写iso文件
+    hdiutil convert -format UDRW -o 1.dmg 1.iso
+    diskutil list
+    diskutil unmountDisk /dev/rdiskX
+    sudo dd if=1.dmg of=/dev/rdiskX bs=1m
