@@ -1,0 +1,31 @@
+*. samba
+    sudo apt-get install samba
+    useradd -s /sbin/nologin sambaadmin
+    useradd -s /sbin/nologin sambaguest
+    smbpasswd -a sambaadmin
+    smbpasswd -a sambaguest
+    vi /etc/samba/smb.conf
+        [global]
+        workgroup = WORKGROUP
+        interfaces = 192.168.10.10/24
+        hosts allow = 192.168.10.10/24
+        log file = /var/log/samba/samba.log
+        max log size = 1000
+        logging = file
+
+        server role = standalone server
+        obey pam restrictions = no
+        unix password sync = no
+        pam password change = no
+        map to guest = bad user
+
+        [share]
+        comment = File Share
+        path = /opt/samba
+        browseable = yes
+        read only = yes
+        write list = sambaadmin
+        create mask = 0755
+        guest ok = no
+        valid users = sambaadmin,sambaguest
+    systemctl restart smbd
