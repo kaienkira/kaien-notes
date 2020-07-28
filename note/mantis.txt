@@ -13,3 +13,4 @@ vi config_inc.php
     $g_send_reset_password          = OFF;
     $g_allow_blank_email            = ON;
     $g_window_title                 = 'Title';
+    $g_sort_by_last_name            = ON;
