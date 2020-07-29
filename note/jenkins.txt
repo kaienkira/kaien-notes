@@ -1,13 +1,16 @@
 *. 修改存储目录
     export JENKINS_HOME=<jenkins_data_dir>
+
 *. 不杀死子进程
     BUILD_ID=DONTKILLME <cmd>
+
 *. 建立服务
     vi /opt/jenkins/bin/run_jenkins.sh
         ```
         #!/bin/bash
 
         export JENKINS_HOME=/opt/jenkins/data
+        export _JAVA_OPTIONS="-Djava.net.preferIPv4Stack=true"
         /usr/bin/java -jar /opt/jenkins/bin/jenkins.war --httpPort=8080
         ```
     vi /usr/lib/systemd/system/jenkins.service
@@ -25,6 +28,7 @@
         ```
     systemctl enable jenkins
     systemctl start jenkins
+
 *. 插件
     Folders
     Matrix Authorization Strategy
