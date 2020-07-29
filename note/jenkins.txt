@@ -23,6 +23,8 @@
         [Install]
         WantedBy=multi-user.target
         ```
+    systemctl enable jenkins
+    systemctl start jenkins
 *. 插件
     Folders
     Matrix Authorization Strategy
