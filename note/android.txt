@@ -1,7 +1,7 @@
 ===============================================================================
 -*- Commandline Tools -*-
 -------------------------------------------------------------------------------
-*. tools/bin/sdkmanager
+*. cmdline-tools/tools/bin/sdkmanager
     [] 设置代理
         sdkmanager --proxy=socks --proxy_host=<ip> --proxy_port=<port> ...
     [] 列出所有包
@@ -16,7 +16,7 @@
         "build-tools;<version>" \
         "platforms;android-<version>" \
 
-*. tools/bin/avdmanager
+*. cmdline-tools/tools/bin/avdmanager
     avdmanager list
     avdmanager list avd
     avdmanager list target
