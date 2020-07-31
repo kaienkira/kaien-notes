@@ -4,6 +4,7 @@
 # no-subscription repository
     vi /etc/apt/sources.list.d/pve-enterprise.list
         deb http://download.proxmox.com/debian/pve buster pve-no-subscription
+        deb https://mirrors.tuna.tsinghua.edu.cn/proxmox/debian buster pve-no-subscription
 
 # clear rrdcached data
     service rrdcached stop
