@@ -353,6 +353,7 @@ pacman -S xf86-video-vesa
 pacman -S mesa vulkan-intel
 pacman -S xf86-video-vmware xf86-input-vmmouse open-vm-tools
 pacman -S alsa-utils
+pacman -S pulseaudio pavucontrol
 pacman -S xorg-server xorg-xinit
 pacman -S openbox
 pacman -S tint2
