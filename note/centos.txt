@@ -3,9 +3,6 @@
 -------------------------------------------------------------------------------
 *. epel
 yum install epel-release
-*. remi
-rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-6.rpm
-rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 
 ===============================================================================
 -*- package management -*-
@@ -106,6 +103,19 @@ setenforce 0
 -------------------------------------------------------------------------------
 *. 动态修改limit参数
 echo -n "Max core file size=unlimited:unlimited" > /proc/<pid>/limits
+===============================================================================
+
+===============================================================================
+-*- tigervnc+openbox+openrdp -*-
+-------------------------------------------------------------------------------
+yum install tigervnc openbox freerdp
+vi ~/.vnc/xstartup
+    exec openbox-session
+vi ~/.config/openbox/rc.xml
+vi ~/.config/openbox/menu.xml
+
+vncserver :1
+
 ===============================================================================
 
 ===============================================================================
