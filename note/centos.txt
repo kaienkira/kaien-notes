@@ -114,7 +114,7 @@ vi ~/.vnc/xstartup
 vi ~/.config/openbox/rc.xml
 vi ~/.config/openbox/menu.xml
 
-vncserver :1 -localhost
+vncserver :1 -localhost -UseIPv6=0
 
 ===============================================================================
 
