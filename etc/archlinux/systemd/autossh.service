@@ -4,8 +4,11 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
+Type=exec
 User=<user>
 ExecStart=/usr/bin/autossh -M 0 -N -g -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" -R 0.0.0.0:<port>:127.0.0.1:22 <user>@<host>
+Restart=always
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target

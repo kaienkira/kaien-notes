@@ -108,7 +108,7 @@ echo -n "Max core file size=unlimited:unlimited" > /proc/<pid>/limits
 ===============================================================================
 -*- remote: tigervnc+openbox+freerdp+ssh -*-
 -------------------------------------------------------------------------------
-yum install tigervnc openbox freerdp autossh
+yum install tigervnc openbox freerdp autossh zentity
 vi ~/.vnc/xstartup
     exec openbox-session
 vi ~/.config/openbox/rc.xml
