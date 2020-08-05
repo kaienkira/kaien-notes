@@ -7,6 +7,7 @@ Wants=network-online.target
 Type=forking
 User=<user>
 ExecStart=bash <path>/start_vnc_server.sh
+ExecStop=bash <path>/stop_vnc_server.sh
 
 [Install]
 WantedBy=multi-user.target

@@ -1,8 +1,6 @@
 [Unit]
 Description=<desc>
-After=sshd.service
 After=network-online.target
-Wants=sshd.service
 Wants=network-online.target
 
 [Service]
