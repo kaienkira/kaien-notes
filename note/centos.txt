@@ -115,6 +115,7 @@ vi ~/.config/openbox/rc.xml
 vi ~/.config/openbox/menu.xml
 
 vncserver :1 -localhost -UseIPv6=0
+xfreerdp /v:"$server_addr" /u:"$username" /p:"$password" /dynamic-resolution /cert-ignore
 
 ===============================================================================
 
