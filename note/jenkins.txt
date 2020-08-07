@@ -36,3 +36,10 @@
     categorized-view
     Extensible Choice Parameter
     Simple Theme
+
+*. Extensible Choice Groovy
+    def command = "<cmd>"
+    def proc = command.execute()
+    proc.waitFor()              
+    def instances = proc.in.text.readLines()
+    return instances
