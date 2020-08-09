@@ -407,6 +407,11 @@ vi ~/.xinitrc
 alsamixer
 alsactl store
 
+vi /etc/modeprobe.d/01-alsa.conf
+    options snd slots=snd_hda_intel,snd_usb_audio
+    options snd_hda_intel index=0
+    options snd_usb_audio index=1
+
 vi ~/.asoundrc
     defaults.pcm.!card 1
     defaults.ctl.!card 1
