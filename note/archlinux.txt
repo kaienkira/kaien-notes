@@ -405,7 +405,9 @@ vi ~/.xinitrc
 -*- Audio -*-
 ===============================================================================
 alsamixer
+
 alsactl store
+alsactl kill rescan
 
 vi /etc/modeprobe.d/01-alsa.conf
     options snd slots=snd_hda_intel,snd_usb_audio
