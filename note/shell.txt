@@ -97,6 +97,28 @@ $_
     直接把结果存到变量
         printf -v <var_name> '<format>' ....
 
+*. 关联数组
+    # declare
+    declare -A array_name
+    # clear
+    unset array_name
+
+    # get
+    array_name[key]=value
+    # set
+    ${array_name[key]}
+    # delete
+    unset array_name[key]
+
+    # length
+    ${#array[@]}
+    # check key
+    if [ ${array_name[key]+_} ]
+    # loop key
+    for key in "${!array[@]}"
+    # loop value
+    for key in "${array[@]}"
+
 ===============================================================================
 -*- find -*-
 -------------------------------------------------------------------------------
