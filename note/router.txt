@@ -1,47 +1,53 @@
-============================================================================================================================================
-Device                         RAM      FLASH   DR                   Soc
-============================================================================================================================================
-Netgear R7800                  512MB    128MB   800+1733(n+ac)       CPU:      IPQ8065(28nm;32bit;Krait300x2;2C;1728MHz)
-                                                                     2.4G:     QCA9984(800Mbps;40MHz;256-QAM;4x4mimo;SKY2623L;PA/LNA)
-                                                                     5G:       QCA9984(1733Mbps;160MHz;256-QAM;4x4mimo;PA5542;PA/LNA)
-                                                                     Switch:   QCA8337
-                                                                     Port:     GbE      x5
-                                                                               USB3.0   x2
-                                                                               eSATA    x1
-Netgear R6900v2                256MB    128MB   800+1733(n+ac)       CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
-                                                                     2.4G:     MT7615N(800Mbps;40MHz;256-QAM;4x4mimo;集成PA/LNA)
-                                                                     5G:       MT7615N(1733Mbps;160Hz;256-QAM;4x4mimo;QPF4519;PA/LNA)
-                                                                     Port:     GbE      x5
-                                                                               USB3.0   x1
-D-Team Newifi3                 512MB     32MB   300+867(n+ac)        CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
-                                                                     2.4G:     MT7603EN(300Mbps;40MHz;64-QAM;2x2mimo;SIGE-2576L;PA)
-                                                                     5G:       MT7612EN(867Mbps;80MHz;256-QAM;2x2mimo;SKY85717-21;PA/LNA)
-                                                                     Port:     GbE      x5
-                                                                               USB3.0   x1
-Netgear WNDR4500v3             128MB    128MB   450+450(n+n)         CPU:      QCA9563(65nm;32bit;750MHz)
-                                                                     2.4G:     QCA9563(450Mbps;3x3mimo)
-                                                                     5G:       AR9580(450Mbps;3x3mimo)
-                                                                     Switch:   QCA8337N
-                                                                     Port:     GbE      x5
-                                                                               USB2.0   x2
-Netgear WNDR3700v2              64MB     16MB   300+300(n+n)         CPU:      Atheros AR7161 rev 2(65nm;32bit;680MHz)
-                                                                     2.4G:     AR9223(300Mbps;2x2mim;bgn)
-                                                                     5G:       AR9220(300Mbps;2x2mimo;an)
-                                                                     Switch:   RTL8366SR
-                                                                     Port:     GbE      x5
-                                                                               USB2.0   x1
-============================================================================================================================================
-ASUS TUF-AX3000                512MB    256MB   574+2402(ax+ax)      CPU:      BCM6750(32bit;3C;1500MHz)
-                                                                     2.4G      BCM6750(574Mps;40MHz;1024-QAM;2x2mimo;SKY85331-11;PA/LNA)
-                                                                     5G:       BCM43684(2402Mps;160MHz;1024-QAM;2x2mimo;SKY85743-21;PA/LNA)
-                                                                     Port:     GbE      x5
-                                                                               USB3.0   x1
-============================================================================================================================================
-Phicomm K2P(A1/A2)             128MB     16MB   400+867(n+ac)        CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
-                                                                     2.4G:     MT7615DN(400Mbps;40MHz;256-QAM;2x2mimo;SKY2623L;PA/LNA)
-                                                                     5G:       MT7615DN(867Mbps;80MHz;256-QAM;2x2mimo;QPF4519;PA/LNA)
-                                                                     Port:     GbE      x5
-============================================================================================================================================
+===============================================================================================================================================
+Device                         RAM      FLASH   DR                         Soc
+===============================================================================================================================================
+Linksys MX5300                   1GB    512MB   1147+2402+1733(ax+ax+ac) CPU       IPQ8072A(14nm;64bit;4C;2.2GHz)
+                                                                         2.4G:     QCN5024(1147Mbps;40MHz;1024-QAM;4x4mimo;SKY85340;PA/LNA)
+                                                                         5G:       QCN5054(2402Mbps;80MHz;1024-QAM;4x4mimo;SKY85755-11;PA/LNA)
+                                                                         5G:       QCA9984(1733Mbps;160MHz;256-QAM;4x4mimo;SKY85746;PA/LNA)
+                                                                         Port:     GbE      x5
+                                                                                   USB3.0   x1
+Netgear R7800                  512MB    128MB   800+1733(n+ac)           CPU:      IPQ8065(28nm;32bit;Krait300x2;2C;1728MHz)
+                                                                         2.4G:     QCA9984(800Mbps;40MHz;256-QAM;4x4mimo;SKY2623L;PA/LNA)
+                                                                         5G:       QCA9984(1733Mbps;160MHz;256-QAM;4x4mimo;PA5542;PA/LNA)
+                                                                         Switch:   QCA8337
+                                                                         Port:     GbE      x5
+                                                                                   USB3.0   x2
+                                                                                   eSATA    x1
+Netgear R6900v2                256MB    128MB   800+1733(n+ac)           CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
+                                                                         2.4G:     MT7615N(800Mbps;40MHz;256-QAM;4x4mimo;集成PA/LNA)
+                                                                         5G:       MT7615N(1733Mbps;160Hz;256-QAM;4x4mimo;QPF4519;PA/LNA)
+                                                                         Port:     GbE      x5
+                                                                                   USB3.0   x1
+D-Team Newifi3                 512MB     32MB   300+867(n+ac)            CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
+                                                                         2.4G:     MT7603EN(300Mbps;40MHz;64-QAM;2x2mimo;SIGE-2576L;PA)
+                                                                         5G:       MT7612EN(867Mbps;80MHz;256-QAM;2x2mimo;SKY85717-21;PA/LNA)
+                                                                         Port:     GbE      x5
+                                                                                   USB3.0   x1
+Netgear WNDR4500v3             128MB    128MB   450+450(n+n)             CPU:      QCA9563(65nm;32bit;750MHz)
+                                                                         2.4G:     QCA9563(450Mbps;3x3mimo)
+                                                                         5G:       AR9580(450Mbps;3x3mimo)
+                                                                         Switch:   QCA8337N
+                                                                         Port:     GbE      x5
+                                                                                   USB2.0   x2
+Netgear WNDR3700v2              64MB     16MB   300+300(n+n)             CPU:      Atheros AR7161 rev 2(65nm;32bit;680MHz)
+                                                                         2.4G:     AR9223(300Mbps;2x2mim;bgn)
+                                                                         5G:       AR9220(300Mbps;2x2mimo;an)
+                                                                         Switch:   RTL8366SR
+                                                                         Port:     GbE      x5
+                                                                                   USB2.0   x1
+================================================================================================================================================
+ASUS TUF-AX3000                512MB    256MB   574+2402(ax+ax)          CPU:      BCM6750(32bit;3C;1500MHz)
+                                                                         2.4G      BCM6750(574Mps;40MHz;1024-QAM;2x2mimo;SKY85331-11;PA/LNA)
+                                                                         5G:       BCM43684(2402Mps;160MHz;1024-QAM;2x2mimo;SKY85743-21;PA/LNA)
+                                                                         Port:     GbE      x5
+                                                                                   USB3.0   x1
+================================================================================================================================================
+Phicomm K2P(A1/A2)             128MB     16MB   400+867(n+ac)            CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
+                                                                         2.4G:     MT7615DN(400Mbps;40MHz;256-QAM;2x2mimo;SKY2623L;PA/LNA)
+                                                                         5G:       MT7615DN(867Mbps;80MHz;256-QAM;2x2mimo;QPF4519;PA/LNA)
+                                                                         Port:     GbE      x5
+================================================================================================================================================
 频宽(spectral bandwidth)
     子载波数(number of subcarriers)
     数据子载波数(number of data subcarriers)
