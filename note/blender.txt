@@ -1,0 +1,25 @@
+===============================================================================
+-*- Shortcut -*-
+===============================================================================
+*. Global
+Tab         - Search Menu
+Shift+Tab   - Qucik Favorites
+
+*. 3D ViewPort
+ALT + LMB   - Orbit View
+ALT + MMB   - Pan View
+ALT + RMB   - Zoom View
+F           - Focus
+V           - View Select
+F1          - Front View
+CTRL + F1   - Back View
+F2          - Right View
+CTRL + F2   - Left View
+F3          - Top View
+CTRL + F3   - Bottom View
+F4          - Camera View
+
+Q           - Select
+W           - Move
+E           - Rotate
+R           - Scale
