@@ -1,0 +1,3 @@
+#include <type_traits>
+
+std::is_same<T, U>::value -> bool
