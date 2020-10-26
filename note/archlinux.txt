@@ -352,15 +352,18 @@ pacman -S cronie
 pacman -S xf86-video-vesa
 pacman -S mesa vulkan-intel
 pacman -S xf86-video-vmware xf86-input-vmmouse open-vm-tools
-pacman -S alsa-utils
-pacman -S pulseaudio pavucontrol
+-------------------------------------------------------------------------------
 pacman -S xorg-server xorg-xinit
+-------------------------------------------------------------------------------
+pacman -S alsa-utils
+-------------------------------------------------------------------------------
 pacman -S openbox
 pacman -S tint2
-pacman -S thunar
-pacman -S fcitx-im fcitx-googlepinyin fcitx-configtool
-pacman -S volumeicon
 pacman -S feh
+pacman -S volumeicon
+-------------------------------------------------------------------------------
+pacman -S fcitx-im fcitx-googlepinyin fcitx-configtool
+pacman -S thunar
 pacman -S terminus-font
 pacman -S ttf-dejavu
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
