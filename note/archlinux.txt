@@ -362,6 +362,8 @@ pacman -S tint2
 pacman -S feh
 pacman -S volumeicon
 -------------------------------------------------------------------------------
+pacman -S i3-wm
+-------------------------------------------------------------------------------
 pacman -S fcitx-im fcitx-googlepinyin fcitx-configtool
 pacman -S thunar
 pacman -S terminus-font
