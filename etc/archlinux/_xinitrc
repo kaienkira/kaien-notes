@@ -4,15 +4,8 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 
-session=${1:-openbox}
-
-if [ "$session" == 'i3' ]
-then
-    exec i3
-else
-    tint2 &
-    fcitx &
-    volumeicon &
-    ~/.fehbg &
-    exec openbox-session
-fi
+tint2 &
+fcitx &
+volumeicon &
+~/.fehbg &
+exec openbox-session
