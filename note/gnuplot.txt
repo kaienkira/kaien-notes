@@ -1,0 +1,16 @@
+set title '..'
+set xlabel '..'
+set ylabel '..'
+
+set xrange [0:10]
+set yrange [0:10]
+
+with line
+with points
+with impulses
+with filledcurve
+with candlesticks
+with xerr
+with yerr
+with boxxyerr
+with xyerrorbars
