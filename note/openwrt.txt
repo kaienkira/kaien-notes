@@ -35,6 +35,11 @@
     killall tcpdump; tcpdump -n -i eth1
     ssh user@myledebox tcpdump -i eth1 -U -s0 -w - 'not port 22' | sudo XAUTHORITY=~/.Xauthority wireshark -k -i -
 
+*. aircrack-ng
+    opkg install aircrack-ng
+    iw phy
+    iw dev
+
 *. wndr3700v2
     pacman -S tftp-hpa
     ip addr add 192.168.1.10/24 dev <dev>
