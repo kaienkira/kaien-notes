@@ -43,6 +43,7 @@
     opkg install airmon-ng
     iw phy
     iw dev
+    airodump-ng -c <channel> --bssid <bssid> -w <file>
 
 *. wndr3700v2
     pacman -S tftp-hpa
