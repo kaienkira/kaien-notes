@@ -30,6 +30,9 @@
     opkg update
     opkg list-upgradable | awk -F ' - ' '{print $1}' | xargs opkg upgrade
 
+*. opkg mirror
+    vi /etc/opkg/distfeeds.conf
+
 *. capture packets
     opkg install tcpdump
     killall tcpdump; tcpdump -n -i eth1
