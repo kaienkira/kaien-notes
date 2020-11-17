@@ -37,6 +37,7 @@
 
 *. aircrack-ng
     opkg install aircrack-ng
+    opkg install airmon-ng
     iw phy
     iw dev
 
