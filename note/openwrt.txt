@@ -29,6 +29,7 @@
 *. opkg
     opkg update
     opkg list-upgradable | awk -F ' - ' '{print $1}' | xargs opkg upgrade
+    opkg list-installed
 
 *. opkg mirror
     vi /etc/opkg/distfeeds.conf
@@ -45,6 +46,23 @@
     iw dev
     airodump-ng -c <channel> --bssid <bssid> -w <file>
     aircrack-ng -w <password_list_file> -b <bssid> <cap_file>
+
+* usb
+    opkg install kmod-usb-core
+    opkg install kmod-usb-storage
+    # usb1.1
+    opkg install kmod-usb-uhci
+    opkg install kmod-usb-ohci
+    # usb2.0
+    opkg install kmod-usb2
+    # usb3.0
+    opkg install kmod-usb3
+    # utils
+    opkg install usbutils
+    # exfat support
+    opkg install kmod-fs-exfat
+    # mount
+    mount /dev/sda1 /mnt/usb
 
 *. wndr3700v2
     pacman -S tftp-hpa
