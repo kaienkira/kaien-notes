@@ -14,6 +14,12 @@ Netgear R7800                  512MB    128MB   800+1733(n+ac)           CPU:   
                                                                          Port:     GbE      x5
                                                                                    USB3.0   x2
                                                                                    eSATA    x1
+Netgear R6800                  256MB    128MB   800+1733(n+ac)           CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
+                                                                         2.4G:     MT7615N(800Mbps;40MHz;256-QAM;4x4mimo;集成PA/LNA)
+                                                                         5G:       MT7615N(1733Mbps;160Hz;256-QAM;4x4mimo;QPF4519;PA/LNA)
+                                                                         Port:     GbE      x5
+                                                                                   USB3.0   x1
+                                                                                   USB2.0   x1
 D-Team Newifi3                 512MB     32MB   300+867(n+ac)            CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
                                                                          2.4G:     MT7603EN(300Mbps;40MHz;64-QAM;2x2mimo;SIGE-2576L;PA)
                                                                          5G:       MT7612EN(867Mbps;80MHz;256-QAM;2x2mimo;SKY85717-21;PA/LNA)
@@ -26,11 +32,6 @@ Netgear WNDR3700v2              64MB     16MB   300+300(n+n)             CPU:   
                                                                          Port:     GbE      x5
                                                                                    USB2.0   x1
 ================================================================================================================================================
-Netgear R6900v2                256MB    128MB   800+1733(n+ac)           CPU:      MTK7621AT(65nm;32bit;2C4T;880MHz)
-                                                                         2.4G:     MT7615N(800Mbps;40MHz;256-QAM;4x4mimo;集成PA/LNA)
-                                                                         5G:       MT7615N(1733Mbps;160Hz;256-QAM;4x4mimo;QPF4519;PA/LNA)
-                                                                         Port:     GbE      x5
-                                                                                   USB3.0   x1
 Netgear WNDR4500v3             128MB    128MB   450+450(n+n)             CPU:      QCA9563(65nm;32bit;750MHz)
                                                                          2.4G:     QCA9563(450Mbps;3x3mimo)
                                                                          5G:       AR9580(450Mbps;3x3mimo)
