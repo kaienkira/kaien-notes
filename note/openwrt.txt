@@ -34,6 +34,9 @@
 *. opkg mirror
     vi /etc/opkg/distfeeds.conf
 
+*. luci
+    opkg install luci
+
 *. capture packets
     opkg install tcpdump
     killall tcpdump; tcpdump -n -i eth1
