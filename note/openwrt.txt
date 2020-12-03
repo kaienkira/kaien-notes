@@ -35,6 +35,7 @@
     vi /etc/opkg/distfeeds.conf
 
 *. luci
+    opkg update
     opkg install luci luci-ssl
 
 *. capture packets
