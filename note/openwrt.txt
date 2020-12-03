@@ -35,7 +35,7 @@
     vi /etc/opkg/distfeeds.conf
 
 *. luci
-    opkg install luci
+    opkg install luci luci-ssl
 
 *. capture packets
     opkg install tcpdump
