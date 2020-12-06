@@ -311,6 +311,9 @@
     sensors-detect
     sensors
 
+# wacom tablet
+    pacman -S xf86-input-wacom
+
 # disk smart
     pacman -S smartmontools
     smartctl --info /dev/<device>
