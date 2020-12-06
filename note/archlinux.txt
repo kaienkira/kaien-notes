@@ -313,6 +313,7 @@
 
 # wacom tablet
     pacman -S xf86-input-wacom
+    xsetwacom list devices
 
 # disk smart
     pacman -S smartmontools
