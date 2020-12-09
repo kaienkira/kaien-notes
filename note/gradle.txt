@@ -3,6 +3,8 @@
     gradle -q tasks --all
 *. 平坦打印 
     gradle --console=plain build
+*. 获取Groovy版本号
+    GroovySystem.getVersion()
 ===============================================================================
 ~/.gradle/gradle.properties
 ===============================================================================
