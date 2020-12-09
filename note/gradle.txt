@@ -1,10 +1,18 @@
 ===============================================================================
 *. 打印所有任务
     gradle -q tasks --all
+
 *. 平坦打印 
     gradle --console=plain build
+
 *. 获取Groovy版本号
     GroovySystem.getVersion()
+
+*. 打印任务依赖图
+    plugins {
+        id "com.dorongold.task-tree" version "1.5"
+    }
+    gradle -q build taskTree
 ===============================================================================
 ~/.gradle/gradle.properties
 ===============================================================================
