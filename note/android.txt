@@ -42,6 +42,28 @@
     ndk-build NDK_APPLICATION_MK=<file>
 
 ===============================================================================
+-*- Gradle -*-
+===============================================================================
+app:build
+    app:assemble
+        app:assembleDebug
+            app:compileDebugSources
+                app:compileDebugJavaWithJavac
+                app:externalNativeBuildDebug
+            app:mergeDebugNativeDebugMetadata
+            app:packageDebug
+                app:compileDebugJavaWithJavac
+                app:compressDebugAssets
+                app:mergeDebugAssets
+                app:mergeDebugJavaResource
+                app:mergeExtDexDebug
+                app:mergeLibDexDebug
+                app:mergeProjectDexDebug
+                app:processDebugManifestForPackage
+                app:processDebugResources
+                app:stripDebugDebugSymbols
+                app:validateSigningDebug
+        app:assembleRelease
 
 ===============================================================================
 -*- sign apk -*-
