@@ -212,3 +212,10 @@ svn ps --revprop -r0 svn:sync-from-url <repo_source> file://<repo_mirror>
 
 *. move mirror to live
 svn proplist --revprop -r0
+
+===============================================================================
+-*- svn server server migration -*-
+===============================================================================
+systemctl stop apache2
+svnadmin dump --deltas /opt/svn/<repo_name> > dumpfile.svn
+svnadmin load --force-uuid /opt/svn/<repo_name> < dumpfile.svn
