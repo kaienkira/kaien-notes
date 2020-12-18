@@ -39,9 +39,9 @@ create_dir ~/.local 700
 create_dir ~/.local/share 700
 create_dir ~/.local/share/applications 700
 create_dir ~/local 755
-create_dir ~/local/firefox_profile 755
-create_dir ~/local/firefox_profile/profile_1 700
-create_dir ~/local/firefox_profile/profile_2 700
+create_dir ~/local/firefox-profile 755
+create_dir ~/local/firefox-profile/profile-1 700
+create_dir ~/local/firefox-profile/profile-2 700
 
 copy_file "$script_path/../_vimrc" ~/.vimrc 600
 copy_file "$script_path/../_gitconfig" ~/.gitconfig 600
