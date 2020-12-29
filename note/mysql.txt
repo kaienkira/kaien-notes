@@ -166,8 +166,6 @@ are compared without regard to any trailing spaces.
 * Repeatable Read (default)
     less phantom read (grap lock added)
 * Serialize
-
-*. 通过索引条件检索数据, InnoDB才使用行级锁, 否则InnoDB将使用表锁
 ===============================================================================
 -*- Pagination -*-
 -------------------------------------------------------------------------------
