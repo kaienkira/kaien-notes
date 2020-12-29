@@ -164,8 +164,10 @@ are compared without regard to any trailing spaces.
 * Read Committed
     phantom read
 * Repeatable Read (default)
-    no phantom read because of mvcc
+    less phantom read (grap lock added)
 * Serialize
+
+*. 通过索引条件检索数据, InnoDB才使用行级锁, 否则InnoDB将使用表锁
 ===============================================================================
 -*- Pagination -*-
 -------------------------------------------------------------------------------
