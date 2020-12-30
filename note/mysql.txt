@@ -2,31 +2,11 @@
 *. mysql安全设置
     mysql_secure_installation
 
-*. 获取所有参数
-    echo "show variables" | mysql -uroot
-
 * 重置root密码
-    service mysql stop
+    systemctl stop mariadb.service
     sudo /usr/sbin/mysqld --skip-grant-tables --skip-networking &
     UPDATE mysql.user SET Password=PASSWORD('newpwd') WHERE User='root';
     FLUSH PRIVILEGES;
-
-*. 设置外网可访问
-    vi /etc/mysql/my.cnf
-    bind-address = 0.0.0.0
-
-*. 禁用DNS反向解析
-    [mysqld]
-    skip-name-resolve
-
-*. 禁用网络连接
-    [mysqld]
-    skip-networking
-
-*. 字符集
-    >show variables like 'collation_%';
-    >show variables like 'character%';
-    >create database <db_name> character set utf8;
 
 *. 取消query cache
     select sql_no_cache ...
@@ -36,19 +16,12 @@
     hex(); unhex();
 
 *. 转换为整数
-    TRUNCATE(double, 0);
+    truncate(double, 0);
 
-*. 输入中文
-    set names utf8;
-
-*. 扩展utf8字符集
-    utf8mb4;
-
-*.  Row Size > 8192
+*. Row Size > 8192
     [mysqld]
     innodb_file_per_table
     innodb_file_format = Barracuda
-
     alter table <table_name> ENGINE=InnoDB ROW_FORMAT=COMPRESSED
 
 ===============================================================================
@@ -70,13 +43,12 @@ mysqldump [options] <db_name> [table_name]
     -R --routines          导出存储过程
     -w --where <condition> 按条件导出数据
 
-insert into <table_name>(...) values(...)
-on duplicate key update ... = ...
-replace into <table_name>(...) values(...)
 ===============================================================================
 mysql -h 127.0.0.1 -u root -p
+
 >status
 >show databases;
+>show variables;
 >create database <db_name>;
 
 >create user '<user_name>' identified by '<password>';
@@ -95,6 +67,9 @@ mysql -h 127.0.0.1 -u root -p
 >select version();
 >select sin(), pi();
 
+>insert into <table_name>(...) values(...) on duplicate key update ... = ...
+>replace into <table_name>(...) values(...)
+
 ===============================================================================
 -*- 默认字符串字符集在比较时大小写不敏感 -*-
 -------------------------------------------------------------------------------
@@ -104,6 +79,7 @@ mysql -h 127.0.0.1 -u root -p
    VARCHAR(n) CHARACTER SET utf8 BINARY;
    (BINARY is shorthand for specifying the binary collation of
     the column character set)
+
 ===============================================================================
 -*- Leftmost Indexes Prefixes -*-
 -------------------------------------------------------------------------------
@@ -112,12 +88,14 @@ leftmost index prefixes of that index.
 A leftmost prefix of a composite index consists of one or more of the initial
 columns of the index. MySQL's capability to use leftmost index prefixes
 enables you to avoid creating unnecessary indexes.
+
 ===============================================================================
 -*- Trailing spaces in comparison -*-
 -------------------------------------------------------------------------------
 All MySQL collations are of type PADSPACE.
 This means that all CHAR, VARCHAR, and TEXT values in MySQL
 are compared without regard to any trailing spaces. 
+
 ===============================================================================
 -*- Dead Lock -*-
 -------------------------------------------------------------------------------
@@ -125,6 +103,7 @@ are compared without regard to any trailing spaces.
 >show engine innodb status\G
 >show open tables;
 >show status like '%lock%';
+
 ===============================================================================
 -*- InnoDB Isolation Level -*-
 -------------------------------------------------------------------------------
@@ -135,11 +114,6 @@ are compared without regard to any trailing spaces.
 
 >set transaction isolation level <level>
 >set transaction isolation level read uncommitted;
-===============================================================================
--*- Pagination -*-
--------------------------------------------------------------------------------
-sql_calc_found_rows
-===============================================================================
 
 ===============================================================================
 -*- Optimization -*-
