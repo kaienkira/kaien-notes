@@ -1,52 +1,56 @@
 ===============================================================================
-mysql安全设置
+*. mysql安全设置
     mysql_secure_installation
-===============================================================================
-获取所有参数
+
+*. 获取所有参数
     echo "show variables" | mysql -uroot
-===============================================================================
-重置root密码
+
+* 重置root密码
     service mysql stop
     sudo /usr/sbin/mysqld --skip-grant-tables --skip-networking &
     UPDATE mysql.user SET Password=PASSWORD('newpwd') WHERE User='root';
     FLUSH PRIVILEGES;
-===============================================================================
-设置外网可访问
+
+*. 设置外网可访问
     vi /etc/mysql/my.cnf
     bind-address = 0.0.0.0
 
-mysql 5.5
-    grant all on *.* to root@'%' identified by '';
-    flush privileges;
-    show grants;
-mysql 5.7
-    alter user 'root'@'localhost' identified with mysql_native_password by '';
-    create user 'root'@'%' identified by '';
-    # alter user 'root'@'%' identified by '';
-    grant all on *.* to 'root'@'%';
-    flush privileges;
-    show grants;
-===============================================================================
-字符集
+*. 禁用DNS反向解析
+    [mysqld]
+    skip-name-resolve
+
+*. 禁用网络连接
+    [mysqld]
+    skip-networking
+
+*. 字符集
     >show variables like 'collation_%';
     >show variables like 'character%';
     >create database <db_name> character set utf8;
-===============================================================================
-取消query cache
+
+*. 取消query cache
     select sql_no_cache ...
-===============================================================================
-16进制值
+
+*. 16进制值
     update .. set col = x 'beb5ae';
     hex(); unhex();
-转换为整数
+
+*. 转换为整数
     TRUNCATE(double, 0);
-===============================================================================
-Row Size > 8192
+
+*. 输入中文
+    set names utf8;
+
+*. 扩展utf8字符集
+    utf8mb4;
+
+*.  Row Size > 8192
     [mysqld]
     innodb_file_per_table
     innodb_file_format = Barracuda
 
     alter table <table_name> ENGINE=InnoDB ROW_FORMAT=COMPRESSED
+
 ===============================================================================
 mysql
     -r --raw
@@ -86,44 +90,11 @@ mysql -h 127.0.0.1 -u root -p
 >drop user <username>@'localhost';
 >flush privileges;
 >show grants;
-===============================================================================
-*. show full columns from <table_name>;
-===============================================================================
-alter table <table_name> add <column_name> <column_definition>
-      [first | after col_name]
-===============================================================================
-create [unique] index <index_name> on <table_name>(<index_col_name>, ...)
-===============================================================================
-系统表
-information_schema.tables
-===============================================================================
-输入中文
-set names utf8;
-扩展utf8字符集
-utf8mb4;
-===============================================================================
-select now(), current_date();
-select version();
-select sin(), pi();
-===============================================================================
-配置参数
 
-skip-external-locking
-loose-skip-innodb
+>select now(), current_date();
+>select version();
+>select sin(), pi();
 
-# 禁用DNS反向解析
-skip-name-resolve
-GRANT ALL on *.* to 'root'@'127.0.0.1' identified by '' WITH GRANT OPTION;
-
-# 禁用网络连接
-skip-networking
-===============================================================================
--*- String Functions -*-
--------------------------------------------------------------------------------
-*. concat(str1, str2, ...)
-*. substring(str, pos)
-   substring(str, pos, len)
-   <> pos从1开始
 ===============================================================================
 -*- 默认字符串字符集在比较时大小写不敏感 -*-
 -------------------------------------------------------------------------------
@@ -157,15 +128,13 @@ are compared without regard to any trailing spaces.
 ===============================================================================
 -*- InnoDB Isolation Level -*-
 -------------------------------------------------------------------------------
->set transaction isolation level <level>
-
 * Read Uncommitted
-    dirty read
 * Read Committed
-    phantom read
 * Repeatable Read (default)
-    less phantom read (grap lock added)
-* Serialize
+* Serializable
+
+>set transaction isolation level <level>
+>set transaction isolation level read uncommitted;
 ===============================================================================
 -*- Pagination -*-
 -------------------------------------------------------------------------------
