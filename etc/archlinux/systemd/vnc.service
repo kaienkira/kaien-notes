@@ -8,6 +8,8 @@ Type=forking
 User=<user>
 ExecStart=bash <path>/start_vnc_server.sh
 ExecStop=bash <path>/stop_vnc_server.sh
+Restart=always
+RuntimeMaxSec=86400
 
 [Install]
 WantedBy=multi-user.target
