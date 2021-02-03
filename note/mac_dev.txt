@@ -2,8 +2,11 @@
     export ALL_PROXY=socks5://127.0.0.1:9050
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew upgrade
-*. Profile
+*. Profile-bash
     export PS1='\u@\h:\w\$ '
+*. Profile-zsh
+    export LANG=zh_CN.UTF-8
+    export PROMPT='%n@%m:%~$ '
 *. libimobiledevice
     brew uninstall -f libimobiledevice ideviceinstaller usbmuxd
     brew install -v --HEAD --build-from-source usbmuxd libimobiledevice ideviceinstaller
