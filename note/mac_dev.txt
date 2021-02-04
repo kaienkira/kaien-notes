@@ -20,7 +20,6 @@
     npm install -g ios-deploy
     ios-deploy -b <bundle_app>
 *. xcodeproj
-    brew install gem
     gem install xcodeproj
 *. 切换xcode环境
     sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
