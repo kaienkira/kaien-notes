@@ -16,3 +16,4 @@ Edit Mode           - Tab
     Select All      - A
     Select None     - Alt + A
     Select Inverse  - Ctrl + I
+    Box Select      - B
