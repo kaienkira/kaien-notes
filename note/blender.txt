@@ -5,6 +5,7 @@ Pan         - Shift + MMB
 Orbit       - MMB
 Zoom In/Out - Ctrl + MMB, Wheel
 Zoom Region - Shift + B
+Quad View   - Ctrl + Alt + Q
 
 ===============================================================================
 -*- Modeling -*-
