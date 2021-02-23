@@ -9,7 +9,10 @@ Zoom Region - Shift + B
 ===============================================================================
 -*- Modeling -*-
 ===============================================================================
-Edit Mode        - Tab
-    Select Vetex - 1 (Shift -> Multiple Selection Modes)
-    Select Edge  - 2 (Ctrl -> Expand Selection)
-    Select Face  - 3
+Edit Mode           - Tab
+    Select Vetex    - 1 (Shift -> Multiple Selection Modes)
+    Select Edge     - 2 (Ctrl -> Expand Selection)
+    Select Face     - 3
+    Select All      - A
+    Select None     - Alt + A
+    Select Inverse  - Ctrl + I
