@@ -18,3 +18,4 @@ Edit Mode           - Tab
     Select None     - Alt + A
     Select Inverse  - Ctrl + I
     Box Select      - B
+    Merge Objects   - Ctrl + J
