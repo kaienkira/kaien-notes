@@ -10,6 +10,11 @@ Quad View   - Ctrl + Alt + Q
 ===============================================================================
 -*- Modeling -*-
 ===============================================================================
+Object Mode
+    Merge Objects        - Ctrl + J
+    Parent Object        - Ctrl + P
+    Clear Parent Object  - Alt + P
+
 Edit Mode           - Tab
     Select Vetex    - 1 (Shift -> Multiple Selection Modes)
     Select Edge     - 2 (Ctrl -> Expand Selection)
@@ -18,4 +23,3 @@ Edit Mode           - Tab
     Select None     - Alt + A
     Select Inverse  - Ctrl + I
     Box Select      - B
-    Merge Objects   - Ctrl + J
