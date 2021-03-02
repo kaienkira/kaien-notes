@@ -7,6 +7,7 @@ Zoom In/Out - Ctrl + MMB, Wheel
 Zoom Region - Shift + B
 Quad View   - Ctrl + Alt + Q
 X-Ray Mode  - Alt + Z
+Rename      - F2
 Search Menu - F3
 Add Menu    - Shift + A
 Duplicate   - Shift + D
