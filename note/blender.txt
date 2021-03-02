@@ -6,8 +6,10 @@ Orbit       - MMB
 Zoom In/Out - Ctrl + MMB, Wheel
 Zoom Region - Shift + B
 Quad View   - Ctrl + Alt + Q
-Add Menu    - Shift + A
+X-Ray Mode  - Alt + Z
 Search Menu - F3
+Add Menu    - Shift + A
+Duplicate   - Shift + D
 
 Object Mode
     Merge Objects        - Ctrl + J
@@ -22,6 +24,7 @@ Edit Mode           - Tab
     Select None     - Alt + A
     Select Inverse  - Ctrl + I
     Box Select      - B
+    Seperate        - P
 
 ===============================================================================
 -*- UV Editor -*-
