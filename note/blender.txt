@@ -24,6 +24,7 @@ Edit Mode           - Tab
     Select All      - A
     Select None     - Alt + A
     Select Inverse  - Ctrl + I
+    Select Linked   - Ctrl + L
     Box Select      - B
     Seperate        - P
 
