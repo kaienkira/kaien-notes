@@ -22,11 +22,14 @@ Edit Mode           - Tab
     Select Edge     - 2 (Ctrl -> Expand Selection)
     Select Face     - 3
     Select All      - A
-    Select None     - Alt + A
+    Select None     - Alt + A (Double A)
     Select Inverse  - Ctrl + I
     Select Linked   - Ctrl + L
+    Select Loop     - Alt + LMB
     Box Select      - B
     Seperate        - P
+    Hide            - H
+    Unhide          - Alt + H
 
 ===============================================================================
 -*- UV Editor -*-
