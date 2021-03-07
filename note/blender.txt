@@ -1,36 +1,39 @@
 ===============================================================================
 -*- 3D Viewport -*-
 ===============================================================================
-Pan         - Shift + MMB
-Orbit       - MMB
-Zoom In/Out - Ctrl + MMB, Wheel
-Zoom Region - Shift + B
-Quad View   - Ctrl + Alt + Q
-X-Ray Mode  - Alt + Z
-Rename      - F2
-Search Menu - F3
-Add Menu    - Shift + A
-Duplicate   - Shift + D
+Pan                      - Shift + MMB
+Orbit                    - MMB
+Zoom In/Out              - Ctrl + MMB, Wheel
+Zoom Region              - Shift + B
+Quad View                - Ctrl + Alt + Q
+X-Ray Mode               - Alt + Z
+Rename                   - F2
+Search Menu              - F3
+Add Menu                 - Shift + A
+Duplicate                - Shift + D
 
 Object Mode
     Merge Objects        - Ctrl + J
     Parent Object        - Ctrl + P
     Clear Parent Object  - Alt + P
 
-Edit Mode           - Tab
-    Select Vetex    - 1 (Shift -> Multiple Selection Modes)
-    Select Edge     - 2 (Ctrl -> Expand Selection)
-    Select Face     - 3
-    Select All      - A
-    Select None     - Alt + A (Double A)
-    Select Inverse  - Ctrl + I
-    Select Linked   - Ctrl + L
-    Select Loop     - Alt + LMB
-    Box Select      - B
-    Extrude         - E
-    Seperate        - P
-    Hide            - H
-    Unhide          - Alt + H
+Edit Mode                - Tab
+    Select Vetex         - 1 (Shift -> Multiple Selection Modes)
+    Select Edge          - 2 (Ctrl -> Expand Selection)
+    Select Face          - 3
+    Select All           - A
+    Select None          - Alt + A (Double A)
+    Select Inverse       - Ctrl + I
+    Select Linked        - Ctrl + L
+    Select Loop          - Alt + LMB
+    Box Select           - B
+    Extrude              - E
+    Seperate             - P
+    Hide                 - H
+    Unhide               - Alt + H
+
+Sculpt Mode
+    Change Brush Raduis  - F
 
 ===============================================================================
 -*- UV Editor -*-
