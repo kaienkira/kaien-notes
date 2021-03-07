@@ -27,6 +27,7 @@ Edit Mode           - Tab
     Select Linked   - Ctrl + L
     Select Loop     - Alt + LMB
     Box Select      - B
+    Extrude         - E
     Seperate        - P
     Hide            - H
     Unhide          - Alt + H
