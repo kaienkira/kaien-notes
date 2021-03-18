@@ -11,6 +11,8 @@ Rename                   - F2
 Search Menu              - F3
 Add Menu                 - Shift + A
 Duplicate                - Shift + D
+Change Shading Mode      - Z
+Change View Mode         - ~
 
 Object Mode
     Merge Objects        - Ctrl + J
