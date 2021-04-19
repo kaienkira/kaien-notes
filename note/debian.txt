@@ -29,3 +29,7 @@
         guest ok = no
         valid users = sambaadmin,sambaguest
     systemctl restart smbd
+
+*. dns
+    vi /etc/dhcp/dhclient.conf
+        supersede domain-name-servers 223.5.5.5, 119.29.29.29, 8.8.8.8;
