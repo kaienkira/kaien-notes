@@ -16,6 +16,8 @@
 ===============================================================================
 ~/.gradle/gradle.properties
 ===============================================================================
+gradle -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8118 \
+       -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=8118
 *. 代理设置
     systemProp.http.proxyHost=127.0.0.1
     systemProp.http.proxyPort=8118
