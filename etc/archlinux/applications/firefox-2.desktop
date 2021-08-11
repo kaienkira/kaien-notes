@@ -3,4 +3,4 @@ Version=1.0
 Name=Firefox_2
 Type=Application
 Icon=firefox
-Exec=/usr/lib/firefox/firefox -profile ~/local/firefox_profile/profile_2 --no-remote
+Exec=/usr/lib/firefox/firefox -profile ~/local/firefox-profile/profile-2 --no-remote
