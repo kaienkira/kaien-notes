@@ -30,6 +30,7 @@ create_dir()
 }
 
 create_dir ~/.config 700
+create_dir ~/.config/awesome 700
 create_dir ~/.config/openbox 700
 create_dir ~/.config/sakura 700
 create_dir ~/.config/tint2 700
@@ -48,6 +49,7 @@ copy_file "$script_path/../_gitconfig" ~/.gitconfig 600
 copy_file "$script_path/../_gitignore" ~/.gitignore 600
 copy_file "$script_path/_xinitrc" ~/.xinitrc 600
 copy_file "$script_path/_Xdefaults" ~/.Xdefaults 600
+copy_file "$script_path/awesome_rc.lua" ~/.config/awesome/rc.lua 600
 copy_file "$script_path/openbox_rc.xml" ~/.config/openbox/rc.xml 600
 copy_file "$script_path/openbox_menu.xml" ~/.config/openbox/menu.xml 600
 copy_file "$script_path/openbox_autostart" ~/.config/openbox/autostart 600
