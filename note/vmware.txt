@@ -1,0 +1,5 @@
+*. vmx config
+    monitor_control.restrict_backdoor = "true"
+
+*. shrink linux vm disk
+    vmware-toolbox-cmd disk shrink /

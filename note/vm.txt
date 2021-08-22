@@ -1,6 +1,0 @@
-monitor_control.restrict_backdoor = "true"
-
-MemTrimRate = "0"
-sched.mem.pshare.enable = "FALSE"
-mainMem.useNamedFile = "FALSE"
-prefvmx.minVmMemPct = "100"
