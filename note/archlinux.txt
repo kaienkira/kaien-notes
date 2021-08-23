@@ -320,7 +320,7 @@
     smartctl --info /dev/<device>
 
 # usb writter
-    pacman -S gnome-multi-writer
+    dd if= of= conv=fsync oflag=direct status=progress
 
 ===============================================================================
 -*- Server -*-
