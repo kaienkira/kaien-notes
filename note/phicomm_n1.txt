@@ -1,0 +1,28 @@
+*. emmc layout
+    cat /proc/partitions | grep 179
+    ls -al /dev/block/179*
+ major    minor    #blocks name
+   179        0    7634944 mmcblk0
+   179        1       4096 mmcblk0p1       bootloader   0x00000000    4M
+                                           #gap         0x00400000   32M
+   179        2      65536 mmcblk0p2       reserved     0x02400000   64M
+                                           #gap         0x06400000    8M
+   179        3     524288 mmcblk0p3       cache        0x06c00000  512M
+                                           #gap         0x26c00000    8M
+   179        4       8192 mmcblk0p4       env          0x27400000    8M
+                                           #gap         0x27c00000    8M
+   179        5      32768 mmcblk0p5       logo
+   179        6      32768 mmcblk0p6       recovery 
+   179        7       8192 mmcblk0p7       rsv 
+   179        8       8192 mmcblk0p8       tee  
+   179        9      32768 mmcblk0p9       crypt
+   179       10      32768 mmcblk0p10      misc
+   179       11      32768 mmcblk0p11      boot
+   179       12    1310720 mmcblk0p12      system
+   179       13    5419008 mmcblk0p13      data
+   179       96       4096 mmcblk0rpmb
+   179       64       4096 mmcblk0boot1
+   179       32       4096 mmcblk0boot0
+
+*. convert dtb to dts
+    dtc -I dtb -O dts -o n1.dts n1.dtb
