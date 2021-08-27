@@ -38,3 +38,6 @@
     diskutil list
     diskutil unmountDisk /dev/rdiskX
     sudo dd if=1.dmg of=/dev/rdiskX bs=1m
+
+*. rdp
+    brew install xquatz xfreerdp
