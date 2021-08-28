@@ -5,27 +5,6 @@
     vi openwrt.vmx
         ethernet0.virtualDev = "e1000"
 
-*. run in docker
-    pacman -S docker
-    vi /etc/docker/daemon.json
-    {
-        "bip": "172.0.0.1/24"
-    }
-    systemctl enable docker
-    systemctl start docker
-    docker import https://downloads.openwrt.org/releases/19.07.2/targets/x86/64/openwrt-19.07.2-x86-64-generic-rootfs.tar.gz openwrt-19.07.2
-    docker run -d \
-        --restart always \
-        --name openwrt-19.07.2 \
-        --ip 172.0.0.2 \
-        --privileged \
-        openwrt-19.07.2 /sbin/init
-    docker network create \
-        --driver bridge -o 'com.docker.network.bridge.name=docker1'
-        --subnet=172.0.1.0/24 docker1
-    docker network connect docker1 openwrt-19.07.2
-    docker exec -it openwrt-19.07.2 /bin/sh
-
 *. opkg
     opkg update
     opkg list-upgradable | awk -F ' - ' '{print $1}' | xargs opkg upgrade
@@ -69,6 +48,7 @@
     # mount
     mount /dev/sda1 /mnt/usb
 
+==============================================================================
 *. netgear R6800
     nmrpflash -L
     nmrpflash -i <dev> -f <img>
@@ -77,3 +57,7 @@
     pacman -S tftp-hpa
     ip addr add 192.168.1.10/24 dev <dev>
     tftp -m binary 192.168.1.1 -c put <img>
+
+*. dwl-g122-f1
+    chip rtl8188su
+    opkg install kmod-net-rtl8192su
