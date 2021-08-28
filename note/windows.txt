@@ -17,9 +17,12 @@
     SysMain
 
 ===============================================================================
+*. 网络连接共享持久化
+    Internet Connection Sharing服务设置为自动
+    [HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\SharedAccess]
+    "EnableRebootPersistConnection"=dword:00000001
 
 *. 开启NTP服务
-
 Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\W32Time]
 "Start"=dword:00000002
