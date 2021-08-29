@@ -1,0 +1,5 @@
+*. convert disk
+    vboxmanage clonehd --format vdi disk.vmdk newdisk.vdi
+
+*. compat disk
+    vboxmanage modifyhd disk.vdi --compact
