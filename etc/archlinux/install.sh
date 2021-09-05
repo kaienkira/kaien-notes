@@ -47,6 +47,7 @@ create_dir ~/local/firefox-profile/profile-2 700
 copy_file "$script_path/../_vimrc" ~/.vimrc 600
 copy_file "$script_path/../_gitconfig" ~/.gitconfig 600
 copy_file "$script_path/../_gitignore" ~/.gitignore 600
+copy_file "$script_path/_fonts.conf" ~/.fonts.conf 600
 copy_file "$script_path/_xinitrc" ~/.xinitrc 600
 copy_file "$script_path/_Xdefaults" ~/.Xdefaults 600
 copy_file "$script_path/awesome_rc.lua" ~/.config/awesome/rc.lua 600
