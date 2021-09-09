@@ -364,6 +364,7 @@ pacman -S xorg-server xorg-xinit
 -------------------------------------------------------------------------------
 pacman -S alsa-utils
 pacman -S pulseaudio pulseaudio-alsa
+pacman -S pavucontrol
 -------------------------------------------------------------------------------
 pacman -S openbox
 pacman -S tint2
