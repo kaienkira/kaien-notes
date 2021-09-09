@@ -7,3 +7,4 @@ export XMODIFIERS="@im=fcitx"
 ~/.fehbg &
 tint2 &
 fcitx &
+pasystray &
