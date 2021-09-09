@@ -380,6 +380,7 @@ pacman -S ntfs-3g
 pacman -S alsa-utils
 pacman -S pulseaudio pulseaudio-alsa
 pacman -S pavucontrol
+pacman -S pasystray
 -------------------------------------------------------------------------------
 pacman -S transmission-gtk
 pacman -S amule
@@ -413,10 +414,8 @@ vi ~/.xinitrc
     amuleweb --write-config --host=localhost
              --password=password --admin-pass=anotherpassword
 ===============================================================================
--*- Audio -*-
+-*- alsa-utils -*-
 ===============================================================================
-pacman -S alsa-utils
-
 alsamixer
 alsactl store
 alsactl kill rescan
