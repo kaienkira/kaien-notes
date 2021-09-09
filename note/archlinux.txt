@@ -362,17 +362,9 @@ pacman -S xf86-video-vmware xf86-input-vmmouse open-vm-tools
 -------------------------------------------------------------------------------
 pacman -S xorg-server xorg-xinit
 -------------------------------------------------------------------------------
-pacman -S alsa-utils
-pacman -S pulseaudio pulseaudio-alsa
-pacman -S pavucontrol
--------------------------------------------------------------------------------
 pacman -S openbox
 pacman -S tint2
 pacman -S feh
-pacman -S volumeicon
--------------------------------------------------------------------------------
-pacman -S i3-wm
--------------------------------------------------------------------------------
 pacman -S fcitx-im fcitx-googlepinyin fcitx-configtool
 pacman -S thunar
 pacman -S terminus-font
@@ -384,6 +376,10 @@ pacman -S slock
 pacman -S firefox
 pacman -S virtualbox virtualbox-guest-iso
 pacman -S ntfs-3g
+-------------------------------------------------------------------------------
+pacman -S alsa-utils
+pacman -S pulseaudio pulseaudio-alsa
+pacman -S pavucontrol
 -------------------------------------------------------------------------------
 pacman -S transmission-gtk
 pacman -S amule
