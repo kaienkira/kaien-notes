@@ -363,7 +363,7 @@ pacman -S xf86-video-vmware xf86-input-vmmouse open-vm-tools
 pacman -S xorg-server xorg-xinit
 -------------------------------------------------------------------------------
 pacman -S alsa-utils
-pacman -S pulseaudio
+pacman -S pulseaudio pulseaudio-alsa
 -------------------------------------------------------------------------------
 pacman -S openbox
 pacman -S tint2
