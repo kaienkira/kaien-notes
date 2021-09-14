@@ -57,6 +57,16 @@
     ip addr add 192.168.1.10/24 dev <dev>
     tftp -m binary 192.168.1.1 -c put <img>
 
+*. x64
+    opkg install fdisk
+    opkg install resize2fs
+    fdisk /dev/sda
+        /dev/sda2 -> max
+    # mount -o remount,ro /
+    # tune2fs -O^resize_inode /dev/sda2
+    # e2fsck -f /dev/sda2
+    resize2fs /dev/sda2
+
 ==============================================================================
 /bin/board_detect -> /etc/board.json
 /bin/config_generate -> /etc/config/network
