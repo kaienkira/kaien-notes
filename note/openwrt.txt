@@ -56,3 +56,7 @@
     pacman -S tftp-hpa
     ip addr add 192.168.1.10/24 dev <dev>
     tftp -m binary 192.168.1.1 -c put <img>
+
+==============================================================================
+/bin/board_detect -> /etc/board.json
+/bin/config_generate -> /etc/config/network
