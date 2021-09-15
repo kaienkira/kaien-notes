@@ -1,0 +1,30 @@
+===============================================================================
+-*- Install -*-
+===============================================================================
+# disk partition
+# sda1 -> 550M efi  -> fat32 
+# sda2 -> 2G   swap -> swap
+# sda3 -> *    /    -> ext4
+swapon /dev/sda2
+mount /dev/sda3 /mnt/gentoo
+
+# download stage3 files
+cd /mnt/gentoo
+links https://www.gentoo.org/downloads/mirrors/
+tar -xpvf stage3-amd64-openrc-*.tar.xz --xattrs-include='*.*' --numeric-owner
+
+# config compile options
+vi /mnt/gentoo/etc/portage/make.conf
+    CHOST="x86_64-pc-linux-gnu"
+    COMMON_FLAGS="-march=native -O2 -pipe"
+    CFLAGS="${COMMON_FLAGS}"
+    CXXFLAGS="${COMMON_FLAGS}"
+    MAKEOPTS="-j4"
+    GENTOO_MIRRORS="https://mirrors.tuna.tsinghua.edu.cn/gentoo"
+
+    PORTDIR=/opt/portage/gentoo/
+    PORTDIR_OVERLAY=/opt/portage/local/
+    DISTDIR=/opt/portage/cache/distfiles/
+    PKGDIR=/opt/portage/cache/binpkgs/
+    PORTAGE_TMPDIR=/opt/portage/tmp/
+    PORTAGE_LOGDIR=/opt/portage/log/
