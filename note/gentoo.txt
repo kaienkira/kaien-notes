@@ -72,10 +72,55 @@ locale-gen
 eselect locale list
 eselect locale set 4
 
-# tools
+# vim
 emerge app-editors/vim
 
 # kernel
 emerge sys-kernel/gentoo-sources
 eselect kernel list
 eselect kernel set 1
+cd /usr/src/linux
+make menuconfig
+make -j4
+make modules_install
+make install
+
+# fstab
+blkid
+vim /etc/fstab
+    /dev/sda1   /boot        vfat    defaults,noatime     0 2
+    /dev/sda2   none         swap    sw                   0 0
+    /dev/sda3   /            ext4    noatime              0 1
+
+# hostname
+vim /etc/conf.d/hostname
+    hostname="GentooDev"
+
+# hosts
+vim /etc/hosts
+    127.0.0.1 localhost
+    ::1       localhost
+    127.0.1.1 GentooDev
+
+# network
+vim /etc/conf.d/net
+    config_eth0="dhcp"
+cd /etc/init.d
+ln -s net.lo net.eth0
+rc-update add net.eth0 default
+
+# root passwd
+passwd
+
+# syslog
+emerge app-admin/sysklogd
+emerge app-admin/logrotate
+rc-update add sysklogd default
+
+# grub
+emerge sys-boot/grub:2
+grub-install --target=x86_64-efi --efi-directory=/boot
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# tools
+emerge sys-process/htop
