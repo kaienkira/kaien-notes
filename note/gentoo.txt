@@ -13,18 +13,69 @@ cd /mnt/gentoo
 links https://www.gentoo.org/downloads/mirrors/
 tar -xpvf stage3-amd64-openrc-*.tar.xz --xattrs-include='*.*' --numeric-owner
 
-# config compile options
+# make.conf
 vi /mnt/gentoo/etc/portage/make.conf
     CHOST="x86_64-pc-linux-gnu"
     COMMON_FLAGS="-march=native -O2 -pipe"
     CFLAGS="${COMMON_FLAGS}"
     CXXFLAGS="${COMMON_FLAGS}"
     MAKEOPTS="-j4"
+    LC_MESSAGES="C"
+
+    DISTDIR="/opt/portage/cache/distfiles/"
+    PKGDIR="/opt/portage/cache/binpkgs/"
+    PORTAGE_TMPDIR="/opt/portage/tmp/"
+    PORTAGE_LOGDIR="/opt/portage/log/"
+
     GENTOO_MIRRORS="https://mirrors.tuna.tsinghua.edu.cn/gentoo"
 
-    PORTDIR=/opt/portage/gentoo/
-    PORTDIR_OVERLAY=/opt/portage/local/
-    DISTDIR=/opt/portage/cache/distfiles/
-    PKGDIR=/opt/portage/cache/binpkgs/
-    PORTAGE_TMPDIR=/opt/portage/tmp/
-    PORTAGE_LOGDIR=/opt/portage/log/
+# repos.conf/gentoo.conf
+mkdir -p /mnt/gentoo/etc/portage/repos.conf
+cp /mnt/gentoo/usr/share/portage/config/repos.conf \
+   /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
+vi /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
+    location: /opt/portage/repos/gentoo
+    sync-uri: rsync://rsync.cn.gentoo.org/gentoo-portage/
+
+# dns
+cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
+
+# chroot
+mount --types proc /proc /mnt/gentoo/proc
+mount --rbind /sys /mnt/gentoo/sys
+mount --make-rslave /mnt/gentoo/sys
+mount --rbind /dev /mnt/gentoo/dev
+mount --make-rslave /mnt/gentoo/dev
+chroot /mnt/gentoo /bin/bash
+source /etc/profile
+export PS1="(chroot) ${PS1}"
+mount /dev/sda1 /boot
+
+# config portage
+emerge-webrsync
+eselect profile list
+eselect profile set 1
+emerge --sync
+eselect news list
+eselect news read
+emerge -uDN @world
+emerge --depclean
+emerge --info
+
+# timezone
+echo 'Asia/Shanghai' >/etc/timezone
+emerge --config sys-libs/timezone-data
+
+# locale
+echo 'en_US.UTF-8 UTF-8' >/etc/locale.gen
+locale-gen
+eselect locale list
+eselect locale set 4
+
+# tools
+emerge app-editors/vim
+
+# kernel
+emerge sys-kernel/gentoo-sources
+eselect kernel list
+eselect kernel set 1
