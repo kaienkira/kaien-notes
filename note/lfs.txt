@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+base packages
+-------------------------------------------------------------------------------
+gcc
+autoconf
+automake
+bison
+grep
+gawk
+m4
+make
+
+coreutils
+binutils
+diffutils
+
+bash
+bzip2
+
+acl
+attr
+bc
+
+grub
