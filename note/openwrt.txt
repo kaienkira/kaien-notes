@@ -26,7 +26,7 @@
     opkg install airmon-ng
     iw phy
     iw dev
-    airodump-ng -c <channel> --bssid <bssid> -w <file> <dev>
+    airodump-ng -i -c <channel> --bssid <bssid> -w <file> <dev>
     aireplay-ng -0 <send_count> -a <ap_mac_addr> -c <client_mac_addr> <dev> 
     aircrack-ng -w <password_list_file> -b <bssid> <cap_file>
 
