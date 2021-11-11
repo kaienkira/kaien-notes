@@ -16,6 +16,10 @@
     Windows Search
     SysMain
 
+*. 删除多余的网络配置
+    HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles
+    HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged
+
 ===============================================================================
 *. 网络连接共享持久化
     Internet Connection Sharing服务设置为自动
