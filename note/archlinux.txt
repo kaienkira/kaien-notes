@@ -297,6 +297,10 @@
 ===============================================================================
 -*- Hardware -*-
 ===============================================================================
+# thinkbook 14p
+    *. change brightness
+    echo 100 > /sys/class/backlight/amdgpu_bl0/brigtness
+
 # disable Nvidia card
     pacman -S bbswitch
     vi /etc/modules-load.d/bbswitch.conf
