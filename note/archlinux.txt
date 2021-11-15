@@ -306,6 +306,8 @@
         rmmod pcspkr
         vi /etc/modprobe.d/nobeep.conf
             blacklist pcspkr
+    *. disable wlan power saving
+        iw wlp1s0 set power_save off
 
 # disable Nvidia card
     pacman -S bbswitch
