@@ -237,12 +237,14 @@
         ctrl_interface_group=root
         update_config=1
         network={
-            ssid="<ssid_1>"
-            psk="<psk_1>"
+            ssid="<wpa2_ssid>"
+            psk="<wpa2_psk>"
         }
         network={
-            ssid="<ssid_2>"
-            psk="<psk_2>"
+            ssid="<wpa3_ssid>"
+            key_mgmt=SAE
+            sae_password="<wpa3_ssid>"
+            ieee80211w=2
         }
     wpa_cli
         scan
