@@ -1,24 +1,48 @@
 -------------------------------------------------------------------------------
+archlinux live cd
+-------------------------------------------------------------------------------
+mount -o remount,size=4G /run/archiso/cowspace
+mount /dev/sda3 /mnt/lfs
+vim /etc/pacman.d/mirrorlist
+    Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+pacman -Sy
+pacman -S base-devel wget htop
+
+-------------------------------------------------------------------------------
 base packages
 -------------------------------------------------------------------------------
-gcc
-autoconf
-automake
-bison
-grep
-gawk
-m4
-make
+*. binutils pass1
+    cd  /mnt/lfs/bootstrap/src/binutils
+    ./configure \
+        --prefix=/mnt/lfs/bootstrap/tools/ \
+        --with-sysroot=/mnt/lfs/ \
+        --target=x86_64-lfs-linux-gnu \
+        --disable-nls \
+        --disable-werror
+    make && make install
 
-coreutils
-binutils
-diffutils
-
-bash
-bzip2
-
-acl
-attr
-bc
-
-grub
+*. gcc pass1
+    cd  /mnt/lfs/bootstrap/src/gcc
+        mv gmp-src /mnt/lfs/bootstrap/src/gcc/gmp
+        mv mpfr-src /mnt/lfs/bootstrap/src/gcc/mpfr
+        mv mpc-src /mnt/lfs/bootstrap/src/gcc/mpc
+    ./configure \
+        --prefix=/mnt/lfs/bootstrap/tools/ \
+        --target=x86_64-lfs-linux-gnu \
+        --with-glibc-version=2.11 \
+        --with-sysroot=/mnt/lfs/ \
+        --with-newlib \
+        --without-headers \
+        --enable-initfini-array \
+        --disable-nls \
+        --disable-shared \
+        --disable-decimal-float \
+        --disable-threads \
+        --disable-libatomic \
+        --disable-libgomp \
+        --disable-libquadmath \
+        --disable-libssp \
+        --disable-libvtv \
+        --disable-libstdcxx \
+        --enable-languages=c,c++
+    make && make install
