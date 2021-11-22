@@ -51,3 +51,12 @@ base packages
     cd ..
     cat gcc/limitx.h gcc/glimits.h gcc/limity.h \
         >`dirname $(/mnt/lfs/bootstrap/tools/bin/x86_64-lfs-linux-gnu-gcc -print-libgcc-file-name)`/install-tools/include/limits.h
+
+*. linux api headers
+    cd /mnt/lfs/bootstrap/src/linux
+    make mrproper
+    make headers
+    find usr/include -name '.*' -delete
+    rm usr/include/Makefile
+    mkdir -p /mnt/lfs/usr
+    cp -r usr/include /mnt/lfs/usr
