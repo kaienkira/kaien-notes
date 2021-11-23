@@ -60,3 +60,18 @@ base packages
     rm usr/include/Makefile
     mkdir -p /mnt/lfs/usr
     cp -r usr/include /mnt/lfs/usr
+
+*. export PATH
+    export PATH=/mnt/lfs/bootstrap/tools/bin:$PATH
+
+*. glibc
+    cd /mnt/lfs/bootstrap/src/glibc
+    mkdir build
+    cd build
+    ../configure \
+        --prefix=/usr \
+        --host=x86_64-lfs-linux-gnu \
+        --build=x86_64-pc-linux-gnu \
+        --enable-kernel=3.2 \
+        --with-headers=/mnt/lfs/usr/include \
+        libc_cv_slibdir=/usr/lib
