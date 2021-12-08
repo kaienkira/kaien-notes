@@ -35,6 +35,7 @@ vi /etc/passwd
     *:/usr/bin/git-shell
 git init --base
 git remote add origin <url>
+git remote set-url origin <url>
 
 ================================================================================
 -*- 历史 -*-
