@@ -1,2 +1,4 @@
 *. 关机
   halt -p
+*. 安装包
+  pkg_add <package_name>
