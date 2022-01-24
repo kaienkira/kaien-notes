@@ -19,6 +19,7 @@
 *. 删除多余的网络配置
     HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles
     HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged
+    Get-NetAdapter -IncludeHidden
 
 ===============================================================================
 *. 网络连接共享持久化
