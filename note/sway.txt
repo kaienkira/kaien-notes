@@ -1,0 +1,1 @@
+export SWAYSOCK=/run/user/1000/sway-<TAB>
