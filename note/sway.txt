@@ -1,1 +1,2 @@
-export SWAYSOCK=/run/user/1000/sway-<TAB>
+*. run in vmware
+    WLR_NO_HARDWARE_CURSORS=1 sway
