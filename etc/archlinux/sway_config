@@ -9,3 +9,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaymsg exit
+
+output * {
+    bg ~/proj/kaien-docs/pictures/desktop_01.jpg fill
+}

@@ -1,2 +1,5 @@
 *. run in vmware
     WLR_NO_HARDWARE_CURSORS=1 sway
+
+*. get outputs
+    swaymsg -t get_outputs
