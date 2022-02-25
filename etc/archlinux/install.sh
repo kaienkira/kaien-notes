@@ -30,10 +30,10 @@ create_dir()
 }
 
 create_dir ~/.config 700
-create_dir ~/.config/awesome 700
 create_dir ~/.config/openbox 700
-create_dir ~/.config/sakura 700
 create_dir ~/.config/tint2 700
+create_dir ~/.config/sway 700
+create_dir ~/.config/sakura 700
 create_dir ~/.config/systemd 700
 create_dir ~/.config/systemd/user 700
 create_dir ~/.local 700
@@ -50,12 +50,12 @@ copy_file "$script_path/../_gitignore" ~/.gitignore 600
 copy_file "$script_path/_fonts.conf" ~/.fonts.conf 600
 copy_file "$script_path/_xinitrc" ~/.xinitrc 600
 copy_file "$script_path/_Xdefaults" ~/.Xdefaults 600
-copy_file "$script_path/awesome_rc.lua" ~/.config/awesome/rc.lua 600
 copy_file "$script_path/openbox_rc.xml" ~/.config/openbox/rc.xml 600
 copy_file "$script_path/openbox_menu.xml" ~/.config/openbox/menu.xml 600
 copy_file "$script_path/openbox_autostart" ~/.config/openbox/autostart 600
-copy_file "$script_path/sakura.conf" ~/.config/sakura/sakura.conf 600
 copy_file "$script_path/tint2rc" ~/.config/tint2/tint2rc 600
+copy_file "$script_path/sway_config" ~/.config/sway/config 600
+copy_file "$script_path/sakura.conf" ~/.config/sakura/sakura.conf 600
 copy_file "$script_path/systemd/tl-client.service" \
           ~/.config/systemd/user/tl-client.service 600
 copy_file "$script_path/applications/firefox-1.desktop" \
