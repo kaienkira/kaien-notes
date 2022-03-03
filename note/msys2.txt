@@ -15,6 +15,9 @@ pacman -Ql <package>
 *. remove package cascade
 pacman -Rcns <package>
 
+*. static linkage
+g++ -static -static-libgcc -static-libstdc++
+
 *. glfw
 mkdir build
 cd build
