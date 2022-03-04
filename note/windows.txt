@@ -55,6 +55,9 @@ dism /unmount-wim /mountdir:mount /commit
 [HKEY_CLASSES_ROOT\Excel.CSV\shell\Open\ddeexec]
     ddeexec -> ddeexec2
 
+*. 刷新dns
+ipconfig /flushdns
+
 ===============================================================================
 -*- Batch -*-
 ===============================================================================
