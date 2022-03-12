@@ -399,6 +399,7 @@ pacman -S xterm rxvt-unicode sakura
 pacman -S slock
 pacman -S firefox
 pacman -S virtualbox virtualbox-guest-iso
+          # virtualbox-host-dkms linux-zen-headers
 pacman -S ntfs-3g
 -------------------------------------------------------------------------------
 pacman -S alsa-utils
