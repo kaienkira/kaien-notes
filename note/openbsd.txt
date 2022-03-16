@@ -4,6 +4,7 @@
   pkg_add <package_name>
 
 *. wifi
+  fw_update
   vi /etc/hostname.<wifi_interface>
     dhcp nwid <wifi_ssid> wpakey <wifi_key> 
   sh /etc/netstart <wifi_interface>
