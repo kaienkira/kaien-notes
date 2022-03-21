@@ -1,0 +1,2 @@
+pacman -S nftables
+systemctl enable nftables.service
