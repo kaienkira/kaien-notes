@@ -410,7 +410,6 @@ pacman -S pasystray
 pacman -S transmission-gtk
 pacman -S amule
 pacman -S vlc
-pacman -S evince
 pacman -S blender
 pacman -S gimp
 -------------------------------------------------------------------------------
