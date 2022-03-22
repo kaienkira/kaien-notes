@@ -37,7 +37,6 @@ wm_menu = 1
 launcher_padding = 2 2 3
 launcher_tooltip = 1
 launcher_item_app = thunar.desktop
-launcher_item_app = firefox.desktop
 launcher_item_app = firefox-1.desktop
 launcher_item_app = firefox-2.desktop
 launcher_item_app = transmission-gtk.desktop

@@ -34,6 +34,8 @@ create_dir ~/.config/openbox 700
 create_dir ~/.config/tint2 700
 create_dir ~/.config/sway 700
 create_dir ~/.config/sakura 700
+create_dir ~/.config/fcitx5 700
+create_dir ~/.config/fcitx5/conf 700
 create_dir ~/.config/systemd 700
 create_dir ~/.config/systemd/user 700
 create_dir ~/.local 700
@@ -56,6 +58,8 @@ copy_file "$script_path/openbox_autostart" ~/.config/openbox/autostart 600
 copy_file "$script_path/tint2rc" ~/.config/tint2/tint2rc 600
 copy_file "$script_path/sway_config" ~/.config/sway/config 600
 copy_file "$script_path/sakura.conf" ~/.config/sakura/sakura.conf 600
+copy_file "$script_path/fcitx5_profile" ~/.config/fcitx5/profile 600
+copy_file "$script_path/fcitx5_classicui.conf" ~/.config/fcitx5/conf/classicui.conf 600
 copy_file "$script_path/systemd/tl-client.service" \
           ~/.config/systemd/user/tl-client.service 600
 copy_file "$script_path/applications/firefox-1.desktop" \

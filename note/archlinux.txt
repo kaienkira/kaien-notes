@@ -389,12 +389,12 @@ pacman -S xorg-server xorg-xinit
 pacman -S openbox
 pacman -S tint2
 pacman -S feh
-pacman -S fcitx-im fcitx-googlepinyin fcitx-configtool
+pacman -S fcitx5 fcitx5-gtk fcitx5-qt fcitx5-chinese-addons
+          fcitx5-material-color fcitx5-pinyin-zhwiki
 pacman -S thunar
 pacman -S terminus-font
 pacman -S ttf-dejavu
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
-pacman -S wqy-microhei
 pacman -S xterm rxvt-unicode sakura
 pacman -S slock
 pacman -S firefox
@@ -422,10 +422,10 @@ vi ~/.xinitrc
     export GTK_IM_MODULE=fcitx
     export QT_IM_MODULE=fcitx
     export XMODIFIERS="@im=fcitx"
-    tint2 &
-    fcitx &
-    volumeicon &
     ~/.fehbg &
+    tint2 &
+    pasystray &
+    fcitx5 &
     exec openbox-session
 -------------------------------------------------------------------------------
 # reload tint2
