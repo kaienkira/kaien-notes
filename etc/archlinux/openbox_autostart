@@ -1,6 +1,6 @@
 #!/bin/bash
 
-~/.fehbg >/dev/null 2>&1 &
+feh --no-fehbg --bg-fill ~/proj/kaien-docs/pictures/desktop_01.jpg &
 tint2 >/dev/null 2>&1 &
 pasystray >/dev/null 2>&1 &
 fcitx5 >/dev/null 2>&1 &
