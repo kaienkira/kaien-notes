@@ -8,3 +8,8 @@
   vi /etc/hostname.<wifi_interface>
     dhcp nwid <wifi_ssid> wpakey <wifi_key> 
   sh /etc/netstart <wifi_interface>
+
+*. packages
+    pkg_add htop
+    pkg_add vim
+    pkg_add firefox
