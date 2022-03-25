@@ -386,8 +386,10 @@ pacman -S xf86-video-vmware xf86-input-vmmouse open-vm-tools
 -------------------------------------------------------------------------------
 pacman -S xorg-server xorg-xinit
 -------------------------------------------------------------------------------
-pacman -S openbox
-pacman -S tint2
+pacman -S openbox tint2
+pacman -S i3-wm i3blocks i3lock i3status
+pacman -S sway
+-------------------------------------------------------------------------------
 pacman -S feh
 pacman -S fcitx5 fcitx5-gtk fcitx5-qt fcitx5-chinese-addons
           fcitx5-material-color fcitx5-pinyin-zhwiki
