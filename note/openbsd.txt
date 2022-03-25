@@ -1,15 +1,25 @@
-*. 关机
-  halt -p
+*. 更新系统
+  syspatch
+  sysupdate
+*. 搜索包
+  pkg_info -Q <keyword>
 *. 安装包
   pkg_add <package_name>
-
+*. 更新包
+  pkg_add -u
+*. 关机
+  halt -p
+===============================================================================
 *. wifi
   fw_update
   vi /etc/hostname.<wifi_interface>
     dhcp nwid <wifi_ssid> wpakey <wifi_key> 
   sh /etc/netstart <wifi_interface>
-
+===============================================================================
 *. packages
     pkg_add htop
     pkg_add vim
-    pkg_add firefox
+    pkg_add sakura
+    pkg_add noto-cjk nto-emoji noto-fonts
+    pkg_add i3
+    pkg_add firefox ffmpeg
