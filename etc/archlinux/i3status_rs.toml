@@ -25,10 +25,6 @@ format_mem = "{mem_used;M}/{mem_total;M}({mem_used_percents})"
 format_swap = "{swap_used;M}/{swap_total;M}({swap_used_percents})"
 
 [[block]]
-block = "net"
-format = "{speed_down;K}{speed_up;K}"
-
-[[block]]
 block = "time"
 format = "%Y-%m-%d %H:%M:%S %B %A"
 interval = 1
