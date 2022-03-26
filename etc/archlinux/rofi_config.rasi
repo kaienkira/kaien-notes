@@ -1,4 +1,5 @@
 configuration {
-    modes: "run,drun";
+    show-icons: true;
+    font: "DejaVu Sans Mono 10";
 }
 @theme "default"
