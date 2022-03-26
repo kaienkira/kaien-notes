@@ -387,7 +387,7 @@ pacman -S xf86-video-vmware xf86-input-vmmouse open-vm-tools
 pacman -S xorg-server xorg-xinit
 -------------------------------------------------------------------------------
 pacman -S openbox tint2
-pacman -S i3-wm i3status-rust rofi
+pacman -S i3-wm i3status-rust i3lock rofi
 pacman -S sway
 -------------------------------------------------------------------------------
 pacman -S feh
