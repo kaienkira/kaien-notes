@@ -387,7 +387,7 @@ pacman -S xf86-video-vmware xf86-input-vmmouse open-vm-tools
 pacman -S xorg-server xorg-xinit
 -------------------------------------------------------------------------------
 pacman -S openbox tint2
-pacman -S i3-wm i3blocks i3lock
+pacman -S i3-wm i3status-rust i3lock
 pacman -S sway
 -------------------------------------------------------------------------------
 pacman -S feh
@@ -395,7 +395,7 @@ pacman -S fcitx5 fcitx5-gtk fcitx5-qt fcitx5-chinese-addons
           fcitx5-material-color fcitx5-pinyin-zhwiki
 pacman -S thunar
 pacman -S terminus-font
-pacman -S ttf-dejavu
+pacman -S ttf-dejavu ttf-font-awesome
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
 pacman -S xterm rxvt-unicode sakura
 pacman -S slock
