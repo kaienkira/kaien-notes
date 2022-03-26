@@ -68,4 +68,5 @@ bindsym Mod1+Shift+9 move container to workspace number 9
 bindsym Mod1+Shift+0 move container to workspace number 10
 
 exec --no-startup-id feh --no-fehbg --bg-fill ~/proj/kaien-docs/pictures/desktop_01.jpg
+exec --no-startup-id pasystray
 exec --no-startup-id fcitx5 -d

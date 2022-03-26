@@ -12,10 +12,21 @@ interval = 1
 format = "{barchart} {utilization} {frequency}"
 
 [[block]]
+block = "temperature"
+chip = "*-isa-*"
+collapsed = false
+interval = 10
+format = "{average}/{max}"
+
+[[block]]
 block = "memory"
 display_type = "memory"
 format_mem = "{mem_used;M}/{mem_total;M}({mem_used_percents})"
 format_swap = "{swap_used;M}/{swap_total;M}({swap_used_percents})"
+
+[[block]]
+block = "net"
+format = "{speed_down;K}{speed_up;K}"
 
 [[block]]
 block = "time"
