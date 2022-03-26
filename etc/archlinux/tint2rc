@@ -27,9 +27,9 @@ background_color = #909090 100
 # Panel
 panel_background_id = 1
 panel_padding = 20 5 10
-panel_items = LTSBC
+panel_items = LTSC
 panel_monitor = all
-panel_size = 100% 5%
+panel_size = 100% 4%
 panel_position = bottom center horizontal
 wm_menu = 1
 
@@ -62,15 +62,8 @@ mouse_scroll_up = toggle
 mouse_scroll_down = iconify
 
 # Systemtray
-systray_padding = 0 4 2
+systray_padding = 0 8 2
 systray_monitor = 1
-
-# Battery
-battery_hide = nerver
-battery_tooltip = 1
-battery_font_color = #880e4f 100
-bat1_font = Dejavu Sans Mono 10
-bat2_font = Dejavu Sans Mono 10
 
 # Clock
 clock_font_color = #000000 100
