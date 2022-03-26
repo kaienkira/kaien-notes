@@ -5,6 +5,8 @@ set $up k
 set $right l
 set $term sakura
 
+font pango:DejaVu Sans Mono 10
+
 bar {
     position top
     font pango:DejaVu Sans Mono 10
