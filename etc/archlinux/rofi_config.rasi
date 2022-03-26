@@ -1,0 +1,4 @@
+configuration {
+    modes: "run,drun";
+}
+@theme "default"
