@@ -67,10 +67,8 @@ systray_monitor = 1
 
 # Clock
 clock_font_color = #000000 100
-time1_format = %Y-%m-%d %H:%M:%S
+time1_format = %Y-%m-%d %H:%M:%S %A
 time1_font = Dejavu Sans Mono 10
-time2_format = %B %A
-time2_font = Dejavu Sans Mono 10
 
 # Tooltip
 tooltip_background_id = 4
