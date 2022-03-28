@@ -62,7 +62,7 @@ mouse_scroll_up = toggle
 mouse_scroll_down = iconify
 
 # Systemtray
-systray_padding = 0 12 2
+systray_padding = 0 8 2
 systray_monitor = 1
 
 # Clock
