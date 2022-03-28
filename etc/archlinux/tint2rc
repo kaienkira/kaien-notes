@@ -26,7 +26,7 @@ background_color = #909090 100
 ##############################################################################
 # Panel
 panel_background_id = 1
-panel_padding = 20 5 10
+panel_padding = 0 0 0
 panel_items = LTSC
 panel_monitor = all
 panel_size = 100% 4%
@@ -34,7 +34,7 @@ panel_position = bottom center horizontal
 wm_menu = 1
 
 # Launcher
-launcher_padding = 2 2 3
+launcher_padding = 20 8 3
 launcher_tooltip = 1
 launcher_item_app = thunar.desktop
 launcher_item_app = firefox-1.desktop
@@ -45,7 +45,7 @@ launcher_item_app = sakura.desktop
 
 # Taskbar
 taskbar_mode = single_desktop
-taskbar_padding = 20 0 5
+taskbar_padding = 20 5 5
 
 # Task
 task_background_id = 2
@@ -62,10 +62,11 @@ mouse_scroll_up = toggle
 mouse_scroll_down = iconify
 
 # Systemtray
-systray_padding = 0 6 2
+systray_padding = 0 12 2
 systray_monitor = 1
 
 # Clock
+clock_padding = 20 8
 clock_font_color = #000000 100
 time1_format = %Y-%m-%d %H:%M:%S %A
 time1_font = Dejavu Sans Mono 10
