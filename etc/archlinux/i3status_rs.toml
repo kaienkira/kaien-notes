@@ -26,7 +26,7 @@ format_swap = "{swap_used;M}/{swap_total;M}({swap_used_percents})"
 
 [[block]]
 block = "time"
-format = "%Y-%m-%d %H:%M:%S %B %A"
+format = "%Y-%m-%d %H:%M:%S %A"
 interval = 1
 
 [[block]]
