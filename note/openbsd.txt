@@ -13,7 +13,8 @@
 *. wifi
   fw_update
   vi /etc/hostname.<wifi_interface>
-    dhcp nwid <wifi_ssid> wpakey <wifi_key> 
+    nwid <wifi_ssid> wpakey <wifi_key> 
+    autoconf
   sh /etc/netstart <wifi_interface>
 ===============================================================================
 *. packages
