@@ -207,6 +207,7 @@
     systemctl start systemd-networkd.service
     systemctl start systemd-resolved.service
     systemctl start wpa_supplicant@<wireless_interface>.service
+    ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
     vi /etc/systemd/resolved.conf
         LLMNR=no
     vi /etc/systemd/network/10-<wired_interface>.network
@@ -352,7 +353,7 @@ pacman -S linux-lts
 pacman -R linux
 grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman -S net-tools
+pacman -S net-tools dnsutils
 pacman -S openssh
 pacman -S cronie
 
