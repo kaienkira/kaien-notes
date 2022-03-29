@@ -1,0 +1,21 @@
+MUA(Mail User Agent)
+MDA(Mail Delivery Agent)
+MTA(Mail Transfer Agent)
+SPF(Sender Policy Framework)
+DKIM(DomainKeys Identified Mail)
+DMARC(Domain-based Message Authentication, Reporting and Conformance)
+SRS(Sender Rewriting Scheme)
+
+reverse_dns
+example.com. MX 42 example.com.
+example.com. TXT "v=spf1 mx -all"
+<selector>._domainkey.example.com. TXT "v=DKIM1; t=s; h=sha256; p=<pubkey>"
+_dmarc.example.com. TXT "v=DMARC1; p=reject; sp=reject; pct=100; aspf=s; adkim=s; fo=1; ruf=mailto:<admin>"
+
+port 25  (SMTP)
+port 465 (SMTPS)
+port 587 (STARTTLS)
+
+Dovecot
+OpenSMTPD
+    pkg_add opensmtpd-filter-rspamd
