@@ -3,7 +3,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term sakura
+set $term lxterminal
 
 font pango:DejaVu Sans Mono 10
 
