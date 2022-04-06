@@ -227,7 +227,7 @@
       <command>slock</command>
     </action>
   </keybind>
-  <keybind key="W-Return">
+  <keybind key="W-r">
     <action name="Execute">
       <command>lxterminal</command>
     </action>
