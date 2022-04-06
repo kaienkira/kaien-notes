@@ -4,7 +4,7 @@
 
 <menu id="root-menu" label="">
   <separator label="Application"/>
-  <item label="Firefox">
+  <item label="firefox">
     <action name="Execute">
       <command>firefox</command>
       <startupnotify>
@@ -13,9 +13,9 @@
       </startupnotify>
     </action>
   </item>
-  <item label="Sakura">
+  <item label="lxterminal">
     <action name="Execute">
-      <command>sakura</command>
+      <command>lxterminal</command>
     </action>
   </item>
   <separator label="System"/>
