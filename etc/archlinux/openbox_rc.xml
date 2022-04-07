@@ -229,7 +229,7 @@
   </keybind>
   <keybind key="W-r">
     <action name="Execute">
-      <command>lxterminal</command>
+      <command>xfce4-terminal</command>
     </action>
   </keybind>
   <keybind key="A-F4">
@@ -264,7 +264,7 @@
 </menu>
 
 <applications>
-  <application name="lxterminal">
+  <application name="xfce4-terminal">
     <maximized>yes</maximized>
   </application>
 </applications>

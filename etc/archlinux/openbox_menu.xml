@@ -13,9 +13,9 @@
       </startupnotify>
     </action>
   </item>
-  <item label="lxterminal">
+  <item label="terminal">
     <action name="Execute">
-      <command>lxterminal</command>
+      <command>xfce4-terminal</command>
     </action>
   </item>
   <separator label="System"/>
