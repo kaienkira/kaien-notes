@@ -477,6 +477,9 @@ speaker-test -c 1
 # list all foreign packages(eg: aur)
     pacman -Qm
 
+# list orphan packages
+    pacman -Qtd
+
 # check file belongs to which package
     pacman -Qo <file>
 
