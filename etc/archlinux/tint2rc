@@ -62,11 +62,11 @@ mouse_scroll_up = toggle
 mouse_scroll_down = iconify
 
 # Systemtray
-systray_padding = 0 8 2
+systray_padding = 10 8 2
 systray_monitor = 1
 
 # Clock
-clock_padding = 20 8
+clock_padding = 10 8
 clock_font_color = #000000 100
 time1_format = %Y-%m-%d %H:%M:%S %A
 time1_font = Dejavu Sans Mono 10
