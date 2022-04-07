@@ -36,3 +36,4 @@ ColorPalette=#000000;#cc0000;#4e9a06;#c4a000;#3465a4;#75507b;#06989a;#d3d7cf;#55
 ColorBackground=#cfcfe8e8cfcf
 ColorForeground=#000000000000
 ColorBoldIsBright=FALSE
+TabActivityColor=#000000000000
