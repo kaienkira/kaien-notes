@@ -19,7 +19,7 @@
     </action>
   </item>
   <separator label="System"/>
-  <item label="Exit Desktop">
+  <item label="exit desktop">
     <action name="Exit">
       <prompt>yes</prompt>
     </action>
