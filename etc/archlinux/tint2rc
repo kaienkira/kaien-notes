@@ -71,8 +71,13 @@ execp_background_id = 4
 execp_padding = 10 8 0
 execp_font = Dejavu Sans Mono 10
 execp_font_color = #ffffff 100
-execp_tooltip =
+execp_tooltip = System Info: BAT/WLAN/LOAD/CPU
 execp_command = i3status -c ~/.config/tint2/i3status_config
+execp_lclick_command =
+execp_rclick_command =
+execp_mclick_command =
+execp_uwheel_command =
+execp_dwheel_command =
 execp_continuous = 1
 
 # Clock
