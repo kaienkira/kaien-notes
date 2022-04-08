@@ -10,16 +10,7 @@ font pango:DejaVu Sans Mono 10
 bar {
     position top
     font pango:DejaVu Sans Mono 10
-    status_command i3status-rs ~/.config/i3statusrs/config.toml
-    colors {
-        background #222222
-        statusline #dddddd
-        separator #666666
-        focused_workspace #0088CC #0088CC #ffffff
-        active_workspace #333333 #333333 #ffffff
-        inactive_workspace #333333 #333333 #888888
-        urgent_workspace #2f343a #900000 #ffffff
-    }
+    status_command i3status
 }
 
 bindsym $mod+Return exec $term

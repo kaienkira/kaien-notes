@@ -33,7 +33,7 @@ create_dir ~/.config 700
 create_dir ~/.config/openbox 700
 create_dir ~/.config/tint2 700
 create_dir ~/.config/i3 700
-create_dir ~/.config/i3statusrs 700
+create_dir ~/.config/i3status 700
 create_dir ~/.config/rofi 700
 create_dir ~/.config/sway 700
 create_dir ~/.config/xfce4 700
@@ -62,7 +62,7 @@ copy_file "$script_path"/openbox_menu.xml ~/.config/openbox/menu.xml 600
 copy_file "$script_path"/openbox_autostart ~/.config/openbox/autostart 600
 copy_file "$script_path"/tint2rc ~/.config/tint2/tint2rc 600
 copy_file "$script_path"/i3_config ~/.config/i3/config 600
-copy_file "$script_path"/i3status_rs.toml ~/.config/i3statusrs/config.toml 600
+copy_file "$script_path"/i3status_config ~/.config/i3status/config 600
 copy_file "$script_path"/rofi_config.rasi ~/.config/rofi/config.rasi 600
 copy_file "$script_path"/sway_config ~/.config/sway/config 600
 copy_file "$script_path"/xfce4_terminal_terminalrc ~/.config/xfce4/terminal/terminalrc 600
