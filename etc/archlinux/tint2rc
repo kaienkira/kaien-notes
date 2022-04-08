@@ -69,11 +69,11 @@ systray_monitor = 1
 execp = system_info
 execp_background_id = 4
 execp_padding = 10 8 0
-execp_command = i3status -c ~/.config/tint2/i3status_config
-execp_continuous = 1
 execp_font = Dejavu Sans Mono 10
 execp_font_color = #ffffff 100
 execp_tooltip =
+execp_command = i3status -c ~/.config/tint2/i3status_config
+execp_continuous = 1
 
 # Clock
 clock_padding = 10 8
