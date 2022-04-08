@@ -27,7 +27,7 @@ background_color = #909090 100
 # Panel
 panel_background_id = 1
 panel_padding = 0 0 0
-panel_items = LTSC
+panel_items = LTSEC
 panel_monitor = all
 panel_size = 100% 4%
 panel_position = bottom center horizontal
@@ -64,6 +64,16 @@ mouse_scroll_down = iconify
 # Systemtray
 systray_padding = 10 8 2
 systray_monitor = 1
+
+# Executor
+execp = system_info
+execp_background_id = 4
+execp_padding = 10 8 0
+execp_command = i3status -c ~/.config/tint2/i3status_config
+execp_continuous = 1
+execp_font = Dejavu Sans Mono 10
+execp_font_color = #ffffff 100
+execp_tooltip =
 
 # Clock
 clock_padding = 10 8

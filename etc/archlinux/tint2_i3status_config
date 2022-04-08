@@ -1,6 +1,6 @@
 general {
     colors = false
-    output_format = i3bar
+    output_format = none
     interval = 1
 }
 
@@ -8,7 +8,6 @@ order += "battery all"
 order += "wireless _first_"
 order += "load"
 order += "cpu_usage"
-order += "tztime local"
 
 battery all {
     format = "%status %percentage"
@@ -26,8 +25,4 @@ load {
 
 cpu_usage {
     format = "%usage"
-}
-
-tztime local {
-    format = "%Y-%m-%d %H:%M:%S %A"
 }
