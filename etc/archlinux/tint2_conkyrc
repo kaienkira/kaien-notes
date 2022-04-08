@@ -44,6 +44,9 @@ conky.text = [[
 Host: ${alignr}${nodename}
 Kernel: ${alignr}${kernel}
 Uptime: ${alignr}${uptime}
+Load: ${alignr}${loadavg 1} ${loadavg 2} ${loadavg 3}
+Processes: ${alignr}${processes}
+Threads: ${alignr}${threads}
 ${hr}
 Cpu Freq: ${alignr}${freq_g}GHz
 Cpu Usage: ${alignr}${cpu}%
@@ -51,7 +54,6 @@ ${cpubar}
 Mem Usage: ${alignr}${mem}/${memmax}
 ${membar}
 IP: ${alignr}${addr}
-DNS: ${alignr}${nameserver}
 Up: ${alignr}${upspeed}
 Down: ${alignr}${downspeed}
 ${hr}
