@@ -29,7 +29,7 @@ panel_background_id = 1
 panel_padding = 0 0 0
 panel_items = LTSEC
 panel_monitor = all
-panel_size = 100% 4%
+panel_size = 100% 42
 panel_position = bottom center horizontal
 wm_menu = 1
 
@@ -73,7 +73,7 @@ execp_font = Dejavu Sans Mono 10
 execp_font_color = #ffffff 100
 execp_tooltip = System Info: BAT/WLAN/LOAD/CPU
 execp_command = i3status -c ~/.config/tint2/i3status_config
-execp_lclick_command =
+execp_lclick_command = if pidof conky; then pkill conky; else conky -c ~/.config/tint2/conkyrc ; fi
 execp_rclick_command =
 execp_mclick_command =
 execp_uwheel_command =

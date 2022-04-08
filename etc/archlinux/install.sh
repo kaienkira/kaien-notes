@@ -62,6 +62,7 @@ copy_file "$script_path"/openbox_menu.xml ~/.config/openbox/menu.xml 600
 copy_file "$script_path"/openbox_autostart ~/.config/openbox/autostart 600
 copy_file "$script_path"/tint2rc ~/.config/tint2/tint2rc 600
 copy_file "$script_path"/tint2_i3status_config ~/.config/tint2/i3status_config 600
+copy_file "$script_path"/tint2_conkyrc ~/.config/tint2/conkyrc 600
 copy_file "$script_path"/i3_config ~/.config/i3/config 600
 copy_file "$script_path"/i3status_config ~/.config/i3status/config 600
 copy_file "$script_path"/rofi_config.rasi ~/.config/rofi/config.rasi 600
