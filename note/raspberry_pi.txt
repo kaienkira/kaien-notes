@@ -1,5 +1,9 @@
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys <key>
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys <fingerprint>
 gpg -k --keyring ./trusted.gpg
+gpg --no-default-keyring --keyring ./tmp.gpg \
+    --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys <fingerprint>
+gpg --no-default-keyring --keyring ./tmp.gpg --export <fingerprint> >key.gpg
+
 
 *. network
     vi /etc/wpa_supplicant/wpa_supplicant.conf
