@@ -5,6 +5,8 @@ vi /etc/apt/sources.list
 vi /etc/apt/sources.list.d/raspi.list
     deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ bullseye main
 
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys <key>
+
 *. network
     vi /etc/wpa_supplicant/wpa_supplicant.conf
         country=US
