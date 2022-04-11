@@ -1,3 +1,6 @@
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys <key>
+gpg -k --keyring ./trusted.gpg
+
 *. network
     vi /etc/wpa_supplicant/wpa_supplicant.conf
         country=US
