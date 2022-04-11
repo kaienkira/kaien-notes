@@ -300,6 +300,11 @@
 # Recovery
     paccheck --md5sum --quiet
 
+# Reset gnupg keys
+    pacman-key --init 
+    pacman-key --populate archlinux
+    pacman-key --list
+
 ===============================================================================
 -*- Hardware -*-
 ===============================================================================
