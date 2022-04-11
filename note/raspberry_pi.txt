@@ -1,7 +1,9 @@
 vi /etc/apt/sources.list
-    deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main non-free contrib
+    deb [arch=armhf] http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ bullseye main non-free contrib rpi
+    deb [arch=arm64] http://mirrors.tuna.tsinghua.edu.cn/raspbian/multiarch/ bullseye main
+    deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ bullseye main non-free contrib rpi
 vi /etc/apt/sources.list.d/raspi.list
-    deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main ui
+    deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ bullseye main
 
 *. network
     vi /etc/wpa_supplicant/wpa_supplicant.conf
