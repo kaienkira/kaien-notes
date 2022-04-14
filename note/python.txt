@@ -60,7 +60,7 @@ pip freeze > dep.txt
 -*- virualenv -*-
 -------------------------------------------------------------------------------
 *. install
-    sudo apt-get install python-virtualenv
+    sudo apt-get install virtualenv
 *. create
     virtualenv -p python3 <env>
 
