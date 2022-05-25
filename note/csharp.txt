@@ -100,3 +100,8 @@ System.Threading.Monitor
    All waiting threads are place on a big waiting queue for that shared resource,
    which undermines efficiency.
 ===============================================================================
+
+===============================================================================
+-*- .Net Core SDK -*-
+===============================================================================
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
