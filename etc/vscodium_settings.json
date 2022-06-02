@@ -1,0 +1,12 @@
+{
+    "workbench.colorTheme": "Visual Studio 2019 Light",
+    "editor.fontFamily": "'DejaVu Sans Mono'",
+    "http.proxy": "http://127.0.0.1:8118",
+    "git.enabled": false,
+    "csharp.referencesCodeLens.enabled": false,
+    "csharp.testsCodeLens.enabled": false,
+    "omnisharp.enableRoslynAnalyzers": true,
+    "omnisharp.enableDecompilationSupport": true,
+    "omnisharp.useGlobalMono": "always",
+    "razor.disabled": true
+}
