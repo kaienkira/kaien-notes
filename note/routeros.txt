@@ -1,1 +1,21 @@
+# reset config
+/system reset-configuration no-defaults=yes skip-backup=yes
+
+# wan
+## dhcp
 /ip dhcp-client add interface=ether1 disabled=no
+## static
+/ip address add address=1.2.3.100/24 interface=ether1
+/ip route add gateway=1.2.3.1
+/ip dns set servers=8.8.8.8
+## pppoe
+/interface pppoe-client add disabled=no interface=ether1 user=me password=123 add-default-route=yes use-peer-dns=yes
+
+# lan
+/interface bridge add name=local
+/interface bridge port add interface=ether2 bridge=local
+/ip address add address=192.168.88.1/24 interface=local
+/ip pool add name=lan-dhcp-pool ranges=192.168.88.101-192.168.88.255
+/ip dhcp-server add name=lan-dhcp interface=local address-pool=lan-dhcp-pool
+/ip dhcp-server network add address=192.168.88.0/24 gateway=192.168.88.1 dns-server=8.8.8.8
+/ip firewall nat add chain=srcnat out-interface=ether1 action=masquerade
