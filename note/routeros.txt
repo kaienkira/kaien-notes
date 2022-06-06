@@ -3,6 +3,7 @@
 =====================================================================================================================
 /system reset-configuration no-defaults=yes skip-backup=yes
 
+/system identity set name=RB750Gr3
 /system clock set time-zone-name=Asia/Shanghai
 
 /interface bridge add name=lan
