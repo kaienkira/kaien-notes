@@ -1,0 +1,8 @@
+# v1.3 build
+docker pull vyos/vyos-build:equuleus
+git clone https://github.com/vyos/vyos-build
+git checkout equuleus
+cd vyos-build && \
+    docker run --rm -it --privileged -v $(pwd):/vyos -w /vyos vyos/vyos-build:equuleus bash
+./configure --architecture amd64 --build-type release
+sudo make iso
