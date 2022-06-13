@@ -67,6 +67,7 @@ find . -print0 | cpio --null -ov --format=newc | gzip > ../initramfs.img
 qemu-system-x86_64 \
     -nographic -enable-kvm \
     -machine q35 \
+    -cpu host \
     -m 256M \
     -kernel vmlinuz \
     -initrd initramfs.img \
