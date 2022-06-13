@@ -24,6 +24,10 @@ Device Drivers --->
     Generic Driver Options --->
         [*] Maintain a devtmpfs filesystem to mount at /dev
         [*]   Automount devtmpfs at /dev, after the kernel mounted the rootfs
+    Character devices --->
+        Serial drivers --->
+            [*] 8250/16550 and compatible serial support
+            [*] Console on 8250/16550 and compatible serial port
 make O=build ARCH=x86 bzImage
 -------------------------------------------------------------------------------
 make ARCH=x86 x86_64_defconfig
@@ -49,5 +53,14 @@ vi init
     mount -t sysfs none /sys
     exec /bin/sh
 chmod +x init
-find . -print0 | cpio --null -ov --format=newc | gzip > initramfs.img
--------------------------------------------------------------------------------
+find . -print0 | cpio --null -ov --format=newc | gzip > ../initramfs.img
+===============================================================================
+
+===============================================================================
+# run in qemu
+===============================================================================
+qemu-system-x86_64 \
+    -m 1G -nographic \
+    -kernel vmlinuz \
+    -initrd initramfs.img \
+    -append "console=ttyS0"
