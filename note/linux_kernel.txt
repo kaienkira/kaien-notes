@@ -1,2 +1,23 @@
-make x86_64_defconfig
-make menuconfig
+pacman -S base-devel bc
+
+make clean
+make mrproper
+make distclean
+
+-------------------------------------------------------------------------------
+make ARCH=x86 allnoconfig
+make ARCH=x86 menuconfig
+General setup --->
+    [*] Initial RAM filesystem and RAM disk (initramfs/initrd) support
+    [*]   Support initial ramdisk/ramfs compressed using gzip
+Executable file formats --->
+    [*] Kernel support for ELF binaries
+    [*] Kernel support for scripts starting with #!
+Device Drivers --->
+    Generic Driver Options --->
+        [*] Maintain a devtmpfs filesystem to mount at /dev
+        [*]   Automount devtmpfs at /dev, after the kernel mounted the rootfs
+-------------------------------------------------------------------------------
+make ARCH=x86 x86_64_defconfig
+make ARCH=x86 menuconfig
+-------------------------------------------------------------------------------
