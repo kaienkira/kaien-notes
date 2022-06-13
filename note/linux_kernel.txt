@@ -16,18 +16,26 @@ make O=build ARCH=x86 menuconfig
 [*] 64-bit kernel
 General setup --->
     [*] Initial RAM filesystem and RAM disk (initramfs/initrd) support
-    [*]   Support initial ramdisk/ramfs compressed using gzip
+        [*] Support initial ramdisk/ramfs compressed using gzip
 Executable file formats --->
     [*] Kernel support for ELF binaries
     [*] Kernel support for scripts starting with #!
+[*] Networking support  --->
+    Networking options  --->
+        [*] TCP/IP networking
 Device Drivers --->
     Generic Driver Options --->
         [*] Maintain a devtmpfs filesystem to mount at /dev
-        [*]   Automount devtmpfs at /dev, after the kernel mounted the rootfs
+            [*] Automount devtmpfs at /dev, after the kernel mounted the rootfs
     Character devices --->
         Serial drivers --->
             [*] 8250/16550 and compatible serial support
             [*] Console on 8250/16550 and compatible serial port
+    [*] PCI support  --->
+    [*] Network device support  --->
+        [*] Ethernet driver support  --->
+            [*] Intel devices
+                [*] Intel(R) PRO/1000 Gigabit Ethernet support
 make O=build ARCH=x86 bzImage
 -------------------------------------------------------------------------------
 make ARCH=x86 x86_64_defconfig
