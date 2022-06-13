@@ -5,8 +5,9 @@ make mrproper
 make distclean
 
 -------------------------------------------------------------------------------
-make ARCH=x86 allnoconfig
-make ARCH=x86 menuconfig
+make O=build ARCH=x86 allnoconfig
+make O=build ARCH=x86 menuconfig
+[*] 64-bit kernel
 General setup --->
     [*] Initial RAM filesystem and RAM disk (initramfs/initrd) support
     [*]   Support initial ramdisk/ramfs compressed using gzip
@@ -17,6 +18,7 @@ Device Drivers --->
     Generic Driver Options --->
         [*] Maintain a devtmpfs filesystem to mount at /dev
         [*]   Automount devtmpfs at /dev, after the kernel mounted the rootfs
+make O=build ARCH=x86 bzImage
 -------------------------------------------------------------------------------
 make ARCH=x86 x86_64_defconfig
 make ARCH=x86 menuconfig
