@@ -76,7 +76,9 @@ qemu-system-x86_64 \
     -nographic -enable-kvm \
     -machine q35 \
     -cpu host \
+    -smp 4 \
     -m 256M \
+    -nic user,model=e1000 \
     -kernel vmlinuz \
     -initrd initramfs.img \
     -append "console=ttyS0"
