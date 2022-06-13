@@ -60,7 +60,8 @@ find . -print0 | cpio --null -ov --format=newc | gzip > ../initramfs.img
 # run in qemu
 ===============================================================================
 qemu-system-x86_64 \
-    -m 1G -nographic \
+    -nographic -enable-kvm \
+    -m 1G \
     -kernel vmlinuz \
     -initrd initramfs.img \
     -append "console=ttyS0"
