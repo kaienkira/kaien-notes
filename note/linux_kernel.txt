@@ -31,6 +31,9 @@ Device Drivers --->
         Serial drivers --->
             [*] 8250/16550 and compatible serial support
             [*] Console on 8250/16550 and compatible serial port
+    Input device support --->
+        [*] Keyboards --->
+            [*] AT keyboard
     [*] PCI support  --->
     [*] Network device support  --->
         [*] Ethernet driver support  --->
@@ -120,3 +123,4 @@ qemu-system-x86_64 \
     -kernel vmlinuz \
     -initrd initramfs.img \
     -append "console=tty1 console=ttyS0"
+    # sendkey ctrl-alt-f1
