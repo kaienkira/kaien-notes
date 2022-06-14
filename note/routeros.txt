@@ -47,8 +47,15 @@
 /ip dns set servers=8.8.8.8
 # wan pppoe
 /interface pppoe-client add disabled=no interface=ether1 user=me password=123 add-default-route=yes use-peer-dns=yes
+=====================================================================================================================
 # allow ssh on wan
 /ip firewall filter add chain=input in-interface-list=WAN protocol=tcp port=22 action=accept
 # port forward
 /ip firewall nat add chain=dstnat protocol=tcp port=22 in-interface-list=WAN action=dst-nat to-address=192.168.3.x
+=====================================================================================================================
+# system update
+/system package update print
+/system package update set channel=stable
+/system package update check-for-updates
+/system package update download
 =====================================================================================================================
