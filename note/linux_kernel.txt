@@ -80,6 +80,7 @@ chmod +x init
 --------------------------------------------------------------------------------
 vi etc/inittab
     ::sysinit:/etc/init.d/rcS
+    ::respawn:udpsvd -vE 0.0.0.0 69 tftpd -c /opt
     ::askfirst:/bin/cttyhack /bin/sh
     tty1::askfirst:/bin/sh
     tty2::askfirst:/bin/sh
