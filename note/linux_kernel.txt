@@ -122,5 +122,5 @@ qemu-system-x86_64 \
     -nic user,model=e1000,net=192.168.5.0/24,dhcpstart=192.168.5.11 \
     -kernel vmlinuz \
     -initrd initramfs.img \
-    -append "console=tty1 console=ttyS0"
+    -append "console=ttyS0"
     # sendkey ctrl-alt-f1
