@@ -404,7 +404,7 @@ pacman -S thunar
 pacman -S terminus-font
 pacman -S ttf-dejavu ttf-font-awesome
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
-pacman -S xterm lxterminal
+pacman -S xterm xfce4-terminal
 pacman -S slock
 pacman -S firefox
 pacman -S virtualbox virtualbox-guest-iso
