@@ -70,3 +70,4 @@
 ==============================================================================
 /bin/board_detect -> /etc/board.json
 /bin/config_generate -> /etc/config/network
+/sbin/reload_config
