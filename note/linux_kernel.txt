@@ -119,3 +119,8 @@ qemu-system-x86_64 \
     -append "console=ttyS0"
     # quit -> ctrl-a x
     # sendkey ctrl-alt-f1
+
+===============================================================================
+# grub
+===============================================================================
+grub-install /dev/sdb --skip-fs-probe --efi-directory=./mnt/boot --bootloader-id=grub
