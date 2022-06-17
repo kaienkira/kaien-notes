@@ -6,7 +6,7 @@
 
 # Disk (uefi+gpt)
     # partition
-    fdisk
+    fdisk /dev/sda
         g -> create a new empty GPT partition table
         # create esp
         n -> add a new partition
@@ -36,6 +36,13 @@
             20    -> partition type
                      (Linux filesystem: 0FC63DAF-8483-4772-8E79-3D69D8477DE4)
         w
+
+    parted -s \
+        mklabel gpt \
+        mkpart esp fat32 1MiB 551MiB \
+        mkpart primary linux-swap 551MiB 2599MiB \
+        mkpart primary ext4 2599MiB 100% \
+        set 1 esp on
 
     # format file system
     mkfs.vfat /dev/sda1
