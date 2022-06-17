@@ -123,12 +123,3 @@ qemu-system-x86_64 \
 ===============================================================================
 # grub
 ===============================================================================
-grub-install /dev/sdb \
-    --skip-fs-probe \
-    --target=x86_64-efi \
-    --efi-directory=./mnt_boot \
-    --boot-directory=./mnt_boot \
-    --bootloader-id=grub
-
-vi ./mnt_boot/grub/grub.cfg
-    insmod part_gpt

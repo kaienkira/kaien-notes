@@ -159,7 +159,8 @@
 
 # Boot Loader (uefi+gpt)
     pacman -S grub efibootmgr
-    efibootmgr -v
+    # efibootmgr -v
+    # efibootmgr -B -b <n>
     grub-install --efi-directory=/boot --bootloader-id=grub
     grub-mkconfig -o /boot/grub/grub.cfg
 
