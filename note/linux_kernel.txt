@@ -13,32 +13,34 @@ make distclean
 -------------------------------------------------------------------------------
 make O=build ARCH=x86 allnoconfig
 make O=build ARCH=x86 menuconfig
-[*] 64-bit kernel
+[*] 64-bit kernel (CONFIG_64BIT)
 General setup --->
-    [*] Initial RAM filesystem and RAM disk (initramfs/initrd) support
-        [*] Support initial ramdisk/ramfs compressed using gzip
+    [*] Initial RAM filesystem and RAM disk (initramfs/initrd) support (CONFIG_BLK_DEV_INITRD)
+        [*] Support initial ramdisk/ramfs compressed using gzip (CONFIG_RD_GZIP)
 Executable file formats --->
-    [*] Kernel support for ELF binaries
-    [*] Kernel support for scripts starting with #!
-[*] Networking support  --->
+    [*] Kernel support for ELF binaries (CONFIG_BINFMT_ELF)
+    [*] Kernel support for scripts starting with #! (CONFIG_BINFMT_SCRIPT)
+[*] Networking support  ---> (CONFIG_NET)
     Networking options  --->
-        [*] TCP/IP networking
+        [*] Packet socket (CONFIG_PACKET)
+        [*] TCP/IP networking (CONFIG_INET)
+            [*] The IPv6 protocol ---> (CONFIG_IPV6)
 Device Drivers --->
     Generic Driver Options --->
-        [*] Maintain a devtmpfs filesystem to mount at /dev
-            [*] Automount devtmpfs at /dev, after the kernel mounted the rootfs
+        [*] Maintain a devtmpfs filesystem to mount at /dev (CONFIG_DEVTMPFS)
+            [*] Automount devtmpfs at /dev, after the kernel mounted the rootfs (CONFIG_DEVTMPFS_MOUNT)
     Character devices --->
         Serial drivers --->
-            [*] 8250/16550 and compatible serial support
-            [*] Console on 8250/16550 and compatible serial port
+            [*] 8250/16550 and compatible serial support (CONFIG_SERIAL_8250)
+            [*] Console on 8250/16550 and compatible serial port (CONFIG_SERIAL_8250_CONSOLE)
     Input device support --->
-        [*] Keyboards --->
-            [*] AT keyboard
-    [*] PCI support  --->
-    [*] Network device support  --->
-        [*] Ethernet driver support  --->
-            [*] Intel devices
-                [*] Intel(R) PRO/1000 Gigabit Ethernet support
+        [*] Keyboards ---> (CONFIG_INPUT_KEYBOARD)
+            [*] AT keyboard (CONFIG_KEYBOARD_ATKBD)
+    [*] PCI support  ---> (CONFIG_PCI)
+    [*] Network device support  ---> (CONFIG_NETDEVICES)
+        [*] Ethernet driver support  ---> (CONFIG_ETHERNET)
+            [*] Intel devices (CONFIG_NET_VENDOR_INTEL)
+                [*] Intel(R) PRO/1000 Gigabit Ethernet support (CONFIG_E1000)
 make O=build ARCH=x86 bzImage
 -------------------------------------------------------------------------------
 make ARCH=x86 x86_64_defconfig
