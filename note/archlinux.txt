@@ -149,6 +149,12 @@
     ip addr add <ip>/24 dev <interface>
     ip route add default via <gateway>
 
+# Use wifi
+    iwctl
+    station <interface> scan 
+    station <interface> get-networks
+    station <interface> connect <ssid>
+
 # Select Mirror 
     vi /etc/pacman.d/mirrorlist
 
