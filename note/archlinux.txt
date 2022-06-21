@@ -131,6 +131,12 @@
                      (Linux)
         w
 
+    parted -s \
+        mklabel msdos \
+        mkpart primary linux-swap 1MiB 2049MiB \
+        mkpart primary ext4 2049MiB 100% \
+        set 1 boot on
+
     # format file system
     mkswap /dev/sda1
     mkfs.ext4 /dev/sda2
