@@ -13,18 +13,30 @@ make distclean
 -------------------------------------------------------------------------------
 make O=build ARCH=x86 allnoconfig
 make O=build ARCH=x86 menuconfig
+
 [*] 64-bit kernel (CONFIG_64BIT)
+
 General setup --->
     [*] Initial RAM filesystem and RAM disk (initramfs/initrd) support (CONFIG_BLK_DEV_INITRD)
         [*] Support initial ramdisk/ramfs compressed using gzip (CONFIG_RD_GZIP)
+    Timers subsystem  --->
+        [*] High Resolution Timer Support (CONFIG_HIGH_RES_TIMERS)
+
 Executable file formats --->
     [*] Kernel support for ELF binaries (CONFIG_BINFMT_ELF)
     [*] Kernel support for scripts starting with #! (CONFIG_BINFMT_SCRIPT)
+
+Power management and ACPI options  --->
+    [*] ACPI (Advanced Configuration and Power Interface) Support ---> (CONFIG_ACPI)
+        [*] Processor (CONFIG_ACPI_PROCESSOR)
+        [*] Thermal Zone (CONFIG_ACPI_THERMAL)
+
 [*] Networking support  ---> (CONFIG_NET)
     Networking options  --->
         [*] Packet socket (CONFIG_PACKET)
         [*] TCP/IP networking (CONFIG_INET)
             [*] The IPv6 protocol ---> (CONFIG_IPV6)
+
 Device Drivers --->
     Generic Driver Options --->
         [*] Maintain a devtmpfs filesystem to mount at /dev (CONFIG_DEVTMPFS)
@@ -34,6 +46,9 @@ Device Drivers --->
         Serial drivers --->
             [*] 8250/16550 and compatible serial support (CONFIG_SERIAL_8250)
             [*] Console on 8250/16550 and compatible serial port (CONFIG_SERIAL_8250_CONSOLE)
+        [*] HPET - High Precision Event Timer (CONFIG_HPET)
+            [*] Allow mmap of HPET (CONFIG_HPET_MMAP)
+                 [*] Enable HPET MMAP access by default (CONFIG_HPET_MMAP_DEFAULT)
     SCSI device support  --->
         [*] SCSI device support (CONFIG_SCSI)
         [*] SCSI disk support (CONFIG_BLK_DEV_SD)
@@ -46,6 +61,7 @@ Device Drivers --->
     Input device support --->
         [*] Keyboards ---> (CONFIG_INPUT_KEYBOARD)
             [*] AT keyboard (CONFIG_KEYBOARD_ATKBD)
+
 File systems --->
     [*] The Extended 4 (ext4) filesystem (CONFIG_EXT4_FS)
 
