@@ -29,18 +29,26 @@ Device Drivers --->
     Generic Driver Options --->
         [*] Maintain a devtmpfs filesystem to mount at /dev (CONFIG_DEVTMPFS)
             [*] Automount devtmpfs at /dev, after the kernel mounted the rootfs (CONFIG_DEVTMPFS_MOUNT)
+    [*] PCI support ---> (CONFIG_PCI)
     Character devices --->
         Serial drivers --->
             [*] 8250/16550 and compatible serial support (CONFIG_SERIAL_8250)
             [*] Console on 8250/16550 and compatible serial port (CONFIG_SERIAL_8250_CONSOLE)
+    SCSI device support  --->
+        [*] SCSI device support (CONFIG_SCSI)
+        [*] SCSI disk support (CONFIG_BLK_DEV_SD)
+    [*] Serial ATA and Parallel ATA drivers (libata) ---> (CONFIG_ATA)
+        [*] AHCI SATA support (CONFIG_SATA_AHCI)
+    [*] Network device support ---> (CONFIG_NETDEVICES)
+        [*] Ethernet driver support ---> (CONFIG_ETHERNET)
+            [*] Intel devices (CONFIG_NET_VENDOR_INTEL)
+                [*] Intel(R) PRO/1000 Gigabit Ethernet support (CONFIG_E1000)
     Input device support --->
         [*] Keyboards ---> (CONFIG_INPUT_KEYBOARD)
             [*] AT keyboard (CONFIG_KEYBOARD_ATKBD)
-    [*] PCI support  ---> (CONFIG_PCI)
-    [*] Network device support  ---> (CONFIG_NETDEVICES)
-        [*] Ethernet driver support  ---> (CONFIG_ETHERNET)
-            [*] Intel devices (CONFIG_NET_VENDOR_INTEL)
-                [*] Intel(R) PRO/1000 Gigabit Ethernet support (CONFIG_E1000)
+File systems --->
+    [*] The Extended 4 (ext4) filesystem (CONFIG_EXT4_FS)
+
 make O=build ARCH=x86 bzImage
 -------------------------------------------------------------------------------
 make ARCH=x86 x86_64_defconfig
