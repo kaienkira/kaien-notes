@@ -36,6 +36,9 @@ Power management and ACPI options  --->
         [*] Packet socket (CONFIG_PACKET)
         [*] TCP/IP networking (CONFIG_INET)
             [*] The IPv6 protocol ---> (CONFIG_IPV6)
+        [*] Network packet filtering framework (Netfilter) ---> (CONFIG_NETFILTER)
+            Core Netfilter Configuration --->
+                [*] Netfilter connection tracking support (CONFIG_NF_CONNTRACK)
 
 Device Drivers --->
     Generic Driver Options --->
