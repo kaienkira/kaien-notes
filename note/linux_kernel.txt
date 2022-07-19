@@ -39,6 +39,10 @@ Power management and ACPI options  --->
         [*] Network packet filtering framework (Netfilter) ---> (CONFIG_NETFILTER)
             Core Netfilter Configuration --->
                 [*] Netfilter connection tracking support (CONFIG_NF_CONNTRACK)
+            IP: Netfilter Configuration --->
+                [*] IP tables support (required for filtering/masq/NAT) (CONFIG_IP_NF_IPTABLES)
+                [*] Packet filtering (CONFIG_IP_NF_FILTER)
+                    [*] REJECT target support (CONFIG_IP_NF_TARGET_REJECT)
 
 Device Drivers --->
     Generic Driver Options --->
