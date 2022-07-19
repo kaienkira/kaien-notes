@@ -2,7 +2,27 @@
 GSO: Generic Segmentation Offload
 RPS: Receive Packet Steering
 ===============================================================================
+--->[1]--->[ROUTE]--->[3]--->[4]--->
+              |            ^
+              |            |
+              |         [ROUTE]
+              v            |
+             [2]          [5]
+              |            ^
+              |            |
+              v            |
 
+[1] NF_IP_PRE_ROUTING
+[2] NF_IP_LOCAL_IN
+[3] NF_IP_FORWARD
+[4] NF_IP_POST_ROUTING
+[5] NF_IP_LOCAL_OUT
+
+NF_ACCEPT: continue traversal as normal.
+NF_DROP: drop the packet; don't continue traversal.
+NF_STOLEN: I've taken over the packet; don't continue traversal.
+NF_QUEUE: queue the packet (usually for userspace handling).
+NF_REPEAT: call this hook again.
 ===============================================================================
                                      XXXXXXXXXXXXXXXXXX
                                    XXX     Network    XXX
