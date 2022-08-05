@@ -380,7 +380,7 @@ pacman -S linux-lts
 pacman -R linux
 grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman -S net-tools dnsutils
+pacman -S net-tools dnsutils bridge-utils
 pacman -S openssh
 pacman -S cronie
 
