@@ -39,12 +39,13 @@ Power management and ACPI options  --->
         [*] Network packet filtering framework (Netfilter) ---> (CONFIG_NETFILTER)
             Core Netfilter Configuration --->
                 [*] Netfilter connection tracking support (CONFIG_NF_CONNTRACK)
+                -*- Netfilter Xtables support (required for ip_tables)
+                    [M] MASQUERADE target support (CONFIG_NETFILTER_XT_TARGET_MASQUERADE)
             IP: Netfilter Configuration --->
                 [*] IP tables support (required for filtering/masq/NAT) (CONFIG_IP_NF_IPTABLES)
                 [*] Packet filtering (CONFIG_IP_NF_FILTER)
                     [*] REJECT target support (CONFIG_IP_NF_TARGET_REJECT)
                 [*] iptables NAT support (CONFIG_IP_NF_NAT)
-                    [*] MASQUERADE target support (CONFIG_IP_NF_TARGET_MASQUERADE)
 
 Device Drivers --->
     Generic Driver Options --->
