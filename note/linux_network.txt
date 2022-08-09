@@ -99,6 +99,9 @@ NF_REPEAT: call this hook again.
     OUTPUT
 
 ===============================================================================
+# SNAT
+iptables -t nat -A POSTROUTING -o <output_interface> -s <local_address> -j MASQUERADE
+
 # 丢弃某个ip的数据包
 iptables -A INPUT -s <ip_addr> -j DROP
 
