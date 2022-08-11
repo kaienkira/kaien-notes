@@ -109,3 +109,7 @@ iptables -A INPUT -s <ip_addr> -j DROP
 iptables -t nat -F
 iptables -t nat -A PREROUTING  -p tcp -d <A> --dport <PA> -j DNAT --to-destination <B>:<PB>
 iptables -t nat -A POSTROUTING -p tcp -d <B> --dport <PB> -j SNAT --to <A>
+===============================================================================
+tc qdisc
+pfifo_fast (three-band first in, first out queue)
+tbf (Token Bucket Filter)
