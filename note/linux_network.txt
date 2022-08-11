@@ -113,3 +113,5 @@ iptables -t nat -A POSTROUTING -p tcp -d <B> --dport <PB> -j SNAT --to <A>
 tc qdisc
 pfifo_fast (three-band first in, first out queue)
 tbf (Token Bucket Filter)
+sfq (Stochastic Fairness Queueing)
+fq_codel (Fair Queuing (FQ) with Controlled Delay (CoDel))
