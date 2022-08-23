@@ -55,10 +55,11 @@ Power management and ACPI options  --->
                     [*] REJECT target support (CONFIG_IP_NF_TARGET_REJECT)
                 [*] iptables NAT support (CONFIG_IP_NF_NAT)
         [*] QoS and/or fair queueing ---> (CONFIG_NET_SCHED)
+            [*] Class Based Queueing (CONFIG_NET_SCH_CBQ)
+            [*] Hierarchical Token Bucket (CONFIG_NET_SCH_HTB)
+            [*] Stochastic Fairness Queueing (CONFIG_NET_SCH_SFQ)
             [*] Token Bucket Filter (CONFIG_NET_SCH_TBF)
             [*] Fair Queue Controlled Delay AQM (FQ_CODEL) (CONFIG_NET_SCH_FQ_CODEL)
-            [*] Allow override default queue discipline ---> (CONFIG_NET_SCH_DEFAULT)
-                Default queuing discipline (Fair Queue Controlled Delay) ---> (CONFIG_DEFAULT_FQ_CODEL)
 
 Device Drivers --->
     Generic Driver Options --->
