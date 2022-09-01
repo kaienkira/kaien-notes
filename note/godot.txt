@@ -1,0 +1,2 @@
+*. compile
+scons platform=linuxbsd debug_symbols=no tools=yes module_mono_enabled=yes
