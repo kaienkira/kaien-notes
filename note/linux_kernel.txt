@@ -79,12 +79,18 @@ Device Drivers --->
     [*] Serial ATA and Parallel ATA drivers (libata) ---> (CONFIG_ATA)
         [*] AHCI SATA support (CONFIG_SATA_AHCI)
     [*] Network device support ---> (CONFIG_NETDEVICES)
+        [*] Network core driver support (CONFIG_NET_CORE)
+            [*] Virtio network driver (CONFIG_VIRTIO_NET)
         [*] Ethernet driver support ---> (CONFIG_ETHERNET)
             [*] Intel devices (CONFIG_NET_VENDOR_INTEL)
                 [*] Intel(R) PRO/1000 Gigabit Ethernet support (CONFIG_E1000)
+                [*] Intel(R) PRO/1000 PCI-Express Gigabit Ethernet support (CONFIG_E1000E)
+                [*] Intel(R) Ethernet Controller I225-LM/I225-V support (CONFIG_IGC)
     Input device support --->
         [*] Keyboards ---> (CONFIG_INPUT_KEYBOARD)
             [*] AT keyboard (CONFIG_KEYBOARD_ATKBD)
+    [*] Virtio drivers ---> (CONFIG_VIRTIO_MENU)
+        [*] PCI driver for virtio devices (CONFIG_VIRTIO_PCI)
 
 File systems --->
     [*] The Extended 4 (ext4) filesystem (CONFIG_EXT4_FS)
