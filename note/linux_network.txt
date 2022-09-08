@@ -1,103 +1,30 @@
 ===============================================================================
-GSO: Generic Segmentation Offload
-RPS: Receive Packet Steering
-===============================================================================
---->[1]--->[ROUTE]--->[3]--->[4]--->
-              |            ^
-              |            |
-              |         [ROUTE]
-              v            |
-             [2]          [5]
-              |            ^
-              |            |
-              v            |
+[0] --->[1]--->[ROUTE]--->[3]--->[4]--->
+                  |            ^
+                  |            |
+                  |         [ROUTE]
+                  v            |
+                 [2]          [5]
+                  |            ^
+                  |            |
+                  v            |
+                  [LOCAL_PROCESS]
 
-[1] NF_IP_PRE_ROUTING
-[2] NF_IP_LOCAL_IN
-[3] NF_IP_FORWARD
-[4] NF_IP_POST_ROUTING
-[5] NF_IP_LOCAL_OUT
+[0] NF_INET_INGRESS
+[1] NF_INET_PRE_ROUTING
+[2] NF_INET_LOCAL_IN
+[3] NF_INET_FORWARD
+[4] NF_INET_POST_ROUTING
+[5] NF_INET_LOCAL_OUT
 
-NF_ACCEPT: continue traversal as normal.
 NF_DROP: drop the packet; don't continue traversal.
+NF_ACCEPT: continue traversal as normal.
 NF_STOLEN: I've taken over the packet; don't continue traversal.
 NF_QUEUE: queue the packet (usually for userspace handling).
 NF_REPEAT: call this hook again.
-===============================================================================
-                                     XXXXXXXXXXXXXXXXXX
-                                   XXX     Network    XXX
-                                     XXXXXXXXXXXXXXXXXX
-                                             +
-                                             |
-                                    +------------------+
-                                    | table: raw       |
-                                    | chain: PREROUTING|
-                                    +--------+---------+
-                                             |
-                                             v
-  +------------------+              +------------------+
-  | table: mangle    | <---+        | table: mangle    |
-  | chain: INPUT     |     |        | chain: PREROUTING|
-  +--------+---------+     |        +--------+---------+
-           |               |                 |
-           v               |                 v
-  +------------------+     |        +------------------+             +------------------+
-  |table: filter     |     |        | table: nat       |       +---> | table: mangle    |
-  |chain: INPUT      |     |        | chain: PREROUTING|       |     | chain: FORWARD   |
-  +--------+---------+     |        +--------+---------+       |     +--------+---------+
-           |               |                 |                 |              |
-           v               |                 v                 |              v
-    [local process]        |          ****************         |     +------------------+
-           |               +--------+ Routing decision +-------+     | table: filter    |
-           v                          ****************               | chain: FORWARD   |
-   ****************                                                  +--------+---------+
-   Routing decision                                                           |
-   ****************                                                           |
-           |                                                                  |
-           v                          ****************                        |
-  +------------------+     +--------> Routing decision  <---------------------+
-  |table: raw        |     |          ****************
-  |chain: OUTPUT     |     |                 +
-  +--------+---------+     |                 |
-           |               |                 v
-           v               |        +-------------------+
-  +------------------+     |        | table: mangle     |
-  |table: mangle     |     |        | chain: POSTROUTING|
-  |chain: OUTPUT     |     |        +--------+----------+
-  +--------+---------+     |                 |
-           |               |                 v
-           v               |        +-------------------+
-  +------------------+     |        | table: nat        |
-  |table: nat        |     |        | chain: POSTROUTING|
-  |chain: OUTPUT     |     |        +--------+----------+
-  +--------+---------+     |                 |           
-           |               |                 v           
-           v               |          XXXXXXXXXXXXXXXXXX   
-  +------------------+     |        XXX    Network     XXX 
-  |table: filter     |+----+          XXXXXXXXXXXXXXXXXX   
-  |chain: OUTPUT     |
-  +------------------+
 
 ===============================================================================
-*. built in tables and chains 
-[] filter
-    INPUT
-    OUTPUT
-    FORWARD
-[] nat
-    PREROUTING
-    POSTROUTING
-    OUTPUT
-[] mangle
-    PREROUTING
-    POSTROUTING
-    INPUT
-    OUTPUT
-    FORWARD
-[] raw
-    PREROUTING
-    OUTPUT
-
+nft list ruleset
 ===============================================================================
 # SNAT
 iptables -t nat -A POSTROUTING -o <output_interface> -s <local_address> -j MASQUERADE
@@ -116,4 +43,3 @@ tbf (Token Bucket Filter)
 sfq (Stochastic Fairness Queueing)
 fq_codel (Fair Queuing (FQ) with Controlled Delay (CoDel))
 ===============================================================================
-nft list ruleset
