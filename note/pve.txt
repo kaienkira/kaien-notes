@@ -28,10 +28,19 @@ pvedaemon.service
 /etc/pve/storage.cfg
     dir: local-pve
         path /opt/pve
-        content iso,images
+        content iso,backup
+        maxfiles 3
+        shared 0
 
+    dir: local
+            disable
+            path /var/lib/vz
+            content rootdir,snippets,vztmpl,images,iso
+            maxfiles 0
+            shared 0
+    
     zfspool: local-zfs
-        pool rpool/data
-        sparse 1
-        content images
+            pool rpool/data
+            content images
+            sparse 1
 ===============================================================================
