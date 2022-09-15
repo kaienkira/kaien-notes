@@ -25,6 +25,8 @@ NF_REPEAT: call this hook again.
 
 ===============================================================================
 nft list ruleset
+nft flush ruleset
+nft list limits
 ===============================================================================
 # SNAT
 iptables -t nat -A POSTROUTING -o <output_interface> -s <local_address> -j MASQUERADE
