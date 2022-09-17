@@ -1,5 +1,8 @@
 *. vmx config
     monitor_control.restrict_backdoor = "true"
 
+*. change network card type
+    e1000 -> vmxnet3
+
 *. shrink linux vm disk
     vmware-toolbox-cmd disk shrink /

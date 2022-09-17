@@ -37,6 +37,7 @@ Power management and ACPI options  --->
         [*] TCP/IP networking (CONFIG_INET)
             [*] The IPv6 protocol ---> (CONFIG_IPV6)
         [*] Network packet filtering framework (Netfilter) ---> (CONFIG_NETFILTER)
+            [*] Advanced netfilter configuration
             Core Netfilter Configuration --->
                 [*] Netfilter ingress support (CONFIG_NETFILTER_INGRESS)
                 [*] Netfilter egress support (CONFIG_NETFILTER_EGRESS)
@@ -50,6 +51,8 @@ Power management and ACPI options  --->
                     [*] Netfilter nf_tables netdev tables support (CONFIG_NF_TABLES_NETDEV)
                     [*] Netfilter nf_tables number generator module (CONFIG_NFT_NUMGEN)
                     [*] Netfilter nf_tables conntrack module (CONFIG_NFT_CT)
+                    [*] Netfilter nf_tables hardware flow offload module (CONFIG_NFT_FLOW_OFFLOAD)
+                    [*] Netfilter nf_tables connlimit module (CONFIG_NFT_CONNLIMIT)
                     [*] Netfilter nf_tables log module (CONFIG_NFT_LOG)
                     [*] Netfilter nf_tables limit module (CONFIG_NFT_LIMIT)
                     [*] Netfilter nf_tables masquerade support (CONFIG_NFT_MASQ)
@@ -66,6 +69,8 @@ Power management and ACPI options  --->
                     [*] Netfilter nf_tables netdev packet duplication support (CONFIG_NFT_DUP_NETDEV)
                     [*] Netfilter nf_tables netdev packet forwarding support (CONFIG_NFT_FWD_NETDEV)
                     [*] Netfilter nf_tables netdev REJECT support (CONFIG_NFT_REJECT_NETDEV)
+                [*] Netfilter flow table mixed IPv4/IPv6 module (CONFIG_NF_FLOW_TABLE_INET)
+                [*] Netfilter flow table module (CONFIG_NF_FLOW_TABLE)
         [*] QoS and/or fair queueing ---> (CONFIG_NET_SCHED)
             [*] Class Based Queueing (CONFIG_NET_SCH_CBQ)
             [*] Hierarchical Token Bucket (CONFIG_NET_SCH_HTB)
