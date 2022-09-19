@@ -7,6 +7,9 @@ v2f_img
 ===============================================================================
 _WorldSpaceCameraPos
 ===============================================================================
+#define TRANSFORM_TEX(tex,name) (tex.xy * name##_ST.xy + name##_ST.zw)
+===============================================================================
+
 float4 UnityObjectToClipPos(float3 objPos)
 float4 UnityObjectToClipPos(float4 objPos)
     (P * V) * (M * objPos)
