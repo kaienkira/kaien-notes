@@ -230,3 +230,16 @@ addr2line -fCe libunity.sym.so <addr>
     -f Show function names
     -C Demangle function names
     -e Set the input file name
+
+==============================================================================================================
+-*- X64DBG Crack -*-
+*. Find string "Unity license information is invalid" address $a
+*. Search $a In CPU Window
+*. Find string "Unity_lic.ulf" address $b
+*. Search $b In CPU Window
+
+LicensingLegacy::LicenseInfo::Activated()
+
+LicensingLegacy::LicenseInfo::InitializeLocalData()
+LicensingLegacy::LicenseInfo::ProcessLicense()
+LicensingLegacy::LicenseInfo::ValidateLicenseDocument()
