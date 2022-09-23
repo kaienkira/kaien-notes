@@ -1,6 +1,58 @@
 =============================================================================
 [NoScaleOffset]
 ===============================================================================
+SubShader Tags
+    RenderPipeline
+        UniversalRenderPipeline
+        HighDefinitionRenderPipeline
+    Queue
+        Background = 1000
+        Geometry = 2000
+        AlphaTest = 2450
+        Transparent = 3000
+        Overlay = 4000
+    RenderType
+        [String]
+    ForceNoShadowCasting
+        False (Default)
+        True
+    DisableBatching
+        False (Default)
+        True
+        LODFading
+    IgnoreProjector
+        True (Default)
+        False
+    PreviewType
+        Sphere (Default)
+        Plane
+        Skybox
+
+Pass Tags
+    LightMode (Build-In Pipelines)
+        Always (Default) - Always rendered; does not apply any lighting
+        ForwardBase      - Used in Forward rendering; applies ambient, main directional light, vertex/SH lights and lightmaps
+        ForwardAdd       - Used in Forward rendering; applies additive per-pixel lights, one Pass per light
+        Deferred         - Used in Deferred Shading; renders G-buffer
+        ShadowCaster     - Renders object depth into the shadowmap or a depth texture
+        MotionVectors    - Used to calculate per-object motion vectors
+        Meta
+    LightMode (URP)
+        SRPDefaultUnlit (Default)
+        UniversalForward
+        UniversalGBuffer
+        UniversalForwardOnly
+        Universal2D
+        ShadowCaster
+        DepthOnly
+        Meta
+    PassFlags
+        OnlyDirectional
+    RequireOptions
+        SoftVegetation
+
+
+===============================================================================
 appdata_base
 appdata_tan
 appdata_full
@@ -8,6 +60,7 @@ appdata_img
 v2f_img
 
 ===============================================================================
+_WorldSpaceLightPos0
 _WorldSpaceCameraPos
 
 ===============================================================================
@@ -37,5 +90,5 @@ depth = Linear01Depth(depth);
 ===============================================================================
 luminance = R * 0.2125 + G * 0.7154 + B * 0.0721;
 ===============================================================================
-saturate()
+saturate() clamp [0, 1]
 ===============================================================================
