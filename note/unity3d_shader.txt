@@ -51,6 +51,25 @@ Pass Tags
     RequireOptions
         SoftVegetation
 
+Blend
+    One
+    Zero
+    SrcColor
+    SrcAlpha
+    OneMinusSrcColor
+    OneMinusSrcAlpha
+    DstColor
+    DstAlpha
+    OneMinusDstColor
+    OneMinusDstAlpha
+
+    Blend One Zero                  // Blend Off
+    Blend SrcAlpha OneMinusSrcAlpha // Traditional transparency
+    Blend One OneMinusSrcAlpha      // Premultiplied transparency
+    Blend One One                   // Additive
+    Blend OneMinusDstColor One      // Soft additive
+    Blend DstColor Zero             // Multiplicative
+    Blend DstColor SrcColor         // 2x multiplicative
 
 ===============================================================================
 appdata_base
