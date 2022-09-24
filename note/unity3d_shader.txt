@@ -28,6 +28,7 @@ SubShader Tags
         Plane
         Skybox
 
+===============================================================================
 Pass Tags
     LightMode (Build-In Pipelines)
         Always (Default) - Always rendered; does not apply any lighting
@@ -51,6 +52,7 @@ Pass Tags
     RequireOptions
         SoftVegetation
 
+===============================================================================
 Blend
     One
     Zero
@@ -70,6 +72,74 @@ Blend
     Blend OneMinusDstColor One      // Soft additive
     Blend DstColor Zero             // Multiplicative
     Blend DstColor SrcColor         // 2x multiplicative
+===============================================================================
+#pragma multi_compile_fwdbase
+    DIRECTIONAL
+    LIGHTMAP_ON
+    DIRLIGHTMAP_COMBINED
+    DYNAMICLIGHTMAP_ON
+    SHADOWS_SCREEN
+    SHADOWS_SHADOWMASK
+    LIGHTMAP_SHADOW_MIXING
+    LIGHTPROBE_SH
+
+#pragma multi_compile_fwdbasealpha
+    DIRECTIONAL
+    LIGHTMAP_ON
+    DIRLIGHTMAP_COMBINED
+    DYNAMICLIGHTMAP_ON
+    LIGHTMAP_SHADOW_MIXING
+    VERTEXLIGHT_ON
+    LIGHTPROBE_SH
+
+#pragma multi_compile_fwdadd
+    POINT
+    DIRECTIONAL
+    SPOT
+    POINT_COOKIE
+    DIRECTIONAL_COOKIE
+
+#pragma multi_compile_fwdadd_fullshadows
+    POINT
+    DIRECTIONAL
+    SPOT
+    POINT_COOKIE
+    DIRECTIONAL_COOKIE
+    SHADOWS_DEPTH
+    SHADOWS_SCREEN
+    SHADOWS_CUBE
+    SHADOWS_SOFT
+    SHADOWS_SHADOWMASK
+    LIGHTMAP_SHADOW_MIXING
+
+#pragma multi_compile_lightpass
+     POINT
+     DIRECTIONAL
+     SPOT
+     POINT_COOKIE
+     DIRECTIONAL_COOKIE
+     SHADOWS_DEPTH
+     SHADOWS_SCREEN
+     SHADOWS_CUBE
+     SHADOWS_SOFT
+     SHADOWS_SHADOWMASK
+     LIGHTMAP_SHADOW_MIXING
+
+#pragma multi_compile_shadowcaster
+    SHADOWS_DEPTH
+    SHADOWS_CUBE
+
+#pragma multi_compile_shadowcollector
+    SHADOWS_SPLIT_SPHERES
+    SHADOWS_SINGLE_CASCADE
+
+#pragma multi_compile_prepassfinal
+    LIGHTMAP_ON
+    DIRLIGHTMAP_COMBINED
+    DYNAMICLIGHTMAP_ON
+    UNITY_HDR_ON
+    SHADOWS_SHADOWMASK
+    LIGHTPROBE_SH
 
 ===============================================================================
 appdata_base
