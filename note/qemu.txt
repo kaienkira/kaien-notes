@@ -1,0 +1,7 @@
+qemu-system-x86_64 \
+    -enable-kvm -m 4096 -smp 4 -cpu host \
+    -nic user,model=virtio \
+    -hda android-x86.img \
+    -device virtio-vga-gl \
+    -display gtk,gl=on \
+    #-cdrom ~/setup/iso/android-x86_64-9.0-r2.iso
