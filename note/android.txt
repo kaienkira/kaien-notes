@@ -55,4 +55,12 @@ build
 keytool -genkey -keystore test.keystore -alias test -keyalg RSA -keysize 2048 -validity 10000
 keytool -list -keystore test.keystore
 jarsigner -verbose -keystore test.keystore -signedjar signed.apk t.apk 'test'
+
+===============================================================================
+-*- android x86 -*-
+-------------------------------------------------------------------------------
+wget http://dl.android-x86.org/houdini/9_y/houdini.sfs -O /houdini9_y.sfs
+MSYS2_ARG_CONV_EXCL="*" MSYS_NO_PATHCONV=1 adb push houdini9_y.sfs /sdcard/
+adb shell -> su -> mv /sdcard/houdini9_y.sfs /system/etc/
+/system/bin/enable_native_bridge
 ===============================================================================
