@@ -4,6 +4,7 @@
     Plugins:
         C#
         EditorConfig for VS Code
+        Excel Viewer
 
 *. compile
 scons platform=linuxbsd tools=yes module_mono_enabled=yes \
