@@ -166,3 +166,6 @@ Copy trait
 #![allow(dead_code)]
 #![allow(unused_variables)]
 ===============================================================================
+
+#[inline(always)]
+#[start]
