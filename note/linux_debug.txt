@@ -1,2 +1,3 @@
 strace -e trace=open,openat,close,read,write,connect,accept <command>
 strace -e trace=file <command>
+strace -e trace=network <command>
