@@ -176,3 +176,8 @@ Copy trait
 ===============================================================================
 #[derive(Clone)]
 #[derive(Clone, Copy)]
+===============================================================================
+std::clone::Clone
+std::marker::Copy
+std::iter::Iterator
+std::iter::IntoIterator
