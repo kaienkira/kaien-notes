@@ -174,3 +174,5 @@ Copy trait
 #[must_use]
 #[must_use = "reason"]
 ===============================================================================
+#[derive(Clone)]
+#[derive(Clone, Copy)]
