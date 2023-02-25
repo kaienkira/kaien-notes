@@ -503,6 +503,9 @@ speaker-test -c 1
 # check package integrity
     pacman -Qkk [package_name]
 
+# list all explicit installed packages
+    pacman -Qe
+
 # list all foreign packages(eg: aur)
     pacman -Qm
 
