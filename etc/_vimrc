@@ -67,6 +67,7 @@ au BufNewFile,BufRead *.c,*.cc,*.cpp set foldmethod=expr foldexpr=BR_CFold(v:lnu
 au BufNewFile,BufRead *.cs set foldmethod=expr foldexpr=BR_CSharpFold(v:lnum)
 au BufNewFile,BufRead Makefile,makefile,*.mak,*.go set noexpandtab
 au BufNewFile,BufRead *.html,*.xml set tabstop=2 softtabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.m,*.mm set filetype=objcpp
 "au BufReadCmd *.aab call zip#Browse(expand("<amatch>"))
 "au FileType * set formatoptions-=ro
 
