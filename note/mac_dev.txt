@@ -34,3 +34,5 @@
 *. 系统信息
     sw_vers
     system_profiler -detailLevel basic
+*. swift package manager cache
+    ~/Library/Caches/org.swift.swiftpm
