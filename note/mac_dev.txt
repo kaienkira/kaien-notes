@@ -34,5 +34,7 @@
 *. 系统信息
     sw_vers
     system_profiler -detailLevel basic
-*. swift package manager cache
+*. SPM(swift package manager)
+    ~/Library/org.swift.swiftpm
     ~/Library/Caches/org.swift.swiftpm
+    all_proxy=socks5://<proxy> xcodebuild -resolvePackageDependencies -scmProvider system
