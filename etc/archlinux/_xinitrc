@@ -1,5 +1,5 @@
 #!/bin/bash
 
-exec openbox-session
 #xrandr --output HDMI-A-0 --auto --primary
 #xrandr --output eDP --right-of HDMI-A-0 --auto
+exec openbox-session
