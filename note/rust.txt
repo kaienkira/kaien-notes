@@ -2,8 +2,9 @@
 pacman -S rustup
 rustup default stable
 rustup update
+rustup toolchain install <stable|beta|nightly|version>
 rustup target list
-rustup toolchain install <target>
+rustup target add x86_64-pc-windows-gnu
 ===============================================================================
 cargo new --bin --name <package_name> <path>
 cargo init
