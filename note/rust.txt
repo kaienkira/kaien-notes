@@ -1,4 +1,10 @@
 ===============================================================================
+pacman -S rustup
+rustup default stable
+rustup update
+rustup target list
+rustup toolchain install <target>
+===============================================================================
 cargo new --bin --name <package_name> <path>
 cargo init
 cargo build --release
