@@ -1,6 +1,6 @@
 {
     "workbench.colorTheme": "Visual Studio 2019 Light",
-    "editor.fontFamily": "'DejaVu Sans Mono'",
+    "editor.fontFamily": "'DejaVu Sans Mono',consolas",
     "http.proxy": "http://127.0.0.1:8118",
     "git.enabled": false,
     "update.mode": "none",
