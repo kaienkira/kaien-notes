@@ -11,5 +11,22 @@ scons platform=linuxbsd tools=yes module_mono_enabled=yes \
     target=release_debug debug_symbols=no
 bin/godot.linuxbsd.opt.tools.x86_64.mono \
     --headless --generate-mono-glue modules/mono/glue
+
 -------------------------------------------------------------------------------
-CanvasItem -> Node -> Object
+OS : Object
++ GetSystemFonts()
+
+-------------------------------------------------------------------------------
+CanvasItem : Node
+- DrawAnimationSlice()
+- DrawEndAnimation()
+- DrawCircle()
+- DrawArc()
+
+Control : CanvasItem
+- GetThemeDefaultFont()
+
+-------------------------------------------------------------------------------
+Font : Resource
+
+-------------------------------------------------------------------------------
