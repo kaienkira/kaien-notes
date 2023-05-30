@@ -13,6 +13,22 @@ bin/godot.linuxbsd.opt.tools.x86_64.mono \
     --headless --generate-mono-glue modules/mono/glue
 
 -------------------------------------------------------------------------------
+Colors
+    AliceBlue      0xf0f8ff 爱丽丝蓝
+    AntiqueWhite   0xfaebd7 古董白
+    Aqua           0x00ffff 青色
+    Aquamarine     0x7fffd4 海蓝宝石
+    Azure          0xf0ffff 天蓝色
+    Beige          0xf5f5dc 米色
+    Bisque         0xffe4c4 陶坯黄
+    BlanchedAlmond 0xffebcd 白杏色
+    BlueViolet     0x8a2be2 紫罗兰色
+    Brown          0xa52a2a 棕色
+    Burlywood      0xdeb887 实木色
+    CadetBlue      0x5f9ea0 藏青色
+    Chartreuse     0x7fff00 查特绿
+
+-------------------------------------------------------------------------------
 OS : Object
 + GetSystemFonts()
 
@@ -20,8 +36,17 @@ OS : Object
 CanvasItem : Node
 - DrawAnimationSlice()
 - DrawEndAnimation()
+- DrawLine()
+- DrawDashedLine()
+- DrawMultiline()
+- DrawMultilineColors()
 - DrawCircle()
 - DrawArc()
+- DrawColoredPolygon()
+- DrawLcdTextureRectRegion()
+- DrawMsdfTextureRectRegion()
+- DrawChar()
+- DrawCharOutline()
 
 Control : CanvasItem
 - GetThemeDefaultFont()
