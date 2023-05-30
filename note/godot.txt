@@ -16,8 +16,8 @@ bin/godot.linuxbsd.opt.tools.x86_64.mono \
 Colors
     AliceBlue      0xf0f8ff 爱丽丝蓝
     AntiqueWhite   0xfaebd7 古董白
-    Aqua           0x00ffff 青色
-    Aquamarine     0x7fffd4 海蓝宝石
+    Aqua(Cyan)     0x00ffff 青色
+    Aquamarine     0x7fffd4 海蓝宝石色
     Azure          0xf0ffff 天蓝色
     Beige          0xf5f5dc 米色
     Bisque         0xffe4c4 陶坯黄
@@ -27,6 +27,11 @@ Colors
     Burlywood      0xdeb887 实木色
     CadetBlue      0x5f9ea0 藏青色
     Chartreuse     0x7fff00 查特绿
+    Chocolate      0xd2691e 巧克力色
+    Coral          0xff7f50 珊瑚色
+    CornflowerBlue 0x6495ed 矢车菊蓝
+    Cornsilk       0xfff8dc 玉米丝色
+    Crimson        0xdc143c 深红色
 
 -------------------------------------------------------------------------------
 OS : Object
