@@ -52,6 +52,13 @@ CanvasItem : Node
 - DrawMsdfTextureRectRegion()
 - DrawChar()
 - DrawCharOutline()
+- DrawString()
+- DrawStringOutline()
+- DrawMultilineString()
+- DrawMultilineStringOutline()
+- DrawTexture()
+- DrawTextureRect()
+- DrawTextureRectRegion()
 
 Control : CanvasItem
 - GetThemeDefaultFont()
