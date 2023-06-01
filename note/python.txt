@@ -1,73 +1,14 @@
 ===============================================================================
--*- pip -*-
+-*- venv && pip -*-
 -------------------------------------------------------------------------------
-*. install at user site
-    pip install --user <package_name>
-*. prevent pip install to real system
-    export PIP_REQUIRE_VIRTUALENV=true
-*. use mirror
-    vi ~/.pip/pip.conf
-        [global]
-        index-url = http://<mirror>/simple
-* wheel
-    pip install wheel
-    pip wheel -w <wheel_dir> -r requirement.txt
-    pip install --no-index --find-links=<wheel_dir> -r requirement.txt
-
-pip freeze > dep.txt
-
--------------------------------------------------------------------------------
--*- uwsgi -*-
--------------------------------------------------------------------------------
-*. install
-    pip install --user uwsgi
-
-    sudo apt-get install uwsgi uwsgi-plugin-python3
-    sudo vi /etc/uwsgi/apps-avaliable/site.ini
-    sudo ln -s /etc/uwsgi/apps-avaliable/site.ini
-               /etc/uwsgi/apps-enabled/site.ini
-
-*. nginx
-    server {
-        listen 80;
-        server_name localhost;
-    
-        location / { 
-            uwsgi_pass unix:/var/run/uwsgi/app/site/socket;
-            include uwsgi_params;
-        }   
-    } 
-
-*. django
-    [uwsgi]
-    harakiri = 20
-    max-requests = 5000
-    vacuum = true
-    chdir = <proj_dir>
-    wsgi-file = <proj_name>/wsgi.py
-    virtualenv = <env_path>
-    
-*. server
-    --http <ip>:<port>
-    --socket <unix_socket_path>
-    --wsgi-file <file>
-*. concurrency
-    --worker <num>
-    --proccesses <num>
-    --threads <num>
-
--------------------------------------------------------------------------------
--*- virualenv -*-
--------------------------------------------------------------------------------
-*. install
-    sudo apt-get install virtualenv
-*. create
-    virtualenv -p python3 <env>
-
--------------------------------------------------------------------------------
--*- venv -*-
--------------------------------------------------------------------------------
-*. python3 -m venv <ENV_DIR>
+*. use venv
+    python3 -m venv <ENV_DIR>
+    source <ENV_DIR>/bin/activate
+*. use pip mirror
+    # vi ~/.config/pip/pip.conf
+    #   [global]
+    #   index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 ===============================================================================
 *. Python does *not* do 'Copy On Write'.
