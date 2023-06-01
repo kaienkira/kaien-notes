@@ -1,0 +1,5 @@
+stable-diffusion
+    https://github.com/Stability-AI/stablediffusion
+    https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+
+    pacman -S gcc
