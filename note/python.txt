@@ -65,19 +65,9 @@ pip freeze > dep.txt
     virtualenv -p python3 <env>
 
 -------------------------------------------------------------------------------
--*- django -*-
+-*- venv -*-
 -------------------------------------------------------------------------------
-*. create
-    django-admin.py startproject <proj>
-    manage.py startapp <app>
-    manage.py check
-
-    manage.py migrate
-    manage.py migrate app zero
-    manage.py makemigrations <app>
-    manage.py sqlmigrate <app> <migration_name>
-===============================================================================
-
+*. python3 -m venv <ENV_DIR>
 
 ===============================================================================
 *. Python does *not* do 'Copy On Write'.
