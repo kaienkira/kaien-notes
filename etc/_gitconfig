@@ -12,7 +12,8 @@ pull = 'pull --rebase'
 ui = true
 [core]
 autocrlf = false
-editor = vi
+editor = vim
 excludesfile = ~/.gitignore
+safecrlf = true
 [push]
 default = simple
