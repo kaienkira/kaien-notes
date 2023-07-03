@@ -147,6 +147,10 @@ git config
 [--system] /etc/gitconfig
 [-e]
 
+git config --list --local
+git config --list --global
+git config --list --system
+
 ================================================================================
 -*- Setup Github -*-
 ================================================================================
