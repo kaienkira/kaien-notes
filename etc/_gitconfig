@@ -7,13 +7,12 @@ di = diff
 ci = commit
 co = checkout
 br = branch
-pull = 'pull --rebase'
-[color]
-ui = true
 [core]
 autocrlf = false
 editor = vim
 excludesfile = ~/.gitignore
 safecrlf = true
+[pull]
+rebase = true
 [push]
 default = simple
