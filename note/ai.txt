@@ -1,5 +1,13 @@
+LAION
+    https://laion.ai/
+
+PyTorch
+    https://pytorch.org/
+    conda update --all
+    conda install pytorch torchvision
+    conda install -c pytorch torchaudio
+    conda install -c pytorch -c nvidia pytorch-cuda=11.8
+
 stable-diffusion
     https://github.com/Stability-AI/stablediffusion
     https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
-
-    pacman -S gcc
