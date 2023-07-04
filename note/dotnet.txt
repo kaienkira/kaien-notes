@@ -7,3 +7,4 @@ dotnet workload search
 dotnet workload install
 ------------------------------------------------------------------------------
 dotnet workload install wasm-tools
+dotnet workload install wasm-experimental
