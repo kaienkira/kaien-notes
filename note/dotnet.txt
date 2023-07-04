@@ -1,0 +1,9 @@
+setx DOTNET_CLI_TELEMETRY_OPTOUT 1
+------------------------------------------------------------------------------
+dotnet --list-sdks
+dotnet --list-runtimes
+dotnet workload list
+dotnet workload search
+dotnet workload install
+------------------------------------------------------------------------------
+dotnet workload install wasm-tools
