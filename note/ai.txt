@@ -1,12 +1,19 @@
 LAION
     https://laion.ai/
 
+Conda
+    vi ~/.condarc
+        proxy_servers:
+            http: <proxy>
+            https: <proxy>
+    conda clean -a -y
+    conda update --all
+    conda create --name sd
+    conda activate sd
+
 PyTorch
     https://pytorch.org/
-    conda update --all
-    conda install pytorch torchvision
-    conda install -c pytorch torchaudio
-    conda install -c pytorch -c nvidia pytorch-cuda=11.8
+    conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 
 stable-diffusion
     https://github.com/Stability-AI/stablediffusion
