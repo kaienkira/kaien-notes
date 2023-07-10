@@ -14,6 +14,7 @@ Conda
 PyTorch
     https://pytorch.org/
     conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+    conda install matplotlib
 
     os.environ["http_proxy"] = "<proxy>"
     os.environ["https_proxy"] = "<proxy>"
