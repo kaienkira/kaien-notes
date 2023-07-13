@@ -43,6 +43,8 @@ PyTorch
     torchvision.transforms.ToTensor
     torchvision.transforms.Lambda
 
+    ReLU(Rectified linear unit)
+
 stable-diffusion
     https://github.com/Stability-AI/stablediffusion
     https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
