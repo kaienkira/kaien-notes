@@ -43,6 +43,8 @@ PyTorch
     torchvision.transforms.ToTensor
     torchvision.transforms.Lambda
 
+    torch.nn.Flatten()
+
     ReLU(Rectified linear unit)
 
 stable-diffusion
