@@ -11,7 +11,7 @@ br = branch
 autocrlf = false
 editor = vim
 excludesfile = ~/.gitignore
-safecrlf = true
+safecrlf = false
 [pull]
 rebase = true
 [push]
