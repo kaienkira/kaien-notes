@@ -7,11 +7,13 @@ di = diff
 ci = commit
 co = checkout
 br = branch
-l = log --graph --decorate --pretty=oneline
+l = log --graph --decorate \
+    --pretty=format:'%C(yellow)%H %C(blue)%an %C(red)<%ad> %C(reset)%s' \
+    --date=format:'%Y-%m-%d %H:%M'
 [core]
-autocrlf = false
 editor = vim
 excludesfile = ~/.gitignore
+autocrlf = false
 safecrlf = false
 [pull]
 rebase = true
