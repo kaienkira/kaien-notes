@@ -6,10 +6,14 @@ Conda
         proxy_servers:
             http: <proxy>
             https: <proxy>
-    conda clean -a -y
+    conda update -n base -c defaults conda
     conda update --all
-    conda create --name sd
+    conda clean -a -y
+    conda create -n <env_name>
     conda activate sd
+    conda env list
+    conda env create -n <env_name> -f environment.yaml
+    conda env remove -n <env_name>
 
 PyTorch
     https://pytorch.org/
