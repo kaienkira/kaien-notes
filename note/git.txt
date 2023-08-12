@@ -187,12 +187,12 @@ sudo gitlab-ctl reconfigure
 proxy=socks5://127.0.0.1:9059
 
 vi ~/.ssh/config
-Host *
-  ProxyCommand connect -S 127.0.0.1:9059 %h %p
-  ProxyCommand nc -v -x 127.0.0.1:9059 %h %p
-  IdentityFile ~/.ssh/id_rsa
-  TCPKeepAlive yes
-  IdentitiesOnly yes
+Host github.com
+    ProxyCommand connect -S 127.0.0.1:9059 %h %p
+    ProxyCommand socat - PROXY:127.0.0.1:%h:%p,proxyport=9059
+    IdentityFile ~/.ssh/id_rsa
+    TCPKeepAlive yes
+    IdentitiesOnly yes
 
 ================================================================================
 -*- Misc -*-
