@@ -91,3 +91,5 @@ tooltip_background_id = 4
 tooltip_padding = 4 4
 tooltip_font = Dejavu Sans Mono 10
 tooltip_font_color = #ffffff 100
+
+#scale_relative_to_dpi = 144
