@@ -21,6 +21,9 @@
     HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged
     Get-NetAdapter -IncludeHidden
 
+*. PowerShell History
+    %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+
 ===============================================================================
 *. 网络连接共享持久化
     Internet Connection Sharing服务设置为自动
