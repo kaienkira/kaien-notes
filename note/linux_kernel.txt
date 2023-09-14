@@ -25,6 +25,9 @@ General setup --->
     Timers subsystem  --->
         [*] High Resolution Timer Support (CONFIG_HIGH_RES_TIMERS)
 
+[*] Enable loadable module support ---> (CONFIG_MODULES)
+    [*] Module unloading (CONFIG_MODULE_UNLOAD)
+
 Executable file formats --->
     [*] Kernel support for ELF binaries (CONFIG_BINFMT_ELF)
     [*] Kernel support for scripts starting with #! (CONFIG_BINFMT_SCRIPT)
