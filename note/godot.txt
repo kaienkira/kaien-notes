@@ -1,16 +1,13 @@
 -------------------------------------------------------------------------------
 *. vscodium
+    data\user-data\User\settings.json
     $APPDATA\Roaming\VSCodium\User\settings.json
     Plugins:
         C#
         EditorConfig for VS Code
-        Excel Viewer
-
-*. compile
-scons platform=linuxbsd tools=yes module_mono_enabled=yes \
-    target=release_debug debug_symbols=no
-bin/godot.linuxbsd.opt.tools.x86_64.mono \
-    --headless --generate-mono-glue modules/mono/glue
+-------------------------------------------------------------------------------
+*. 生成C#胶水代码
+    <GODOT_BIN> --headless --generate-mono-glue modules/mono/glue
 
 -------------------------------------------------------------------------------
 Godot.Variant
