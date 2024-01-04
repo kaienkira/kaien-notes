@@ -13,6 +13,9 @@ bin/godot.linuxbsd.opt.tools.x86_64.mono \
     --headless --generate-mono-glue modules/mono/glue
 
 -------------------------------------------------------------------------------
+Godot.Variant
+    VariantType
+-------------------------------------------------------------------------------
 Colors
     AliceBlue      0xf0f8ff 爱丽丝蓝
     AntiqueWhite   0xfaebd7 古董白
