@@ -10,11 +10,19 @@
     <GODOT_BIN> --headless --generate-mono-glue modules/mono/glue
 
 -------------------------------------------------------------------------------
-Godot.Variant
+Variant
     P: VariantType
 -------------------------------------------------------------------------------
-Godot.Object
+Object
     E: ScriptChanged
+    M: _Notification
+-------------------------------------------------------------------------------
+Node > Object
+    M: _EnterTree -> NOTIFICATION_ENTER_TREE
+    M: _Ready     -> NOTIFICATION_READY
+    M: _Process   -> NOTIFICATION_PROCESS
+
+CanvasItem > Node > Object
 
 -------------------------------------------------------------------------------
 Colors
@@ -42,28 +50,6 @@ OS : Object
 + GetSystemFonts()
 
 -------------------------------------------------------------------------------
-CanvasItem : Node
-- DrawAnimationSlice()
-- DrawEndAnimation()
-- DrawLine()
-- DrawDashedLine()
-- DrawMultiline()
-- DrawMultilineColors()
-- DrawCircle()
-- DrawArc()
-- DrawColoredPolygon()
-- DrawLcdTextureRectRegion()
-- DrawMsdfTextureRectRegion()
-- DrawChar()
-- DrawCharOutline()
-- DrawString()
-- DrawStringOutline()
-- DrawMultilineString()
-- DrawMultilineStringOutline()
-- DrawTexture()
-- DrawTextureRect()
-- DrawTextureRectRegion()
-
 Control : CanvasItem
 - GetThemeDefaultFont()
 
