@@ -5,9 +5,33 @@
     Plugins:
         C#
         EditorConfig for VS Code
+
 -------------------------------------------------------------------------------
 *. 生成C#胶水代码
     <GODOT_BIN> --headless --generate-mono-glue modules/mono/glue
+
+-------------------------------------------------------------------------------
+*. 坐标转换
+    Local坐标
+          |
+          | CanvasItem.GetGlobalTransform()
+          V
+    Canvas坐标
+          |
+          | CanvasItem.GetCanvasTransform() ||
+          | CanvasLayer.GetFinalTransform()
+          V
+    Viewport坐标
+          |
+          | Viewport.GetScreenTransform()
+          V
+    Screen坐标
+
+    Local坐标
+         |
+         | CanvasItem.GetGlobalTransformWithCanvas()
+         v
+    Viewport坐标
 
 -------------------------------------------------------------------------------
 Variant
