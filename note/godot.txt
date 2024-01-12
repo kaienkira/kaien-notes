@@ -12,26 +12,46 @@
 
 -------------------------------------------------------------------------------
 *. 坐标转换
-    Local坐标
-          |
-          | CanvasItem.GetGlobalTransform()
-          V
-    Canvas坐标
-          |
-          | CanvasItem.GetCanvasTransform() ||
-          | CanvasLayer.GetFinalTransform()
-          V
-    Viewport坐标
-          |
-          | Viewport.GetScreenTransform()
-          V
-    Screen坐标
+        Local坐标(*1*) -----------------
+            |                          |
+           (1)                         |
+            |                          |
+            V                          |
+    --- Canvas坐标(*2*)               (5)
+    |       |                          |
+    |      (2)                         |
+    |       |                          |
+    |       V                          |
+   (7)  Viewport坐标 -----------     <--
+    |       |          |       |
+    |      (3)        (6)      |
+    |       |          |       |
+    |       V          |       |
+    --> Embedder坐标 <--       | 
+            |                 (4)
+            |                  |
+            V                  |
+        绝对Embedder坐标       |
+            |                  |
+            |                  |
+            V                  |
+        Screen坐标           <--
+            |
+            |
+            V
+        绝对Screen坐标
 
-    Local坐标
-         |
-         | CanvasItem.GetGlobalTransformWithCanvas()
-         v
-    Viewport坐标
+(*1*) CanvasItem.Position
+(*2*) CanvasItem.GlobalPosition
+
+(1)  CanvasItem.GetGlobalTransform()
+(2)  CanvasItem.GetCanvasTransform() ||
+     CanvasLayer.GetFinalTransform()
+(3)  Viewport.GetFinalTransform()
+(4)  Viewport.GetScreenTransform()
+(5)  CanvasItem.GetGlobalTransformWithCanvas()
+(6)  Viewport.GetFinalTransform()
+(7)  CanvasItem.GetViewportTransform()
 
 -------------------------------------------------------------------------------
 Variant
