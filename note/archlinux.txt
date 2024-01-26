@@ -414,7 +414,7 @@ pacman -S mesa nvidia nvidia-prime
           # nvidia-dkms
 pacman -S xf86-video-vmware xf86-input-vmmouse open-vm-tools
 -------------------------------------------------------------------------------
-pacman -S xorg-server xorg-xinit
+pacman -S xorg-server xorg-xinit xorg-xwayland
 -------------------------------------------------------------------------------
 pacman -S openbox tint2 conky
 pacman -S i3-wm i3status i3lock rofi
