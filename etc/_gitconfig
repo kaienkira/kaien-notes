@@ -10,8 +10,6 @@ br = branch
 l = log --graph \
     --pretty=format:'%C(yellow)%H %C(blue)%an %C(red)<%ad> %C(reset)%s' \
     --date=format:'%Y-%m-%d %H:%M'
-[http]
-proxy = socks5://127.0.0.1:9060
 [core]
 editor = vim
 excludesfile = ~/.gitignore
