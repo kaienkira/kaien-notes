@@ -102,6 +102,7 @@ vi /etc/systemd/logind.conf
     HandlePowerKey=ignore
 
 *. Multi-seat
+loginctl flush-devices
 loginctl seat-status seat0
 
 ===============================================================================
