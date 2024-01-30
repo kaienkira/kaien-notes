@@ -101,4 +101,7 @@ journalctl --vacuum-time=2weeks
 vi /etc/systemd/logind.conf
     HandlePowerKey=ignore
 
+*. Multi-seat
+loginctl seat-status seat0
+
 ===============================================================================
