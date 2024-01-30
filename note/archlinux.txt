@@ -419,6 +419,7 @@ pacman -S xorg-server xorg-xinit xorg-xwayland
 pacman -S openbox tint2 conky
 pacman -S i3-wm i3status i3lock rofi
 pacman -S sway swaybg
+pacman -S hyprland
 -------------------------------------------------------------------------------
 pacman -S feh
 pacman -S fcitx5 fcitx5-gtk fcitx5-qt fcitx5-chinese-addons
