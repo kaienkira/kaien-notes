@@ -36,6 +36,7 @@ create_dir ~/.config/i3 700
 create_dir ~/.config/i3status 700
 create_dir ~/.config/rofi 700
 create_dir ~/.config/sway 700
+create_dir ~/.config/kitty 700
 create_dir ~/.config/xfce4 700
 create_dir ~/.config/xfce4/terminal 700
 create_dir ~/.config/fcitx5 700
@@ -67,6 +68,7 @@ copy_file "$script_path"/i3_config ~/.config/i3/config 600
 copy_file "$script_path"/i3status_config ~/.config/i3status/config 600
 copy_file "$script_path"/rofi_config.rasi ~/.config/rofi/config.rasi 600
 copy_file "$script_path"/sway_config ~/.config/sway/config 600
+copy_file "$script_path"/kitty.conf  ~/.config/kitty/kitty.conf 600
 copy_file "$script_path"/xfce4_terminal_terminalrc ~/.config/xfce4/terminal/terminalrc 600
 copy_file "$script_path"/xfce4_terminal_accels.scm ~/.config/xfce4/terminal/accels.scm 600
 copy_file "$script_path"/fcitx5_profile ~/.config/fcitx5/profile 600

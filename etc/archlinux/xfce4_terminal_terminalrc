@@ -1,5 +1,5 @@
 [Configuration]
-FontName=DejaVu Sans Mono 12
+FontName=Fira Code Retina 12
 MiscAlwaysShowTabs=TRUE
 MiscBell=FALSE
 MiscBellUrgent=FALSE
@@ -32,8 +32,8 @@ ShortcutsNoHelpkey=TRUE
 ShortcutsNoMenukey=TRUE
 ShortcutsNoMnemonics=TRUE
 WordChars=-A-Za-z0-9,.?%&#:_=+@~
-ColorPalette=#000000;#cc0000;#4e9a06;#c4a000;#3465a4;#75507b;#06989a;#d3d7cf;#555753;#ef2929;#8ae234;#fce94f;#739fcf;#ad7fa8;#34e2e2;#eeeeec
-ColorBackground=#cfcfe8e8cfcf
-ColorForeground=#000000000000
+ColorPalette=#000000;#ff615a;#b1e969;#ebd99c;#5da9f6;#e86aff;#82fff7;#dedacf;#313131;#f58c80;#ddf88f;#eee5b2;#a5c7ff;#ddaaff;#b7fff9;#ffffff
+ColorBackground=#171717171717
+ColorForeground=#cacacacacaca
 ColorBoldIsBright=FALSE
 TabActivityColor=#000000000000

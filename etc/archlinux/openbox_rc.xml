@@ -25,30 +25,30 @@
   <keepBorder>yes</keepBorder>
   <animateIconify>yes</animateIconify>
   <font place="ActiveWindow">
-    <name>Dejavu Sans Mono</name>
+    <name>Fira Code Retina</name>
     <size>12</size>
     <weight>bold</weight>
   </font>
   <font place="InactiveWindow">
-    <name>Dejavu Sans Mono</name>
+    <name>Fira Code Retina</name>
     <size>12</size>
     <weight>bold</weight>
   </font>
   <font place="MenuHeader">
-    <name>Dejavu Sans Mono</name>
+    <name>Fira Code Retina</name>
     <size>10</size>
     <weight>bold</weight>
   </font>
   <font place="MenuItem">
-    <name>Dejavu Sans Mono</name>
+    <name>Fira Code Retina</name>
     <size>10</size>
   </font>
   <font place="ActiveOnScreenDisplay">
-    <name>Dejavu Sans Mono</name>
+    <name>Fira Code Retina</name>
     <size>10</size>
   </font>
   <font place="InactiveOnScreenDisplay">
-    <name>Dejavu Sans Mono</name>
+    <name>Fira Code Retina</name>
     <size>10</size>
   </font>
 </theme>

@@ -11,7 +11,7 @@ output * {
 
 bar {
     position top
-    font pango:DejaVu Sans Mono 10
+    font pango:Fira Code Retina 10
     status_command i3status
 }
 

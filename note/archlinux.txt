@@ -426,7 +426,7 @@ pacman -S fcitx5 fcitx5-gtk fcitx5-qt fcitx5-chinese-addons
           fcitx5-material-color fcitx5-pinyin-zhwiki
 pacman -S thunar
 pacman -S terminus-font
-pacman -S ttf-dejavu ttf-font-awesome
+pacman -S ttf-fira-code ttf-dejavu
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
 pacman -S xterm xfce4-terminal kitty
 pacman -S slock
