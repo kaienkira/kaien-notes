@@ -36,12 +36,12 @@ wm_menu = 1
 # Launcher
 launcher_padding = 20 8 3
 launcher_tooltip = 1
+launcher_item_app = kitty.desktop
 launcher_item_app = thunar.desktop
 launcher_item_app = firefox-1.desktop
 launcher_item_app = firefox-2.desktop
 launcher_item_app = transmission-gtk.desktop
 launcher_item_app = virtualbox.desktop
-launcher_item_app = xfce4-terminal.desktop
 
 # Taskbar
 taskbar_mode = single_desktop
