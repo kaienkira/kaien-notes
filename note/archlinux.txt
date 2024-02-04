@@ -428,7 +428,7 @@ pacman -S thunar
 pacman -S terminus-font
 pacman -S ttf-fira-mono ttf-dejavu
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
-pacman -S xterm xfce4-terminal kitty
+pacman -S xterm kitty foot xfce4-terminal
 pacman -S slock
 pacman -S firefox
 pacman -S virtualbox virtualbox-guest-iso
@@ -452,13 +452,10 @@ vi /etc/vconsole.conf
     FONT=ter-122b
 
 vi ~/.xinitrc
+    export XMODIFIERS="@im=fcitx"
     export GTK_IM_MODULE=fcitx
     export QT_IM_MODULE=fcitx
-    export XMODIFIERS="@im=fcitx"
-    ~/.fehbg &
-    tint2 &
-    pasystray &
-    fcitx5 &
+    export GLFW_IM_MODULE=ibus
     exec openbox-session
 -------------------------------------------------------------------------------
 # reload tint2
