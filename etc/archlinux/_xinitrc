@@ -1,6 +1,12 @@
 #!/bin/bash
 
+if [ -f ~/.xprofile ]
+then
+    source ~/.xprofile
+fi
+
 #xrandr --output HDMI-A-0 --auto --primary
 #xrandr --output eDP --right-of HDMI-A-0 --auto
 #xrdb -merge ~/.Xresources
+
 exec openbox-session
