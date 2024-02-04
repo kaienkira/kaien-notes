@@ -3,7 +3,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term kitty
+set $term xfce4-terminal
 
 output * {
     bg ~/proj/kaien-docs/pictures/desktop_01.jpg fill
