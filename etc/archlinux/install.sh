@@ -57,7 +57,6 @@ copy_file "$script_path"/../_gitignore ~/.gitignore 600
 copy_file "$script_path"/_fonts.conf ~/.fonts.conf 600
 copy_file "$script_path"/_xinitrc ~/.xinitrc 600
 copy_file "$script_path"/_xprofile ~/.xprofile 600
-copy_file "$script_path"/_pam_environment ~/.pam_environment 600
 copy_file "$script_path"/openbox_rc.xml ~/.config/openbox/rc.xml 600
 copy_file "$script_path"/openbox_menu.xml ~/.config/openbox/menu.xml 600
 copy_file "$script_path"/openbox_autostart ~/.config/openbox/autostart 600
