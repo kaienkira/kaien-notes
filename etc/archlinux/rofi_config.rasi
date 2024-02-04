@@ -1,5 +1,5 @@
 configuration {
     show-icons: true;
-    font: "Fira Code Retina 10";
+    font: "Fira Mono 10";
 }
 @theme "default"

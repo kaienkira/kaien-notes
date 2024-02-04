@@ -25,30 +25,30 @@
   <keepBorder>yes</keepBorder>
   <animateIconify>yes</animateIconify>
   <font place="ActiveWindow">
-    <name>Fira Code Retina</name>
+    <name>Fira Mono</name>
     <size>12</size>
     <weight>bold</weight>
   </font>
   <font place="InactiveWindow">
-    <name>Fira Code Retina</name>
+    <name>Fira Mono</name>
     <size>12</size>
     <weight>bold</weight>
   </font>
   <font place="MenuHeader">
-    <name>Fira Code Retina</name>
+    <name>Fira Mono</name>
     <size>10</size>
     <weight>bold</weight>
   </font>
   <font place="MenuItem">
-    <name>Fira Code Retina</name>
+    <name>Fira Mono</name>
     <size>10</size>
   </font>
   <font place="ActiveOnScreenDisplay">
-    <name>Fira Code Retina</name>
+    <name>Fira Mono</name>
     <size>10</size>
   </font>
   <font place="InactiveOnScreenDisplay">
-    <name>Fira Code Retina</name>
+    <name>Fira Mono</name>
     <size>10</size>
   </font>
 </theme>

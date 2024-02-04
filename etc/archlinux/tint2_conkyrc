@@ -35,7 +35,7 @@ conky.config = {
     use_xft = true,
     use_spacer = 'none',
 
-    font = 'Fira Code Retina:size=10',
+    font = 'Fira Mono:size=10',
     own_window_colour = '#909090',
     default_color = '#ffffff',
 }
