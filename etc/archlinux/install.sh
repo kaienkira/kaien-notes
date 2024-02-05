@@ -39,6 +39,7 @@ create_dir ~/.config/hypr 700
 create_dir ~/.config/xfce4 700
 create_dir ~/.config/xfce4/terminal 700
 create_dir ~/.config/kitty 700
+create_dir ~/.config/foot 700
 create_dir ~/.config/fcitx5 700
 create_dir ~/.config/fcitx5/conf 700
 create_dir ~/.config/rofi 700
@@ -71,6 +72,7 @@ copy_file "$script_path"/hyprland.conf ~/.config/hypr/hyprland.conf 600
 copy_file "$script_path"/xfce4_terminal_terminalrc ~/.config/xfce4/terminal/terminalrc 600
 copy_file "$script_path"/xfce4_terminal_accels.scm ~/.config/xfce4/terminal/accels.scm 600
 copy_file "$script_path"/kitty.conf  ~/.config/kitty/kitty.conf 600
+copy_file "$script_path"/foot.ini ~/.config/foot/foot.ini 600
 copy_file "$script_path"/fcitx5_profile ~/.config/fcitx5/profile 600
 copy_file "$script_path"/fcitx5_classicui.conf ~/.config/fcitx5/conf/classicui.conf 600
 copy_file "$script_path"/rofi_config.rasi ~/.config/rofi/config.rasi 600
