@@ -428,7 +428,7 @@ pacman -S thunar
 pacman -S terminus-font
 pacman -S ttf-fira-mono ttf-dejavu
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
-pacman -S xterm kitty foot xfce4-terminal
+pacman -S xterm xfce4-terminal kitty foot
 pacman -S slock
 pacman -S firefox
 pacman -S virtualbox virtualbox-guest-iso
