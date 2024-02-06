@@ -1,6 +1,6 @@
 [Desktop Entry]
 Version=1.0
-Name=Firefox_2
+Name=@Firefox_2
 Type=Application
 Icon=firefox
 Exec=/bin/sh -c "/usr/lib/firefox/firefox -profile ~/local/firefox-profile/profile-2 --no-remote"
