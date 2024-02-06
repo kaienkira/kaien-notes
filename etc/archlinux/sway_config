@@ -16,7 +16,7 @@ bar {
 }
 
 bindsym $mod+Return exec $term
-bindsym $mod+d exec --no-startup-id wofi -S drun -O alphabetical
+bindsym $mod+r exec --no-startup-id wofi -S drun -O alphabetical
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaymsg exit

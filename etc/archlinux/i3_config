@@ -14,7 +14,7 @@ bar {
 }
 
 bindsym $mod+Return exec $term
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+r exec --no-startup-id rofi -show drun
 bindsym $mod+l exec --no-startup-id i3lock
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
