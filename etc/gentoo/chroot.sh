@@ -2,7 +2,13 @@
 
 set -o pipefail
 
-cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
+umount /mnt/gentoo/proc
+umount -R /mnt/gentoo/sys
+umount -R /mnt/gentoo/dev
+umount /mnt/gentoo/run
+umount /mnt/gentoo
+
+mount /dev/sda3 /mnt/gentoo
 if [ $? -ne 0 ]; then exit 1; fi
 
 mount --types proc /proc /mnt/gentoo/proc
@@ -20,5 +26,13 @@ if [ $? -ne 0 ]; then exit 1; fi
 mount --make-slave /mnt/gentoo/run
 if [ $? -ne 0 ]; then exit 1; fi
 
-chroot /mnt/gentoo /bin/bash
+cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 if [ $? -ne 0 ]; then exit 1; fi
+
+chroot /mnt/gentoo /bin/env -i \
+    PS1='(chroot)\u@\h:\w# ' \
+    PATH='/usr/bin' \
+    HOME='/root' \
+    TERM=linux \
+    HISTFILE= \
+    /bin/bash --norc

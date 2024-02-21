@@ -22,8 +22,6 @@ install_disk_part1_end=1025MiB
 install_disk_part2_end=3073MiB
 
 ###############################################################################
-umount /mnt/gentoo
-
 parted -s "$install_disk" \
     mklabel gpt \
     mkpart esp fat32 1MiB "$install_disk_part1_end" \
