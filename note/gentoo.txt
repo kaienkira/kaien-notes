@@ -1,0 +1,2 @@
+emerge-webrsync
+RSYNC_PROXY=127.0.0.1:8118 emerge --sync

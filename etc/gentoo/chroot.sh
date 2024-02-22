@@ -6,9 +6,12 @@ umount /mnt/gentoo/proc
 umount -R /mnt/gentoo/sys
 umount -R /mnt/gentoo/dev
 umount /mnt/gentoo/run
+umount /mnt/gentoo/boot
 umount /mnt/gentoo
 
 mount /dev/sda3 /mnt/gentoo
+if [ $? -ne 0 ]; then exit 1; fi
+mount /dev/sda1 /mnt/gentoo/boot
 if [ $? -ne 0 ]; then exit 1; fi
 
 mount --types proc /proc /mnt/gentoo/proc
