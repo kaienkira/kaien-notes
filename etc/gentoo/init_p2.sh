@@ -26,4 +26,7 @@ if [ $? -ne 0 ]; then exit 1; fi
 emerge-webrsync
 if [ $? -ne 0 ]; then exit 1; fi
 
+emerge --sync
+if [ $? -ne 0 ]; then exit 1; fi
+
 exit 0
