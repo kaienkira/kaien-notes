@@ -8,7 +8,7 @@ main-repo = gentoo
 
 [gentoo]
 sync-type = rsync
-sync-uri = rsync://rsync1.cn.gentoo.org/gentoo-portage
+sync-uri = rsync://mirrors.tuna.tsinghua.edu.cn/gentoo-portage
 '>/etc/portage/repos.conf/gentoo.conf
 if [ $? -ne 0 ]; then exit 1; fi
 
