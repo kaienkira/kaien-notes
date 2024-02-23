@@ -1,2 +1,9 @@
 emerge-webrsync
 RSYNC_PROXY=127.0.0.1:8118 emerge --sync
+emerge --info
+
+eselect news list
+eselect news read
+eselect news purge
+
+eselect profile list

@@ -29,4 +29,7 @@ if [ $? -ne 0 ]; then exit 1; fi
 emerge --sync
 if [ $? -ne 0 ]; then exit 1; fi
 
+emerge --update --deep --newuse @world
+if [ $? -ne 0 ]; then exit 1; fi
+
 exit 0
