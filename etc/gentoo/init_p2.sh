@@ -29,7 +29,15 @@ if [ $? -ne 0 ]; then exit 1; fi
 emerge --sync
 if [ $? -ne 0 ]; then exit 1; fi
 
-emerge --update --deep --newuse @world
+emerge -uDN @world
+if [ $? -ne 0 ]; then exit 1; fi
+
+emerge \
+app-editors/vim \
+sys-process/htop
+if [ $? -ne 0 ]; then exit 1; fi
+
+emerge -c
 if [ $? -ne 0 ]; then exit 1; fi
 
 exit 0
