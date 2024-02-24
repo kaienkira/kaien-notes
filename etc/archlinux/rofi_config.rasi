@@ -1,5 +1,5 @@
 configuration {
     show-icons: true;
-    font: "DejaVu Sans Mono 10";
+    font: "Hack 10";
 }
 @theme "default"

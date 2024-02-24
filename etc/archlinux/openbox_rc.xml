@@ -25,30 +25,30 @@
   <keepBorder>yes</keepBorder>
   <animateIconify>yes</animateIconify>
   <font place="ActiveWindow">
-    <name>DejaVu Sans Mono</name>
+    <name>Hack</name>
     <size>12</size>
     <weight>bold</weight>
   </font>
   <font place="InactiveWindow">
-    <name>DejaVu Sans Mono</name>
+    <name>Hack</name>
     <size>12</size>
     <weight>bold</weight>
   </font>
   <font place="MenuHeader">
-    <name>DejaVu Sans Mono</name>
+    <name>Hack</name>
     <size>10</size>
     <weight>bold</weight>
   </font>
   <font place="MenuItem">
-    <name>DejaVu Sans Mono</name>
+    <name>Hack</name>
     <size>10</size>
   </font>
   <font place="ActiveOnScreenDisplay">
-    <name>DejaVu Sans Mono</name>
+    <name>Hack</name>
     <size>10</size>
   </font>
   <font place="InactiveOnScreenDisplay">
-    <name>DejaVu Sans Mono</name>
+    <name>Hack</name>
     <size>10</size>
   </font>
 </theme>
