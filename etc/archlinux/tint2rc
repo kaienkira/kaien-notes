@@ -53,7 +53,7 @@ task_active_background_id = 3
 task_padding = 6 3
 task_tooltip = 1
 task_maximum_size = 200 0
-task_font = Fira Mono 10
+task_font = DejaVu Sans Mono 10
 task_font_color = #000000 100
 mouse_left = toggle_iconify
 mouse_right = toggle_iconify
@@ -69,7 +69,7 @@ systray_monitor = 1
 execp = system_info
 execp_background_id = 4
 execp_padding = 10 8 0
-execp_font = Fira Mono 10
+execp_font = DejaVu Sans Mono 10
 execp_font_color = #ffffff 100
 execp_tooltip = System Info: BAT/WLAN/LOAD/CPU
 execp_command = i3status -c ~/.config/tint2/i3status_config
@@ -84,12 +84,12 @@ execp_continuous = 1
 clock_padding = 10 8
 clock_font_color = #000000 100
 time1_format = %Y-%m-%d %H:%M:%S %A
-time1_font = Fira Mono 10
+time1_font = DejaVu Sans Mono 10
 
 # Tooltip
 tooltip_background_id = 4
 tooltip_padding = 4 4
-tooltip_font = Fira Mono 10
+tooltip_font = DejaVu Sans Mono 10
 tooltip_font_color = #ffffff 100
 
 #scale_relative_to_dpi = 144

@@ -1,5 +1,5 @@
 configuration {
     show-icons: true;
-    font: "Fira Mono 10";
+    font: "DejaVu Sans Mono 10";
 }
 @theme "default"

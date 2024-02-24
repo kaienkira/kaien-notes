@@ -35,7 +35,7 @@ conky.config = {
     use_xft = true,
     use_spacer = 'none',
 
-    font = 'Fira Mono:size=10',
+    font = 'DejaVu Sans Mono:size=10',
     own_window_colour = '#909090',
     default_color = '#ffffff',
 }
