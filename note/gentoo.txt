@@ -30,4 +30,5 @@ eselect news list
 eselect news read
 eselect news purge
 eselect profile list
+eselect locale list
 ===============================================================================
