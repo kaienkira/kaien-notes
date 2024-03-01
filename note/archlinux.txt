@@ -411,28 +411,26 @@ pacman -S xf86-video-vesa
 pacman -S mesa vulkan-intel xf86-video-intel intel-ucode
 pacman -S mesa vulkan-radeon xf86-video-amdgpu amd-ucode amdvlk
 pacman -S mesa nvidia nvidia-prime
-          # nvidia-dkms
 pacman -S xf86-video-vmware xf86-input-vmmouse open-vm-tools
 -------------------------------------------------------------------------------
 pacman -S xorg-server xorg-xinit xorg-xwayland
 -------------------------------------------------------------------------------
-pacman -S openbox tint2 conky
+pacman -S openbox tint2 conky feh slock
 pacman -S i3-wm i3status i3lock rofi
-pacman -S sway swaybg
+-------------------------------------------------------------------------------
+pacman -S sway swaybg wofi waybar
 pacman -S hyprland
 -------------------------------------------------------------------------------
-pacman -S feh
-pacman -S fcitx5 fcitx5-gtk fcitx5-qt fcitx5-chinese-addons
-          fcitx5-material-color fcitx5-pinyin-zhwiki
-pacman -S thunar
 pacman -S terminus-font
 pacman -S ttf-dejavu ttf-hack
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
+-------------------------------------------------------------------------------
+pacman -S fcitx5 fcitx5-gtk fcitx5-qt fcitx5-chinese-addons
+          fcitx5-material-color fcitx5-pinyin-zhwiki
 pacman -S xterm xfce4-terminal kitty foot
-pacman -S slock
 pacman -S firefox
+pacman -S thunar
 pacman -S virtualbox virtualbox-guest-iso
-          # virtualbox-host-dkms linux-zen-headers
 pacman -S ntfs-3g
 -------------------------------------------------------------------------------
 pacman -S alsa-utils
@@ -445,7 +443,6 @@ pacman -S amule
 pacman -S vlc
 pacman -S blender
 pacman -S gimp
--------------------------------------------------------------------------------
 pacman -S freerdp
 -------------------------------------------------------------------------------
 vi /etc/vconsole.conf
@@ -536,14 +533,9 @@ speaker-test -c 1
 -*- Dev -*-
 ===============================================================================
 pacman -S make
--------------------------------------------------------------------------------
 pacman -S gcc
 pacman -S go
--------------------------------------------------------------------------------
-pacman -S jdk8-openjdk
+pacman -S jdk17-openjdk
 pacman -S gradle
-pacman -S android-udev
-pacman -S gvfs-mtp
--------------------------------------------------------------------------------
-pacman -S p0f
+pacman -S android-udev gvfs-mtp
 -------------------------------------------------------------------------------
