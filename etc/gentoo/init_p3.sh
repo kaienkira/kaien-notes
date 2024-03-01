@@ -42,6 +42,10 @@ install_kernel()
     'sys-kernel/installkernel systemd-boot dracut uki' \
     >/etc/portage/package.use/kernel
 
+    printf '%s\n' \
+    'kernel_cmdline="root=/dev/sda3"' \
+    >/etc/dracut.conf
+
     emerge \
         sys-kernel/gentoo-kernel
     if [ $? -ne 0 ]; then return 1; fi
