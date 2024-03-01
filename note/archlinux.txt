@@ -422,7 +422,7 @@ pacman -S sway swaybg wofi waybar
 pacman -S hyprland
 -------------------------------------------------------------------------------
 pacman -S terminus-font
-pacman -S ttf-dejavu ttf-hack
+pacman -S ttf-dejavu ttf-hack otf-font-awesome
 pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
 -------------------------------------------------------------------------------
 pacman -S fcitx5 fcitx5-gtk fcitx5-qt fcitx5-chinese-addons
