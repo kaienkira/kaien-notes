@@ -49,4 +49,10 @@ if [ $? -ne 0 ]; then exit 1; fi
 eselect locale set en_US.utf8
 if [ $? -ne 0 ]; then exit 1; fi
 
+printf '%s\n%s\n%s\n' \
+'/dev/sda1 /boot vfat defaults    0 2' \
+'/dev/sda2 none  swap sw          0 0' \
+'/dev/sda3 /     ext4 rw,relatime 0 1' \
+>/etc/fstab
+
 exit 0

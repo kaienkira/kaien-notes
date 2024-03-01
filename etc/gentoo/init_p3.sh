@@ -14,7 +14,8 @@ install_base_common()
     emerge \
         sys-kernel/linux-firmware \
         sys-process/htop \
-        app-editors/vim
+        app-editors/vim \
+        app-text/tree
     if [ $? -ne 0 ]; then return 1; fi
 
     return 0
@@ -56,6 +57,9 @@ install_kernel
 if [ $? -ne 0 ]; then exit 1; fi
 
 emerge -c
+if [ $? -ne 0 ]; then exit 1; fi
+
+bootctl install
 if [ $? -ne 0 ]; then exit 1; fi
 
 exit 0
