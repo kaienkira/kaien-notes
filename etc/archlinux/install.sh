@@ -34,15 +34,16 @@ create_dir ~/.config/openbox 700
 create_dir ~/.config/tint2 700
 create_dir ~/.config/i3 700
 create_dir ~/.config/i3status 700
+create_dir ~/.config/rofi 700
 create_dir ~/.config/sway 700
 create_dir ~/.config/hypr 700
+create_dir ~/.config/waybar 700
 create_dir ~/.config/xfce4 700
 create_dir ~/.config/xfce4/terminal 700
 create_dir ~/.config/kitty 700
 create_dir ~/.config/foot 700
 create_dir ~/.config/fcitx5 700
 create_dir ~/.config/fcitx5/conf 700
-create_dir ~/.config/rofi 700
 create_dir ~/.config/systemd 700
 create_dir ~/.config/systemd/user 700
 create_dir ~/.local 700
@@ -67,15 +68,16 @@ copy_file "$script_path"/tint2_i3status_config ~/.config/tint2/i3status_config 6
 copy_file "$script_path"/tint2_conkyrc ~/.config/tint2/conkyrc 600
 copy_file "$script_path"/i3_config ~/.config/i3/config 600
 copy_file "$script_path"/i3status_config ~/.config/i3status/config 600
+copy_file "$script_path"/rofi_config.rasi ~/.config/rofi/config.rasi 600
 copy_file "$script_path"/sway_config ~/.config/sway/config 600
 copy_file "$script_path"/hyprland.conf ~/.config/hypr/hyprland.conf 600
+copy_file "$script_path"/waybar_config_hyprland ~/.config/waybar/config_hyprland 600
 copy_file "$script_path"/xfce4_terminal_terminalrc ~/.config/xfce4/terminal/terminalrc 600
 copy_file "$script_path"/xfce4_terminal_accels.scm ~/.config/xfce4/terminal/accels.scm 600
 copy_file "$script_path"/kitty.conf  ~/.config/kitty/kitty.conf 600
 copy_file "$script_path"/foot.ini ~/.config/foot/foot.ini 600
 copy_file "$script_path"/fcitx5_profile ~/.config/fcitx5/profile 600
 copy_file "$script_path"/fcitx5_classicui.conf ~/.config/fcitx5/conf/classicui.conf 600
-copy_file "$script_path"/rofi_config.rasi ~/.config/rofi/config.rasi 600
 copy_file "$script_path"/systemd/tl-client.service \
           ~/.config/systemd/user/tl-client.service 600
 copy_file "$script_path"/applications/firefox-1.desktop \
