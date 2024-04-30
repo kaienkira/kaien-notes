@@ -8,7 +8,7 @@
 *. 彻底删除软件包
     sudo apt-get --purge autoremove packagename
 *. 清除所有被标记为rc的软件包配置
-    aptitude purge "~c"
+    apt purge '~c'
 *. 列出编译依赖
     apt-get -s build-dep <package>
 *. 列出包属于哪个源
