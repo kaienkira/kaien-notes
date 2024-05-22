@@ -1,0 +1,20 @@
+[Unit]
+Description=BadVpn-Tun2socks Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=exec
+ExecStartPre=/bin/bash /opt/badvpn-tun2socks/badvpn-tun2socks-start.sh
+ExecStart=/opt/badvpn-tun2socks/badvpn-tun2socks \
+    --tundev tun0 \
+    --netif-ipaddr 192.168.99.2 \
+    --netif-netmask 255.255.255.0 \
+    --socks-server-addr 127.0.0.1:9060 \
+    --udpgw-remote-server-addr 127.0.0.1:9100 \
+    --logger stdout --loglevel info
+ExecStopPost=/bin/bash /opt/badvpn-tun2socks/badvpn-tun2socks-stop.sh
+StandardOutput=null
+
+[Install]
+WantedBy=multi-user.target
