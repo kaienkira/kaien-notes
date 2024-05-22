@@ -1,0 +1,11 @@
+[Unit]
+Description=Twilight-Line-Server Service
+
+[Service]
+Type=exec
+User=twilight-line
+ExecStart=/opt/tl-server/twilight-line-server -e \
+          /opt/tl-server/config.json
+
+[Install]
+WantedBy=multi-user.target

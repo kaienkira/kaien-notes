@@ -1,0 +1,11 @@
+[Unit]
+Description=Badvpn-Udp-Gateway Service
+
+[Service]
+Type=exec
+User=twilight-line
+ExecStart=/opt/badvpn-udpgw/badvpn-udpgw --listen-addr 127.0.0.1:9100
+StandardOutput=null
+
+[Install]
+WantedBy=multi-user.target

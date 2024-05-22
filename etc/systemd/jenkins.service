@@ -1,5 +1,5 @@
 [Unit]
-Description=Jenkins Daemon
+Description=Jenkins Service
 
 [Service]
 ExecStart=/usr/bin/java -jar /home/jenkins_user/jenkins.war
