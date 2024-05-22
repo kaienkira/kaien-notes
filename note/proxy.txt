@@ -1,22 +1,4 @@
 ===============================================================================
--*- ss-libev -*-
-===============================================================================
-libc-ares-dev
-libev-dev
-libmbedtls-dev
-libpcre3-dev
-libsodium-dev
-
-libc-ares2
-libev4
-libmbedtls10
-libsodium18
-
-./autogen.sh
-./configure --disable-documentation --prefix=<prefix>
-make && make install
-
-===============================================================================
 -*- tun2socks -*-
 ===============================================================================
 cmake ~/proj/badvpn/ \
