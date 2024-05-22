@@ -1,65 +1,48 @@
 ===============================================================================
--*- Win10 -*-
-===============================================================================
-*. 卸载自带应用
-    Get-AppxPackage <package_name> | Remove-AppxPackage
-
 *. 关闭休眠
     powercfg -h off
-*. 关闭虚拟内存
-*. 关闭系统还原
-*. 关闭服务
-    Diagnostic Policy Service
-    Diagnostic Service Host
-    Diagnostic System Host
-    Shell Hardware Detetction
-    Windows Search
-    SysMain
 
 *. 删除多余的网络配置
     HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles
     HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged
     Get-NetAdapter -IncludeHidden
 
+*. 通知栏图标
+    HKEY_CURRENT_USER\Control Panel\NotifyIconSettings
+
+*. 自动播放设备
+    HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\KnownDevices
+
 *. PowerShell History
     %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
 
-===============================================================================
 *. 网络连接共享持久化
     Internet Connection Sharing服务设置为自动
     [HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\SharedAccess]
     "EnableRebootPersistConnection"=dword:00000001
 
 *. 开启NTP服务
-Windows Registry Editor Version 5.00
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\W32Time]
-"Start"=dword:00000002
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\W32Time\Config]
-"AnnounceFlags"=dword:00000005
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\W32Time\TimeProviders\NtpServer]
-"Enabled"=dword:00000001
-
-net start w32time
+    Windows Registry Editor Version 5.00
+    [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\W32Time]
+    "Start"=dword:00000002
+    [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\W32Time\Config]
+    "AnnounceFlags"=dword:00000005
+    [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\W32Time\TimeProviders\NtpServer]
+    "Enabled"=dword:00000001
+    net start w32time
 
 *. 由于没有远程桌面授权服务器可以提供许可证 远程会话被中断
-mstsc /v:<ip> /admin
-
-*. 创建USB3.0 Win7安装盘
-dism /mount-wim /wimfile:<boot.wim/install.wim> /index:2 /mountdir:mount
-dism /image:mount /add-driver /driver:d:\x64\iusb3hub.inf
-dism /image:mount /add-driver /driver:d:\x64\iusb3xhc.inf
-dism /image:mount /add-driver /driver:d:\x64\iusb3hcs.inf
-dism /unmount-wim /mountdir:mount /commit
+    mstsc /v:<ip> /admin
 
 *. Excel单独打开csv文件
-[HKEY_CLASSES_ROOT\Excel.CSV\shell\Open\command]
-    ... /dde -> ... "%1"
-    ... /dde -> ... "%1"
-[HKEY_CLASSES_ROOT\Excel.CSV\shell\Open\ddeexec]
-    ddeexec -> ddeexec2
+    [HKEY_CLASSES_ROOT\Excel.CSV\shell\Open\command]
+        ... /dde -> ... "%1"
+        ... /dde -> ... "%1"
+    [HKEY_CLASSES_ROOT\Excel.CSV\shell\Open\ddeexec]
+        ddeexec -> ddeexec2
 
 *. 刷新dns
-ipconfig /flushdns
+    ipconfig /flushdns
 
 ===============================================================================
 -*- Batch -*-
