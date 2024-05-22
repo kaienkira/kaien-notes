@@ -4,8 +4,8 @@ Description=Twilight-Line-Client Service
 [Service]
 Type=exec
 User=twilight-line
-ExecStart=%h/local/tl-client/twilight-line-client -e \
-          %h/local/tl-client/config.json
+ExecStart=/opt/tl-client/twilight-line-client -e \
+          /opt/tl-client/config.json
 StandardOutput=null
 
 [Install]
