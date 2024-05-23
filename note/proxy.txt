@@ -18,12 +18,10 @@ vi /etc/systemd/network/wired.network
     UseDNS=false
 systemctl enable systemd-networkd
 
-vi /etc/systemd/resolved.conf
-    [Resolve]
-    DNS=8.8.8.8
-    LLMNR=no
-systemctl enable systemd-resolved
-resolvectl
+systemctl disable systemd-resolved
+vi /etc/resolv.conf
+    nameserver 8.8.8.8
+    search .
 
 vi /etc/sysctl.conf
     net.ipv4.ip_forward=1
