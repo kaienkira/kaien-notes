@@ -6,9 +6,14 @@ cd badvpn && mkdir build && cd build
 cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_TUN2SOCKS=1 -DBUILD_UDPGW=1
 make
 
-ip tuntap add dev tun0 mode tun
-ip addr change 10.0.0.1/24 dev tun0 dev tun0
-ip link set tun0 up
+vi /etc/systemd/resolved.conf
+    [Resolve]
+    DNS=8.8.8.8
+systemctl enable systemd-resolved
+
+vi /etc/sysctl.conf
+    net.ipv4.ip_forward=1
+    net.ipv6.conf.all.forwarding=1
 
 ===============================================================================
 -*- privoxy -*-
@@ -38,11 +43,3 @@ frontend ss-in
 
 backend ss-out
         server server1 <host>:<port> maxconn 20480
-
-===============================================================================
--*- socks5 to global -*-
-===============================================================================
-badvpn-tun2socks
-socks5proxy
-unbound
-ip_forward
