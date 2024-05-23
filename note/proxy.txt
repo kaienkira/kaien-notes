@@ -21,7 +21,9 @@ systemctl enable systemd-networkd
 vi /etc/systemd/resolved.conf
     [Resolve]
     DNS=8.8.8.8
+    LLMNR=no
 systemctl enable systemd-resolved
+resolvectl
 
 vi /etc/sysctl.conf
     net.ipv4.ip_forward=1
