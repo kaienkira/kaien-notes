@@ -17,6 +17,7 @@ vi /etc/systemd/network/wired.network
     [DHCP]
     UseDNS=false
 systemctl enable systemd-networkd
+systemctl enable systemd-networkd-wait-online.service
 
 systemctl disable systemd-resolved
 vi /etc/resolv.conf
