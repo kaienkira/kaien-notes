@@ -20,6 +20,8 @@
     sudo dpkg --configure -a
 *. 软件包支持信息
     ubuntu-support-status --show-all
+*. 导入KEY
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys <key_id>
 ===============================================================================
 -*- system management -*-
 -------------------------------------------------------------------------------
