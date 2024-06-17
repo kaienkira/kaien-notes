@@ -215,4 +215,7 @@ git diff HEAD
 git stash
 git stash list
 git stash pop
+
+# 在windows上添加可执行权限
+git update-index --chmod=+x <file>
 ================================================================================
