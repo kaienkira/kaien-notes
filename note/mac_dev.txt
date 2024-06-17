@@ -1,3 +1,6 @@
+*. Dirs
+    ~/Library/Developer/Xcode/DerivedData/
+    ~/Library/MobileDevice/Provisioning Profiles/
 *. Homebrew
     export ALL_PROXY=socks5://127.0.0.1:9050
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -27,3 +30,5 @@
     rm -rf ~/Library/Caches/org.swift.swiftpm/*
     export all_proxy=socks5://<proxy>
     xcodebuild -resolvePackageDependencies -scmProvider system
+
+
