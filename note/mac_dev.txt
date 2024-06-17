@@ -2,6 +2,8 @@
     export ALL_PROXY=socks5://127.0.0.1:9050
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew upgrade
+    brew leaves
+    brew deps --tree --installed
 *. Profile-bash
     export PS1='\u@\h:\w\$ '
 *. Profile-zsh
