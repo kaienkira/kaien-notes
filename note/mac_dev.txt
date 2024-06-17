@@ -9,20 +9,6 @@
 *. Profile-zsh
     export LANG=zh_CN.UTF-8
     export PROMPT='%n@%m:%~$ '
-*. libimobiledevice
-    brew uninstall -f libimobiledevice ideviceinstaller usbmuxd
-    brew install -v --HEAD --build-from-source usbmuxd libimobiledevice ideviceinstaller
-    chmod 777 /var/db/lockdown
-    # 查看日志
-    idevicesyslog
-    # 列出设备
-    idevice_id -l
-*. ios-deploy
-    brew install npm
-    npm install -g ios-deploy
-    ios-deploy -b <bundle_app>
-*. xcodeproj
-    gem install xcodeproj
 *. 切换xcode环境
     sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
     sudo xcode-select -s /Library/Developer/CommandLineTools
