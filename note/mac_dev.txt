@@ -1,5 +1,6 @@
 *. Dirs
     ~/Library/Developer/Xcode/DerivedData/
+    ~/Library/Developer/Xcode/Archives/
     ~/Library/MobileDevice/Provisioning Profiles/
 *. Homebrew
     export ALL_PROXY=socks5://127.0.0.1:9050
