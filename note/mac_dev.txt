@@ -8,6 +8,8 @@
     brew upgrade
     brew leaves
     brew deps --tree --installed
+    brew services start <service_name>
+    brew services stop <service_name>
 *. Profile-bash
     export PS1='\u@\h:\w\$ '
 *. Profile-zsh
