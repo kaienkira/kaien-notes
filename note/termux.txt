@@ -1,0 +1,14 @@
+termux-change-repo
+pkg upgrade
+pkg install vim man
+pkg install termux-services
+pkg install openssh
+exit
+sv-enable sshd
+passwd
+
+> ssh-copy-id -p8002 root@<phone_ip>
+
+rm -f ~/.termux_authinfo
+
+> ssh root@<phone_ip> -p8002
