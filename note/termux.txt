@@ -1,6 +1,6 @@
 termux-change-repo
 pkg upgrade
-pkg install vim man
+pkg install vim man htop
 pkg install termux-services
 pkg install openssh
 exit
