@@ -10,6 +10,9 @@
 *. 通知栏图标
     HKEY_CURRENT_USER\Control Panel\NotifyIconSettings
 
+*. 通知管理
+    HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Notifications
+
 *. 自动播放设备
     HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\KnownDevices
 
