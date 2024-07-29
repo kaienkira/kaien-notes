@@ -1,0 +1,87 @@
+===============================================================================
+                    IPTV                            MAIN_ROUTER
+                     |                                  |
+vlan_id   cpu(eth0) LAN1    LAN2     LAN3     LAN4     WAN
+1         tagged    off     untagged untagged untagged off
+2         tagged    off     off      off      off      untagged
+85        tagged    tagged  tagged   tagged   tagged   off
+===============================================================================
+vi /etc/dnsmasq.conf
+dhcp-option-force=125,00:00:00:00:1a:02:06:48:47:57:2d:43:54:0a:02:20:00:0b:02:00:55:0d:02:00:2e
+dhcp-option=60,00:00:01:00:02:03:43:50:45:03:0e:45:38:20:47:50:4f:4e:20:52:4f:55:54:45:52:04:03:31:2E:30
+dhcp-option=15
+dhcp-option=28
+===============================================================================
+opkg install udpxy
+    Enabled -> true
+    Respawn -> true
+    Status  -> true
+    Bind IP/Interface eth0.2
+    Port 4022
+    Source IP/Interface eth0.85
+===============================================================================
+config device 'lan_eth0_1_dev'
+    option name 'eth0.1'
+    option macaddr '<mac1>'
+
+config device 'wan_eth0_2_dev'
+    option name 'eth0.2'
+    option macaddr '<mac2>'
+
+config interface 'loopback'
+    option ifname 'lo'
+    option proto 'static'
+    option ipaddr '127.0.0.1'
+    option netmask '255.0.0.0'
+
+config interface 'lan'
+    option type 'bridge'
+    option ifname 'eth0.1'
+    option proto 'static'
+    option ipaddr '10.0.1.1'
+    option netmask '255.255.255.0'
+
+config interface 'wan'
+    option ifname 'eth0.2'
+    option proto 'dhcp'
+
+config interface 'wan6'
+    option proto 'dhcpv6'
+
+config interface 'iptv'
+    option ifname 'eth0.85'
+    option proto 'dhcp'
+===============================================================================
+config zone
+    option name 'lan'
+    list network 'lan'
+    option input 'ACCEPT'
+    option output 'ACCEPT'
+    option forward 'ACCEPT'
+
+config zone
+    option name 'wan'
+    list network 'wan'
+    list network 'wan6'
+    option input 'REJECT'
+    option output 'ACCEPT'
+    option forward 'REJECT'
+    option masq '1'
+    option mtu_fix '1'
+
+config zone
+    option name 'iptv'
+    option network 'iptv'
+    option input 'ACCEPT'
+    option output 'ACCEPT'
+    option forward 'ACCEPT'
+
+config forwarding
+    option src 'lan'
+    option dest 'wan'
+
+config rule
+    option name 'udpxy'
+    option dest_port '4022'
+    option src 'wan'
+    option target 'ACCEPT'
