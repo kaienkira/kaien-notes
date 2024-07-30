@@ -1,14 +1,29 @@
+===============================================================================
+*. 设置镜像
+    vi /etc/installurl
+        https://mirrors.tuna.tsinghua.edu.cn/OpenBSD/
+        # https://cdn.openbsd.org/pub/OpenBSD
 *. 更新系统
   syspatch
-  sysupdate
+  sysupgrade
+  sysmerge -d
+
 *. 搜索包
   pkg_info -Q <keyword>
 *. 安装包
   pkg_add <package_name>
 *. 更新包
-  pkg_add -u
+  pkg_add -Uu
+
 *. 关机
   halt -p
+===============================================================================
+*. show listening ports
+    netstat -nl -f inet
+    netstat -nl -f inet6
+*. sshd
+    rcctl enable sshd
+    rcctl start sshd
 ===============================================================================
 *. wifi
   fw_update
@@ -20,7 +35,6 @@
 *. packages
     pkg_add htop
     pkg_add vim
-    pkg_add sakura
     pkg_add noto-cjk nto-emoji noto-fonts
     pkg_add i3
     pkg_add firefox ffmpeg
