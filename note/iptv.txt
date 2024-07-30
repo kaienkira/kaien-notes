@@ -1,7 +1,7 @@
 ===============================================================================
                     IPTV                            MAIN_ROUTER
                      |                                  |
-vlan_id   cpu(eth0) LAN1    LAN2     LAN3     LAN4     WAN
+vlan_id   local     LAN1    LAN2     LAN3     LAN4     WAN
 1         tagged    off     untagged untagged untagged off
 2         tagged    off     off      off      off      untagged
 85        tagged    tagged  tagged   tagged   tagged   off
@@ -12,76 +12,92 @@ dhcp-option=60,00:00:01:00:02:03:43:50:45:03:0e:45:38:20:47:50:4f:4e:20:52:4f:55
 dhcp-option=15
 dhcp-option=28
 ===============================================================================
-opkg install udpxy
+opkg install udpxy luci-app-udpxy
     Enabled -> true
     Respawn -> true
     Status  -> true
-    Bind IP/Interface eth0.2
+    Bind IP/Interface 10.0.10.1
     Port 4022
-    Source IP/Interface eth0.85
+    Source IP/Interface br-lan.85 
 ===============================================================================
-config device 'lan_eth0_1_dev'
-    option name 'eth0.1'
-    option macaddr '<mac1>'
-
-config device 'wan_eth0_2_dev'
-    option name 'eth0.2'
-    option macaddr '<mac2>'
-
 config interface 'loopback'
-    option ifname 'lo'
+    option device 'lo'
     option proto 'static'
     option ipaddr '127.0.0.1'
     option netmask '255.0.0.0'
 
-config interface 'lan'
+config globals 'globals'
+    option ula_prefix 'fd0c:d3dd:0b60::/48'
+    option packet_steering '1'
+
+config device
+    option name 'br-lan'
     option type 'bridge'
-    option ifname 'eth0.1'
+    list ports 'lan1'
+    list ports 'lan2'
+    list ports 'lan3'
+    list ports 'lan4'
+    list ports 'wan'
+
+config bridge-vlan
+    option device 'br-lan'
+    option vlan '1'
+    list ports 'lan2'
+    list ports 'lan3'
+    list ports 'lan4'
+
+config bridge-vlan
+    option device 'br-lan'
+    option vlan '2'
+    list ports 'wan'
+
+config bridge-vlan
+    option device 'br-lan'
+    option vlan '85'
+    list ports 'lan1:t'
+    list ports 'lan2:t'
+    list ports 'lan3:t'
+    list ports 'lan4:t'
+
+config interface 'lan'
     option proto 'static'
-    option ipaddr '10.0.1.1'
+    option device 'br-lan.1'
+    option ipaddr '10.0.10.1'
     option netmask '255.255.255.0'
+    option metric '1'
 
 config interface 'wan'
-    option ifname 'eth0.2'
     option proto 'dhcp'
-
-config interface 'wan6'
-    option proto 'dhcpv6'
+    option device 'br-lan.2'
 
 config interface 'iptv'
-    option ifname 'eth0.85'
     option proto 'dhcp'
+    option device 'br-lan.85'
+    option metric '2'
 ===============================================================================
 config zone
     option name 'lan'
-    list network 'lan'
     option input 'ACCEPT'
     option output 'ACCEPT'
     option forward 'ACCEPT'
+    list network 'lan'
 
 config zone
     option name 'wan'
-    list network 'wan'
-    list network 'wan6'
     option input 'REJECT'
     option output 'ACCEPT'
     option forward 'REJECT'
     option masq '1'
     option mtu_fix '1'
-
-config zone
-    option name 'iptv'
-    option network 'iptv'
-    option input 'ACCEPT'
-    option output 'ACCEPT'
-    option forward 'ACCEPT'
+    list network 'wan'
 
 config forwarding
     option src 'lan'
     option dest 'wan'
 
-config rule
-    option name 'udpxy'
-    option dest_port '4022'
-    option src 'wan'
-    option target 'ACCEPT'
+config zone
+    option name 'iptv'
+    option input 'ACCEPT'
+    option output 'ACCEPT'
+    option forward 'ACCEPT'
+    list network 'iptv'
