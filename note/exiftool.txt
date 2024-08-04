@@ -1,5 +1,6 @@
-exiftool -r '-FileName<DateTimeOriginal' -d "output/%Y/img_%Y%m%d_%H%M%S%%-c.%%e" **/*.jpg
-exiftool -overwrite_original -r -api "QuickTimeUTC" '-FileName<CreateDate' -d "VID_%Y%m%d_%H%M%S%%-c.%%e" **/*.mp4
+exiftool -r '-FileName<DateTimeOriginal' -d "output/%Y/img_%Y%m%d_%H%M%S%%-c.%%e" *.jpg
+exiftool -overwrite_original -r -api "QuickTimeUTC" '-FileName<CreateDate' -d "output/%Y/vid_%Y%m%d_%H%M%S%%-c.%%e" *.mp4
+exiftool -overwrite_original '-FileName<ContentCreateDate' -d "output/%Y/vid_%Y%m%d_%H%M%S%%-c.%%e" *.mov
 
 for file in `find . -name '*.jpg'`
 do
