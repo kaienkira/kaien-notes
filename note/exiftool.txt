@@ -1,0 +1,9 @@
+exiftool -r '-FileName<DateTimeOriginal' -d "output/%Y/img_%Y%m%d_%H%M%S%%-c.%%e" **/*.jpg
+exiftool -overwrite_original -r -api "QuickTimeUTC" '-FileName<CreateDate' -d "VID_%Y%m%d_%H%M%S%%-c.%%e" **/*.mp4
+
+for file in `find . -name '*.jpg'`
+do
+    modify_date=$(date -r "$file" +%Y%m%d_%H%M%S)
+    new_file_name=img_"$modify_date"_$(basename $file)
+    mv "$file" "$new_file_name"
+done
