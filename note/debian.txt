@@ -36,4 +36,6 @@
 
 *. 查看包信息
     dpkg-query -s <package_name>
+*. 查看包文件
+    dpkg-query -L <package_name>
    
