@@ -5,3 +5,5 @@
 https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/llvm-18.1.8.src.tar.xz
 https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/clang-18.1.8.src.tar.xz
 https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/libcxx-18.1.8.src.tar.xz
+https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/lld-18.1.8.src.tar.xz
+https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/lldb-18.1.8.src.tar.xz
