@@ -34,17 +34,6 @@
     vi /etc/dhcp/dhclient.conf
         supersede domain-name-servers 223.5.5.5, 119.29.29.29, 8.8.8.8;
 
-*. upgrade 10 -> 11
-    find /etc -name '*.dpkg-*' -o -name '*.ucf-*' -o -name '*.merge-error'
-    dpkg --audit
-    dpkg --get-selections | grep 'hold$'
-    vi /etc/apt/sources.list
-        deb http://mirrors.163.com/debian/ bullseye main
-        deb-src http://mirrors.163.com/debian/ bullseye main
-        deb http://security.debian.org/debian-security bullseye-security main contrib
-        deb-src http://security.debian.org/debian-security bullseye-security main contrib
-        deb http://mirrors.163.com/debian/ bullseye-updates main contrib
-        deb-src http://mirrors.163.com/debian/ bullseye-updates main contrib
-    apt update
-    apt upgrade --without-new-pkgs
-    apt full-upgrade
+*. 查看包信息
+    dpkg-query -s <package_name>
+   
