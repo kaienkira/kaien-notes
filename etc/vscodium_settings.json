@@ -3,6 +3,6 @@
     "editor.fontFamily": "Hack,Consolas,'DejaVu Sans Mono'",
     "window.restoreWindows": "none",
     "git.enabled": false,
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "javascript.updateImportsOnFileMove.enabled": "always"
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always"
 }
