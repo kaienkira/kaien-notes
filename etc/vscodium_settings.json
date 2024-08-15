@@ -5,5 +5,8 @@
     "window.restoreWindows": "none",
     "git.enabled": false,
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "typescript.updateImportsOnFileMove.enabled": "always"
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "http.proxy": "http://127.0.0.1:8118",
+    "redhat.telemetry.enabled": false,
+    "xml.format.spaceBeforeEmptyCloseTag": false
 }
