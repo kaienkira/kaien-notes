@@ -194,6 +194,7 @@ Host github.com
     IdentityFile ~/.ssh/id_rsa
     TCPKeepAlive yes
     IdentitiesOnly yes
+    ServerAliveInterval 120
 
 ================================================================================
 -*- Misc -*-
