@@ -14,6 +14,8 @@
   pkg_add <package_name>
 *. 更新包
   pkg_add -Uu
+*. 删除包
+  pkg_delete -a <pacakge_name>
 
 *. 关机
   halt -p
