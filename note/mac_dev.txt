@@ -10,6 +10,9 @@
     brew deps --tree --installed
     brew services start <service_name>
     brew services stop <service_name>
+*. Sunshine
+    brew tap LizardByte/homebrew
+    brew install sunshine
 *. Profile-bash
     export PS1='\u@\h:\w\$ '
 *. Profile-zsh
