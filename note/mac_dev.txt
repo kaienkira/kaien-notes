@@ -40,5 +40,3 @@
     rm -rf ~/Library/Caches/org.swift.swiftpm/*
     export all_proxy=socks5://<proxy>
     xcodebuild -resolvePackageDependencies -scmProvider system
-
-
