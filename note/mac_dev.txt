@@ -12,7 +12,11 @@
     brew services stop <service_name>
 *. Sunshine
     brew tap LizardByte/homebrew
-    brew install sunshine
+    brew install sunshine-beta
+    brew install blackhole-2ch
+    brew services start lizardbyte/homebrew/sunshine-beta
+    # /opt/homebrew/opt/sunshine-beta/bin/sunshine ~/.config/sunshine/sunshine.conf
+    visit https://localhost:47990
 *. Profile-bash
     export PS1='\u@\h:\w\$ '
 *. Profile-zsh
