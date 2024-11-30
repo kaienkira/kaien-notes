@@ -517,6 +517,9 @@ speaker-test -c 1
     comm -23 <(pacman -Qqett | sort) \
              <(pacman -Qqg base -g base-devel | sort | uniq)
 
+# delete lock file
+    rm -f /var/lib/pacman/db.lck
+
 ===============================================================================
 -*- System Maintenance -*-
 ===============================================================================
