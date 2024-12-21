@@ -64,3 +64,8 @@ MSYS2_ARG_CONV_EXCL="*" MSYS_NO_PATHCONV=1 adb push houdini9_y.sfs /sdcard/
 adb shell -> su -> mv /sdcard/houdini9_y.sfs /system/etc/
 /system/bin/enable_native_bridge
 ===============================================================================
+-*- gnirehtet -*-
+-------------------------------------------------------------------------------
+./gnirehtet relay
+./gnirehtet start
+===============================================================================
