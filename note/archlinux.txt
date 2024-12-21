@@ -539,7 +539,10 @@ speaker-test -c 1
 pacman -S make
 pacman -S gcc
 pacman -S go
-pacman -S jdk17-openjdk
+-------------------------------------------------------------------------------
 pacman -S gradle
+pacman -S jdk21-openjdk
 pacman -S android-udev gvfs-mtp
+pacman -S android-tools
+gpasswd -a <user> adbusers
 -------------------------------------------------------------------------------
