@@ -1,0 +1,28 @@
+[[ $- != *i* ]] && return
+
+set -o vi
+ulimit -c unlimited
+
+export PS1='\u@\h:\w\$ '
+export PROMPT_COMMAND='printf "\033]0;%s@%s\007" "${USER}" "${HOSTNAME%%.*}"'
+export EDITOR=vim
+export HISTFILE=
+
+export ANDROID_HOME=~/local/android-sdk
+
+export PATH=${PATH}\
+:/opt/trzsz/:\
+:~/bin\
+:~/local/android-sdk/cmdline-tools/16.0/bin\
+:~/local/android-sdk/platform-tools\
+:~/proj/kaien-notes/bin\
+
+alias ls='ls --color'
+alias l='ls -lrt'
+alias c='clear'
+alias vi='vim'
+alias rz='/opt/trzsz/trz'
+alias sz='/opt/trzsz/tsz'
+
+alias cdn='cd ~/proj/kaien-notes/note'
+alias cdnc='cd ~/proj/kaien-docs'
