@@ -1,0 +1,8 @@
+PROMPT='%n@%m %/ %# '
+
+export PATH=$PATH\
+:~/Home/bin/\
+
+alias c='clear'
+alias l='ls -lrt'
+alias cdd='cd ~/Home'
