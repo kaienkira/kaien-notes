@@ -11,7 +11,7 @@ then
 elif [ $# -eq 1 ]
 then
     pos=$1
-    if echo $pos | egrep -q -v '^[0-9]+$'
+    if echo $pos | grep -Eqv '^[0-9]+$'
     then
         usage
     fi
