@@ -133,11 +133,21 @@ a if cond     guard
 -*- Macro -*-
 -------------------------------------------------------------------------------
 declarative macros(声明式宏)
-    macro_rules! <macro_name> {
-        (<pattern>) => { <code> }
-        ...
+    macro_rules! $name {
+        $rule0;
+        $rule1;
+        // ... 
+        $ruleN;
     }
+    $ruleX is ($matcher) => {$expansion}
+    You can use brackets([]), parentheses(()) or braces({}).
 
+    metavariables type
+        block: a block
+        ident: an identifier (this includes keywords)
+        expr: an expression
+        item: an item, like a function, struct, module, impl, etc.
+        lifetime: a lifetime
 ===============================================================================
 -*- Ownership -*-
 -------------------------------------------------------------------------------
