@@ -146,8 +146,19 @@ declarative macros(声明式宏)
         block: a block
         ident: an identifier (this includes keywords)
         expr: an expression
-        item: an item, like a function, struct, module, impl, etc.
-        lifetime: a lifetime
+        item: an item, like a function, struct, module, impl, etc
+        lifetime: a lifetime ('a)
+        literal: a literal (123, "Hello")
+        meta: a meta item
+              the things that go inside the #[...] and #![...] attributes
+        pat: a pattern
+        path: a path (e.g. ::std::mem::replace)
+        stmt: a statement
+        tt: a single token tree
+        ty: a type
+        vis: a possible empty visibility qualifier (e.g. pub, pub(in crate), ...)
+    special metavariables
+        $crate
 ===============================================================================
 -*- Ownership -*-
 -------------------------------------------------------------------------------
