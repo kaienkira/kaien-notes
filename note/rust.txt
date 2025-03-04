@@ -142,6 +142,7 @@ declarative macros(声明式宏)
     $ruleX is ($matcher) => {$expansion}
     You can use brackets([]), parentheses(()) or braces({}).
 
+
     metavariables type
         block: a block
         ident: an identifier (this includes keywords)
@@ -159,6 +160,10 @@ declarative macros(声明式宏)
         vis: a possible empty visibility qualifier (e.g. pub, pub(in crate), ...)
     special metavariables
         $crate
+    matcher repetitions 
+        $ ( ... ) sep rep
+            sep: , ;
+            rep: * + ?
 ===============================================================================
 -*- Ownership -*-
 -------------------------------------------------------------------------------
