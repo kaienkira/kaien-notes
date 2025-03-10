@@ -219,6 +219,12 @@ Copy trait
 #[derive(Clone)]
 #[derive(Clone, Copy)]
 ===============================================================================
+std::ops::Range             -> [start, end)          1 .. 5
+std::ops::RangeInclusive    -> [start, end]          1 ..= 5
+std::ops::RangeFrom         -> [start, infinity)     1 ..
+std::ops::RangeTo           -> (infinity, end)       .. 5
+std::ops::RangeToInclusive  -> (infinity, end]       ..= 5
+std::ops::RangeFull         -> (infinity, infinity)  ..
 std::clone::Clone
 std::marker::Copy
 std::iter::Iterator
