@@ -229,3 +229,9 @@ std::clone::Clone
 std::marker::Copy
 std::iter::Iterator
 std::iter::IntoIterator
+std::option::Option
+std::option::Option::None
+std::option::Option::Some(T)
+===============================================================================
+RUST_BACKTRACE=1
+RUST_BACKTRACE=full
