@@ -219,4 +219,6 @@ git stash pop
 
 # 在windows上添加可执行权限
 git update-index --chmod=+x <file>
+# 修复提交日志
+git commit --amend
 ================================================================================

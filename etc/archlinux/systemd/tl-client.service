@@ -8,4 +8,4 @@ ExecStart=%h/local/tl-client/twilight-line-client -e \
 StandardOutput=null
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
