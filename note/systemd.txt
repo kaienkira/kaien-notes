@@ -76,6 +76,28 @@ systemctl list-units --type=target
 man systemd.timer
 systemctl list-timers
 
+xx.services
+```
+    [Unit]
+    Description=...
+
+    [Service]
+    Type=simple
+    ExecStart=...
+
+```
+xx.timer
+```
+    [Unit]
+    Description=...
+
+    [Timer]
+    OnCalendar=*-*-* 4:00:00
+    Unit=xx
+
+    [Install]
+    WantedBy=default.target
+```
 ===============================================================================
 -*- Logging -*-
 ===============================================================================
@@ -108,7 +130,6 @@ loginctl flush-devices
 loginctl seat-status seat0
 
 *. 启用用户逗留
-loginctl show-user <user>
 loginctl enable-linger <user>
 
 ===============================================================================
