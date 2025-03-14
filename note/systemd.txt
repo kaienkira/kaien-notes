@@ -107,4 +107,8 @@ vi /etc/systemd/logind.conf
 loginctl flush-devices
 loginctl seat-status seat0
 
+*. 启用用户逗留
+loginctl show-user <user>
+loginctl enable-linger <user>
+
 ===============================================================================
