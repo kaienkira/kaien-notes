@@ -219,6 +219,12 @@ Copy trait
 #[derive(Clone)]
 #[derive(Clone, Copy)]
 ===============================================================================
+print!
+println!
+eprint!
+eprintln!
+write!
+===============================================================================
 std::ops::Range             -> [start, end)          1 .. 5
 std::ops::RangeInclusive    -> [start, end]          1 ..= 5
 std::ops::RangeFrom         -> [start, infinity)     1 ..
@@ -232,6 +238,9 @@ std::iter::IntoIterator
 std::option::Option
 std::option::Option::None
 std::option::Option::Some(T)
+===============================================================================
+std::fs::read_to_string()
+std::process::exit()
 ===============================================================================
 RUST_BACKTRACE=1
 RUST_BACKTRACE=full
