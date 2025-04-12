@@ -1,3 +1,5 @@
 *. 反射向量计算
     N为入射点法线向量, I为入射向量
     R = I - 2N(N * I)
+
+SSAA(Super Sampling Anti-Aliasing)
