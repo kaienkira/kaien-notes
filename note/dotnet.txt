@@ -8,3 +8,10 @@ dotnet workload install
 ------------------------------------------------------------------------------
 dotnet workload install wasm-tools
 dotnet workload install wasm-experimental
+
+------------------------------------------------------------------------------
+<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+<PublishTrimmed>true</PublishTrimmed>
+<PublishSingleFile>true</PublishSingleFile>
+------------------------------------------------------------------------------
