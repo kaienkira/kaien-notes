@@ -14,7 +14,7 @@ systemd-analyze blame
 # 主机信息
 hostnamectl
 # 本地化设置
-localectl
+localectl list-locales
 # 时区设置
 timedatectl
 # 登陆用户
