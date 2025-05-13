@@ -95,6 +95,8 @@ svn update --set-depth infinity
 ===============================================================================
 [helpers]
 diff-cmd = colordiff
+diff-cmd = diff
+diff-extensions = -u -p --color=always
 
 ===============================================================================
 -*- setup svn server on debian10 -*-
