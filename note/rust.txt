@@ -1,5 +1,5 @@
 ===============================================================================
-pacman -S rustup
+pacman -S rustup mingw-w64-gcc
 
 export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup
 export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
@@ -7,15 +7,18 @@ export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
 rustup default stable
 rustup update
 rustup toolchain install <stable|beta|nightly|version>
+
 rustup target list
 rustup target add x86_64-pc-windows-gnu
-===============================================================================
+
 vi ~/.cargo/config.toml
     [source.crates-io]
     replace-with = 'mirror'
+
     [source.mirror]
     registry = 'https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git'
 
+===============================================================================
 cargo new --bin --name <package_name> <path>
 cargo init
 cargo build --release
