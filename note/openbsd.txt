@@ -42,6 +42,7 @@
   sh /etc/netstart <wifi_interface>
 ===============================================================================
 *. packages
+    pkg_add colorls
     pkg_add htop
     pkg_add vim
     pkg_add noto-cjk nto-emoji noto-fonts
