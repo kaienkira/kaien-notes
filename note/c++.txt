@@ -1,14 +1,5 @@
 ===============================================================================
-<algorithm>
-count()
-count_if()
-unique_copy()
-sort()
-    比较函数要求对于调用的两个参数交换位置时不能得到相同的true的结果
-transform()
-===============================================================================
-<type_traits>
-template result_of
+Empty Base Class Optimization (EBCO)
 ===============================================================================
 
 ===============================================================================
@@ -599,6 +590,7 @@ void f4(X) {}          // ILLEGAL: *definitions* require complete types
 
 ===============================================================================
 -*- <Effective Modern C++> Notes -*-
+-------------------------------------------------------------------------------
 Item1:
     *. passing a const object to a template taking a T& parameter is safe
        the constness of the object becomes part of the type deduced for T
@@ -620,4 +612,4 @@ Item3:
        is always an lvalue reference
 Item37:
     *. destruction of a joinable std::thread terminates your program
--------------------------------------------------------------------------------
+===============================================================================
