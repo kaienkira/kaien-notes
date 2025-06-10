@@ -1,4 +1,20 @@
 ===============================================================================
+-*- #include <cfenv> -*-
+===============================================================================
+std::feclearexcept()
+std::fetestexcept()
+
+FE_DIVBYZERO
+FE_INEXACT
+FE_INVALID
+FE_OVERFLOW
+FE_UNDERFLOW
+FE_ALL_EXCEPT
+
+Linux
+::feenableexcept()
+
+===============================================================================
 -*- #include <cmath> -*-
 ===============================================================================
 std::hypot() (abbr hypotenuse)
@@ -49,6 +65,9 @@ float32_t               32              23             8     -126 ~ 127
 float64_t               64              52            11    -1022 ~ 1023
 float128_t             128             112            15   -16382 ~ 16383
 bfloat16_t              16               7             8     -125 ~ 127
+
+Normalized Numbers: E=not-all-zero
+Denormalized Numbers(Subnormal Numbers): E=all-zero M=not-all-zero
 
 qNaN(Quiet Not-a-Number): highest bit of M is 1
 sNan(Signaling Not-a-Number): highest bit of M is 0
