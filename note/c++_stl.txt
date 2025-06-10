@@ -67,7 +67,7 @@ float128_t             128             112            15   -16382 ~ 16383
 bfloat16_t              16               7             8     -125 ~ 127
 
 Normalized Numbers: E=not-all-zero
-Denormalized Numbers(Subnormal Numbers): E=all-zero M=not-all-zero
+Subnormal Numbers: E=all-zero M=not-all-zero
 
 qNaN(Quiet Not-a-Number): highest bit of M is 1
 sNan(Signaling Not-a-Number): highest bit of M is 0
