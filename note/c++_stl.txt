@@ -41,6 +41,30 @@ arm64
 *. std::pi_v<double>
 
 ===============================================================================
+-*- #include <stdfloat> -*-
+===============================================================================
+              storage_bits  fraction_bits  exponent_bits   exponent_range
+float16_t               16              10             5      -14 ~ 15
+float32_t               32              23             8     -126 ~ 127
+float64_t               64              52            11    -1022 ~ 1023
+float128_t             128             112            15   -16382 ~ 16383
+bfloat16_t              16               7             8     -125 ~ 127
+
+qNaN(Quiet Not-a-Number): highest bit of M is 1
+sNan(Signaling Not-a-Number): highest bit of M is 0
+
++Inf: S=0 E=all-one  M=all-zero     0 11111111 00000000000000000000000
+-Inf: S=1 E=all-one  M=all-zero     1 11111111 00000000000000000000000
++0:   S=0 E=all-zero M=all-zero     0 00000000 00000000000000000000000
+-0:   S=1 E=all-zero M=all-zero     1 00000000 00000000000000000000000
+nan:      E=all-one  M=not-all-zero
+
+NAN macro                           0 11111111 10000000000000000000000
+qnan1:                              0 11111111 10000000000000000000001
+qnan2:                              0 11111111 10000000000000000000010
+sNaN                                0 11111111 01000000000000000000000
+
+===============================================================================
 -*- #include <type_traits> -*-
 ===============================================================================
 *. std::is_integral<T>  ref: std::numeric_limits<T>::is_integer
