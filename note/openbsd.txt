@@ -1,7 +1,7 @@
 ===============================================================================
 *. 设置镜像
     vi /etc/installurl
-        https://mirrors.tuna.tsinghua.edu.cn/OpenBSD/
+        https://mirrors.tuna.tsinghua.edu.cn/OpenBSD
         # https://cdn.openbsd.org/pub/OpenBSD
 *. 更新系统
   syspatch
