@@ -47,3 +47,10 @@
 
 *. 关机
     shutdown -h now
+
+*. OpenCore
+    https://github.com/acidanthera/OpenCorePkg
+    https://github.com/DrDonk/OC4VM
+    cd Utilities/macrecovery
+    python3 ./macrecovery.py -b Mac-7BA5B2D9E42DDD94 -m 00000000000000000 -os latest download
+    qemu-img convert -O vmdk -o compat6 BaseSystem.dmg recovery.vmdk
