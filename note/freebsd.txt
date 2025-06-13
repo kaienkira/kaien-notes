@@ -1,0 +1,25 @@
+===============================================================================
+*. 添加用户
+    adduser
+    pw useradd <user> -m -G <group_list>
+*. 把用户添加到组
+    pw groupmod <group> -m <newmembers>
+
+===============================================================================
+*. packages
+    vi /usr/local/etc/pkg.conf
+        PKG_ENV {
+            all_proxy = "socks5://<ip>:<port>"
+        }
+
+    pkg bootstrap
+    pkg info
+    pkg install htop
+
+===============================================================================
+*. ssh
+    vi /etc/ssh/sshd_config
+        PermitRootLogin yes
+        PasswordAuthentication yes
+    service sshd restart
+===============================================================================
