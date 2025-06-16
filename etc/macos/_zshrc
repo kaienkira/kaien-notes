@@ -1,6 +1,8 @@
 set -o vi
 
 PROMPT='%n@%m %/ %# '
+export EDITOR=vim
+export HISTFILE=
 
 export PATH=$PATH\
 :~/Home/bin/\
