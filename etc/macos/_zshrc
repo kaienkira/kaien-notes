@@ -4,5 +4,10 @@ export PATH=$PATH\
 :~/Home/bin/\
 
 alias c='clear'
+alias ls='ls -G'
 alias l='ls -lrt'
+alias vi='vim'
+alias rz='trz'
+alias sz='tsz'
+
 alias cdd='cd ~/Home'
