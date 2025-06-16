@@ -13,6 +13,14 @@
 
 *. 查看磁盘
     diskutil list
+*. 扩展磁盘
+    diskutil apfs resizeContainer <disk1s2> 0
+
+*. dscl
+    dscl . -list /Users UniqueID
+    dscl . -list /Users PrimaryGroupID
+    dscl . -list /Users UserShell
+    dscl . -read /Users/<user>
 
 *. 关闭SIP
     csrutil disable
@@ -47,6 +55,7 @@
 
 *. 关机
     shutdown -h now
+    halt
 
 *. OpenCore
     https://github.com/acidanthera/OpenCorePkg
