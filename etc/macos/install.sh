@@ -35,6 +35,7 @@ if [ $? -ne 0 ]; then exit 1; fi
 brew install \
     htop \
     git \
+    tree \
     trzsz-go \
     vim
 if [ $? -ne 0 ]; then exit 1; fi
