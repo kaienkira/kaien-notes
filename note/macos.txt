@@ -16,7 +16,11 @@
 *. 扩展磁盘
     diskutil apfs resizeContainer <disk1s2> 0
 
-*. dscl
+*. 用户管理
+    id
+    sysadminctl -guestAccount status
+    sysadminctl -addUser <username>
+    sysadminctl -deleteUser <username>
     dscl . -list /Users UniqueID
     dscl . -list /Users PrimaryGroupID
     dscl . -list /Users UserShell

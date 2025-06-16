@@ -39,6 +39,8 @@ brew install \
     vim
 if [ $? -ne 0 ]; then exit 1; fi
 
+create_dir ~/Home 700
+
 copy_file "$script_path"/_zshrc ~/.zshrc 600
 copy_file "$script_path"/../archlinux/_vimrc ~/.vimrc 600
 copy_file "$script_path"/../archlinux/_gitconfig ~/.gitconfig 600
