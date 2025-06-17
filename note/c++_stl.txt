@@ -40,6 +40,30 @@ std::hypot() (abbr hypotenuse)
 -*- #include <concepts> -*-
 ===============================================================================
 *. std::integral
+*. std::floating_point
+
+===============================================================================
+-*- #include <limits> -*-
+===============================================================================
+std::numeric_limits<T>::is_iec559
+std::numeric_limits<T>::has_infinity
+std::numeric_limits<T>::has_quiet_NaN
+std::numeric_limits<T>::has_signaling_NaN
+
+std::numeric_limits<T>::digits
+std::numeric_limits<T>::digits10 
+    -> std::floor((digits - 1) * std::log10(2))
+    保证无精度损失的十进制有效数字位数
+    输入精度保证(读取时不丢精度)
+std::numeric_limits<T>::max_digits10
+    -> std::ceil(digits * std::log10(2) + 1)
+    确保不同值必有不同表示的十进制位数
+    输出精度保证(输出时避免歧义)
+
+std::numeric_limits<T>::min()
+std::numeric_limits<T>::max()
+std::numeric_limits<T>::lowest()
+std::numeric_limits<T>::denorm_min()
 
 ===============================================================================
 -*- #include <numbers> -*-
@@ -87,8 +111,10 @@ sNaN                                0 11111111 01000000000000000000000
 -*- #include <type_traits> -*-
 ===============================================================================
 *. std::is_integral<T>  ref: std::numeric_limits<T>::is_integer
-
    std::is_integral_v<T>
+-------------------------------------------------------------------------------
+*. std::is_floating_point<T>
+   std::is_floating_point_v<T>
 -------------------------------------------------------------------------------
 *. std::is_reference<T>
    std::is_lvalue_reference<T>
