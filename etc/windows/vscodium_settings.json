@@ -8,5 +8,6 @@
     "typescript.updateImportsOnFileMove.enabled": "always",
     "http.proxy": "http://127.0.0.1:8118",
     "redhat.telemetry.enabled": false,
-    "xml.format.spaceBeforeEmptyCloseTag": false
+    "xml.format.spaceBeforeEmptyCloseTag": false,
+    "dotnet.codeLens.enableReferencesCodeLens": false
 }
