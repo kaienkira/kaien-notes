@@ -9,6 +9,7 @@
     brew upgrade
     brew leaves
     brew deps --tree --installed
+    brew uses --installed <package_name>
     brew services start <service_name>
     brew services stop <service_name>
 *. Sunshine
