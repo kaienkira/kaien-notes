@@ -29,6 +29,13 @@ std::hypot() (abbr hypotenuse)
     比较函数要求对于调用的两个参数交换位置时不能得到相同的true的结果
 *. std::transform()
 
+*. std::all_of()
+   std::any_of()
+   std::none_of()
+   std::ranges::all_of()
+   std::ranges::any_of()
+   std::ranges::none_of()
+
 ===============================================================================
 -*- #include <any> -*-
 ===============================================================================

@@ -1,5 +1,8 @@
 ===============================================================================
 Empty Base Class Optimization (EBCO)
+Argument-Dependent Lookup (ADL)
+Curiously Recurring Template Pattern (CRTP)
+Customization Point Object (CPO)
 ===============================================================================
 
 ===============================================================================
