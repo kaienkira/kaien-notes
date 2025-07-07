@@ -27,3 +27,7 @@
         wifi.powersave = 2
         # disable = 2 enable = 3
     chmod 600 wifi-powersave-off.conf
+
+===============================================================================
+*. 关闭主机
+    ha> host shutdown
