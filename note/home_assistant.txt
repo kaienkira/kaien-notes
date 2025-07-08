@@ -33,3 +33,5 @@
     ha> host shutdown
 *. 登录系统命令行
     ha> login
+*. 导入CONFIG目录配置
+    ha> os import
