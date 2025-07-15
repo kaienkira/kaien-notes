@@ -1,0 +1,11 @@
+[Unit]
+Description=Twilight-Line-V2-Client User Service
+
+[Service]
+Type=exec
+ExecStart=%h/local/tl-v2-client/twilight-line-client -e \
+          %h/local/tl-v2-client/config.json
+StandardOutput=null
+
+[Install]
+WantedBy=default.target

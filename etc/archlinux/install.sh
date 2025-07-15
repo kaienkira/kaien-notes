@@ -78,8 +78,8 @@ copy_file "$script_path"/kitty.conf  ~/.config/kitty/kitty.conf 600
 copy_file "$script_path"/foot.ini ~/.config/foot/foot.ini 600
 copy_file "$script_path"/fcitx5_profile ~/.config/fcitx5/profile 600
 copy_file "$script_path"/fcitx5_classicui.conf ~/.config/fcitx5/conf/classicui.conf 600
-copy_file "$script_path"/systemd/tl-client.service \
-          ~/.config/systemd/user/tl-client.service 600
+copy_file "$script_path"/systemd/tl-v2-client.service \
+          ~/.config/systemd/user/tl-v2-client.service 600
 copy_file "$script_path"/applications/firefox-1.desktop \
           ~/.local/share/applications/firefox-1.desktop 600
 copy_file "$script_path"/applications/firefox-2.desktop \
