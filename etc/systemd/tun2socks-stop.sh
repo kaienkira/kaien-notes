@@ -5,7 +5,7 @@ set -o pipefail
 script_abs_name=`readlink -f "$0"`
 script_path=`dirname "$script_abs_name"`
 
-config_file=`readlink -f "$script_path/badvpn-tun2socks-config.sh"`
+config_file=`readlink -f "$script_path/tun2socks-config.sh"`
 if [ ! -f "$config_file" ]
 then
     echo "$config_file is missing"

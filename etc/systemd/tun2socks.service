@@ -1,0 +1,16 @@
+[Unit]
+Description=Tun2socks Service
+After=systemd-networkd-wait-online.service
+Wants=systemd-networkd-wait-online.service
+
+[Service]
+Type=exec
+ExecStartPre=/bin/bash /opt/tun2socks/tun2socks-start.sh
+ExecStart=/opt/tun2socks/tun2socks \
+    -device tun0 \
+    -proxy socks5://127.0.0.1:9051
+ExecStopPost=/bin/bash /opt/tun2socks/tun2socks-stop.sh
+StandardOutput=null
+
+[Install]
+WantedBy=multi-user.target
