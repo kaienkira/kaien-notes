@@ -3,7 +3,7 @@
     ~/Library/Developer/Xcode/Archives/
     ~/Library/MobileDevice/Provisioning Profiles/
 *. Homebrew
-    export ALL_PROXY=socks5://127.0.0.1:9050
+    export ALL_PROXY=socks5://127.0.0.1:9051
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew analytics off
     brew upgrade
@@ -14,9 +14,9 @@
     brew services stop <service_name>
 *. Sunshine
     brew tap LizardByte/homebrew
-    brew install sunshine-beta
+    brew install sunshine
     brew install blackhole-2ch
-    brew services start lizardbyte/homebrew/sunshine-beta
+    brew services start sunshine
     # /opt/homebrew/opt/sunshine-beta/bin/sunshine ~/.config/sunshine/sunshine.conf
     visit https://localhost:47990
 *. Profile-bash
