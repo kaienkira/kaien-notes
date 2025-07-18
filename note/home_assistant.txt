@@ -21,6 +21,11 @@
         [ipv4]
         method=auto
 
+        [ipv4]
+        method=manual
+        address=192.168.1.111/24;192.168.1.1
+        dns=8.8.8.8;8.8.4.4;
+
     mount /dev/sdb7 <mount_dir>
     vi <mount_dir>/etc/NetworkManager/conf.d/wifi-powersave-off.conf
         [connection]
