@@ -39,3 +39,17 @@
 *. 查看包文件
     dpkg-query -L <package_name>
    
+
+*. proxy
+    systemctl disable ifup@ens32
+    systemctl enable systemd-networkd
+    systemctl enable systemd-networkd-wait-online.service
+    vi /etc/systemd/network/10-wired.network
+        [Match]
+        Name=en*
+
+        [Network]
+        DHCP=ipv4
+    vi /etc/sysctl.d/ip_forward.conf
+        net.ipv4.ip_forward=1
+        net.ipv6.conf.all.forwarding=1
