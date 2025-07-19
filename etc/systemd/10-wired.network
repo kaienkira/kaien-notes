@@ -1,0 +1,27 @@
+[Match]
+Name=en*
+
+[Network]
+DHCP=ipv4
+
+#######################
+# DHCP with custom dns
+#######################
+#[Network]
+#DHCP=ipv4
+#DNS=8.8.8.8
+#
+#[DHCP]
+#UseDNS=false
+#RouteMetric=10
+
+#######################
+# STATIC
+#######################
+#[Network]
+#Address=192.168.77.2/24
+#Gateway=192.168.77.1
+#DNS=8.8.8.8
+#
+#[Route]
+#Metric=10
