@@ -332,7 +332,7 @@
 ===============================================================================
 # thinkbook 14p
     *. change brightness
-        echo 100 > /sys/class/backlight/amdgpu_bl0/brightness
+        echo 50000 > /sys/class/backlight/amdgpu_bl1/brightness
     *. disable pc speaker
         rmmod pcspkr
         vi /etc/modprobe.d/nobeep.conf
