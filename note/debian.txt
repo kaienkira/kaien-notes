@@ -41,9 +41,8 @@
    
 
 *. proxy
-    systemctl disable ifup@ens32
-    systemctl enable systemd-networkd
-    systemctl enable systemd-networkd-wait-online.service
+    systemctl disable networking.service
+    systemctl enable systemd-networkd.service
     vi /etc/systemd/network/10-wired.network
         [Match]
         Name=en*
