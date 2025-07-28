@@ -41,8 +41,9 @@
    
 
 *. proxy
-    systemctl disable networking.service
     systemctl enable systemd-networkd.service
+    systemctl mask ifup@.service
+    systemctl mask networking.service
     vi /etc/systemd/network/10-wired.network
         [Match]
         Name=en*
