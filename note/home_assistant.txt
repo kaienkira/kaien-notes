@@ -58,3 +58,5 @@
     ha> login
 *. 导入CONFIG目录配置
     ha> os import
+*. 更新系统
+    ha> os update
