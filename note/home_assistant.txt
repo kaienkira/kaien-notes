@@ -37,6 +37,19 @@
 *. PVE安装
 ===============================================================================
     qm disk import <vm_id> haos_ova-<version>.qcow2 local-lvm
+    vim /etc/NetworkManager/system-connections/wired
+        [connection]
+        id=wired
+        uuid=<uuid(use uuidgen)>
+        type=802-3-ethernet
+
+        [ipv4]
+        method=manual
+        address=192.168.1.111/24;192.168.1.1
+        dns=8.8.8.8
+
+        [ipv6]
+        method=disabled
 ===============================================================================
 *. 关闭主机
     ha> host shutdown
