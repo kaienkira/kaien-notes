@@ -38,6 +38,18 @@
     dpkg-query -s <package_name>
 *. 查看包文件
     dpkg-query -L <package_name>
+*. 列出所有安装的软件包
+    dpkg -l
+*. 查找文件属于哪个包
+    dpkg -S <file>
+*. 彻底删除软件包
+    sudo apt-get --purge autoremove packagename
+*. 清除所有被标记为rc的软件包配置
+    apt purge '~c'
+*. 列出编译依赖
+    apt-get -s build-dep <package>
+*. 列出包属于哪个源
+    grep -l <package> /var/lib/apt/lists/*
    
 
 *. proxy

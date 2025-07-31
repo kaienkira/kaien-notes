@@ -8,16 +8,59 @@
     gpasswd -d <user> <group>
 
 ===============================================================================
--*- network settings -*-
+-*- Network -*-
 ===============================================================================
-recv buffer
+ip link
+ip address
+ip route
+
+*. 显示默认网关
+    route -n
+*. 显示本地路由表
+    ip route show table local
+*. 显示已存在的路由表列表
+    cat /etc/iproute2/rt_tables
+*. 禁止路由IP
+    ip route add prohibit <ip> [from <ip>]
+*. 获取路由信息
+    ip route get <ip>
+*. 指定dns服务器查询
+    dig @<dns_server> <domain>
+
+===============================================================================
+-*- NetworkManager -*-
+===============================================================================
+nmcli devices
+
+===============================================================================
+-*- Network Settings -*-
+===============================================================================
+*. recv buffer
     /proc/sys/net/core/rmem_default
     /proc/sys/net/core/rmem_max
 
-send buffer
+*. send buffer
     /proc/sys/net/core/wmem_default
     /proc/sys/net/core/wmem_max
     /proc/sys/net/ipv4/tcp_wmem (min default max)
+
+*. time_wait status
+    net.ipv4.tcp_tw_recycle
+        Enabling this option is not recommended since this causes problems
+        when working with NAT
+    net.ipv4.tcp_tw_reuse
+        server_side useless with for incoming connections
+        client_side almost-safe solution an outgoing connection in the TIME-WAIT
+                    state can be reused after just one second
+    net.ipv4.tcp_fin_timeout
+        FIN_WAIT_2 status timeout
+
+*. max open sockets
+    ulimit -n
+    cat /proc/sys/fs/file-nr
+    cat /proc/sys/fs/file-max
+    cat /proc/sys/net/ipv4/ip_local_port_range 
+    cat /proc/sys/net/ipv4/ip_local_reserved_ports
 
 ===============================================================================
 -*- lvm -*-
@@ -43,6 +86,7 @@ lvscan
 e2fsck -C 0 -f /dev/<vg_name>/<root>
 resize2fs -p /dev/<vg_name>/<root> <new_size>
 lvreduce -L <new_size> /dev/<vg_name>/<root>
+
 ===============================================================================
 -*- udev -*-
 -------------------------------------------------------------------------------
@@ -57,43 +101,21 @@ vi /etc/udev/rules.d/00-disk.rules
 udevadm settle
     settle waits for udevd to finish processing any uevents queued
     by the kernel when it is called.
+
 ===============================================================================
 -*- coredump -*-
 -------------------------------------------------------------------------------
 /proc/sys/kernel/core_pattern
 /proc/sys/kernel/core_uses_pid
 /proc/sys/fs/suid_dumpable
+
 ===============================================================================
 -*- shared memory -*-
 -------------------------------------------------------------------------------
 /proc/sys/kernel/shmmax    max size of shared memory segment(bytes)
 /proc/sys/kernel/shmmni    max number of shared memory segments system-wide
 /proc/sys/kernel/shmall    (shmmax / page_size)
-===============================================================================
--*- ip command -*-
--------------------------------------------------------------------------------
-ip link show
-ip addr show
-ip route show
 
-===============================================================================
--*- network routing -*-
-===============================================================================
-*. 显示默认网关
-route -n
-*. 显示本地路由表
-ip route show table local
-*. 显示已存在的路由表列表
-cat /etc/iproute2/rt_tables
-*. 禁止路由IP
-ip route add prohibit <ip> [from <ip>]
-*. 获取路由信息
-ip route get <ip>
-===============================================================================
--*- dns -*-
-===============================================================================
-nslookup <domain>
-dig +trace <domain>
 ===============================================================================
 -*- hardware -*-
 ===============================================================================
@@ -108,33 +130,7 @@ dig +trace <domain>
     /usr/bin/time -v <cmd>
 *. 关闭cpu核心
    echo '0' > /sys/devices/system/cpu/cpu1/online
-===============================================================================
--*- max open sockets -*-
-===============================================================================
-ulimit -n
-cat /proc/sys/fs/file-nr
-cat /proc/sys/fs/file-max
-cat /proc/sys/net/ipv4/ip_local_port_range 
-cat /proc/sys/net/ipv4/ip_local_reserved_ports
-===============================================================================
--*- time_wait status -*-
-===============================================================================
-net.ipv4.tcp_tw_recycle
-    Enabling this option is not recommended since this causes problems
-    when working with NAT
-net.ipv4.tcp_tw_reuse
-    server_side useless with for incoming connections
-    client_side almost-safe solution an outgoing connection in the TIME-WAIT
-                state can be reused after just one second
-net.ipv4.tcp_fin_timeout
-    FIN_WAIT_2 status timeout
-===============================================================================
--*- dynamic library -*-
-===============================================================================
-* add path
-    /etc/ld.so.conf.d/
-* reload config
-    ldconfig
+
 ===============================================================================
 -*- diff large files -*-
 ===============================================================================
