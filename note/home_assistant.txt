@@ -1,39 +1,4 @@
 ===============================================================================
-*. 首次启动配置WIFI
-===============================================================================
-    mount /dev/sdb1 <mount_dir>
-    mkdir <mount_dir>/CONFIG/network
-    vi <mount_dir>/CONFIG/network/my-network
-        [connection]
-        id=my-network
-        uuid=<uuid(use uuidgen)>
-        type=802-11-wireless
-
-        [802-11-wireless]
-        mode=infrastructure
-        ssid=<wifi_ssid>
-
-        [802-11-wireless-security]
-        auth-alg=open
-        key-mgmt=wpa-psk
-        psk=<wifi_password>
-
-        [ipv4]
-        method=auto
-
-        [ipv4]
-        method=manual
-        address=192.168.1.111/24;192.168.1.1
-        dns=8.8.8.8;8.8.4.4;
-
-    mount /dev/sdb7 <mount_dir>
-    vi <mount_dir>/etc/NetworkManager/conf.d/wifi-powersave-off.conf
-        [connection]
-        wifi.powersave = 2
-        # disable = 2 enable = 3
-    chmod 600 wifi-powersave-off.conf
-
-===============================================================================
 *. PVE安装
 ===============================================================================
     qm disk import <vm_id> haos_ova-<version>.qcow2 local-lvm
@@ -41,16 +6,61 @@
         [connection]
         id=wired
         uuid=<uuid(use uuidgen)>
-        type=802-3-ethernet
+        type=ethernet
+        llmnr=0
+        mdns=0
+
+        [match]
+        interface-name=en*
 
         [ipv4]
         method=manual
         address=192.168.1.111/24;192.168.1.1
-        dns=8.8.8.8
+        dns=8.8.8.8;
+        route-metric=100
 
         [ipv6]
         method=disabled
     chmod 600 wired.nmconnection
+
+    vi /etc/NetworkManager/system-connections/wireless.nmconnection
+        [connection]
+        id=wireless
+        uuid=<uuid(use uuidgen)>
+        type=802-11-wireless
+
+        [match]
+        interface-name=wl*
+
+        [802-11-wireless]
+        mode=infrastructure
+        ssid=<wifi_ssid>
+        powersave=2
+
+        # wpa2
+        [802-11-wireless-security]
+        auth-alg=open
+        key-mgmt=wpa-psk
+        psk=<wifi_password>
+
+        # wpa2 enterprise
+        # [802-11-wireless-security]
+        # auth-alg=open
+        # key-mgmt=wpa-eap
+        #
+        # [802-1x]
+        # eap=peap
+        # identity=<user_name>
+        # password=<password>
+        # phase2-auth=mschapv2
+
+        [ipv4]
+        method=auto
+        route-metric=200
+
+        [ipv6]
+        method=disabled
+    chmod 600 wireless.nmconnection
 ===============================================================================
 *. 关闭主机
     ha> host shutdown
