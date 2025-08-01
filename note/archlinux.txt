@@ -231,6 +231,7 @@
     systemctl start wpa_supplicant@<wireless_interface>.service
     ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
     vi /etc/systemd/resolved.conf
+        MulticastDNS=no
         LLMNR=no
     vi /etc/systemd/network/10-<wired_interface>.network
         [Match]
