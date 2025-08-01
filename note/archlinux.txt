@@ -272,6 +272,14 @@
             sae_password="<wpa3_ssid>"
             ieee80211w=2
         }
+        network={
+            ssid="<wpa2_enterprise_ssid>"
+            key_mgmt=WPA-EAP
+            eap=PEAP
+            identity="<username>"
+            password="<password>"
+            phase2="auth=MSCHAPV2"
+        }
     wpa_cli
         scan
         scan_result
