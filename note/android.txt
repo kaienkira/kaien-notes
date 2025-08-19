@@ -56,6 +56,8 @@ keytool -genkey -keystore test.keystore -alias test -keyalg RSA -keysize 2048 -v
 keytool -list -keystore test.keystore
 jarsigner -verbose -keystore test.keystore -signedjar signed.apk t.apk 'test'
 
+apksigner sign --ks test.keystore --ks-key-alias test --out <output_apk> <input_apk>
+
 ===============================================================================
 -*- android x86 -*-
 -------------------------------------------------------------------------------
