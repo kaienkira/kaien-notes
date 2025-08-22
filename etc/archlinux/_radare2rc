@@ -1,0 +1,2 @@
+e bin.relocs.apply=true
+e bin.baddr=0x00100000
