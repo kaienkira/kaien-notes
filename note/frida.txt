@@ -8,10 +8,14 @@ pip install --upgrade frida frida-tools
 
 # enable ptrace
 cat /proc/sys/kernel/yama/ptrace_scope
-    0 - 无限制
-    1 - 只允许跟踪直接子进程(default)
-    2 - 要求进程具有CAP_SYS_PTRACE能力
-    3 - 禁用
+    0 - classic ptrace permissions
+    1 - restricted ptrace
+        its descendants
+        prctl(PR_SET_PTRACER, debugger, ...)
+    2 - admin-only attach
+        only processes with CAP_SYS_PTRACE may use ptrace
+    3 - no attach
+        Once set, this sysctl value cannot be changed
 sudo sysctl kernel.yama.ptrace_scope=0
 
 firda-ps
