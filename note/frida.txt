@@ -1,3 +1,17 @@
 https://github.com/frida/frida/releases/
 
+# install
+python -m venv ~/local/frida-py
+source ~/local/frida-py/bin/activate
+pip install frida frida-tools
+pip install --upgrade frida frida-tools
+
+# enable ptrace
+cat /proc/sys/kernel/yama/ptrace_scope
+    0 - 无限制
+    1 - 只允许跟踪直接子进程(default)
+    2 - 要求进程具有CAP_SYS_PTRACE能力
+    3 - 禁用
+sudo sysctl kernel.yama.ptrace_scope=0
+
 firda-ps
