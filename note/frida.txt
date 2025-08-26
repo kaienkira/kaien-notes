@@ -25,3 +25,6 @@ https://github.com/frida/frida/releases/download/<version>/frida-server-<version
 python -m venv ~/local/objection-py
 pip install frida==16.7.19 objection
 objection patchapk -s <source.apk> -a arm64-v8a -V 16.7.19
+    > android hooking list activities
+    > android intent launch_activity <activity>
+    > memory list modules
