@@ -1,4 +1,3 @@
-https://github.com/frida/frida/releases/
 
 # install
 python -m venv ~/local/frida-py
@@ -18,4 +17,11 @@ cat /proc/sys/kernel/yama/ptrace_scope
         Once set, this sysctl value cannot be changed
 sudo sysctl kernel.yama.ptrace_scope=0
 
-firda-ps
+# android
+https://github.com/frida/frida/releases/
+https://github.com/frida/frida/releases/download/<version>/frida-server-<version>-android-arm64.xz
+
+# objection
+python -m venv ~/local/objection-py
+pip install frida==16.7.19 objection
+objection patchapk -s <source.apk> -a arm64-v8a -V 16.7.19

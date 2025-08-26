@@ -544,6 +544,9 @@ speaker-test -c 1
 # disable automatic mount /tmp on ram
     systemctl mask tmp.mount
 
+# resize /tmp size
+    mount -o remount,size=80% /tmp
+
 ===============================================================================
 -*- Dev -*-
 ===============================================================================
