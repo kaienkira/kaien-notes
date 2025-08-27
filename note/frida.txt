@@ -1,4 +1,3 @@
-
 # install
 python -m venv ~/local/frida-py
 source ~/local/frida-py/bin/activate
