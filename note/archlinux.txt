@@ -170,8 +170,8 @@
     arch-chroot /mnt
 
 # disable systemd ssh-over-vsock
-vi /etc/default/grub
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet systemd.ssh_auto=no"
+    vi /etc/default/grub
+        GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet systemd.ssh_auto=no"
 
 # Boot Loader (uefi+gpt)
     pacman -S grub efibootmgr
