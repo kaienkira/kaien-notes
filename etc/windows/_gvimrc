@@ -10,27 +10,27 @@ syntax on
 set number
 set expandtab
 set autoindent
-set tabstop=4
 set backspace=2
+set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set nowrap
-set ruler
 set laststatus=2
 set statusline=%m%r%h%([File:%F]\ [Col:%v]\ [Lin:%l/%L/%p%%]%)
-set foldmethod=syntax
 set ambiwidth=double
-colorscheme desert
+set wildmenu
+set noerrorbells
+set visualbell t_vb=
 
+colorscheme desert
+set guifont=Hack:h10
 set guioptions-=T
 set winaltkeys=no
 winpos 200 400
 set lines=35
 set columns=120
-set noerrorbells
-set visualbell t_vb=
 
-function! BrickredCFold(lnum)
+function! BR_CFold(lnum)
     if getline(a:lnum) =~ '^{$'
         return '>1'
     endif
@@ -40,6 +40,18 @@ function! BrickredCFold(lnum)
     endif
 
     return '-1'
+endfunction
+
+function! BR_CSharpFold(lnum)
+    if getline(a:lnum) =~ '^\( \{4\}\)\{1,2\}{$'
+        return '>' . (indent(a:lnum) / &shiftwidth)
+    endif
+
+    if getline(a:lnum) =~ '^\( \{4\}\)\{1,2\}}$'
+        return '<' . (indent(a:lnum) / &shiftwidth)
+    endif
+
+    return '='
 endfunction
 
 function! BR_RelativeNumberToggle()
@@ -52,9 +64,13 @@ function! BR_RelativeNumberToggle()
     endif
 endfunction
 
-au GuiEnter * set t_vb=
-au BufNewFile,BufRead *.c,*.cc,*.cpp set foldmethod=expr foldexpr=BrickredCFold(v:lnum)
-au BufNewFile,BufRead Makefile,makefile,*.mak set noexpandtab
+au BufNewFile,BufRead *.c,*.cc,*.cpp set foldmethod=expr foldexpr=BR_CFold(v:lnum)
+au BufNewFile,BufRead *.cs set foldmethod=expr foldexpr=BR_CSharpFold(v:lnum)
+au BufNewFile,BufRead Makefile,makefile,*.mak,*.go set noexpandtab
+au BufNewFile,BufRead *.html,*.xml set tabstop=2 softtabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.m,*.mm set filetype=objcpp
+"au BufReadCmd *.aab call zip#Browse(expand("<amatch>"))
+"au FileType * set formatoptions-=ro
 
 inoremap <C-j> <C-x><C-p>
 nnoremap <C-j> :call BR_RelativeNumberToggle()<CR>
