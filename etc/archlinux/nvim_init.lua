@@ -9,23 +9,31 @@ vim.opt.wrap = false
 vim.opt.statusline = "%m%r%h%([File:%F] [Col:%v] [Lin:%l/%L/%p%%]%)"
 vim.opt.ambiwidth = "double"
 vim.opt.wildmenu = true
+
 vim.opt.listchars = "eol:$"
+vim.opt.hlsearch = false
 
 vim.cmd("colorscheme vim")
 vim.opt.background = "light"
 
 function BR_RelativeNumberToggle()
-    if vim.o.relativenumber then
-        vim.o.relativenumber = false
-        vim.o.number = true
+    if vim.opt.relativenumber:get() then
+        vim.opt.relativenumber = false
+        vim.opt.number = true
     else
-        vim.o.number = true
-        vim.o.relativenumber = true
+        vim.opt.number = true
+        vim.opt.relativenumber = true
     end
 end
 
-vim.keymap.set('i', '<C-j>', '<C-x><C-p>')
-vim.keymap.set('n', '<C-j>', BR_RelativeNumberToggle)
+function BR_HighlightSearchWordUnderCursor()
+    vim.cmd('normal! *N')
+    vim.opt.hlsearch = not vim.opt.hlsearch:get()
+end
+
+vim.keymap.set("i", "<C-j>", "<C-x><C-p>")
+vim.keymap.set("n", "<C-j>", BR_RelativeNumberToggle)
+vim.keymap.set("n", "<C-k>", BR_HighlightSearchWordUnderCursor)
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
