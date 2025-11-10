@@ -65,7 +65,7 @@ require("lazy").setup({
             vim.cmd.colorscheme("monokai")
             vim.opt.background = "dark"
             require('monokai').setup({
-                italics = false
+                italics = false,
             })
         end
     },
