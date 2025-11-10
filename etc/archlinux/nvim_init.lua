@@ -15,8 +15,9 @@ vim.opt.guicursor = ""
 vim.opt.listchars = "eol:$"
 vim.opt.hlsearch = false
 
-vim.cmd("colorscheme vim")
-vim.opt.background = "light"
+vim.opt.termguicolors = true
+vim.cmd.colorscheme("default")
+vim.opt.background = "dark"
 
 function BR_RelativeNumberToggle()
     if vim.opt.relativenumber:get() then
@@ -57,6 +58,18 @@ vim.opt.rtp:prepend(lazypath)
 -- plugins
 require("lazy").setup({
     {
+        "tanvirtin/monokai.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd.colorscheme("monokai")
+            vim.opt.background = "dark"
+            require('monokai').setup({
+                italics = false
+            })
+        end
+    },
+    {
         "nvim-treesitter/nvim-treesitter",
         lazy = false,
         build = ":TSUpdate",
@@ -81,7 +94,7 @@ require("lazy").setup({
                 },
             })
         end
-    }
+    },
 })
 
 -- autocmd
