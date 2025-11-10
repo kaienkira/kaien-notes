@@ -10,6 +10,8 @@ vim.opt.statusline = "%m%r%h%([File:%F] [Col:%v] [Lin:%l/%L/%p%%]%)"
 vim.opt.ambiwidth = "double"
 vim.opt.wildmenu = true
 
+vim.opt.mouse = ""
+vim.opt.guicursor = ""
 vim.opt.listchars = "eol:$"
 vim.opt.hlsearch = false
 
@@ -35,7 +37,7 @@ vim.keymap.set("i", "<C-j>", "<C-x><C-p>")
 vim.keymap.set("n", "<C-j>", BR_RelativeNumberToggle)
 vim.keymap.set("n", "<C-k>", BR_HighlightSearchWordUnderCursor)
 
--- Bootstrap lazy.nvim
+-- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -51,3 +53,57 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
+
+-- plugins
+require("lazy").setup({
+    {
+        "nvim-treesitter/nvim-treesitter",
+        lazy = false,
+        build = ":TSUpdate",
+        config = function()
+            require("nvim-treesitter.configs").setup({
+                sync_install = true,
+                auto_install = false,
+                ensure_installed = {
+                    "bash",
+                    "c",
+                    "cpp",
+                    "c_sharp",
+                    "go",
+                    "javascript",
+                    "lua",
+                    "php",
+                    "rust",
+                },
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = false,
+                },
+            })
+        end
+    }
+})
+
+-- autocmd
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = { "*.c", "*.cc", "*.cpp", "*.go", "*.rs", "*.cs" },
+    callback = function()
+        vim.opt_local.foldmethod = 'expr'
+        vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        vim.opt_local.foldlevel = 99
+    end,
+})
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = { "Makefile", "makefile", "*.mak", "*.go" },
+    callback = function()
+        vim.opt_local.expandtab = false
+    end,
+})
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = { "*.html", "*.xml" },
+    callback = function()
+        vim.opt.tabstop = 2
+        vim.opt.softtabstop = 2
+        vim.opt.shiftwidth = 2
+    end,
+})
