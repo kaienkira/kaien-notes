@@ -58,15 +58,15 @@ vim.opt.rtp:prepend(lazypath)
 -- plugins
 require("lazy").setup({
     {
-        "tanvirtin/monokai.nvim",
+        "Mofiqul/dracula.nvim",
         lazy = false,
         priority = 1000,
         config = function()
-            vim.cmd.colorscheme("monokai")
-            vim.opt.background = "dark"
-            require('monokai').setup({
-                italics = false,
+            require('dracula').setup({
+                transparent_bg = true,
             })
+            vim.cmd.colorscheme("dracula")
+            vim.opt.background = "dark"
         end
     },
     {
