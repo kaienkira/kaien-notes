@@ -97,6 +97,16 @@ require("lazy").setup({
             })
         end
     },
+    {
+        "mason-org/mason.nvim",
+        opts = {},
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {
+            ensure_installed = {},
+        },
+    },
 })
 
 -- autocmd
