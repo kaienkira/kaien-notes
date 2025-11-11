@@ -58,14 +58,16 @@ vim.opt.rtp:prepend(lazypath)
 -- plugins
 require("lazy").setup({
     {
-        "Mofiqul/dracula.nvim",
+        "projekt0n/github-nvim-theme",
         lazy = false,
         priority = 1000,
         config = function()
-            require('dracula').setup({
-                transparent_bg = true,
+            require('github-theme').setup({
+                options = {
+                    transparent = true,
+                },
             })
-            vim.cmd.colorscheme("dracula")
+            vim.cmd.colorscheme("github_dark")
             vim.opt.background = "dark"
         end
     },
