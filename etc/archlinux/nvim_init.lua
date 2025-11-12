@@ -104,14 +104,30 @@ require("lazy").setup({
     {
         "mason-org/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = {},
+            ensure_installed = {
+                "clangd",
+            },
         },
     },
 })
 
+--lsp
+vim.lsp.config("clangd", {
+    cmd = { "clangd" },
+    filetypes = { "c", "cc", "cpp", "*.h" },
+    root_markers = {
+        ".git",
+        ".clangd",
+        "compile_commands.json",
+    },
+})
+vim.lsp.enable('clangd')
+vim.keymap.set("n", "<F11>", vim.lsp.buf.references)
+vim.keymap.set("n", "<F12>", vim.lsp.buf.definition)
+
 -- autocmd
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-    pattern = { "*.c", "*.cc", "*.cpp", "*.go", "*.rs", "*.cs" },
+    pattern = { "*.c", "*.cc", "*.cpp", "*.h", "*.go", "*.rs", "*.cs" },
     callback = function()
         vim.opt_local.foldmethod = 'expr'
         vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
