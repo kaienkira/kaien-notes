@@ -87,4 +87,6 @@ copy_file "$script_path"/applications/firefox-1.desktop \
 copy_file "$script_path"/applications/firefox-2.desktop \
           ~/.local/share/applications/firefox-2.desktop 600
 
+systemctl --user daemon-reload
+
 exit 0

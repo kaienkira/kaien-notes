@@ -394,6 +394,7 @@ pacman -S linux-lts
 pacman -R linux
 grub-mkconfig -o /boot/grub/grub.cfg
 
+pacman -S htop lsof
 pacman -S net-tools dnsutils bridge-utils
 pacman -S openssh
 pacman -S cronie
@@ -558,6 +559,8 @@ pacman -S man-db man-pages
 pacman -S make
 pacman -S gcc
 pacman -S go
+-------------------------------------------------------------------------------
+pacman -S neovim ripgrep
 -------------------------------------------------------------------------------
 pacman -S gradle
 pacman -S jdk21-openjdk

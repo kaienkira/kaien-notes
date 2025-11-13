@@ -1,4 +1,4 @@
---- vim options
+--- base vim options
 vim.opt.number = true
 vim.opt.expandtab = true
 vim.opt.autoindent = true
@@ -109,9 +109,25 @@ require("lazy").setup({
             },
         },
     },
+    {
+        "nvim-telescope/telescope.nvim",
+        tag = "v0.1.9",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = function()
+            require('telescope').setup({
+                pickers = {
+                    find_files = {
+                        theme = "dropdown",
+                    },
+                },
+            })
+        end
+    },
 })
 
---lsp
+-- lsp
 vim.lsp.config("clangd", {
     cmd = { "clangd" },
     filetypes = { "c", "cc", "cpp", "*.h" },
@@ -122,8 +138,14 @@ vim.lsp.config("clangd", {
     },
 })
 vim.lsp.enable('clangd')
-vim.keymap.set("n", "<F11>", vim.lsp.buf.references)
-vim.keymap.set("n", "<F12>", vim.lsp.buf.definition)
+
+-- keymap
+vim.keymap.set("n", "K", vim.lsp.buf.hover)
+vim.keymap.set("n", "<F1>", require('telescope.builtin').find_files)
+vim.keymap.set("n", "<F2>", require('telescope.builtin').live_grep)
+vim.keymap.set("n", "<F8>", vim.lsp.buf.rename)
+vim.keymap.set("n", "<F11>", require('telescope.builtin').lsp_references)
+vim.keymap.set("n", "<F12>", require('telescope.builtin').lsp_definitions)
 
 -- autocmd
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
