@@ -1,4 +1,4 @@
---- base vim options
+-- base vim options
 vim.opt.number = true
 vim.opt.expandtab = true
 vim.opt.autoindent = true
@@ -17,7 +17,6 @@ vim.opt.hlsearch = false
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("default")
 vim.opt.background = "dark"
-vim.opt.signcolumn = "number"
 
 function BR_RelativeNumberToggle()
     if vim.opt.relativenumber:get() then
@@ -141,6 +140,8 @@ vim.lsp.config("clangd", {
     },
 })
 vim.lsp.enable('clangd')
+
+vim.opt.signcolumn = "number"
 vim.diagnostic.config({
     virtual_text = true
 })
