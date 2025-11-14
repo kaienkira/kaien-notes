@@ -7,7 +7,6 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.wrap = false
 vim.opt.statusline = "%m%r%h%([File:%F] [Col:%v] [Lin:%l/%L/%p%%]%)"
-vim.opt.ambiwidth = "double"
 vim.opt.wildmenu = true
 
 vim.opt.mouse = ""
@@ -18,6 +17,7 @@ vim.opt.hlsearch = false
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("default")
 vim.opt.background = "dark"
+vim.opt.signcolumn = "number"
 
 function BR_RelativeNumberToggle()
     if vim.opt.relativenumber:get() then
@@ -114,15 +114,18 @@ require("lazy").setup({
         tag = "v0.1.9",
         dependencies = {
             "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope-fzy-native.nvim",
         },
         config = function()
             require('telescope').setup({
-                pickers = {
-                    find_files = {
-                        theme = "dropdown",
+                extensions = {
+                    fzy_native = {
+                        override_generic_sorter = false,
+                        override_file_sorter = true,
                     },
                 },
             })
+            require('telescope').load_extension('fzy_native')
         end
     },
 })
@@ -130,7 +133,7 @@ require("lazy").setup({
 -- lsp
 vim.lsp.config("clangd", {
     cmd = { "clangd" },
-    filetypes = { "c", "cc", "cpp", "*.h" },
+    filetypes = { "c", "cpp" },
     root_markers = {
         ".git",
         ".clangd",
@@ -138,6 +141,9 @@ vim.lsp.config("clangd", {
     },
 })
 vim.lsp.enable('clangd')
+vim.diagnostic.config({
+    virtual_text = true
+})
 
 -- keymap
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
