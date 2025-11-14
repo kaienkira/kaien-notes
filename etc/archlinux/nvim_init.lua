@@ -106,6 +106,7 @@ require("lazy").setup({
             ensure_installed = {
                 "clangd",
                 "rust_analyzer",
+                "gopls",
             },
         },
     },
@@ -163,8 +164,17 @@ vim.lsp.config("rust_analyzer", {
         "Cargo.toml",
     },
 })
+vim.lsp.config("gopls", {
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    root_markers = {
+        ".git",
+        "go.mod",
+    },
+})
 vim.lsp.enable("clangd")
 vim.lsp.enable("rust_analyzer")
+vim.lsp.enable("gopls")
 
 vim.opt.signcolumn = "number"
 vim.diagnostic.config({
