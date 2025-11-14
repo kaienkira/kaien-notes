@@ -171,6 +171,13 @@ vim.lsp.config("gopls", {
         ".git",
         "go.mod",
     },
+    settings = {
+        gopls = {
+            analyses = {
+                QF1003 = false,
+            },
+        },
+    },
 })
 vim.lsp.enable("clangd")
 vim.lsp.enable("rust_analyzer")
