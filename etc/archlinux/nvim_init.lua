@@ -29,7 +29,7 @@ function BR_RelativeNumberToggle()
 end
 
 function BR_HighlightSearchWordUnderCursor()
-    vim.cmd('normal! *N')
+    vim.cmd("normal! *N")
     vim.opt.hlsearch = not vim.opt.hlsearch:get()
 end
 
@@ -61,7 +61,7 @@ require("lazy").setup({
         lazy = false,
         priority = 1000,
         config = function()
-            require('github-theme').setup({
+            require("github-theme").setup({
                 options = {
                     transparent = true,
                 },
@@ -105,6 +105,7 @@ require("lazy").setup({
         opts = {
             ensure_installed = {
                 "clangd",
+                "rust_analyzer",
             },
         },
     },
@@ -116,7 +117,7 @@ require("lazy").setup({
             "nvim-telescope/telescope-fzy-native.nvim",
         },
         config = function()
-            require('telescope').setup({
+            require("telescope").setup({
                 extensions = {
                     fzy_native = {
                         override_generic_sorter = false,
@@ -124,8 +125,23 @@ require("lazy").setup({
                     },
                 },
             })
-            require('telescope').load_extension('fzy_native')
+            require("telescope").load_extension("fzy_native")
         end
+    },
+    {
+        "saghen/blink.cmp",
+        version = "*",
+        opts = {
+            keymap = {
+                preset = "none",
+                ["<Up>"] = { "select_prev", "fallback" },
+                ["<Down>"] = { "select_next", "fallback" },
+                ["<Enter>"] = { "accept", "fallback" },
+            },
+            sources = {
+                default = { "lsp" },
+            },
+        },
     },
 })
 
@@ -139,7 +155,16 @@ vim.lsp.config("clangd", {
         "compile_commands.json",
     },
 })
-vim.lsp.enable('clangd')
+vim.lsp.config("rust_analyzer", {
+    cmd = { "rust-analyzer" },
+    filetypes = { "rust" },
+    root_markers = {
+        ".git",
+        "Cargo.toml",
+    },
+})
+vim.lsp.enable("clangd")
+vim.lsp.enable("rust_analyzer")
 
 vim.opt.signcolumn = "number"
 vim.diagnostic.config({
@@ -148,18 +173,18 @@ vim.diagnostic.config({
 
 -- keymap
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
-vim.keymap.set("n", "<F1>", require('telescope.builtin').find_files)
-vim.keymap.set("n", "<F2>", require('telescope.builtin').live_grep)
+vim.keymap.set("n", "<F1>", require("telescope.builtin").find_files)
+vim.keymap.set("n", "<F2>", require("telescope.builtin").live_grep)
 vim.keymap.set("n", "<F8>", vim.lsp.buf.rename)
-vim.keymap.set("n", "<F11>", require('telescope.builtin').lsp_references)
-vim.keymap.set("n", "<F12>", require('telescope.builtin').lsp_definitions)
+vim.keymap.set("n", "<F11>", require("telescope.builtin").lsp_references)
+vim.keymap.set("n", "<F12>", require("telescope.builtin").lsp_definitions)
 
 -- autocmd
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     pattern = { "*.c", "*.cc", "*.cpp", "*.h", "*.go", "*.rs", "*.cs" },
     callback = function()
-        vim.opt_local.foldmethod = 'expr'
-        vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        vim.opt_local.foldmethod = "expr"
+        vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         vim.opt_local.foldlevel = 99
     end,
 })
