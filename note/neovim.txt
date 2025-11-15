@@ -1,0 +1,4 @@
+git clone https://github.com/neovim/neovim.git
+git checkout <version(eg: v0.11.5)>
+make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/local/neovim"
+make install
