@@ -107,6 +107,7 @@ require("lazy").setup({
                 "clangd",
                 "rust_analyzer",
                 "gopls",
+                "omnisharp",
             },
         },
     },
@@ -179,9 +180,23 @@ vim.lsp.config("gopls", {
         },
     },
 })
+vim.lsp.config("omnisharp", {
+    cmd = {
+        "OmniSharp",
+        "-z",
+        "--languageserver",
+    },
+    filetypes = { "cs" },
+    root_markers = {
+        ".git",
+        "*.sln",
+        "*.csproj",
+    }
+})
 vim.lsp.enable("clangd")
 vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("gopls")
+vim.lsp.enable("omnisharp")
 
 vim.opt.signcolumn = "number"
 vim.diagnostic.config({
