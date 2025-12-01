@@ -14,6 +14,7 @@ vim.opt.guicursor = ""
 vim.opt.listchars = "eol:$"
 vim.opt.hlsearch = false
 
+vim.opt.autoread = false
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("default")
 vim.opt.background = "dark"
