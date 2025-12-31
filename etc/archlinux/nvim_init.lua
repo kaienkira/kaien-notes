@@ -206,8 +206,8 @@ vim.diagnostic.config({
 
 -- keymap
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
-vim.keymap.set("n", "<F1>", require("telescope.builtin").find_files)
-vim.keymap.set("n", "<F2>", require("telescope.builtin").live_grep)
+vim.keymap.set("n", "<F2>", require("telescope.builtin").find_files)
+vim.keymap.set("n", "<F3>", require("telescope.builtin").live_grep)
 vim.keymap.set("n", "<F8>", vim.lsp.buf.rename)
 vim.keymap.set("n", "<F11>", require("telescope.builtin").lsp_references)
 vim.keymap.set("n", "<F12>", require("telescope.builtin").lsp_definitions)
