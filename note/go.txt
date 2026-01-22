@@ -4,6 +4,8 @@
     go list -m -u all
 *. 清理未使用的模块
     go mod tidy
+*. 调试器
+    go install github.com/go-delve/delve/cmd/dlv@latest
 
 ===============================================================================
 -*- Primitive type -*-
