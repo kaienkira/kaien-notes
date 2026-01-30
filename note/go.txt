@@ -2,6 +2,7 @@
     go telemetry off
 *. 更新模块
     go list -m -u all
+    go get -u ./...
 *. 清理未使用的模块
     go mod tidy
 *. 调试器
