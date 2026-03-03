@@ -44,7 +44,7 @@ install_kernel()
     >/etc/portage/package.use/kernel
 
     printf '%s\n' \
-    'kernel_cmdline="root=/dev/sda3"' \
+    'kernel_cmdline="root=/dev/sda3 loglevel=3 quiet systemd.ssh_auto=no"' \
     >/etc/dracut.conf
 
     emerge \
@@ -65,6 +65,9 @@ emerge -c
 if [ $? -ne 0 ]; then exit 1; fi
 
 bootctl install
+if [ $? -ne 0 ]; then exit 1; fi
+
+systemd-machine-id-setup
 if [ $? -ne 0 ]; then exit 1; fi
 
 exit 0

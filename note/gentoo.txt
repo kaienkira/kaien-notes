@@ -4,8 +4,12 @@
     move to releases/amd64/autobuilds/
     press d to download
 *. 修改内核参数
-    vi /etc/kernel/cmdline
-    emerge --config sys-kernel/gentoo-kernel
+    vi /etc/dracut.conf
+    dracut --force --uefi
+    objdump -s -j .cmdline /boot/EFI/Linux/*.efi
+    cat /proc/cmdline
+*. 生成/etc/machine-id
+    systemd-machine-id-setup
 ===============================================================================
 emerge
     -u --update
