@@ -1,8 +1,11 @@
-* download stage3 file
+*. download stage3 file
     links https://www.gentoo.org/downloads/mirrors/
     select mirror
     move to releases/amd64/autobuilds/
     press d to download
+*. 修改内核参数
+    vi /etc/kernel/cmdline
+    emerge --config sys-kernel/gentoo-kernel
 ===============================================================================
 emerge
     -u --update

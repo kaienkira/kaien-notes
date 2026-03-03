@@ -173,6 +173,8 @@
     vi /etc/default/grub
         GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet systemd.ssh_auto=no"
     systemctl mask ssh-vsock.service
+    # 查看内核参数
+    cat /proc/cmdline
 
 # Boot Loader (uefi+gpt)
     pacman -S grub efibootmgr
