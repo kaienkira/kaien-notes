@@ -21,7 +21,7 @@ echo \
 CFLAGS="${COMMON_FLAGS}"
 CXXFLAGS="${COMMON_FLAGS}"
 
-MAKEOPTS="-j2"
+MAKEOPTS="-j8"
 
 GENTOO_MIRRORS="https://mirrors.tuna.tsinghua.edu.cn/gentoo"
 '>/etc/portage/make.conf
