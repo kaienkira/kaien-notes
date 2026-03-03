@@ -15,7 +15,8 @@ install_base_common()
         sys-kernel/linux-firmware \
         sys-process/htop \
         app-editors/vim \
-        app-text/tree
+        app-text/tree \
+        dev-vcs/git
     if [ $? -ne 0 ]; then return 1; fi
 
     return 0
