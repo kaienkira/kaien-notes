@@ -42,4 +42,10 @@ if [ $? -ne 0 ]; then exit 1; fi
 tar -xpf "$stage3_file" -C /mnt/gentoo --xattrs-include='*.*' --numeric-owner
 if [ $? -ne 0 ]; then exit 1; fi
 
+rm -rf /mnt/gentoo/var/db/repos/gentoo
+if [ $? -ne 0 ]; then exit 1; fi
+git clone https://mirrors.tuna.tsinghua.edu.cn/git/gentoo-portage.git \
+    /mnt/gentoo/var/db/repos/gentoo --depth=1
+if [ $? -ne 0 ]; then exit 1; fi
+
 exit 0

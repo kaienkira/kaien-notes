@@ -15,8 +15,6 @@ sync-uri = https://mirrors.tuna.tsinghua.edu.cn/git/gentoo-portage.git
 sync-depth = 1
 '>/etc/portage/repos.conf/gentoo.conf
 if [ $? -ne 0 ]; then exit 1; fi
-rm -rf /var/db/repos/gentoo
-if [ $? -ne 0 ]; then exit 1; fi
 
 echo \
 'COMMON_FLAGS="-O2 -pipe"
@@ -29,8 +27,6 @@ GENTOO_MIRRORS="https://mirrors.tuna.tsinghua.edu.cn/gentoo"
 '>/etc/portage/make.conf
 if [ $? -ne 0 ]; then exit 1; fi
 
-emerge --sync
-if [ $? -ne 0 ]; then exit 1; fi
 emerge -uDN @world
 if [ $? -ne 0 ]; then exit 1; fi
 emerge -c
