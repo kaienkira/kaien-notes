@@ -29,8 +29,6 @@ GENTOO_MIRRORS="https://mirrors.tuna.tsinghua.edu.cn/gentoo"
 '>/etc/portage/make.conf
 if [ $? -ne 0 ]; then exit 1; fi
 
-emerge-webrsync
-if [ $? -ne 0 ]; then exit 1; fi
 emerge --sync
 if [ $? -ne 0 ]; then exit 1; fi
 emerge -uDN @world
