@@ -15,8 +15,50 @@
     usermod -aG wheel <user_name>
 *. 更新配置
     dispatch-conf
+
+*. 列出当前的profile
+    eselect profile show
+    ls -l /etc/portage/make.profile
+
+*. 更新包数据库
+    emerge --sync
+*. 更新所有包
+    emerge -uDN @world
+*. 强制重新编译安装所有包
+    emerge -e @world
+*. 清理软件包
+    emerge -c
+*. 查找所有包
+    emerge -s <package_name>
+    emerge -S <package_name>
+    qsearch <package_name>
+*. 查找已安装的包
+    qlist -I <keyword>
+*. 查看安装的所有包
+    qlist -Iv
 *. 查看world包含的包
     cat /var/lib/portage/world
+*. 查看包安装的文件
+    qlist <package_name>
+*. 查找文件对应哪个包
+    qfile <file_path>
+*. 查看包占用的大小
+    qsize -f <package_name>
+*. 查看所有包占用的大小
+    qsize -Sf
+*. 查看包依赖
+    qdepends -v <package_name>
+*. 查看包被哪些包依赖
+    qdepends -Qv <package_name>
+
+===============================================================================
+*. 依赖类型
+     DEPEND -> Build dependencies 编译依赖 (CHOST)
+    BDEPEND -> Build dependencies 编译依赖 (CBUILD)
+    RDEPEND -> Runtime dependencies 运行时依赖
+    PDEPEND -> Post dependencies 类似运行时依赖
+               不要求在本包之前安装, 用于解决循环依赖
+    IDEPEND -> Install dependencies 安装时依赖
 ===============================================================================
 emerge
     -u --update
@@ -25,25 +67,6 @@ emerge
     -s --search
     -S --searchdesc
     -c --depclean
--------------------------------------------------------------------------------
-*. 更新包数据库
-    emerge-webrsync
-    emerge --sync
-    RSYNC_PROXY=127.0.0.1:8118 emerge --sync
-*. 更新所有包
-    emerge -uDN @world
-*. 查找软件包
-    emerge -s <name>
-    emerge -S <name>
-*. 清理软件包
-    emerge -c
-
-===============================================================================
-emaint
--------------------------------------------------------------------------------
-*. 更新包数据库
-    emaint sync -a
-
 ===============================================================================
 eselect news list
 eselect news read
