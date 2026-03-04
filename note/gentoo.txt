@@ -13,6 +13,10 @@
 *. 用户加入wheel组使用su
     useradd -m <user_name>
     usermod -aG wheel <user_name>
+*. 更新配置
+    dispatch-conf
+*. 查看world包含的包
+    cat /var/lib/portage/world
 ===============================================================================
 emerge
     -u --update
