@@ -17,7 +17,7 @@ sync-depth = 1
 if [ $? -ne 0 ]; then exit 1; fi
 
 echo \
-'COMMON_FLAGS="-O2 -pipe"
+'COMMON_FLAGS="-march=native -O2 -pipe"
 CFLAGS="${COMMON_FLAGS}"
 CXXFLAGS="${COMMON_FLAGS}"
 
