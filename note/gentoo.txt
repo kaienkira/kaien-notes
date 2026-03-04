@@ -10,6 +10,9 @@
     cat /proc/cmdline
 *. 生成/etc/machine-id
     systemd-machine-id-setup
+*. 用户加入wheel组使用su
+    useradd -m <user_name>
+    usermod -aG wheel <user_name>
 ===============================================================================
 emerge
     -u --update
