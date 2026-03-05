@@ -14,7 +14,9 @@ install_system_tools()
 install_dev_tools()
 {
     emerge \
-        app-editors/neovim
+        app-editors/neovim \
+        dev-lang/go \
+        dev-lang/rust
     if [ $? -ne 0 ]; then return 1; fi
 
     return 0
