@@ -378,6 +378,10 @@
     sensors-detect
     sensors
 
+# memtest
+    pacman -S memtest86+
+    grub-mkconfig -o /boot/grub/grub.cfg
+
 # wacom tablet
     pacman -S xf86-input-wacom
     xsetwacom list devices
