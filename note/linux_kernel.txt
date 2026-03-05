@@ -1,6 +1,12 @@
 CFS(Completely Fair Scheduler)
 EEVDF(Earliest Eligible Virtual Deadline First)
 
+DRM(Direct Rendering Manager)
+    Framebuffer -> Plane -> CRTC -> Encoder -> Connector -> Screen
+    *. KMS(Kernel Mode Setting)
+    *. GEM(Graphics Execution Manager)
+    *. TTM(Translation Table Manager)
+
 ===============================================================================
 # deps
 ===============================================================================
