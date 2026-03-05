@@ -50,6 +50,8 @@
     qdepends -v <package_name>
 *. 查看包被哪些包依赖
     qdepends -Qv <package_name>
+*. 查看包的所有USE
+    quse -Dvp <package_name>
 
 ===============================================================================
 *. 依赖类型
@@ -74,3 +76,8 @@ eselect news purge
 eselect profile list
 eselect locale list
 ===============================================================================
+app-emulation/open-vm-tools
+    x11-libs/libdrm video_cards_vmware
+gui-wm/sway
+    media-libs/libglvnd X
+    media-libs/freetype harfbuzz

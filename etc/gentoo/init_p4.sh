@@ -23,10 +23,20 @@ install_dev_tools()
     return 0
 }
 
+install_gui_tools
+{
+    emerge \
+        gui-wm/sway \
+    if [ $? -ne 0 ]; then return 1; fi
+
+    return 0
+}
+
 install_system_tools
 if [ $? -ne 0 ]; then exit 1; fi
-
 install_dev_tools
+if [ $? -ne 0 ]; then exit 1; fi
+install_gui_tools
 if [ $? -ne 0 ]; then exit 1; fi
 
 return 0
