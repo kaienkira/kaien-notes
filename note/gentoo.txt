@@ -62,6 +62,12 @@
                不要求在本包之前安装, 用于解决循环依赖
     IDEPEND -> Install dependencies 安装时依赖
 ===============================================================================
+/etc/portage/make.conf
+    VIDEO_CARDS="vmware"
+    VIDEO_CARDS="amdgpu"
+    VIDEO_CARDS="iris"
+    VIDEO_CARDS="dummy"
+===============================================================================
 emerge
     -u --update
     -D --deep
@@ -76,8 +82,14 @@ eselect news purge
 eselect profile list
 eselect locale list
 ===============================================================================
-app-emulation/open-vm-tools
+vi /etc/portage/package.use/gui
     x11-libs/libdrm video_cards_vmware
-gui-wm/sway
+    media-libs/mesa xa
     media-libs/libglvnd X
     media-libs/freetype harfbuzz
+
+emerge \
+    x11-drivers/xf86-video-vmware
+    app-emulation/open-vm-tools
+    gui-wm/sway
+===============================================================================

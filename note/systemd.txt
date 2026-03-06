@@ -109,6 +109,8 @@ journalctl -xe
 *. 清理日志
 journalctl --vacuum-size=100M
 journalctl --vacuum-time=2weeks
+journalctl --rotate
+journalctl --vacuum-file=1
 
 ===============================================================================
 -*- Network -*-
