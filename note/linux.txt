@@ -142,3 +142,5 @@ rdiff signature <file1> | rdiff delta -- - <file2> <diff_file>
 ===============================================================================
 *. 隐藏pid
     mount -o remount,hidepid=2 /proc
+    vi /etc/fstab
+        proc /proc proc defaults,hidepid=2 0 0
