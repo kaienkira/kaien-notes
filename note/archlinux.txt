@@ -573,6 +573,7 @@ pacman -S gradle
 pacman -S jdk21-openjdk
 pacman -S android-udev gvfs-mtp
 pacman -S android-tools
+pacman -S scrcpy
 gpasswd -a <user> adbusers
 -------------------------------------------------------------------------------
 pacman -S radare2
