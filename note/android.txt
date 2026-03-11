@@ -76,5 +76,15 @@ adb shell -> su -> mv /sdcard/houdini9_y.sfs /system/etc/
 scrcpy -Sw
     -S --turn-screen-off
     -w --stay-awake
+    mod + b         -> BACK
+    mod + h         -> HOME
+    mod + m         -> MENU
+    mod + s         -> APP_SWITCH
+    mod + p         -> POWER
+    mod + Up        -> VOLUME_UP
+    mod + Down      -> VOLUME_DOWN
+    mod + r         -> Rotate device screen
+    mod + o         -> Turn device screen off
+    mod + shift + o -> Turn device screen on
 ===============================================================================
 
