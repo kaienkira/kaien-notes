@@ -7,9 +7,9 @@ pkg install openssh
 exit
 sv-enable sshd
 passwd
-> ssh-copy-id -p8002 root@<phone_ip>
+> ssh-copy-id -p8022 root@<phone_ip>
 rm -f ~/.termux_authinfo
-> ssh root@<phone_ip> -p8002
+> ssh root@<phone_ip> -p8022
 
 *. distro
 pkg install proot-distro
