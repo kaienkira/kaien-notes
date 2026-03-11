@@ -11,6 +11,12 @@ passwd
 rm -f ~/.termux_authinfo
 > ssh root@<phone_ip> -p8022
 
+*. x11
+pkg install x11-repo
+pkg install termux-x11-nightly
+pkg install xfce4
+termux-x11 :1 -xstartup "dbus-launch --exit-with-session xfce4-session"
+
 *. distro
 pkg install proot-distro
 pd install archlinux
