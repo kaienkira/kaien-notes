@@ -72,8 +72,9 @@ if [ $? -ne 0 ]; then exit 1; fi
 
 systemctl enable systemd-networkd
 if [ $? -ne 0 ]; then exit 1; fi
-
 systemctl enable systemd-resolved
+if [ $? -ne 0 ]; then exit 1; fi
+systemctl enable systemd-timesyncd
 if [ $? -ne 0 ]; then exit 1; fi
 
 exit 0
