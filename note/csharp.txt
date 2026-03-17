@@ -113,3 +113,8 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
   <Nullable>enable</Nullable>
 </PropertyGroup>
 ===============================================================================
+dotnet tool install --global dotnet-trace
+dotnet-trace ps
+dotnet-trace list-profiles
+dotnet-trace collect -p <pid> --format Speedscope --duration 00:01:00
+https://www.speedscope.app/
