@@ -27,11 +27,21 @@
 *. 强制重新编译安装所有包
     emerge -e @world
 *. 清理软件包
-    emerge -c
+    emerge -c(--depclean)
+*. 卸载包
+    emerge -W(--deselect) <package_name> && emerge -c
 *. 查找所有包
-    emerge -s <package_name>
-    emerge -S <package_name>
+    emerge -s(--search) <package_name>
+    emerge -S(--searchdesc) <package_name>
     qsearch <package_name>
+*. 查看包信息
+    equery meta(m) <package_name>
+*. 查看包依赖
+    equery depgraph(g) <package_name>
+    qdepends -v <package_name>
+*. 查看包反向依赖
+    equery depends(d) <package_name>
+    qdepends -Qv <package_name>
 *. 查找已安装的包
     qlist -I <keyword>
 *. 查看安装的所有包
@@ -46,10 +56,6 @@
     qsize -f <package_name>
 *. 查看所有包占用的大小
     qsize -Sf
-*. 查看包依赖
-    qdepends -v <package_name>
-*. 查看包被哪些包依赖
-    qdepends -Qv <package_name>
 *. 查看包的所有USE
     quse -Dvp <package_name>
 

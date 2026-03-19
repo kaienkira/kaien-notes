@@ -5,6 +5,7 @@ set -o pipefail
 install_system_tools()
 {
     emerge \
+        app-portage/gentoolkit \
         app-portage/portage-utils
     if [ $? -ne 0 ]; then return 1; fi
 
