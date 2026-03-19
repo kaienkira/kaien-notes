@@ -28,6 +28,7 @@
     emerge -e @world
 *. 清理软件包
     emerge -c(--depclean)
+    eclean -d distfiles
 *. 卸载包
     emerge -W(--deselect) <package_name> && emerge -c
 *. 查找所有包
@@ -49,13 +50,18 @@
 *. 查看world包含的包
     cat /var/lib/portage/world
 *. 查看包安装的文件
+    equery files <package_name>
     qlist <package_name>
 *. 查找文件对应哪个包
+    equery belongs(b) <file_path>
     qfile <file_path>
 *. 查看包占用的大小
+    equery size(s) <package_name>
     qsize -f <package_name>
 *. 查看所有包占用的大小
     qsize -Sf
+*. 查看包的当前USE
+    equery use(u) <package_name>
 *. 查看包的所有USE
     quse -Dvp <package_name>
 
