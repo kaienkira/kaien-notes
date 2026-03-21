@@ -1,6 +1,13 @@
 CFS(Completely Fair Scheduler)
 EEVDF(Earliest Eligible Virtual Deadline First)
 
+DAC(Discretionary Access Control) 自主访问控制
+MAC(Mandatory Access Control) 强制访问控制
+
+RGID(Real GID)
+EGID(Effective GID)
+SGID(Saved set-GID)
+
 DRM(Direct Rendering Manager)
     Framebuffer -> Plane -> CRTC -> Encoder -> Connector -> Screen
     *. KMS(Kernel Mode Setting)
@@ -8,14 +15,120 @@ DRM(Direct Rendering Manager)
     *. TTM(Translation Table Manager)
 
 ===============================================================================
-# deps
+# capability (include/uapi/linux/capability.h)
+===============================================================================
+CapInh: Inheritable
+CapPrm: Permitted
+CapEff: Effective
+CapBnd: BoundingSet
+CapAmb: Ambient
+
+CAP_CHOWN               0  修改文件的uid和gid
+                           chown(), lchown(), fchown()
+CAP_DAC_OVERRIDE        1  绕过文件和目录的读/写/执行权限检查
+CAP_DAC_READ_SEARCH     2  绕过文件的读权限检查
+                           绕过目录的读和搜索权限检查
+                           open_by_handle_at()
+CAP_FOWNER              3  绕过要求 进程 UID == 文件 UID 的权限检查
+                           chmod(), utime()
+                           设置文件ACL
+                           设置扩展属性
+                           在sticky目录中删除/重命名不属于自己的文件
+CAP_FSETID              4  修改文件内容/chown后，保留setuid和setgid位, 不自动清除
+                           允许对不属于自己任何组的文件设置setgid位
+CAP_KILL                5  绕过发送信号时的权限检查
+CAP_SETGID              6  操作进程的GID
+                           setgid(),setregid(),setresgid()
+                           setgroups()
+CAP_SETUID              7  操作进程的UID
+                           setuid()
+CAP_SETPCAP             8  管理进程自身的capabilities
+CAP_LINUX_IMMUTABLE     9  设置和清除文件的immutable(+i)和append-only(+a)属性
+CAP_NET_BIND_SERVICE   10  绑定编号小于1024的TCP/UDP端口
+                           (sysctl net.ipv4.ip_unprivileged_port_start)
+CAP_NET_BROADCAST      11  发送和接收广播/多播数据包(未使用)
+CAP_NET_ADMIN          12  网络管理
+                           配置网络接口, 修改路由表, 配置防火墙
+                           配置网桥, VLAN, bonding
+                           绑定到任意地址, 修改socket选项
+                           配置网络命名空间
+                           设置流量控制
+                           启用混杂模式
+CAP_NET_RAW            13  创建SOCK_RAW和SOCK_PACKET类型的socket
+                           绑定到任何地址做透明代理
+                           (sysctl net.ipv4.ping_group_range)
+CAP_IPC_LOCK           14  锁定内存页，防止被换出到swap
+                           mlock(), mlockall()
+                           锁定共享内存段
+                           shmctl(SHM_LOCK), mmap(MAP_LOCKED)
+                           分配大页
+                           shmget(SHM_HUGETLB)
+                           (ulimit -l)
+                           (sysctl vm.hugetlb_shm_group)
+CAP_IPC_OWNER          15  绕过IPC对象(共享内存,消息队列,信号量)的权限检查
+CAP_SYS_MODULE         16  加载内核模块
+                           init_module(), finit_module()
+                           卸载内核模块
+                           delete_module()
+CAP_SYS_RAWIO          17  原始I/O访问
+CAP_SYS_CHROOT         18  改变进程的根目录
+                           chroot()
+CAP_SYS_PTRACE         19  ptrace()任意进程
+CAP_SYS_PACCT          20  启用/禁用进程记账
+                           acct()
+CAP_SYS_ADMIN          21  the new root
+CAP_SYS_BOOT           22  调用reboot()系统调用
+                           reboot(RB_AUTOBOOT)
+                           reboot(RB_POWER_OFF)
+                           reboot(RB_HALT_SYSTEM)
+                           加载新内核热切换
+                           kexec_load(), kexec_file_load()
+CAP_SYS_NICE           23  进程调度和优先级管理
+                           nice(), setpriority()
+                           sched_setscheduler()
+                           sched_setaffinit()
+                           ioprio_set()
+                           migrate_pages()
+CAP_SYS_RESOURCE       24  突破各种资源限制
+                           RLIMIT_NPROC
+                           RLIMIT_NOFILE
+                           RLIMIT_FSIZE
+                           msg_qbytes
+CAP_SYS_TIME           25  修改系统时钟
+                           settimeofday()
+                           adjtimex(), clock_adjtime()
+                           clock_settime()
+CAP_SYS_TTY_CONFIG     26  TTY设备配置
+                           vhangup()
+CAP_MKNOD              27  通过mknod()创建块设备和字符设备特殊文件
+CAP_LEASE              28  在不属于自己的文件上设置文件租约
+CAP_AUDIT_WRITE        29  向内核审计日志写入记录
+CAP_AUDIT_CONTROL      30  管理内核审计子系统
+                           启用/禁用审计
+                           添加/删除审计规则
+                           设置审计日志缓冲区大小
+                           获取审计状态
+CAP_SETFCAP            31  设置和移除文件的capabilities扩展属性
+CAP_MAC_OVERRIDE       32  绕过MAC策略
+CAP_MAC_ADMIN          33  管理MAC配置
+CAP_SYSLOG             34  操作内核日志
+                           syslog()
+                           dmesg kernel.dmesg_restrict=1
+                           /proc/kmsg
+CAP_WAKE_ALARM         35  设置会唤醒系统的定时器
+CAP_BLOCK_SUSPEND      36  阻止系统进入挂起状态
+CAP_AUDIT_READ         37  读取审计日志
+CAP_PERFMON            38  性能监控操作
+                           perf_event_open()
+                           访问硬件PMU(Performance Monitoring Unit)
+                           内核跟踪点操作
+CAP_BPF                39  BPF子系统操作
+CAP_CHECKPOINT_RESTORE 40  检查点/恢复相关操作
+                           容器热迁移,进程快照恢复
+===============================================================================
+# kernel build
 ===============================================================================
 pacman -S base-devel bc cpio
-===============================================================================
-
-===============================================================================
-# kernel
-===============================================================================
 make clean
 make mrproper
 make distclean
@@ -203,7 +316,4 @@ qemu-system-x86_64 \
     -append "console=ttyS0"
     # quit -> ctrl-a x
     # sendkey ctrl-alt-f1
-
-===============================================================================
-# grub
 ===============================================================================
