@@ -6,4 +6,32 @@ qemu-system-x86_64 \
     -display gtk,gl=on \
     #-cdrom ~/setup/iso/android-x86_64-9.0-r2.iso
 
+qemu-system-x86_64 \
+    -enable-kvm \
+    -m 1G \
+    -nographic \
+    -kernel <dir>/boot/vmlinuz \
+    -append 'root=/dev/root rootfstype=9p rootflags=trans=virtio,version=9p2000.L console=ttyS0' \
+    -fsdev local,id=rootdev,path="<dir>",security_model=mapped-xattr \
+    -device virtio-9p-pci,fsdev=rootdev,mount_tag=/dev/root
+qemu-system-x86_64 \
+    -enable-kvm \
+    -m 4G \
+    -cdrom *.iso \
+    -fsdev local,id=rootdev,path="<dir>",security_model=mapped-xattr \
+    -device virtio-9p-pci,fsdev=rootdev,mount_tag=/dev/root
+
+find <dir> -print0 | while IFS= read -r -d '' f; do \
+    mode=`stat -c '%a' "$$f"` && \
+    raw_mode=`stat -c '%f' "$$f"` && \
+    raw_mode_be=`printf '%08x' "0x$$raw_mode"` && \
+    raw_mode_le=$${raw_mode_be:6:2}$${raw_mode_be:4:2}$${raw_mode_be:2:2}$${raw_mode_be:0:2} && \
+    chmod -h +w "$$f" && \
+    setfattr -h -n user.virtfs.uid -v '0x00000000' "$$f" && \
+    setfattr -h -n user.virtfs.gid -v '0x00000000' "$$f" && \
+    setfattr -h -n user.virtfs.mode -v "0x$$raw_mode_le" "$$f" && \
+    chmod -h $$mode "$$f"; \
+    if [ $$? -ne 0 ]; then exit 1; fi; \
+done
+
 mount -t 9p -o trans=virtio <mount_tag> <mount_point> -oversion=9p2000.L
