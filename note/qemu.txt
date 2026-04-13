@@ -5,3 +5,5 @@ qemu-system-x86_64 \
     -device virtio-vga-gl \
     -display gtk,gl=on \
     #-cdrom ~/setup/iso/android-x86_64-9.0-r2.iso
+
+mount -t 9p -o trans=virtio <mount_tag> <mount_point> -oversion=9p2000.L
