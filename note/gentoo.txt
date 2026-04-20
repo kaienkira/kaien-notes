@@ -65,6 +65,9 @@
 *. 查看包的所有USE
     quse -Dvp <package_name>
 
+*. 计算blake2b hash
+    echo -n '<file_name>' | b2sum
+
 ===============================================================================
 *. 依赖类型
      DEPEND -> Build dependencies 编译依赖 (CHOST)
