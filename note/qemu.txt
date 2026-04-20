@@ -8,16 +8,33 @@ qemu-system-x86_64 \
     -display gtk,gl=on \
     #-cdrom ~/setup/iso/android-x86_64-9.0-r2.iso
 
+===============================================================================
+-*- spice -*-
+===============================================================================
+openssl genrsa -out ca-key.pem 2048
+openssl req -new -x509 -days 3650 -key ca-key.pem -out ca-cert.pem \
+    -subj "/CN=SPICE CA"
+
+openssl genrsa -out server-key.pem 2048
+openssl req -new -key server-key.pem -out server-csr.pem -subj "/CN=myhost"
+openssl x509 -req -days 3650 -in server-csr.pem \
+    -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial -out server-cert.pem
+
 qemu-system-x86_64 \
     -enable-kvm -m 4096 -smp 8 -cpu host \
     -nic user,model=virtio \
     -hda <img> \
     -vga qxl \
-    -device virtio-serial-pci \
     -spice port=5900,disable-ticketing=on \
+    -spice port=5901,disable-ticketing=off,password=abc123,x509-dir=<dir> \
+    -device virtio-serial-pci \
     -device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 \
     -chardev spicevmc,id=spicechannel0,name=vdagent
 
+
+===============================================================================
+-*- 9pfs -*-
+===============================================================================
 qemu-system-x86_64 \
     -enable-kvm \
     -m 1G \
@@ -47,3 +64,4 @@ find <dir> -print0 | while IFS= read -r -d '' f; do \
 done
 
 mount -t 9p -o trans=virtio <mount_tag> <mount_point> -oversion=9p2000.L
+===============================================================================
