@@ -27,10 +27,11 @@ qemu-system-x86_64 \
     -vga qxl \
     -device virtio-serial-pci \
     -spice port=5900,disable-ticketing=on \
-    -spice port=5901,disable-ticketing=off,password=abc123,x509-dir=<dir> \
+    -spice port=5901,disable-ticketing=off,password=abc123,x509-dir=<tls_dir> \
+    -object secret,id=sec0,format=raw,file=<pass_file> \
+    -spice port=5901,disable-ticketing=off,password-secret=sec0,x509-dir=<tls_dir> \
     -device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 \
     -chardev spicevmc,id=spicechannel0,name=vdagent
-
 
 ===============================================================================
 -*- 9pfs -*-
