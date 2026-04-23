@@ -564,7 +564,8 @@ speaker-test -c 1
 -*- Dev -*-
 ===============================================================================
 pacman -S man-db man-pages
-pacman -S make
+pacman -S base-devel
+pacman -S cmake meson ninja
 pacman -S gcc
 pacman -S go
 -------------------------------------------------------------------------------
