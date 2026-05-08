@@ -42,10 +42,14 @@ install_kernel()
     'sys-apps/systemd boot' \
     'sys-kernel/installkernel systemd-boot dracut uki' \
     >/etc/portage/package.use/kernel
+    if [ $? -ne 0 ]; then return 1; fi
 
+    mkdir -p /etc/dracut.conf.d
+    if [ $? -ne 0 ]; then return 1; fi
     printf '%s\n' \
     'kernel_cmdline="root=/dev/sda3 loglevel=3 quiet systemd.ssh_auto=no"' \
-    >/etc/dracut.conf
+    >/etc/dracut.conf.d/main.conf
+    if [ $? -ne 0 ]; then return 1; fi
 
     emerge \
         sys-kernel/gentoo-kernel

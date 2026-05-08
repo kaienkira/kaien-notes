@@ -4,7 +4,7 @@
     move to releases/amd64/autobuilds/
     press d to download
 *. 修改内核参数
-    vi /etc/dracut.conf
+    vi /etc/dracut.conf.d/main.conf
     dracut --force --uefi
     objdump -s -j .cmdline /boot/EFI/Linux/*.efi
     cat /proc/cmdline
