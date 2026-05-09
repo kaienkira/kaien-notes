@@ -24,10 +24,10 @@ install_dev_tools()
     return 0
 }
 
-install_gui_tools
+install_gui_tools()
 {
     emerge \
-        gui-wm/sway \
+        gui-wm/sway
     if [ $? -ne 0 ]; then return 1; fi
 
     return 0

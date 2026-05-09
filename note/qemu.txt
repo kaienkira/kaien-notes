@@ -9,6 +9,14 @@ qemu-system-x86_64 \
     #-cdrom ~/setup/iso/android-x86_64-9.0-r2.iso
 
 ===============================================================================
+-*- uefi -*-
+===============================================================================
+    -drive if=pflash,format=raw,readonly=on,file=/usr/share/edk2/x64/OVMF_CODE.4m.fd
+    -drive if=pflash,format=raw,readonly=on,file=/usr/share/ovmf/OVMF.fd
+    -drive if=pflash,format=raw,file=./my-vm_VARS.fd
+    -bios OVMF.fd
+
+===============================================================================
 -*- spice -*-
 ===============================================================================
 openssl genrsa -out ca-key.pem 2048
