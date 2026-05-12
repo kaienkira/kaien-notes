@@ -569,7 +569,7 @@ pacman -S cmake meson ninja
 pacman -S gcc
 pacman -S go
 -------------------------------------------------------------------------------
-pacman -S neovim ripgrep
+pacman -S neovim ripgrep tree-sitter-cli
 -------------------------------------------------------------------------------
 pacman -S gradle
 pacman -S jdk21-openjdk
