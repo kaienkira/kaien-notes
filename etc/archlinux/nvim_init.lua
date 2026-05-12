@@ -72,13 +72,10 @@ require("lazy").setup({
         end
     },
     {
-        "nvim-treesitter/nvim-treesitter",
-        lazy = false,
-        build = ":TSUpdate",
+        "romus204/tree-sitter-manager.nvim",
+        dependencies = {},
         config = function()
-            require("nvim-treesitter.config").setup({
-                sync_install = true,
-                auto_install = false,
+            require("tree-sitter-manager").setup({
                 ensure_installed = {
                     "bash",
                     "c",
@@ -89,10 +86,6 @@ require("lazy").setup({
                     "lua",
                     "php",
                     "rust",
-                },
-                highlight = {
-                    enable = true,
-                    additional_vim_regex_highlighting = false,
                 },
             })
         end

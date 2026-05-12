@@ -87,4 +87,3 @@ scrcpy -Sw
     mod + o         -> Turn device screen off
     mod + shift + o -> Turn device screen on
 ===============================================================================
-

@@ -68,5 +68,5 @@
 
     apt-get install firmware-iwlwifi
 
-*. qemu 
+*. qemu
     apt install qemu-utils qemu-system-x86
