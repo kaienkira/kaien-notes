@@ -18,6 +18,34 @@ qemu-system-x86_64 \
     -bios OVMF.fd
 
 ===============================================================================
+-*- win11 -*-
+===============================================================================
+brew install swtpm
+ln -s /home/linuxbrew/.linuxbrew/bin/gnutls-certtool ~/bin/certtool
+
+swtpm_setup --tpm2 --tpmstate tpm \
+    --create-ek-cert --create-platform-cert --ecc \
+    --lock-nvram
+
+cp /usr/share/OVMF/OVMF_VARS_4M.ms.fd ./OVMF_VARS_win11.fd
+
+swtpm socket --tpm2 --tpmstate dir=tpm \
+    --ctrl type=unixio,path=tpm/swtpm.sock \
+    --daemon \
+    --terminate
+
+while [ ! -S tpm/swtpm.sock ]; do sleep 1; done
+
+qemu-system-x86_64 \
+    -enable-kvm -m 4096 -smp 4 -cpu host \
+    -machine type=q35,smm=on,accel=kvm \
+    -drive if=pflash,format=raw,unit=0,file=/usr/share/OVMF/OVMF_CODE_4M.ms.fd,readonly=on \
+    -drive if=pflash,format=raw,unit=1,file=./OVMF_VARS_win11.fd \
+    -chardev socket,id=chrtpm,path=./tpm/swtpm.sock \
+    -tpmdev emulator,id=tpm0,chardev=chrtpm \
+    -device tpm-crb,tpmdev=tpm0
+
+===============================================================================
 -*- spice -*-
 ===============================================================================
 openssl genrsa -out ca-key.pem 2048

@@ -11,3 +11,6 @@ c+x c+a
     p *(long *)(((char *)args[0].reg_save_area)+args[0].gp_offset)
     # sencod char *
     p *(char **)(((char *)args[0].reg_save_area)+args[0].gp_offset+8)
+
+*. 调试.dotnet, 关闭SIG34响应
+    handle SIG34 nostop noprint pass
