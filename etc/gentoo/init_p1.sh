@@ -44,7 +44,7 @@ if [ $? -ne 0 ]; then exit 1; fi
 
 rm -rf /mnt/gentoo/var/db/repos/gentoo
 if [ $? -ne 0 ]; then exit 1; fi
-git clone https://mirrors.tuna.tsinghua.edu.cn/git/gentoo-portage.git \
+git clone https://mirrors.ustc.edu.cn/gentoo.git \
     /mnt/gentoo/var/db/repos/gentoo --depth=1
 if [ $? -ne 0 ]; then exit 1; fi
 

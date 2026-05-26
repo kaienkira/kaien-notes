@@ -11,7 +11,7 @@ main-repo = gentoo
 
 [gentoo]
 sync-type = git
-sync-uri = https://mirrors.tuna.tsinghua.edu.cn/git/gentoo-portage.git
+sync-uri = https://mirrors.ustc.edu.cn/gentoo.git
 sync-depth = 1
 '>/etc/portage/repos.conf/gentoo.conf
 if [ $? -ne 0 ]; then exit 1; fi
@@ -23,7 +23,7 @@ CXXFLAGS="${COMMON_FLAGS}"
 
 MAKEOPTS="-j8"
 
-GENTOO_MIRRORS="https://mirrors.tuna.tsinghua.edu.cn/gentoo"
+GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo"
 '>/etc/portage/make.conf
 if [ $? -ne 0 ]; then exit 1; fi
 
