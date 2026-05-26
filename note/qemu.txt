@@ -1,4 +1,5 @@
 qemu-img create -f qcow2 <img_file> 20G
+qemu-img info <img_file>
 
 qemu-system-x86_64 \
     -enable-kvm -m 4096 -smp 4 -cpu host \
