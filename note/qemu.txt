@@ -102,4 +102,9 @@ pacman -S spice-vdagent
 -append 'root=/dev/root rootfstype=9p rootflags=trans=virtio,version=9p2000.L rw console=ttyS0'
 -fsdev local,id=rootdev,path="<rootfs_path>",security_model=passthrough
 -device virtio-9p-pci,fsdev=rootdev,mount_tag=/dev/root
+
 ===============================================================================
+-*- windows guest -*-
+===============================================================================
+virtio-win
+https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio
