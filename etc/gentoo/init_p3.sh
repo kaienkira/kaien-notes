@@ -38,7 +38,7 @@ install_base_intel()
 
 install_kernel()
 {
-    printf '%s\n%s\n%s\n' \
+    printf '%s\n%s\n' \
     'sys-apps/systemd boot' \
     'sys-kernel/installkernel systemd-boot dracut uki' \
     >/etc/portage/package.use/kernel
