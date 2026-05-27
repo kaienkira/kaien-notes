@@ -1,25 +1,35 @@
+===============================================================================
+-*- user group -*-
+===============================================================================
+usermod -aG kvm <user>
+usermod -aG render <user>
+usermod -aG video <user>
+
+===============================================================================
+-*- image -*-
+===============================================================================
 qemu-img create -f qcow2 <img_file> 20G
 qemu-img info <img_file>
 
-qemu-system-x86_64 \
-    -enable-kvm -m 4096 -smp 4 -cpu host \
-    -nic user,model=virtio \
-    -hda android-x86.img \
-    -device virtio-vga-gl \
-    -display gtk,gl=on \
-    #-cdrom ~/setup/iso/android-x86_64-9.0-r2.iso
+===============================================================================
+-*- machine -*-
+===============================================================================
+-machine type=q35,smm=on,accel=kvm
+-m 4096 -smp 8 -cpu host
 
 ===============================================================================
 -*- uefi -*-
 ===============================================================================
-    -drive if=pflash,format=raw,readonly=on,file=/usr/share/edk2/x64/OVMF_CODE.4m.fd
-    -drive if=pflash,format=raw,readonly=on,file=/usr/share/ovmf/OVMF.fd
-    -drive if=pflash,format=raw,file=./my-vm_VARS.fd
-    -bios OVMF.fd
+-bios OVMF.fd
 
-===============================================================================
--*- win11 -*-
-===============================================================================
+-drive if=pflash,format=raw,unit=0,file=/usr/share/OVMF/OVMF_CODE_4M.ms.fd,readonly=on
+-drive if=pflash,format=raw,unit=1,file=./OVMF_VARS_win11.fd
+
+-chardev socket,id=chrtpm,path=./tpm/swtpm.sock
+-tpmdev emulator,id=tpm0,chardev=chrtpm
+-device tpm-crb,tpmdev=tpm0
+
+////////////////////////////////////////////////////////////////////////////////
 brew install swtpm
 ln -s /home/linuxbrew/.linuxbrew/bin/gnutls-certtool ~/bin/certtool
 
@@ -34,21 +44,45 @@ swtpm socket --tpm2 --tpmstate dir=tpm \
     --daemon \
     --terminate
 
-while [ ! -S tpm/swtpm.sock ]; do sleep 1; done
+===============================================================================
+-*- disk -*-
+===============================================================================
+-hda <img>
 
-qemu-system-x86_64 \
-    -enable-kvm -m 4096 -smp 4 -cpu host \
-    -machine type=q35,smm=on,accel=kvm \
-    -drive if=pflash,format=raw,unit=0,file=/usr/share/OVMF/OVMF_CODE_4M.ms.fd,readonly=on \
-    -drive if=pflash,format=raw,unit=1,file=./OVMF_VARS_win11.fd \
-    -chardev socket,id=chrtpm,path=./tpm/swtpm.sock \
-    -tpmdev emulator,id=tpm0,chardev=chrtpm \
-    -device tpm-crb,tpmdev=tpm0 \
-    -nic user,model=e1000e
+===============================================================================
+-*- nic -*-
+===============================================================================
+-nic user,model=virtio
+-nic user,model=e1000e
+
+===============================================================================
+-*- video -*-
+===============================================================================
+-display gtk,gl=on
+-device virtio-vga-gl,xres=1920,yres=1080
+
+-vga qxl
+
+-display egl-headless
+-device virtio-vga-gl,xres=1920,yres=1080
+
+-nographic
 
 ===============================================================================
 -*- spice -*-
 ===============================================================================
+-device virtio-serial-pci
+-object secret,id=sec0,format=raw,file=$HOME/local/vm/tls-key/login_pass
+-spice port=5901,disable-ticketing=off,password-secret=sec0,x509-dir=$HOME/local/vm/tls-key/
+
+-spice port=5901,disable-ticketing=on
+
+-spice port=5901,disable-ticketing=off,password=abc123,x509-dir=<tls_dir>
+
+-device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0
+-chardev spicevmc,id=spicechannel0,name=vdagent
+
+////////////////////////////////////////////////////////////////////////////////
 openssl genrsa -out ca-key.pem 2048
 openssl req -new -x509 -days 3650 -key ca-key.pem -out ca-cert.pem \
     -subj "/CN=SPICE CA"
@@ -58,49 +92,14 @@ openssl req -new -key server-key.pem -out server-csr.pem -subj "/CN=myhost"
 openssl x509 -req -days 3650 -in server-csr.pem \
     -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial -out server-cert.pem
 
-qemu-system-x86_64 \
-    -enable-kvm -m 4096 -smp 8 -cpu host \
-    -nic user,model=virtio \
-    -hda <img> \
-    -vga qxl \
-    -device virtio-serial-pci \
-    -spice port=5900,disable-ticketing=on \
-    -spice port=5901,disable-ticketing=off,password=abc123,x509-dir=<tls_dir> \
-    -object secret,id=sec0,format=raw,file=<pass_file> \
-    -spice port=5901,disable-ticketing=off,password-secret=sec0,x509-dir=<tls_dir> \
-    -device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 \
-    -chardev spicevmc,id=spicechannel0,name=vdagent
+////////////////////////////////////////////////////////////////////////////////
+pacman -S spice-vdagent
 
 ===============================================================================
 -*- 9pfs -*-
 ===============================================================================
-qemu-system-x86_64 \
-    -enable-kvm \
-    -m 1G \
-    -nographic \
-    -kernel <dir>/boot/vmlinuz \
-    -append 'root=/dev/root rootfstype=9p rootflags=trans=virtio,version=9p2000.L console=ttyS0' \
-    -fsdev local,id=rootdev,path="<dir>",security_model=mapped-xattr \
-    -device virtio-9p-pci,fsdev=rootdev,mount_tag=/dev/root
-qemu-system-x86_64 \
-    -enable-kvm \
-    -m 4G \
-    -cdrom *.iso \
-    -fsdev local,id=rootdev,path="<dir>",security_model=mapped-xattr \
-    -device virtio-9p-pci,fsdev=rootdev,mount_tag=/dev/root
-
-find <dir> -print0 | while IFS= read -r -d '' f; do \
-    mode=`stat -c '%a' "$$f"` && \
-    raw_mode=`stat -c '%f' "$$f"` && \
-    raw_mode_be=`printf '%08x' "0x$$raw_mode"` && \
-    raw_mode_le=$${raw_mode_be:6:2}$${raw_mode_be:4:2}$${raw_mode_be:2:2}$${raw_mode_be:0:2} && \
-    chmod -h +w "$$f" && \
-    setfattr -h -n user.virtfs.uid -v '0x00000000' "$$f" && \
-    setfattr -h -n user.virtfs.gid -v '0x00000000' "$$f" && \
-    setfattr -h -n user.virtfs.mode -v "0x$$raw_mode_le" "$$f" && \
-    chmod -h $$mode "$$f"; \
-    if [ $$? -ne 0 ]; then exit 1; fi; \
-done
-
-mount -t 9p -o trans=virtio <mount_tag> <mount_point> -oversion=9p2000.L
+-kernel <vmlinuz>
+-append 'root=/dev/root rootfstype=9p rootflags=trans=virtio,version=9p2000.L rw console=ttyS0'
+-fsdev local,id=rootdev,path="<rootfs_path>",security_model=passthrough
+-device virtio-9p-pci,fsdev=rootdev,mount_tag=/dev/root
 ===============================================================================
