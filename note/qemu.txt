@@ -43,7 +43,8 @@ qemu-system-x86_64 \
     -drive if=pflash,format=raw,unit=1,file=./OVMF_VARS_win11.fd \
     -chardev socket,id=chrtpm,path=./tpm/swtpm.sock \
     -tpmdev emulator,id=tpm0,chardev=chrtpm \
-    -device tpm-crb,tpmdev=tpm0
+    -device tpm-crb,tpmdev=tpm0 \
+    -nic user,model=e1000e
 
 ===============================================================================
 -*- spice -*-
