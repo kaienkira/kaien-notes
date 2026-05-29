@@ -2,7 +2,7 @@
 
 qemu-system-x86_64 \
     -machine type=q35,smm=on,accel=kvm \
-    -m 4096 -smp 8 -cpu host \
+    -m 8192 -smp 8 -cpu host \
     -hda $HOME/local/vm/cachyos/cachyos.qcow2 \
     -nic user,model=virtio \
     -display egl-headless \
