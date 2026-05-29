@@ -14,7 +14,6 @@ qemu-system-x86_64 \
     -device tpm-crb,tpmdev=tpm0 \
     -hda $HOME/local/vm/win11/win11.qcow2 \
     -nic user,model=e1000e \
-    -display egl-headless \
     -device virtio-vga,xres=1920,yres=1080 \
     -device virtio-serial-pci \
     -object secret,id=sec0,format=raw,file=$HOME/local/vm/tls-key/login_pass \
