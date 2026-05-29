@@ -95,6 +95,7 @@ openssl x509 -req -days 3650 -in server-csr.pem \
 ////////////////////////////////////////////////////////////////////////////////
 pacman -S spice-vdagent
 pacman -S wl-clipboard xclip
+MOZ_ENABLE_WAYLAND=0 firefox
 
 ===============================================================================
 -*- 9pfs -*-
