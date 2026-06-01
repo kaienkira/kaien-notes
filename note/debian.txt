@@ -50,7 +50,17 @@
     apt-get -s build-dep <package>
 *. 列出包属于哪个源
     grep -l <package> /var/lib/apt/lists/*
-   
+*. 列出手动安装的包
+    apt-mark showmanual
+
+*. network
+    vi /etc/network/interface
+        iface ens32 inet dhcp
+        iface ens32 inet static
+        address <ip>
+        netmask <netmask>
+        gateway <gateway>
+        dns-nameservers <dns1> <dns2>
 
 *. proxy
     systemctl enable systemd-networkd.service

@@ -110,3 +110,13 @@ MOZ_ENABLE_WAYLAND=0 firefox
 ===============================================================================
 virtio-win
 https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio
+
+===============================================================================
+-*- debian12 compile -*-
+===============================================================================
+apt install meson
+apt install libepoxy-dev libdrm-dev
+
+git clone https://gitlab.freedesktop.org/virgl/virglrenderer.git
+git checkout 1.3.0
+meson setup build -Dvenus=true -Dprefix=$HOME/local/qemu
