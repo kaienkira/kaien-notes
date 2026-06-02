@@ -145,3 +145,9 @@ rdiff signature <file1> | rdiff delta -- - <file2> <diff_file>
     mount -o remount,hidepid=2,gid=adm /proc
     vi /etc/fstab
         proc /proc proc defaults,hidepid=2 0 0
+
+===============================================================================
+-*- dynamic libs -*-
+===============================================================================
+LD_DEBUG=libs
+LD_LIBRARY_PATH=<path>

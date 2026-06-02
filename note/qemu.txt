@@ -119,3 +119,12 @@ https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio
 ===============================================================================
 apt install -t bookworm-backports linux-image-amd64 linux-headers-amd64
 apt install -t bookworm-backports qemu-system
+
+apt install meson
+apt install -t bookworm-backports libdrm-dev libepoxy-dev libgbm-dev
+git clone https://gitlab.freedesktop.org/virgl/virglrenderer.git
+git checkout 1.3.0
+meson setup build \
+    -Dplatforms=egl,glx \
+    -Dvenus=true \
+    -Dprefix=$HOME/local/qemu
