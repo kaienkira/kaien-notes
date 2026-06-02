@@ -113,3 +113,9 @@ MOZ_ENABLE_WAYLAND=0 firefox
 ===============================================================================
 virtio-win
 https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio
+
+===============================================================================
+-*- debian12 -*-
+===============================================================================
+apt install -t bookworm-backports linux-image-amd64 linux-headers-amd64
+apt install -t bookworm-backports qemu-system

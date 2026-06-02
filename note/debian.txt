@@ -52,6 +52,8 @@
     grep -l <package> /var/lib/apt/lists/*
 *. 列出手动安装的包
     apt-mark showmanual
+*. 把包设置为自动安装
+    apt-mark auto <package>
 
 *. network
     vi /etc/network/interface
