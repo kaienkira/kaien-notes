@@ -82,3 +82,6 @@
 
 *. qemu
     apt install qemu-utils qemu-system-x86
+
+*. 查看secure boot是否启用
+mokutil --sb-state

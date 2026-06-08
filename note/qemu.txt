@@ -133,6 +133,11 @@ apt install -t bookworm-backports \
     libglib2.0-dev libpixman-1-dev \
     libslirp-dev
 
+wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
+dpkg -i cuda-keyring_1.1-1_all.deb
+apt update
+apt install nvidia-open
+
 -------------------------------------------------------------------------------
 export PATH=$PATH\
 :$HOMEBREW_PREFIX/bin\
