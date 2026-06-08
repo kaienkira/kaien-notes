@@ -212,3 +212,9 @@ mkdir build && cd build
     --enable-spice-protocol \
     --enable-slirp
 make -j8 && make install
+
+# vtest
+./virgl_test_server --venus
+export VK_DRIVER_FILES=/usr/share/vulkan/icd.d/virtio_icd.json
+export VK_DEBUG=vtest
+vulkaninfo
