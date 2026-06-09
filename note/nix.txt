@@ -1,0 +1,4 @@
+~/.config/nix/nix.conf
+    experimental-features = nix-command flakes
+
+nix profile add nixpkgs#<pkg_name>
