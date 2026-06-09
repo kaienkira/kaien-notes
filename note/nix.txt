@@ -2,3 +2,6 @@
     experimental-features = nix-command flakes
 
 nix profile add nixpkgs#<pkg_name>
+nix profile remove <pkg_name>
+nix profile upgrade --all
+nix-collect-garbage
