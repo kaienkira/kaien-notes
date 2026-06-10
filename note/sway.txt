@@ -3,3 +3,6 @@
 
 *. get outputs
     swaymsg -t get_outputs
+
+*. debian12 compile
+apt install -t bookworm-backports libwlroots-dev
