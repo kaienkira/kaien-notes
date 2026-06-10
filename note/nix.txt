@@ -1,7 +1,29 @@
+# 安装
+wget https://nixos.org/nix/install && bash install
 ~/.config/nix/nix.conf
     experimental-features = nix-command flakes
+nix profile add nixpkgs#nix
+nix profile add flake:nixpkgs#legacyPackages.x86_64-linux.nix --priority 4
+nix profile remove nix
+nix profile add nixpkgs#nix
+nix profile remove nix-1
 
+# 列出顶层包
+nix profile list
+# 列出所有包
+nix-store -qR ~/.nix-profile
+# 安装包
 nix profile add nixpkgs#<pkg_name>
+# 卸载包
 nix profile remove <pkg_name>
+# 更新所有包
 nix profile upgrade --all
+# 列出历史
+nix profile history
+# 清理历史
+nix profile wipe-history
+# 清理包
 nix-collect-garbage
+
+# nixGL
+nix profile install github:nix-community/nixGL --impure
