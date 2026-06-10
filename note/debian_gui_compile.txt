@@ -1,0 +1,192 @@
+apt install -t bookworm-backports linux-image-amd64 linux-headers-amd64
+apt install -t bookworm-backports meson
+apt install python3-venv
+apt install \
+    zlib1g-dev libexpat1-dev libxml2-dev libffi-dev \
+    xkb-data libxcb-xkb-dev \
+    libpcre2-dev libjson-c-dev \
+
+apt install -t bookworm-backports \
+    libglm-dev libegl-dev libgles-dev \
+    libvulkan-dev vulkan-validationlayers-dev \
+    libepoxy-dev libgbm-dev libstb-dev \
+    libspice-server-dev libspice-protocol-dev \
+    libglib2.0-dev libpixman-1-dev \
+    libslirp-dev
+
+apt install -t bookworm-backports \
+    libegl-dev libgles-dev \
+    libvulkan-dev \
+    libgbm-dev libinput-dev \
+    libseat-dev libdisplay-info-dev libliftoff-dev libudev-dev \
+    libpango1.0-dev libcairo2-dev \
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
+dpkg -i cuda-keyring_1.1-1_all.deb
+apt update
+apt install nvidia-open
+
+brew install rustup
+rustup toolchain install stable
+cargo install bindgen-cli
+
+export PATH=$PATH\
+:$HOMEBREW_PREFIX/bin\
+:$HOMEBREW_PREFIX/sbin\
+:$HOMEBREW_PREFIX/opt/rustup/bin\
+:$HOME/.cargo/bin
+
+-------------------------------------------------------------------------------
+export GUI_ROOT_DIR=$HOME/local/gui
+export PKG_CONFIG_PATH=\
+$GUI_ROOT_DIR/lib/pkgconfig:\
+$GUI_ROOT_DIR/share/pkgconfig
+export RUSTFLAGS='-Clink-arg=-L='$GUI_ROOT_DIR/lib
+
+# libpciaccess
+git clone https://gitlab.freedesktop.org/xorg/lib/libpciaccess.git
+git checkout libpciaccess-0.19
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# libdrm
+git clone https://gitlab.freedesktop.org/mesa/libdrm.git
+git checkout libdrm-2.4.134
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# libxkbcommon
+git clone https://github.com/xkbcommon/libxkbcommon.git
+git checkout xkbcommon-1.13.2
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    -Denable-bash-completion=false \
+    -Denable-zsh-completion=false \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# pixman
+git clone https://gitlab.freedesktop.org/pixman/pixman.git
+git checkout pixman-0.46.4
+
+# wayland
+git clone https://gitlab.freedesktop.org/wayland/wayland.git
+git checkout 1.25.0
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    -Ddocumentation=false \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# wayland-protocols
+git clone https://gitlab.freedesktop.org/wayland/wayland-protocols.git
+git checkout 1.49
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# wlroots
+git clone https://gitlab.freedesktop.org/wlroots/wlroots.git
+git checkout 0.20.1
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# virglrenderer
+git clone https://gitlab.freedesktop.org/virgl/virglrenderer.git
+git checkout 1.3.0
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    -Dplatforms=egl,glx \
+    -Dvenus=true \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# aemu
+git clone https://android.googlesource.com/platform/hardware/google/aemu
+git checkout v0.1.2-aemu-release
+cmake -DAEMU_COMMON_GEN_PKGCONFIG=ON \
+      -DAEMU_COMMON_BUILD_CONFIG=gfxstream \
+      -DENABLE_VKCEREAL_TESTS=OFF \
+      --install-prefix "$GUI_ROOT_DIR" \
+      -B build \
+      && \
+cmake --build build -j8 && \
+cmake --install build --prefix "$HOME/local/qemu"
+
+# gfxstream
+git clone https://android.googlesource.com/platform/hardware/google/gfxstream
+git checkout v0.1.2-gfxstream-release
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    -Ddefault_library=static \
+    -Ddecoders=gles,vulkan,composer \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# rutabaga_ffi
+git clone https://github.com/magma-gpu/rutabaga_gfx.git
+git checkout v0.1.75
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    -Dffi=true \
+    -Dfeatures=gfxstream \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# qemu
+git clone https://gitlab.com/qemu-project/qemu.git
+git checkout v11.0.1
+mkdir build && cd build
+../configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    --target-list=x86_64-softmmu \
+    --enable-kvm \
+    --enable-opengl \
+    --enable-virglrenderer \
+    --enable-rutabaga-gfx \
+    --enable-spice \
+    --enable-spice-protocol \
+    --enable-slirp
+make -j8 && make install
+
+# sway
+git clone https://github.com/swaywm/sway.git
+git checkout 1.12
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# vtest
+./virgl_test_server --venus
+export VK_DRIVER_FILES=/usr/share/vulkan/icd.d/virtio_icd.json
+export VK_DEBUG=vtest
+vulkaninfo
