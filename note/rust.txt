@@ -18,6 +18,9 @@ vi ~/.cargo/config.toml
     [source.mirror]
     registry = 'https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git'
 
+cargo install --locked cargo-outdated
+cargo outdated -R
+
 ===============================================================================
 cargo new --bin --name <package_name> <path>
 cargo init
