@@ -13,13 +13,8 @@ apt install \
     libspice-server-dev libspice-protocol-dev \
 
 apt install -t bookworm-backports \
-    vulkan-validationlayers-dev \
     libepoxy-dev libgbm-dev libstb-dev \
-    libslirp-dev
-
-apt install -t bookworm-backports \
-    libvulkan-dev \
-    libgbm-dev \
+    libslirp-dev \
     libseat-dev libdisplay-info-dev libliftoff-dev \
 
 wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
@@ -42,6 +37,7 @@ export GUI_ROOT_DIR=$HOME/local/gui
 export PKG_CONFIG_PATH=\
 $GUI_ROOT_DIR/lib/pkgconfig:\
 $GUI_ROOT_DIR/share/pkgconfig
+export CMAKE_PREFIX_PATH=$GUI_ROOT_DIR
 export RUSTFLAGS='-Clink-arg=-L='$GUI_ROOT_DIR/lib
 
 # libglvnd (libx11,libxext,xorgproto)
@@ -140,21 +136,78 @@ cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
     -DCMAKE_INSTALL_SYSCONFDIR="$GUI_ROOT_DIR"/etc \
-    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib/cmake \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
     -DCMAKE_SKIP_INSTALL_RPATH=ON \
     -B build \
     && \
 cmake --build build -j8 && cmake --install build
 
-# vulkan-icd-loader
+# vulkan-icd-loader (vulkan-headers,libxrandr)
 git clone https://github.com/KhronosGroup/Vulkan-Loader
 git checkout vulkan-sdk-1.4.350.0
 cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
     -DCMAKE_INSTALL_SYSCONFDIR="$GUI_ROOT_DIR"/etc \
-    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib/cmake \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
     -DCMAKE_SKIP_INSTALL_RPATH=ON \
+    -B build \
+    && \
+cmake --build build -j8 && cmake --install build
+
+# vulkan-utility-libraries
+git clone https://github.com/KhronosGroup/Vulkan-Utility-Libraries
+git checkout vulkan-sdk-1.4.350.0
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
+    -DCMAKE_INSTALL_SYSCONFDIR="$GUI_ROOT_DIR"/etc \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
+    -DCMAKE_SKIP_INSTALL_RPATH=ON \
+    -B build \
+    && \
+cmake --build build -j8 && cmake --install build
+
+# spirv-headers
+git clone https://github.com/KhronosGroup/SPIRV-Headers
+git checkout vulkan-sdk-1.4.350.0
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
+    -DCMAKE_INSTALL_SYSCONFDIR="$GUI_ROOT_DIR"/etc \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
+    -DCMAKE_SKIP_INSTALL_RPATH=ON \
+    -B build \
+    && \
+cmake --build build -j8 && cmake --install build
+
+# spirv-tools
+git clone https://github.com/KhronosGroup/SPIRV-Tools
+git checkout vulkan-sdk-1.4.350.0
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
+    -DCMAKE_INSTALL_SYSCONFDIR="$GUI_ROOT_DIR"/etc \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
+    -DCMAKE_SKIP_INSTALL_RPATH=ON \
+    -DBUILD_SHARED_LIBS=ON \
+    -DSPIRV_TOOLS_BUILD_STATIC=OFF \
+    -DSPIRV_WERROR=OFF \
+    -DSPIRV-Headers_SOURCE_DIR="$GUI_ROOT_DIR" \
+    -B build \
+    && \
+cmake --build build -j8 && cmake --install build
+
+# vulkan-validation-layers
+git clone https://github.com/KhronosGroup/Vulkan-ValidationLayers
+git checkout vulkan-sdk-1.4.350.0
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
+    -DCMAKE_INSTALL_SYSCONFDIR="$GUI_ROOT_DIR"/etc \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
+    -DCMAKE_SKIP_INSTALL_RPATH=ON \
+    -DUPDATE_DEPS=OFF \
     -B build \
     && \
 cmake --build build -j8 && cmake --install build
@@ -197,7 +250,7 @@ git checkout v0.1.2-aemu-release
 cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
-    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib/cmake \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
     -DAEMU_COMMON_GEN_PKGCONFIG=ON \
     -DAEMU_COMMON_BUILD_CONFIG=gfxstream \
     -DENABLE_VKCEREAL_TESTS=OFF \
@@ -211,7 +264,7 @@ git checkout 1.0.3
 cmake \
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
-    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib/cmake \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
     -B build \
     && \
 cmake --build build -j8 && cmake --install build
