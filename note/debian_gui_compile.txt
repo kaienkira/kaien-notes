@@ -314,4 +314,6 @@ make -j8 && make install
 ./virgl_test_server --venus
 export VK_DRIVER_FILES=/usr/share/vulkan/icd.d/virtio_icd.json
 export VK_DEBUG=vtest
+# export VK_LOADER_DEBUG=all
+# export VK_LOADER_LAYERS_DISABLE='*MESA_device_select*'
 vulkaninfo
