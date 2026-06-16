@@ -212,14 +212,33 @@ cmake \
     && \
 cmake --build build -j8 && cmake --install build
 
-# wlroots (libdrm,wayland,wayland-protocols,libxkbcommon,pixman,libglvnd)
+# glslang
+git clone https://github.com/KhronosGroup/glslang
+git checkout vulkan-sdk-1.4.350.0
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
+    -DCMAKE_INSTALL_SYSCONFDIR="$GUI_ROOT_DIR"/etc \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
+    -DALLOW_EXTERNAL_SPIRV_TOOLS=ON \
+    -DGLSLANG_TESTS=OFF \
+    -B build \
+    && \
+cmake --build build -j8 && cmake --install build
+
+# wlroots (libdrm,wayland,wayland-protocols,libxkbcommon,pixman,libglvnd,glslang)
 git clone https://gitlab.freedesktop.org/wlroots/wlroots.git
 git checkout 0.20.1
+PATH=$PATH:$GUI_ROOT_DIR/bin \
+LD_LIBRARY_PATH=$GUI_ROOT_DIR/lib \
 meson setup build \
     -Dprefix="$GUI_ROOT_DIR" \
     -Dbuildtype=release \
     -Dlibdir=lib \
+    -Drenderers=gles2,vulkan \
     && \
+PATH=$PATH:$GUI_ROOT_DIR/bin \
+LD_LIBRARY_PATH=$GUI_ROOT_DIR/lib \
 ninja -C build -j8 && ninja -C build install
 
 # sway
