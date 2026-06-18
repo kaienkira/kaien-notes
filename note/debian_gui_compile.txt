@@ -226,6 +226,10 @@ cmake \
     && \
 cmake --build build -j8 && cmake --install build
 
+# mesa
+git clone https://gitlab.freedesktop.org/mesa/mesa.git
+git checkout mesa-26.1.3
+
 # wlroots (libdrm,wayland,wayland-protocols,libxkbcommon,pixman,libglvnd,glslang)
 git clone https://gitlab.freedesktop.org/wlroots/wlroots.git
 git checkout 0.20.1
@@ -244,6 +248,16 @@ ninja -C build -j8 && ninja -C build install
 # sway
 git clone https://github.com/swaywm/sway.git
 git checkout 1.12
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# aml
+git clone https://github.com/any1/aml.git
+git checkout v1.0.0
 meson setup build \
     -Dprefix="$GUI_ROOT_DIR" \
     -Dbuildtype=release \
