@@ -3,17 +3,15 @@ apt install -t bookworm-backports meson
 apt install python3-venv
 apt install \
     zlib1g-dev libexpat1-dev libxml2-dev libffi-dev \
-    libx11-dev libxext-dev x11proto-dev \
-    libxrandr-dev \
-    xkb-data libxcb-xkb-dev libicu-dev \
-    libpng-dev libglib2.0-dev \
+    libgbm-dev \
+    libx11-dev libxext-dev x11proto-dev libxrandr-dev \
+    xkb-data libxcb-xkb-dev \
+    libicu-dev libpng-dev libglib2.0-dev \
     libpcre2-dev libjson-c-dev \
     libudev-dev libevdev-dev libmtdev-dev \
     libpango1.0-dev libcairo2-dev \
     libspice-server-dev libspice-protocol-dev \
-
-apt install -t bookworm-backports \
-    libepoxy-dev libgbm-dev libstb-dev \
+    libepoxy-dev libstb-dev \
     libslirp-dev \
     libseat-dev libdisplay-info-dev libliftoff-dev \
 
@@ -226,10 +224,6 @@ cmake \
     && \
 cmake --build build -j8 && cmake --install build
 
-# mesa
-git clone https://gitlab.freedesktop.org/mesa/mesa.git
-git checkout mesa-26.1.3
-
 # wlroots (libdrm,wayland,wayland-protocols,libxkbcommon,pixman,libglvnd,glslang)
 git clone https://gitlab.freedesktop.org/wlroots/wlroots.git
 git checkout 0.20.1
@@ -350,3 +344,7 @@ export VK_DEBUG=vtest
 # export VK_LOADER_DEBUG=all
 # export VK_LOADER_LAYERS_DISABLE='*MESA_device_select*'
 vulkaninfo
+
+# glvnd env
+__EGL_VENDOR_LIBRARY_DIRS
+__EGL_VENDOR_LIBRARY_FILENAMES
