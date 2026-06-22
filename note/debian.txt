@@ -1,5 +1,5 @@
 *. samba
-    sudo apt-get install samba
+    apt install samba
     useradd -s /sbin/nologin sambaadmin
     useradd -s /sbin/nologin sambaguest
     smbpasswd -a sambaadmin
@@ -36,6 +36,9 @@
 
 *. 查看包信息
     dpkg-query -s <package_name>
+    apt info <package_name>
+*. 列出包被那些包依赖
+    apt rdepends --installed <package_name>
 *. 查看包文件
     dpkg-query -L <package_name>
 *. 列出所有安装的软件包
@@ -43,9 +46,10 @@
 *. 查找文件属于哪个包
     dpkg -S <file>
 *. 彻底删除软件包
-    sudo apt-get --purge autoremove packagename
+    apt autoremove packagename
 *. 清除所有被标记为rc的软件包配置
     apt purge '~c'
+    aptitude purge '~c'
 *. 列出编译依赖
     apt-get -s build-dep <package>
 *. 列出包属于哪个源
@@ -78,7 +82,7 @@
         net.ipv4.ip_forward=1
         net.ipv6.conf.all.forwarding=1
 
-    apt-get install firmware-iwlwifi
+    apt install firmware-iwlwifi
 
 *. qemu
     apt install qemu-utils qemu-system-x86

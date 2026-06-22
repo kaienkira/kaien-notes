@@ -2,7 +2,8 @@ apt install -t bookworm-backports linux-image-amd64 linux-headers-amd64
 apt install -t bookworm-backports meson
 apt install python3-venv
 apt install \
-    zlib1g-dev libexpat1-dev libxml2-dev libffi-dev \
+    libssl-dev \
+    zlib1g-dev libexpat1-dev libxml2-dev \
     libgbm-dev \
     libx11-dev libxext-dev x11proto-dev libxrandr-dev \
     xkb-data libxcb-xkb-dev \
@@ -10,7 +11,7 @@ apt install \
     libpcre2-dev libjson-c-dev \
     libudev-dev libevdev-dev libmtdev-dev \
     libpango1.0-dev libcairo2-dev \
-    libspice-server-dev libspice-protocol-dev \
+    libopus-dev libjpeg62-turbo-dev libsasl2-dev liblz4-dev \
     libepoxy-dev libstb-dev \
     libslirp-dev \
     libseat-dev libdisplay-info-dev libliftoff-dev \
@@ -37,6 +38,20 @@ $GUI_ROOT_DIR/lib/pkgconfig:\
 $GUI_ROOT_DIR/share/pkgconfig
 export CMAKE_PREFIX_PATH=$GUI_ROOT_DIR
 export RUSTFLAGS='-Clink-arg=-L='$GUI_ROOT_DIR/lib
+
+# libffi
+git clone https://github.com/libffi/libffi.git
+git checkout v3.6.0
+./autogen.sh
+mkdir build && cd build
+../configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    --disable-multi-os-directory \
+    --disable-static \
+    --disable-docs \
+    && \
+make -j8 && make install
 
 # libglvnd (libx11,libxext,xorgproto)
 git clone https://gitlab.freedesktop.org/glvnd/libglvnd
@@ -320,6 +335,29 @@ meson setup build \
     && \
 ninja -C build -j8 && ninja -C build install
 
+# spice-protocol
+git clone https://gitlab.freedesktop.org/spice/spice-protocol.git
+git checkout v0.14.5
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# spice (spice-protocol,glib2,pixman,openssl,opus,libudev,libjpeg-turbo,zlib,liblz4,libsasl2)
+git clone https://gitlab.freedesktop.org/spice/spice.git
+git checkout v0.16.0
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    -Dgstreamer=no \
+    -Dmanual=false \
+    -Dtests=false \
+    && \
+ninja -C build -j8 && ninja -C build install
+
 # qemu
 git clone https://gitlab.com/qemu-project/qemu.git
 git checkout v11.0.1
@@ -334,7 +372,8 @@ mkdir build && cd build
     --enable-rutabaga-gfx \
     --enable-spice \
     --enable-spice-protocol \
-    --enable-slirp
+    --enable-slirp \
+    && \
 make -j8 && make install
 
 # vtest
