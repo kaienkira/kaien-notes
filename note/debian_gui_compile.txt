@@ -6,17 +6,16 @@ apt install \
     libexpat1-dev libxml2-dev \
     libpcre2-dev libjson-c-dev \
     libpng-dev libjpeg62-turbo-dev \
-    libssl-dev \
+    libssl-dev libicu-dev \
+    libseat-dev \
     libgbm-dev \
     libx11-dev libxext-dev x11proto-dev libxrandr-dev \
     xkb-data libxcb-xkb-dev \
-    libicu-dev libglib2.0-dev \
     libudev-dev libevdev-dev libmtdev-dev \
     libpango1.0-dev libcairo2-dev \
     libopus-dev libsasl2-dev \
     libepoxy-dev libstb-dev \
-    libslirp-dev \
-    libseat-dev libdisplay-info-dev libliftoff-dev \
+    libslirp-dev libliftoff-dev \
 
 wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
 dpkg -i cuda-keyring_1.1-1_all.deb
@@ -54,6 +53,44 @@ mkdir build && cd build
     --disable-docs \
     && \
 make -j8 && make install
+
+# glib2 (libffi,pcre2,zlib)
+git clone https://gitlab.gnome.org/GNOME/glib.git
+git checkout 2.89.0
+git submodule init
+git submodule update
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    -Dtests=false \
+    -Ddtrace=disabled \
+    -Dglib_debug=disabled \
+    -Dselinux=disabled \
+    -Dsysprof=disabled \
+    -Dsystemtap=disabled \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# hwdata
+git clone https://github.com/vcrhonek/hwdata.git
+git checkout v0.408
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    --disable-blacklist \
+    && \
+make -j8 && make install
+
+# libdisplay-info
+git clone https://gitlab.freedesktop.org/emersion/libdisplay-info.git
+git checkout 0.3.0
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
 
 # libglvnd (libx11,libxext,xorgproto)
 git clone https://gitlab.freedesktop.org/glvnd/libglvnd
@@ -256,7 +293,7 @@ PATH=$PATH:$GUI_ROOT_DIR/bin \
 LD_LIBRARY_PATH=$GUI_ROOT_DIR/lib \
 ninja -C build -j8 && ninja -C build install
 
-# sway
+# sway (libdisplay-info)
 git clone https://github.com/swaywm/sway.git
 git checkout 1.12
 meson setup build \
@@ -350,6 +387,8 @@ ninja -C build -j8 && ninja -C build install
 # spice (spice-protocol,glib2,pixman,openssl,opus,libudev,libjpeg-turbo,zlib,liblz4,libsasl2)
 git clone https://gitlab.freedesktop.org/spice/spice.git
 git checkout v0.16.0
+git submodule init
+git submodule update
 meson setup build \
     -Dprefix="$GUI_ROOT_DIR" \
     -Dbuildtype=release \
