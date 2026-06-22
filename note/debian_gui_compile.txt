@@ -2,16 +2,18 @@ apt install -t bookworm-backports linux-image-amd64 linux-headers-amd64
 apt install -t bookworm-backports meson
 apt install python3-venv
 apt install \
+    zlib1g-dev libbz2-dev libzstd-dev liblzma-dev liblz4-dev \
+    libexpat1-dev libxml2-dev \
+    libpcre2-dev libjson-c-dev \
+    libpng-dev libjpeg62-turbo-dev \
     libssl-dev \
-    zlib1g-dev libexpat1-dev libxml2-dev \
     libgbm-dev \
     libx11-dev libxext-dev x11proto-dev libxrandr-dev \
     xkb-data libxcb-xkb-dev \
-    libicu-dev libpng-dev libglib2.0-dev \
-    libpcre2-dev libjson-c-dev \
+    libicu-dev libglib2.0-dev \
     libudev-dev libevdev-dev libmtdev-dev \
     libpango1.0-dev libcairo2-dev \
-    libopus-dev libjpeg62-turbo-dev libsasl2-dev liblz4-dev \
+    libopus-dev libsasl2-dev \
     libepoxy-dev libstb-dev \
     libslirp-dev \
     libseat-dev libdisplay-info-dev libliftoff-dev \
