@@ -14,7 +14,7 @@ apt install \
     libudev-dev libevdev-dev libmtdev-dev \
     libpango1.0-dev libcairo2-dev \
     libopus-dev libsasl2-dev \
-    libepoxy-dev libstb-dev \
+    libstb-dev \
     libslirp-dev libliftoff-dev \
 
 wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
@@ -104,6 +104,19 @@ ninja -C build -j8 && ninja -C build install
 mkdir -p "$GUI_ROOT_DIR"/share/glvnd/egl_vendor.d
 ln -s /usr/share/glvnd/egl_vendor.d/* \
     "$GUI_ROOT_DIR"/share/glvnd/egl_vendor.d/
+
+# libepoxy
+git clone https://github.com/anholt/libepoxy.git
+git checkout 1.5.10
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    -Dglx=yes \
+    -Degl=yes \
+    -Dtests=false \
+    && \
+ninja -C build -j8 && ninja -C build install
 
 # libpciaccess (zlib)
 git clone https://gitlab.freedesktop.org/xorg/lib/libpciaccess.git
