@@ -291,7 +291,7 @@ cmake \
     && \
 cmake --build build -j8 && cmake --install build
 
-# wlroots (libdrm,wayland,wayland-protocols,libxkbcommon,pixman,libglvnd,glslang)
+# wlroots (libdrm,wayland,wayland-protocols,libxkbcommon,pixman,libglvnd,glslang,libliftoff)
 git clone https://gitlab.freedesktop.org/wlroots/wlroots.git
 git checkout 0.20.1
 PATH=$PATH:$GUI_ROOT_DIR/bin \
