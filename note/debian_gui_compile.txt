@@ -1,3 +1,10 @@
+# xanmod kernel
+wget -qO - https://dl.xanmod.org/archive.key | gpg --dearmor -vo /etc/apt/keyrings/xanmod-archive-keyring.gpg
+echo "deb [signed-by=/etc/apt/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/xanmod-release.list
+apt update 
+apt install -t bookworm-backports --no-install-recommends dkms libelf-dev clang lld llvm
+apt install linux-xanmod-lts-x64v3 nvidia-driver-595-open
+
 apt install -t bookworm-backports linux-image-amd64 linux-headers-amd64
 apt install -t bookworm-backports meson
 apt install python3-venv
@@ -14,13 +21,12 @@ apt install \
     libudev-dev libevdev-dev libmtdev-dev \
     libpango1.0-dev libcairo2-dev \
     libopus-dev libsasl2-dev \
-    libstb-dev \
-    libslirp-dev libliftoff-dev \
+    libstb-dev
 
 wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
 dpkg -i cuda-keyring_1.1-1_all.deb
 apt update
-apt install nvidia-open
+apt install nvidia-driver nvidia-driver-cuda
 
 brew install rustup
 rustup toolchain install stable
@@ -105,7 +111,7 @@ mkdir -p "$GUI_ROOT_DIR"/share/glvnd/egl_vendor.d
 ln -s /usr/share/glvnd/egl_vendor.d/* \
     "$GUI_ROOT_DIR"/share/glvnd/egl_vendor.d/
 
-# libepoxy
+# libepoxy (libglvnd,libx11)
 git clone https://github.com/anholt/libepoxy.git
 git checkout 1.5.10
 meson setup build \
@@ -131,6 +137,16 @@ ninja -C build -j8 && ninja -C build install
 # libdrm (libpciaccess,cairo)
 git clone https://gitlab.freedesktop.org/mesa/libdrm.git
 git checkout libdrm-2.4.134
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# libliftoff (libdrm)
+git clone https://gitlab.freedesktop.org/emersion/libliftoff.git
+git checkout 0.5.0
 meson setup build \
     -Dprefix="$GUI_ROOT_DIR" \
     -Dbuildtype=release \
@@ -358,7 +374,7 @@ git checkout 1.0.3
 cmake \
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
-    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib/cmake \
     -B build \
     && \
 cmake --build build -j8 && cmake --install build
@@ -409,6 +425,16 @@ meson setup build \
     -Dgstreamer=no \
     -Dmanual=false \
     -Dtests=false \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# libslirp (glib2)
+git clone https://gitlab.freedesktop.org/slirp/libslirp.git
+git checkout v4.9.3
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
     && \
 ninja -C build -j8 && ninja -C build install
 
