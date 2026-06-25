@@ -3,7 +3,7 @@ wget -qO - https://dl.xanmod.org/archive.key | gpg --dearmor -vo /etc/apt/keyrin
 echo "deb [signed-by=/etc/apt/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/xanmod-release.list
 apt update 
 apt install -t bookworm-backports --no-install-recommends dkms libelf-dev clang lld llvm
-apt install linux-xanmod-lts-x64v3 nvidia-driver-595-open
+apt install linux-xanmod-lts-x64v3 nvidia-driver-580-open
 
 apt install -t bookworm-backports linux-image-amd64 linux-headers-amd64
 apt install -t bookworm-backports meson
