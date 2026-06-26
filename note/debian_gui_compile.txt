@@ -332,6 +332,8 @@ meson setup build \
 PATH=$PATH:$GUI_ROOT_DIR/bin \
 LD_LIBRARY_PATH=$GUI_ROOT_DIR/lib \
 ninja -C build -j8 && ninja -C build install
+ln -s /usr/lib/x86_64-linux-gnu/gbm/nvidia-drm_gbm.so \
+    "$GUI_ROOT_DIR"/lib/gbm/
 
 # wlroots (libdrm,wayland,wayland-protocols,libxkbcommon,pixman,libglvnd,glslang,libliftoff)
 git clone https://gitlab.freedesktop.org/wlroots/wlroots.git
