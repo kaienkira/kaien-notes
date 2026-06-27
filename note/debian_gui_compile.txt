@@ -26,7 +26,6 @@ apt install \
     libseat-dev \
     libudev-dev libevdev-dev libmtdev-dev \
     libfreetype-dev libfontconfig-dev \
-    libfribidi-dev libharfbuzz-dev \
     libopus-dev libsasl2-dev \
     libstb-dev
 
@@ -535,26 +534,6 @@ meson setup build \
     && \
 ninja -C build -j8 && ninja -C build install
 
-# pango
-git clone https://gitlab.gnome.org/GNOME/pango.git
-git checkout 1.50.12
-meson setup build \
-    -Dprefix="$GUI_ROOT_DIR" \
-    -Dbuildtype=release \
-    -Dlibdir=lib \
-    && \
-ninja -C build -j8 && ninja -C build install
-
-# sway
-git clone https://github.com/swaywm/sway.git
-git checkout 1.12
-meson setup build \
-    -Dprefix="$GUI_ROOT_DIR" \
-    -Dbuildtype=release \
-    -Dlibdir=lib \
-    && \
-ninja -C build -j8 && ninja -C build install
-
 # aml
 git clone https://github.com/any1/aml.git
 git checkout v1.0.0
@@ -679,6 +658,28 @@ mkdir build && cd build
     && \
 make -j8 && make install
 
+###############################################################################
+# pango
+git clone https://gitlab.gnome.org/GNOME/pango.git
+git checkout 1.50.12
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# sway
+git clone https://github.com/swaywm/sway.git
+git checkout 1.12
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+###############################################################################
 # vtest
 ./virgl_test_server --venus
 export VK_DRIVER_FILES=/usr/share/vulkan/icd.d/virtio_icd.json
