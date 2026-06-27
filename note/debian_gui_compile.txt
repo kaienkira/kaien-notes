@@ -46,6 +46,9 @@ export PATH=$PATH\
 
 -------------------------------------------------------------------------------
 export GUI_ROOT_DIR=$HOME/local/gui
+export PATH=$GUI_ROOT_DIR/bin:$PATH
+export LD_LIBRARY_PATH=$GUI_ROOT_DIR/lib
+export ACLOCAL_PATH=$GUI_ROOT_DIR/share/aclocal
 export PKG_CONFIG_PATH=\
 $GUI_ROOT_DIR/lib/pkgconfig:\
 $GUI_ROOT_DIR/share/pkgconfig
@@ -65,6 +68,7 @@ mkdir build && cd build
     --disable-docs \
     && \
 make -j8 && make install
+rm -f "$GUI_ROOT_DIR"/lib/libffi.la
 
 # glib2 (libffi,pcre2,zlib)
 git clone https://gitlab.gnome.org/GNOME/glib.git
@@ -113,6 +117,43 @@ meson setup build \
     -Dlibdir=lib \
     && \
 ninja -C build -j8 && ninja -C build install
+
+# xcbproto
+git clone https://gitlab.freedesktop.org/xorg/proto/xcbproto.git
+git checkout xcb-proto-1.17.0
+./autogen.sh
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    && \
+make -j8 && make install
+
+# xorg-macros
+git clone https://gitlab.freedesktop.org/xorg/util/macros.git xorg-macros
+git checkout util-macros-1.20.2
+./autogen.sh
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    && \
+make -j8 && make install
+
+# libxdmcp
+git clone https://gitlab.freedesktop.org/xorg/lib/libxdmcp.git
+git checkout libXdmcp-1.1.5
+./autogen.sh
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    --sysconfdir="$GUI_ROOT_DIR"/etc \
+    --disable-static \
+    && \
+make -j8 && make install
+rm -f "$GUI_ROOT_DIR"/lib/libXdmcp.la
+
+# libx11
+git clone https://gitlab.freedesktop.org/xorg/lib/libx11.git
+git checkout
 
 # libglvnd (libx11,libxext,xorgproto)
 git clone https://gitlab.freedesktop.org/glvnd/libglvnd
@@ -326,8 +367,6 @@ cmake --build build -j8 && cmake --install build
 # mesa
 git clone https://gitlab.freedesktop.org/mesa/mesa.git
 git checkout mesa-26.1.3
-PATH=$GUI_ROOT_DIR/bin:$PATH \
-LD_LIBRARY_PATH=$GUI_ROOT_DIR/lib \
 meson setup build \
     --optimization 2 \
     -Dprefix="$GUI_ROOT_DIR" \
@@ -343,8 +382,6 @@ meson setup build \
     -Degl=enabled \
     -Dglvnd=enabled \
     && \
-PATH=$PATH:$GUI_ROOT_DIR/bin \
-LD_LIBRARY_PATH=$GUI_ROOT_DIR/lib \
 ninja -C build -j8 && ninja -C build install
 ln -s /usr/lib/x86_64-linux-gnu/gbm/nvidia-drm_gbm.so \
     "$GUI_ROOT_DIR"/lib/gbm/
@@ -352,16 +389,12 @@ ln -s /usr/lib/x86_64-linux-gnu/gbm/nvidia-drm_gbm.so \
 # wlroots (libdrm,wayland,wayland-protocols,libxkbcommon,pixman,libglvnd,glslang,libliftoff)
 git clone https://gitlab.freedesktop.org/wlroots/wlroots.git
 git checkout 0.20.1
-PATH=$GUI_ROOT_DIR/bin:$PATH \
-LD_LIBRARY_PATH=$GUI_ROOT_DIR/lib \
 meson setup build \
     -Dprefix="$GUI_ROOT_DIR" \
     -Dbuildtype=release \
     -Dlibdir=lib \
     -Drenderers=gles2,vulkan \
     && \
-PATH=$PATH:$GUI_ROOT_DIR/bin \
-LD_LIBRARY_PATH=$GUI_ROOT_DIR/lib \
 ninja -C build -j8 && ninja -C build install
 
 # sway (libdisplay-info)
