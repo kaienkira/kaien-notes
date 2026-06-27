@@ -24,9 +24,9 @@ apt install \
     libpng-dev libjpeg62-turbo-dev \
     libssl-dev libicu-dev \
     libseat-dev \
-    libgbm-dev \
     libudev-dev libevdev-dev libmtdev-dev \
-    libpango1.0-dev libcairo2-dev \
+    libfreetype-dev libfontconfig-dev \
+    libfribidi-dev libharfbuzz-dev \
     libopus-dev libsasl2-dev \
     libstb-dev
 
@@ -255,6 +255,42 @@ git checkout libXxf86vm-1.1.7
 make -j8 && make install
 rm -f "$GUI_ROOT_DIR"/lib/libXxf86vm.la
 
+# libxft (freetype2,fontconfig,xorgproto,libx11,libxrender)
+git clone https://gitlab.freedesktop.org/xorg/lib/libxft.git
+git checkout libXft-2.3.9
+./autogen.sh
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    --disable-static \
+    && \
+make -j8 && make install
+rm -f "$GUI_ROOT_DIR"/lib/libXft.la
+
+# pixman (libpng,glib2)
+git clone https://gitlab.freedesktop.org/pixman/pixman.git
+git checkout pixman-0.46.4
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# cairo (zlib,freetype2,fontconfig,glib2,libpng,libxcb,libx11,libxext,libxrender,pixman)
+git clone https://gitlab.freedesktop.org/cairo/cairo.git
+git checkout 1.18.4
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    -Dsymbol-lookup=disabled \
+    -Ddwrite=disabled \
+    -Dspectre=disabled \
+    -Dtests=disabled \
+    && \
+ninja -C build -j8 && ninja -C build install
+
 # libglvnd (xorgproto,libx11,libxext)
 git clone https://gitlab.freedesktop.org/glvnd/libglvnd
 git checkout v1.7.0
@@ -366,16 +402,6 @@ meson setup build \
     -Dlibdir=lib \
     -Denable-bash-completion=false \
     -Denable-zsh-completion=false \
-    && \
-ninja -C build -j8 && ninja -C build install
-
-# pixman (libpng,glib2)
-git clone https://gitlab.freedesktop.org/pixman/pixman.git
-git checkout pixman-0.46.4
-meson setup build \
-    -Dprefix="$GUI_ROOT_DIR" \
-    -Dbuildtype=release \
-    -Dlibdir=lib \
     && \
 ninja -C build -j8 && ninja -C build install
 
@@ -509,7 +535,17 @@ meson setup build \
     && \
 ninja -C build -j8 && ninja -C build install
 
-# sway (libdisplay-info)
+# pango
+git clone https://gitlab.gnome.org/GNOME/pango.git
+git checkout 1.50.12
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# sway
 git clone https://github.com/swaywm/sway.git
 git checkout 1.12
 meson setup build \
