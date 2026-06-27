@@ -23,6 +23,7 @@ apt install \
     libpcre2-dev libjson-c-dev \
     libpng-dev libjpeg62-turbo-dev \
     libssl-dev libicu-dev \
+    llvm-dev \
     libseat-dev \
     libudev-dev libevdev-dev libmtdev-dev \
     libfreetype-dev libfontconfig-dev \
@@ -584,6 +585,8 @@ cmake --build build -j8 && cmake --install build
 # gfxstream
 git clone https://android.googlesource.com/platform/hardware/google/gfxstream
 git checkout v0.1.2-gfxstream-release
+CFLAGS="-I$GUI_ROOT_DIR/include" \
+CXXFLAGS="-I$GUI_ROOT_DIR/include" \
 meson setup build \
     -Dprefix="$GUI_ROOT_DIR" \
     -Dbuildtype=release \
