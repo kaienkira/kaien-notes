@@ -134,6 +134,16 @@ git checkout util-macros-1.20.2
     && \
 make -j8 && make install
 
+# libxtrans
+git clone https://gitlab.freedesktop.org/xorg/lib/libxtrans.git
+git checkout xtrans-1.6.0
+./autogen.sh
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    && \
+make -j8 && make install
+
 # libxdmcp (xorgproto)
 git clone https://gitlab.freedesktop.org/xorg/lib/libxdmcp.git
 git checkout libXdmcp-1.1.5
