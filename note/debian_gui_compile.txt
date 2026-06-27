@@ -5,7 +5,16 @@ apt update
 apt install -t bookworm-backports --no-install-recommends dkms libelf-dev clang lld llvm
 apt install linux-xanmod-lts-x64v3 nvidia-driver-580-open
 
+# backports kernel
 apt install -t bookworm-backports linux-image-amd64 linux-headers-amd64
+
+# nvidia driver
+wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
+dpkg -i cuda-keyring_1.1-1_all.deb
+apt update
+apt install nvidia-driver nvidia-driver-cuda
+
+# dev deps
 apt install -t bookworm-backports meson
 apt install python3-venv python3-mako python3-yaml python3-packaging
 apt install \
@@ -24,11 +33,6 @@ apt install \
     libpango1.0-dev libcairo2-dev \
     libopus-dev libsasl2-dev \
     libstb-dev
-
-wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
-dpkg -i cuda-keyring_1.1-1_all.deb
-apt update
-apt install nvidia-driver nvidia-driver-cuda
 
 brew install rustup
 rustup toolchain install stable
@@ -90,9 +94,19 @@ git checkout v0.408
     && \
 make -j8 && make install
 
-# libdisplay-info
+# libdisplay-info (hwdata)
 git clone https://gitlab.freedesktop.org/emersion/libdisplay-info.git
 git checkout 0.3.0
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# xorgproto
+git clone https://gitlab.freedesktop.org/xorg/proto/xorgproto.git
+git checkout xorgproto-2025.1
 meson setup build \
     -Dprefix="$GUI_ROOT_DIR" \
     -Dbuildtype=release \
