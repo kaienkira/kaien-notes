@@ -15,14 +15,11 @@ apt update
 apt install nvidia-driver nvidia-driver-cuda
 
 # dev deps
-apt install -t bookworm-backports meson
-apt install python3-venv python3-mako python3-yaml python3-packaging
 apt install \
     zlib1g-dev libbz2-dev libzstd-dev liblzma-dev liblz4-dev \
-    libexpat1-dev libxml2-dev \
+    libgdbm-dev libnsl-dev libssl-dev libicu-dev libxml2-dev \
     libpcre2-dev libjson-c-dev \
     libpng-dev libjpeg62-turbo-dev \
-    libssl-dev libicu-dev \
     llvm-dev \
     libseat-dev \
     libudev-dev libevdev-dev libmtdev-dev \
@@ -65,6 +62,32 @@ mkdir build && cd build
     && \
 make -j8 && make install
 rm -f "$GUI_ROOT_DIR"/lib/libffi.la
+
+# expat
+git clone https://github.com/libexpat/libexpat.git
+git checkout R_2_8_2
+cd expat
+./buildconf.sh
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    --disable-static \
+    && \
+make -j8 && make install
+rm -f "$GUI_ROOT_DIR"/lib/libexpat.la
+
+# python
+git clone https://github.com/python/cpython.git
+git checkout v3.14.6
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    --enable-optimizations \
+    --enable-shared \
+    --without-static-libpython \
+    && \
+make -j8 && make install
+pip3 install packaging Mako PyYAML meson
 
 # glib2 (libffi,pcre2,zlib)
 git clone https://gitlab.gnome.org/GNOME/glib.git
