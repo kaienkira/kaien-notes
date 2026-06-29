@@ -87,7 +87,7 @@ git checkout v3.14.6
     --without-static-libpython \
     && \
 make -j8 && make install
-pip3 install packaging Mako PyYAML meson
+pip3 install packaging meson Mako PyYAML pyparsing
 
 # glib2 (libffi,pcre2,zlib)
 git clone https://gitlab.gnome.org/GNOME/glib.git
