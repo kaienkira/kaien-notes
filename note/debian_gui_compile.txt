@@ -16,8 +16,7 @@ apt install nvidia-driver nvidia-driver-cuda
 
 # dev deps
 apt install \
-    zlib1g-dev libbz2-dev libzstd-dev liblzma-dev liblz4-dev \
-    libgdbm-dev libnsl-dev libssl-dev libicu-dev libxml2-dev \
+    libgdbm-dev libnsl-dev libssl-dev libicu-dev \
     libpcre2-dev libjson-c-dev \
     libpng-dev libjpeg62-turbo-dev \
     llvm-dev \
@@ -48,6 +47,78 @@ $GUI_ROOT_DIR/share/pkgconfig
 export CMAKE_PREFIX_PATH=$GUI_ROOT_DIR
 export RUSTFLAGS='-Clink-arg=-L='$GUI_ROOT_DIR/lib
 
+# zlib
+git clone https://github.com/madler/zlib.git
+git checkout v1.3.2
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    && \
+make -j8 && make install
+rm -f "$GUI_ROOT_DIR"/lib/libz.a
+
+# bzip2
+git clone https://gitlab.com/bzip2/bzip2.git
+git checkout bzip2-1.0.8
+make -f Makefile-libbz2_so -j8 && \
+make clean && \
+make PREFIX="$GUI_ROOT_DIR" install && \
+cp libbz2.so.* "$GUI_ROOT_DIR"/lib && \
+cp bzip2-shared "$GUI_ROOT_DIR"/bin/bzip2 && \
+cd "$GUI_ROOT_DIR"/lib && \
+    ln -sf libbz2.so.1.0.8 libbz2.so && \
+    ln -sf libbz2.so.1.0.8 libbz2.so.1 && \
+cd "$GUI_ROOT_DIR"/bin && \
+    ln -sf bzip2 bzcat && \
+    ln -sf bzip2 bunzip2 && \
+rm -f "$GUI_ROOT_DIR"/lib/libbz2.a
+
+# zstd
+git clone https://github.com/facebook/zstd.git
+git checkout v1.5.7
+make prefix="$GUI_ROOT_DIR" -j8 && \
+make prefix="$GUI_ROOT_DIR" install
+rm -f "$GUI_ROOT_DIR"/lib/libzstd.a
+
+# lz4
+git clone https://github.com/lz4/lz4.git
+git checkout v1.10.0
+make BUILD_STATIC=no PREFIX="$GUI_ROOT_DIR" -j8 && \
+make BUILD_STATIC=no PREFIX="$GUI_ROOT_DIR" install
+
+# brotli
+git clone https://github.com/google/brotli.git
+git checkout v1.2.0
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
+    -B build \
+    && \
+cmake --build build -j8 && cmake --install build
+
+# expat
+git clone https://github.com/libexpat/libexpat.git
+git checkout R_2_8_2
+cd expat
+./buildconf.sh
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    --disable-static \
+    && \
+make -j8 && make install
+rm -f "$GUI_ROOT_DIR"/lib/libexpat.la
+
+# libxml2
+git clone https://gitlab.gnome.org/GNOME/libxml2.git
+git checkout v2.15.3
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    && \
+ninja -C build -j8 && ninja -C build install
+
 # libffi
 git clone https://github.com/libffi/libffi.git
 git checkout v3.6.0
@@ -62,19 +133,6 @@ mkdir build && cd build
     && \
 make -j8 && make install
 rm -f "$GUI_ROOT_DIR"/lib/libffi.la
-
-# expat
-git clone https://github.com/libexpat/libexpat.git
-git checkout R_2_8_2
-cd expat
-./buildconf.sh
-./configure \
-    --prefix="$GUI_ROOT_DIR" \
-    --libdir="$GUI_ROOT_DIR"/lib \
-    --disable-static \
-    && \
-make -j8 && make install
-rm -f "$GUI_ROOT_DIR"/lib/libexpat.la
 
 # python
 git clone https://github.com/python/cpython.git
@@ -127,7 +185,7 @@ meson setup build \
     && \
 ninja -C build -j8 && ninja -C build install
 
-# xorgproto
+# xorg-proto
 git clone https://gitlab.freedesktop.org/xorg/proto/xorgproto.git
 git checkout xorgproto-2025.1
 meson setup build \
@@ -137,7 +195,7 @@ meson setup build \
     && \
 ninja -C build -j8 && ninja -C build install
 
-# xcbproto
+# xcb-proto
 git clone https://gitlab.freedesktop.org/xorg/proto/xcbproto.git
 git checkout xcb-proto-1.17.0
 ./autogen.sh
@@ -147,7 +205,7 @@ git checkout xcb-proto-1.17.0
     && \
 make -j8 && make install
 
-# xorg-macros
+# xorg-util-macros
 git clone https://gitlab.freedesktop.org/xorg/util/macros.git xorg-macros
 git checkout util-macros-1.20.2
 ./autogen.sh
@@ -157,7 +215,7 @@ git checkout util-macros-1.20.2
     && \
 make -j8 && make install
 
-# libxtrans
+# xtrans
 git clone https://gitlab.freedesktop.org/xorg/lib/libxtrans.git
 git checkout xtrans-1.6.0
 ./autogen.sh
@@ -167,7 +225,7 @@ git checkout xtrans-1.6.0
     && \
 make -j8 && make install
 
-# libxdmcp (xorgproto)
+# libxdmcp (xorg-proto)
 git clone https://gitlab.freedesktop.org/xorg/lib/libxdmcp.git
 git checkout libXdmcp-1.1.5
 ./autogen.sh
@@ -180,7 +238,7 @@ git checkout libXdmcp-1.1.5
 make -j8 && make install
 rm -f "$GUI_ROOT_DIR"/lib/libXdmcp.la
 
-# libxau (xorgproto)
+# libxau (xorg-proto)
 git clone https://gitlab.freedesktop.org/xorg/lib/libxau.git
 git checkout libXau-1.0.12
 meson setup build \
@@ -190,7 +248,7 @@ meson setup build \
     && \
 ninja -C build -j8 && ninja -C build install
 
-# libxcb (xcbproto,libxdmcp,libxau)
+# libxcb (xcb-proto,libxdmcp,libxau)
 git clone https://gitlab.freedesktop.org/xorg/lib/libxcb.git
 git checkout libxcb-1.17.0
 ./autogen.sh
@@ -204,7 +262,7 @@ git checkout libxcb-1.17.0
 make -j8 && make install
 rm -f "$GUI_ROOT_DIR"/lib/libxcb*.la
 
-# libx11 (xorgproto,libxcb)
+# libx11 (xorg-proto,libxcb)
 git clone https://gitlab.freedesktop.org/xorg/lib/libx11.git
 git checkout libX11-1.8.13
 ./autogen.sh
@@ -217,7 +275,7 @@ git checkout libX11-1.8.13
 make -j8 && make install
 rm -f "$GUI_ROOT_DIR"/lib/libX11*.la
 
-# libxext (xorgproto,libx11)
+# libxext (xorg-proto,libx11)
 git clone https://gitlab.freedesktop.org/xorg/lib/libxext.git
 git checkout libXext-1.3.7
 ./autogen.sh
@@ -230,7 +288,7 @@ git checkout libXext-1.3.7
 make -j8 && make install
 rm -f "$GUI_ROOT_DIR"/lib/libXext.la
 
-# libxrender (xorgproto,libx11)
+# libxrender (xorg-proto,libx11)
 git clone https://gitlab.freedesktop.org/xorg/lib/libxrender.git
 git checkout libXrender-0.9.12
 ./autogen.sh
@@ -266,7 +324,7 @@ git checkout libxshmfence-1.3.3
 make -j8 && make install
 rm -f "$GUI_ROOT_DIR"/lib/libxshmfence.la
 
-# libxxf86vm (xorgproto,libx11,libxext)
+# libxxf86vm (xorg-proto,libx11,libxext)
 git clone https://gitlab.freedesktop.org/xorg/lib/libxxf86vm.git
 git checkout libXxf86vm-1.1.7
 ./autogen.sh
@@ -278,7 +336,7 @@ git checkout libXxf86vm-1.1.7
 make -j8 && make install
 rm -f "$GUI_ROOT_DIR"/lib/libXxf86vm.la
 
-# libxft (freetype2,fontconfig,xorgproto,libx11,libxrender)
+# libxft (freetype2,fontconfig,xorg-proto,libx11,libxrender)
 git clone https://gitlab.freedesktop.org/xorg/lib/libxft.git
 git checkout libXft-2.3.9
 ./autogen.sh
@@ -314,7 +372,7 @@ meson setup build \
     && \
 ninja -C build -j8 && ninja -C build install
 
-# libglvnd (xorgproto,libx11,libxext)
+# libglvnd (xorg-proto,libx11,libxext)
 git clone https://gitlab.freedesktop.org/glvnd/libglvnd
 git checkout v1.7.0
 meson setup build \
@@ -619,7 +677,7 @@ meson setup build \
     && \
 ninja -C build -j8 && ninja -C build install
 
-# rutabaga_ffi
+# rutabaga-ffi
 git clone https://github.com/magma-gpu/rutabaga_gfx.git
 git checkout v0.1.75
 meson setup build \
