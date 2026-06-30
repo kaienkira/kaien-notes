@@ -18,7 +18,6 @@ apt install nvidia-driver nvidia-driver-cuda
 apt install \
     libgdbm-dev libnsl-dev libssl-dev libicu-dev \
     libpcre2-dev libjson-c-dev \
-    libpng-dev libjpeg62-turbo-dev \
     llvm-dev \
     libseat-dev \
     libudev-dev libevdev-dev libmtdev-dev \
@@ -146,6 +145,48 @@ git checkout v3.14.6
     && \
 make -j8 && make install
 pip3 install packaging meson Mako PyYAML pyparsing
+
+# pcre2
+git clone https://github.com/PCRE2Project/pcre2.git
+git checkout pcre2-10.47
+git submodule init
+git submodule update
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    --disable-static \
+    --enable-jit \
+    --enable-pcre2-16 \
+    --enable-pcre2-32 \
+    --enable-pcre2grep-libz \
+    --enable-pcre2grep-libbz2 \
+    --enable-unicode \
+    && \
+make -j8 && make install
+
+# libpng (zlib)
+git clone https://github.com/pnggroup/libpng.git
+git checkout v1.6.58
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    --disable-static \
+    && \
+make -j8 && make install
+rm -f "$GUI_ROOT_DIR"/lib/libpng*.la
+
+# libjpeg-turbo
+git clone https://github.com/libjpeg-turbo/libjpeg-turbo.git
+git checkout 3.1.4.1
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
+    -DENABLE_STATIC=OFF \
+    -DWITH_JAVA=OFF \
+    -DWITH_JPEG8=ON \
+    -B build \
+    && \
+cmake --build build -j8 && cmake --install build
 
 # glib2 (libffi,pcre2,zlib)
 git clone https://gitlab.gnome.org/GNOME/glib.git
