@@ -125,3 +125,7 @@ dotnet-dump analyze <core_file>
 > clrstack
 > threads
 > clrstack -a
+
+> logopen dumpheap-stat.txt
+> dumpheap -stat
+> logclose
