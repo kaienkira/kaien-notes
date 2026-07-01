@@ -120,7 +120,7 @@ dotnet-trace collect -p <pid> --format Speedscope --duration 00:01:00
 https://www.speedscope.app/
 
 dotnet tool install -g dotnet-dump
-dotnet-dump collect <pid>
+dotnet-dump collect -p <pid>
 dotnet-dump analyze <core_file>
 > clrstack
 > threads
