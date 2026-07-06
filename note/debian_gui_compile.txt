@@ -17,7 +17,6 @@ apt install nvidia-driver nvidia-driver-cuda
 # dev deps
 apt install \
     libgdbm-dev libnsl-dev libssl-dev libicu-dev \
-    libpcre2-dev libjson-c-dev \
     llvm-dev \
     libseat-dev \
     libudev-dev libevdev-dev libmtdev-dev \
@@ -91,6 +90,7 @@ git checkout v1.2.0
 cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
     -B build \
     && \
 cmake --build build -j8 && cmake --install build
@@ -164,6 +164,19 @@ git submodule update
     && \
 make -j8 && make install
 
+# json-c
+git clone https://github.com/json-c/json-c.git
+git checkout json-c-0.19-20260627
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
+    -DENABLE_THREADING=ON \
+    -DENABLE_RDRAND=OFF \
+    -B build \
+    && \
+cmake --build build -j8 && cmake --install build
+
 # libpng (zlib)
 git clone https://github.com/pnggroup/libpng.git
 git checkout v1.6.58
@@ -181,6 +194,7 @@ git checkout 3.1.4.1
 cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
     -DENABLE_STATIC=OFF \
     -DWITH_JAVA=OFF \
     -DWITH_JPEG8=ON \
