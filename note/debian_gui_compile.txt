@@ -177,6 +177,9 @@ cmake \
     && \
 cmake --build build -j8 && cmake --install build
 
+# llvm
+git clone https://github.com/llvm/llvm-project.git
+
 # libpng (zlib)
 git clone https://github.com/pnggroup/libpng.git
 git checkout v1.6.58
