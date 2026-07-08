@@ -146,6 +146,25 @@ meson setup build \
     && \
 ninja -C build -j8 && ninja -C build install
 
+# llvm
+git clone https://github.com/llvm/llvm-project.git
+git checkout llvmorg-22.1.8
+cd llvm
+cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
+    -DCMAKE_INSTALL_DATAROOTDIR="$GUI_ROOT_DIR"/lib \
+    -DCMAKE_SKIP_RPATH=ON \
+    -DLLVM_BUILD_LLVM_DYLIB=ON \
+    -DLLVM_ENABLE_BINDINGS=OFF \
+    -DLLVM_ENABLE_FFI=ON \
+    -DLLVM_ENABLE_RTTI=ON \
+    -DLLVM_INCLUDE_BENCHMARKS=OFF \
+    -DLLVM_LINK_LLVM_DYLIB=ON \
+    -B build \
+    && \
+cmake --build build -j8 && cmake --install build
+
 # pcre2
 git clone https://github.com/PCRE2Project/pcre2.git
 git checkout pcre2-10.47
@@ -176,9 +195,6 @@ cmake \
     -B build \
     && \
 cmake --build build -j8 && cmake --install build
-
-# llvm
-git clone https://github.com/llvm/llvm-project.git
 
 # libpng (zlib)
 git clone https://github.com/pnggroup/libpng.git
