@@ -19,7 +19,7 @@ apt install \
     libgdbm-dev libnsl-dev libssl-dev libicu-dev \
     libseat-dev libudev-dev \
     libfreetype-dev libfontconfig-dev \
-    libsasl2-dev \
+    libsasl2-dev
 
 brew install rustup
 rustup toolchain install stable
