@@ -17,7 +17,6 @@ apt install nvidia-driver nvidia-driver-cuda
 # dev deps
 apt install \
     libgdbm-dev libnsl-dev libssl-dev libicu-dev \
-    llvm-dev \
     libseat-dev \
     libudev-dev libevdev-dev libmtdev-dev \
     libfreetype-dev libfontconfig-dev \
