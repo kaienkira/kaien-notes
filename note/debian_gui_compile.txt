@@ -17,11 +17,9 @@ apt install nvidia-driver nvidia-driver-cuda
 # dev deps
 apt install \
     libgdbm-dev libnsl-dev libssl-dev libicu-dev \
-    libseat-dev \
-    libudev-dev libevdev-dev libmtdev-dev \
+    libseat-dev libudev-dev \
     libfreetype-dev libfontconfig-dev \
-    libopus-dev libsasl2-dev \
-    libstb-dev
+    libsasl2-dev \
 
 brew install rustup
 rustup toolchain install stable
@@ -181,6 +179,7 @@ git submodule update
     --enable-unicode \
     && \
 make -j8 && make install
+rm -f "$GUI_ROOT_DIR"/lib/libpcre2*.la
 
 # json-c
 git clone https://github.com/json-c/json-c.git
@@ -501,6 +500,30 @@ meson setup build \
     && \
 ninja -C build -j8 && ninja -C build install
 
+# libevdev
+git clone https://gitlab.freedesktop.org/libevdev/libevdev.git
+git checkout libevdev-1.13.6
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    -Ddocumentation=disabled \
+    -Dtests=disabled \
+    && \
+ninja -C build -j8 && ninja -C build install
+
+# mtdev
+git clone http://bitmath.org/git/mtdev.git
+git checkout v1.1.7
+./autogen.sh
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    --disable-static \
+    && \
+make -j8 && make install
+rm -f "$GUI_ROOT_DIR"/lib/libmtdev.la
+
 # libinput (libudev,libevdev,mtdev)
 git clone https://gitlab.freedesktop.org/libinput/libinput.git
 git checkout 1.31.3
@@ -761,6 +784,18 @@ meson setup build \
     -Dfeatures=gfxstream \
     && \
 ninja -C build -j8 && ninja -C build install
+
+# opus
+git clone https://gitlab.xiph.org/xiph/opus.git
+git checkout v1.6.1
+autoreconf -isf
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    --disable-static \
+    && \
+make -j8 && make install
+rm -f "$GUI_ROOT_DIR"/lib/libopus.la
 
 # spice-protocol
 git clone https://gitlab.freedesktop.org/spice/spice-protocol.git
