@@ -10,7 +10,9 @@ $HOME/local/gui/bin/qemu-system-x86_64 \
     -m 8192 -smp 8 -cpu host \
     -drive if=pflash,format=raw,unit=0,file=$HOME/local/gui/share/qemu/edk2-x86_64-code.fd,readonly=on \
     -drive if=pflash,format=raw,unit=1,file=$HOME/local/vm/gentoo/gentoo_vars.fd \
-    -hda $HOME/local/vm/gentoo/gentoo.qcow2 \
+    -device virtio-scsi-pci,id=scsi0 \
+    -drive file=$HOME/local/vm/gentoo/gentoo.qcow2,id=disk0,if=none,discard=unmap,detect-zeroes=unmap \
+    -device scsi-hd,drive=disk0,bus=scsi0.0 \
     -nic user,model=virtio \
     -display egl-headless \
     -device virtio-vga-gl,xres=1920,yres=1080,hostmem=8G,blob=true,venus=true \

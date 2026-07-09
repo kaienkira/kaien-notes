@@ -3,7 +3,9 @@
 qemu-system-x86_64 \
     -machine type=q35,smm=on,accel=kvm \
     -m 8192 -smp 8 -cpu host \
-    -hda $HOME/local/vm/cachyos/cachyos.qcow2 \
+    -device virtio-scsi-pci,id=scsi0 \
+    -drive file=$HOME/local/vm/cachyos/cachyos.qcow2,id=disk0,if=none,discard=unmap,detect-zeroes=unmap \
+    -device scsi-hd,drive=disk0,bus=scsi0.0 \
     -nic user,model=virtio \
     -display egl-headless \
     -device virtio-vga-gl,xres=1920,yres=1080,hostmem=8G,blob=true,venus=true \
