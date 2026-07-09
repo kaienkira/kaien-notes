@@ -17,9 +17,7 @@ apt install nvidia-driver nvidia-driver-cuda
 # dev deps
 apt install \
     libgdbm-dev libnsl-dev libssl-dev libicu-dev \
-    libseat-dev libudev-dev \
-    libfreetype-dev libfontconfig-dev \
-    libsasl2-dev
+    libseat-dev libudev-dev libcurl4-openssl-dev
 
 brew install rustup
 rustup toolchain install stable
@@ -864,6 +862,19 @@ meson setup build \
     -Dlibdir=lib \
     && \
 ninja -C build -j8 && ninja -C build install
+
+# libsasl
+git clone https://github.com/cyrusimap/cyrus-sasl.git
+git checkout cyrus-sasl-2.1.28
+./autogen.sh
+./configure \
+    --prefix="$GUI_ROOT_DIR" \
+    --libdir="$GUI_ROOT_DIR"/lib \
+    --disable-static \
+    && \
+make -j8 && make install
+rm -f "$GUI_ROOT_DIR"/lib/libsasl2.la
+rm -f "$GUI_ROOT_DIR"/lib/sasl2/*.la
 
 # qemu
 git clone https://gitlab.com/qemu-project/qemu.git
