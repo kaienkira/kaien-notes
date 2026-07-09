@@ -239,6 +239,19 @@ done
 make -j8 && make install
 rm -f "$GUI_ROOT_DIR"/lib/libfreetype.la
 
+# fontconfig
+git clone https://gitlab.freedesktop.org/fontconfig/fontconfig.git
+git checkout 2.18.1
+meson setup build \
+    -Dprefix="$GUI_ROOT_DIR" \
+    -Dbuildtype=release \
+    -Dlibdir=lib \
+    -Ddoc=disabled \
+    -Dtests=disabled \
+    -Dxml-backend=expat \
+    && \
+ninja -C build -j8 && ninja -C build install
+
 # glib2 (libffi,pcre2,zlib)
 git clone https://gitlab.gnome.org/GNOME/glib.git
 git checkout 2.89.0
