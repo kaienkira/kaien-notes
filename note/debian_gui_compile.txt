@@ -105,7 +105,7 @@ rm -f "$GUI_ROOT_DIR"/lib/libexpat.la
 
 # libffi
 git clone https://github.com/libffi/libffi.git
-git checkout v3.6.0
+git checkout v3.7.1
 ./autogen.sh
 mkdir build && cd build
 ../configure \
