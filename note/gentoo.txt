@@ -99,11 +99,13 @@ eselect locale list
 ===============================================================================
 vi /etc/portage/package.use/gui
     x11-libs/libdrm video_cards_vmware
+    x11-libs/libxkbcommon X
     media-libs/mesa xa
     media-libs/libglvnd X
     media-libs/freetype harfbuzz
 
-emerge \
+emerge
+    x11-apps/mesa-progs
     x11-drivers/xf86-video-vmware
     app-emulation/open-vm-tools
     gui-wm/sway
