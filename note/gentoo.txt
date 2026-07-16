@@ -83,6 +83,7 @@
     VIDEO_CARDS="amdgpu"
     VIDEO_CARDS="iris"
     VIDEO_CARDS="dummy"
+    USE="gles2 vulkan wayland X"
 ===============================================================================
 emerge
     -u --update
@@ -100,13 +101,8 @@ eselect locale list
 ===============================================================================
 vi /etc/portage/package.use/gui
     gui-apps/swaybg gdk-pixbuf
-    media-libs/mesa xa
-    media-libs/libglvnd X
     media-libs/freetype harfbuzz
     x11-libs/gdk-pixbuf jpeg
-    x11-libs/libdrm video_cards_vmware
-    x11-libs/libxkbcommon X
-    x11-terms/kitty wayland
 
 emerge
     app-emulation/open-vm-tools
