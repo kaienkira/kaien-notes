@@ -99,16 +99,22 @@ eselect profile list
 eselect locale list
 ===============================================================================
 vi /etc/portage/package.use/gui
+    gui-apps/swaybg gdk-pixbuf
     media-libs/mesa xa
     media-libs/libglvnd X
     media-libs/freetype harfbuzz
+    x11-libs/gdk-pixbuf jpeg
     x11-libs/libdrm video_cards_vmware
     x11-libs/libxkbcommon X
+    x11-terms/kitty wayland
 
 emerge
-    x11-apps/mesa-progs
-    x11-drivers/xf86-video-vmware
     app-emulation/open-vm-tools
+    gui-apps/foot
     gui-apps/swaybg
     gui-wm/sway
+    media-fonts/hack
+    x11-apps/mesa-progs
+    x11-drivers/xf86-video-vmware
+    x11-terms/kitty
 ===============================================================================
