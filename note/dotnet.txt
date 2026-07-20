@@ -32,6 +32,15 @@ dotnet-dump analyze <core_file>
 
 dotnet tool install -g dotnet-sos
 dotnet-sos install
+lldb
+> attach <pid>
+> thread select <thread_id>
+> frame select <frame>
+> clrstack -a
+> sos ClrStack
+> sos DumpStackObjects
+> verifyobj <addr>
+> dumpobj <addr>
 
 ------------------------------------------------------------------------------
 <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
