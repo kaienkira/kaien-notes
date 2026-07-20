@@ -102,30 +102,5 @@ System.Threading.Monitor
 ===============================================================================
 
 ===============================================================================
-export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-
-===============================================================================
 #nullable enable
-
 ===============================================================================
-<PropertyGroup>
-  <Nullable>enable</Nullable>
-</PropertyGroup>
-===============================================================================
-dotnet tool install -g dotnet-trace
-dotnet-trace ps
-dotnet-trace list-profiles
-dotnet-trace collect -p <pid> --format Speedscope --duration 00:01:00
-https://www.speedscope.app/
-
-dotnet tool install -g dotnet-dump
-dotnet-dump collect -p <pid>
-dotnet-dump analyze <core_file>
-> clrstack
-> threads
-> clrstack -a
-
-> logopen dumpheap-stat.txt
-> dumpheap -stat
-> logclose
