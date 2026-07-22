@@ -806,7 +806,7 @@ ninja -C build -j8 && ninja -C build install
 
 # rutabaga-ffi
 git clone https://github.com/magma-gpu/rutabaga_gfx.git
-git checkout v0.1.75
+git checkout v0.1.80
 meson setup build \
     -Dprefix="$GUI_ROOT_DIR" \
     -Dbuildtype=release \
