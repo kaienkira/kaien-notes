@@ -11,6 +11,9 @@ passwd
 rm -f ~/.termux_authinfo
 > ssh root@<phone_ip> -p8022
 
+*. wake lock
+termux-wake-lock
+
 *. x11
 pkg install x11-repo
 pkg install termux-x11-nightly
