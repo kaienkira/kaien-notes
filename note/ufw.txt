@@ -1,0 +1,3 @@
+ufw status
+ufw allow <port>/<protocol>
+ufw allow 22/tcp

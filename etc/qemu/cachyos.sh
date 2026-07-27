@@ -6,7 +6,7 @@ qemu-system-x86_64 \
     -device virtio-scsi-pci,id=scsi0 \
     -drive file=$HOME/local/vm/cachyos/cachyos.qcow2,id=disk0,if=none,discard=unmap,detect-zeroes=unmap \
     -device scsi-hd,drive=disk0,bus=scsi0.0 \
-    -nic user,model=virtio \
+    -nic user,model=virtio,hostfwd=tcp::5801-:22 \
     -display egl-headless \
     -device virtio-vga-gl,xres=1920,yres=1080,hostmem=8G,blob=true,venus=true \
     -device virtio-serial-pci \
