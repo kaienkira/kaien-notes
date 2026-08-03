@@ -2,8 +2,9 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_CLI_UI_LANGUAGE=en
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 
-export DOTNET_TieredCompilation=0
-export DOTNET_TieredPGO=0
+export DOTNET_TieredCompilation=1       # System.Runtime.TieredCompilation
+export DOTNET_TC_QuickJit=1             # System.Runtime.TieredCompilation.QuickJit
+export DOTNET_TieredPGO=1
 
 export DOTNET_gcServer=1                # System.GC.Server
 export DOTNET_gcConcurrent=1            # System.GC.Concurrent
