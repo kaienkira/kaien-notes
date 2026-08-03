@@ -615,7 +615,7 @@ ninja -C build -j8 && ninja -C build install
 
 # vulkan-headers
 git clone https://github.com/KhronosGroup/Vulkan-Headers
-git checkout vulkan-sdk-1.4.350.0
+git checkout vulkan-sdk-1.4.357.0
 cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
@@ -628,7 +628,7 @@ cmake --build build -j8 && cmake --install build
 
 # vulkan-icd-loader (vulkan-headers,libxrandr)
 git clone https://github.com/KhronosGroup/Vulkan-Loader
-git checkout vulkan-sdk-1.4.350.0
+git checkout vulkan-sdk-1.4.357.0
 cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
@@ -641,7 +641,7 @@ cmake --build build -j8 && cmake --install build
 
 # vulkan-utility-libraries
 git clone https://github.com/KhronosGroup/Vulkan-Utility-Libraries
-git checkout vulkan-sdk-1.4.350.0
+git checkout vulkan-sdk-1.4.357.0
 cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
@@ -654,7 +654,7 @@ cmake --build build -j8 && cmake --install build
 
 # spirv-headers
 git clone https://github.com/KhronosGroup/SPIRV-Headers
-git checkout vulkan-sdk-1.4.350.0
+git checkout vulkan-sdk-1.4.357.0
 cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
@@ -667,7 +667,7 @@ cmake --build build -j8 && cmake --install build
 
 # spirv-tools
 git clone https://github.com/KhronosGroup/SPIRV-Tools
-git checkout vulkan-sdk-1.4.350.0
+git checkout vulkan-sdk-1.4.357.0
 cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
@@ -684,7 +684,7 @@ cmake --build build -j8 && cmake --install build
 
 # vulkan-validation-layers
 git clone https://github.com/KhronosGroup/Vulkan-ValidationLayers
-git checkout vulkan-sdk-1.4.350.0
+git checkout vulkan-sdk-1.4.357.0
 cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
@@ -698,7 +698,7 @@ cmake --build build -j8 && cmake --install build
 
 # glslang
 git clone https://github.com/KhronosGroup/glslang
-git checkout vulkan-sdk-1.4.350.0
+git checkout vulkan-sdk-1.4.357.0
 cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
@@ -712,7 +712,7 @@ cmake --build build -j8 && cmake --install build
 
 # mesa
 git clone https://gitlab.freedesktop.org/mesa/mesa.git
-git checkout mesa-26.1.4
+git checkout mesa-26.1.6
 meson setup build \
     --optimization 2 \
     -Dprefix="$GUI_ROOT_DIR" \
