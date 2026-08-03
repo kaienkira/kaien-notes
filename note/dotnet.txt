@@ -1,6 +1,31 @@
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_CLI_UI_LANGUAGE=en
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+
+export DOTNET_TieredCompilation=0
+export DOTNET_TieredPGO=0
+
+export DOTNET_gcServer=1                # System.GC.Server
+export DOTNET_gcConcurrent=1            # System.GC.Concurrent
+export DOTNET_GCLOHThreshold=0x1D4C0    # System.GC.LOHThreshold  (120000)
+export DOTNET_GCHeapHardLimit=0xC800000 # System.GC.HeapHardLimit (209715200)
+export DOTNET_GCHeapHardLimitSOH        # System.GC.HeapHardLimitSOH (Small Object Heap)
+export DOTNET_GCHeapHardLimitLOH        # System.GC.HeapHardLimitLOH (Large Object Heap)
+export DOTNET_GCHeapHardLimitPOH        # System.GC.HeapHardLimitPOH (Pinned Object Heap)
+export DOTNET_GCHeapHardLimitSOHPercent # System.GC.HeapHardLimitSOHPercent
+export DOTNET_GCHeapHardLimitLOHPercent # System.GC.HeapHardLimitLOHPercent
+export DOTNET_GCHeapHardLimitPOHPercent # System.GC.HeapHardLimitPOHPercent
+export DOTNET_GCLargePages=1
+
+export DOTNET_GCRegionRange             # System.GC.RegionRange
+export DOTNET_GCRegionSize              # System.GC.RegionSize
+export DOTNET_GCHighMemPercent          # System.GC.HighMemoryPercent
+export DOTNET_GCRetainVM                # System.GC.RetainVM
+export DOTNET_GCConserveMemory=0~9      # System.GC.ConserveMemory
+export DOTNET_GCDynamicAdaptationMode
+
+export DOTNET_GCPath=<standalone_gc_lib_path>
+export DOTNET_gcAllowVeryLargeObjects=1
 ------------------------------------------------------------------------------
 dotnet --list-sdks
 dotnet --list-runtimes
@@ -44,11 +69,15 @@ lldb
 > dumpobj <addr>
 
 ------------------------------------------------------------------------------
-<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-
-<PublishTrimmed>true</PublishTrimmed>
-<PublishSingleFile>true</PublishSingleFile>
-
 <PropertyGroup>
+  <ServerGarbageCollection>true</ServerGarbageCollection>
+  <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+  <RetainVMGarbageCollection>true</RetainVMGarbageCollection>
   <Nullable>enable</Nullable>
+  <PublishTrimmed>true</PublishTrimmed>
+  <PublishSingleFile>true</PublishSingleFile>
+  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 </PropertyGroup>
+
+------------------------------------------------------------------------------
+GCSettings.LatencyMode = GCLatencyMode.SustainedLowLatency;
