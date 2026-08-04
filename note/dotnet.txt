@@ -45,6 +45,7 @@ dotnet-trace ps
 dotnet-trace list-profiles
 dotnet-trace collect -p <pid> --format Speedscope --duration 00:01:00
 dotnet-trace collect --format Speedscope -- <program> <args>
+dotnet-trace collect -p <pid> --profile gc-verbose
 https://www.speedscope.app/
 
 dotnet tool install -g dotnet-dump
