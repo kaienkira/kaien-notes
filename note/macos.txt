@@ -4,6 +4,10 @@
     defaults write com.apple.finder AppleShowAllFiles TRUE
     键盘快捷建<command + shift + .>
 
+*. 更新系统
+    softwareupdate -l
+    softwareupdate -ia
+
 *. 查看CPU型号
     sysctl -n machdep.cpu.brand_string
 
