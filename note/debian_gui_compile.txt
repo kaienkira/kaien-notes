@@ -570,7 +570,7 @@ ninja -C build -j8 && ninja -C build install
 
 # wayland (expat,libffi,libxml2)
 git clone https://gitlab.freedesktop.org/wayland/wayland.git
-git checkout 1.25.0
+git checkout 1.26.0
 meson setup build \
     -Dprefix="$GUI_ROOT_DIR" \
     -Dbuildtype=release \
