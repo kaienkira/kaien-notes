@@ -105,6 +105,9 @@ vi /etc/portage/package.use/gui
     x11-libs/gdk-pixbuf jpeg
 
 emerge
+    app-i18n/fcitx
+    app-i18n/fcitx-chinese-addons
+    app-i18n/fcitx-configtool
     app-emulation/open-vm-tools
     gui-apps/foot
     gui-apps/swaybg
@@ -112,5 +115,6 @@ emerge
     media-fonts/hack
     x11-apps/mesa-progs
     x11-drivers/xf86-video-vmware
+    x11-misc/i3status
     x11-terms/kitty
 ===============================================================================
