@@ -35,4 +35,9 @@ local-unbound-setup 8.8.8.8
 ===============================================================================
 *. gui
     pw groupmod video -m <user>
+    pkg install drm-kmod
+    sysrc kld_list+="vmwgfx"
+    pkg install mesa-dri mesa-libs
+    sysrc seatd_enable="YES"
+    service seatd start
 ===============================================================================

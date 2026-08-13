@@ -76,6 +76,9 @@ swtpm socket --tpm2 --tpmstate dir=tpm \
 -display gtk,gl=on
 -device virtio-vga-gl,xres=1920,yres=1080
 
+-vga vmware
+-device vmware-svga,vgamem_mb=64
+
 -vga qxl
 
 -display egl-headless
