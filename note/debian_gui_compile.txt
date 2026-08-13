@@ -121,7 +121,7 @@ rm -f "$GUI_ROOT_DIR"/lib/libffi.la
 
 # python
 git clone https://github.com/python/cpython.git
-git checkout v3.14.6
+git checkout v3.14.7
 ./configure \
     --prefix="$GUI_ROOT_DIR" \
     --libdir="$GUI_ROOT_DIR"/lib \
