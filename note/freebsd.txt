@@ -6,10 +6,6 @@
     pw groupmod <group> -m <newmembers>
 
 ===============================================================================
-*. update system
-    freebsd-update fetch
-    freebsd-update install
-===============================================================================
 *. packages
     vi /usr/local/etc/pkg.conf
         PKG_ENV {
@@ -18,7 +14,8 @@
 
     pkg bootstrap
     pkg info
-    pkg install htop
+    pkg update -f
+    pkg install <package_name>
 
 ===============================================================================
 *. dns
