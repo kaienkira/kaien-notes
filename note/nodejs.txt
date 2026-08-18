@@ -1,2 +1,5 @@
 npm init
 npm install [-g] <package_name>
+
+npm config get prefix
+npm config set prefix=~/local/npm
