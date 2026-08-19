@@ -534,7 +534,7 @@ ninja -C build -j8 && ninja -C build install
 
 # libevdev
 git clone https://gitlab.freedesktop.org/libevdev/libevdev.git
-git checkout libevdev-1.13.6
+git checkout libevdev-1.13.7
 meson setup build \
     -Dprefix="$GUI_ROOT_DIR" \
     -Dbuildtype=release \
