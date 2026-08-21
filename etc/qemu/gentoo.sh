@@ -6,7 +6,8 @@ __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json \
 VK_DRIVER_FILES=/usr/share/vulkan/icd.d/nvidia_icd.json \
 LD_LIBRARY_PATH=$HOME/local/gui/lib/ \
 $HOME/local/gui/bin/qemu-system-x86_64 \
-    -machine type=q35,smm=on,accel=kvm \
+    -machine type=q35,smm=on \
+    -accel kvm,honor-guest-pat=on \
     -m 8192 -smp 8 -cpu host \
     -drive if=pflash,format=raw,unit=0,file=$HOME/local/gui/share/qemu/edk2-x86_64-code.fd,readonly=on \
     -drive if=pflash,format=raw,unit=1,file=$HOME/local/vm/gentoo/gentoo_vars.fd \

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 qemu-system-x86_64 \
-    -machine type=q35,smm=on,accel=kvm \
+    -machine type=q35,smm=on \
+    -accel kvm,honor-guest-pat=on \
     -m 8192 -smp 8 -cpu host \
     -device virtio-scsi-pci,id=scsi0 \
     -drive file=$HOME/local/vm/cachyos/cachyos.qcow2,id=disk0,if=none,discard=unmap,detect-zeroes=unmap \
