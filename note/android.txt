@@ -2,6 +2,8 @@
 -*- Commandline Tools -*-
 -------------------------------------------------------------------------------
 *. 列出所有包
+    android sdk list --all
+*. 列出安装包
     android sdk list
 *. 安装卸载包
     android sdk install <package>
