@@ -240,7 +240,7 @@ rm -f "$GUI_ROOT_DIR"/lib/libfreetype.la
 
 # fontconfig
 git clone https://gitlab.freedesktop.org/fontconfig/fontconfig.git
-git checkout 2.18.2
+git checkout 2.18.3
 meson setup build \
     -Dprefix="$GUI_ROOT_DIR" \
     -Dbuildtype=release \
