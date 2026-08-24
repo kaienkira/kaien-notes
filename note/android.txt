@@ -1,20 +1,13 @@
 ===============================================================================
 -*- Commandline Tools -*-
 -------------------------------------------------------------------------------
-*. cmdline-tools/latest/bin/sdkmanager
-    [] 设置代理
-        sdkmanager --proxy=socks --proxy_host=<ip> --proxy_port=<port> ...
-    [] 列出所有包
-        sdkmanager --list
-    [] 安装卸载包
-        sdkmanager <packages>
-        sdkmanager --uninstall <packages>
-    [] 更新所有包
-        sdkmanager --update
-
-    sdkmanager \
-        "build-tools;<version>" \
-        "platforms;android-<version>" \
+*. 列出所有包
+    android sdk list
+*. 安装卸载包
+    android sdk install <package>
+    android sdk remove <package>
+*. 更新所有包
+    android sdk update
 
 *. cmdline-tools/latest/bin/avdmanager
     avdmanager list
