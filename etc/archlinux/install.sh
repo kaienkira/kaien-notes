@@ -72,7 +72,7 @@ copy_file "$script_path"/i3_config ~/.config/i3/config 600
 copy_file "$script_path"/i3status_config ~/.config/i3status/config 600
 copy_file "$script_path"/rofi_config.rasi ~/.config/rofi/config.rasi 600
 copy_file "$script_path"/sway_config ~/.config/sway/config 600
-copy_file "$script_path"/hyprland.conf ~/.config/hypr/hyprland.conf 600
+copy_file "$script_path"/hyprland.lua ~/.config/hypr/hyprland.lua 600
 copy_file "$script_path"/waybar_config_hyprland ~/.config/waybar/config_hyprland 600
 copy_file "$script_path"/xfce4_terminal_terminalrc ~/.config/xfce4/terminal/terminalrc 600
 copy_file "$script_path"/xfce4_terminal_accels.scm ~/.config/xfce4/terminal/accels.scm 600
