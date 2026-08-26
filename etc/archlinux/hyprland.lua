@@ -7,7 +7,7 @@ hl.config({
     },
 })
 
-hl.bind("SUPER + return", hl.dsp.exec_cmd("foot"))
+hl.bind("SUPER + return", hl.dsp.exec_cmd("kitty"))
 hl.bind("SUPER + R", hl.dsp.exec_cmd("wofi -S drun -O alphabetical"))
 hl.bind("SUPER + SHIFT + Q", hl.dsp.window.close())
 hl.bind("SUPER + SHIFT + E", hl.dsp.exit())
