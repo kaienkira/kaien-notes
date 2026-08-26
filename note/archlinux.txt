@@ -37,7 +37,7 @@
                      (Linux filesystem: 0FC63DAF-8483-4772-8E79-3D69D8477DE4)
         w
 
-    parted -s \
+    parted -s /dev/sda \
         mklabel gpt \
         mkpart esp fat32 1MiB 551MiB \
         mkpart primary linux-swap 551MiB 2599MiB \
@@ -62,7 +62,7 @@
     fdisk -l /dev/sda
 
     # partition
-    fdisk
+    fdisk /dev/sda
         g -> create a new empty GPT partition table
         # create esp
         n -> add a new partition
@@ -107,7 +107,7 @@
 
 # Disk (bios + mbr)
     # partition
-    fdisk
+    fdisk /dev/sda
         o -> create a new empty DOS partition table
         # create swap partition
         n -> add a new partition
@@ -131,7 +131,7 @@
                      (Linux)
         w
 
-    parted -s \
+    parted -s /dev/sda \
         mklabel msdos \
         mkpart primary linux-swap 1MiB 2049MiB \
         mkpart primary ext4 2049MiB 100% \
