@@ -314,6 +314,11 @@
     nmcli device
     ---------------------------------------------------------------------------
 
+# disable systemd-userdbd
+    systemctl stop systemd-userdbd.socket systemd-userdbd.service
+    systemctl disable systemd-userdbd.socket systemd-userdbd.service
+    systemctl mask systemd-userdbd.socket systemd-userdbd.service
+
 # Root Password
     passwd
 
