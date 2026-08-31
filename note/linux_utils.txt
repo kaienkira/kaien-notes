@@ -1,2 +1,6 @@
 fscrypt setup
 fscrypt encrypt <dir>
+
+gocryptfs -init ~/cipher
+gocryptfs ~/cipher ~/plain
+gocryptfs -u ~/plain
