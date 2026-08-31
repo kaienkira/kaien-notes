@@ -3,4 +3,4 @@ fscrypt encrypt <dir>
 
 gocryptfs -init ~/cipher
 gocryptfs ~/cipher ~/plain
-gocryptfs -u ~/plain
+fusermount3 -u ~/plain
