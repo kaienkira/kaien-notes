@@ -1,1 +1,2 @@
-fscrypt setup <dir>
+fscrypt setup
+fscrypt encrypt <dir>
