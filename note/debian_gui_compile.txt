@@ -713,7 +713,7 @@ cmake --build build -j8 && cmake --install build
 
 # mesa
 git clone https://gitlab.freedesktop.org/mesa/mesa.git
-git checkout mesa-26.2.1
+git checkout mesa-26.2.2
 meson setup build \
     --optimization 2 \
     -Dprefix="$GUI_ROOT_DIR" \
