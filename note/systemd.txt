@@ -33,7 +33,9 @@ systemctl reset-failed
 systemctl list-dependencies
 
 # 最多执行30s
-systemd-run --property=RuntimeMaxSec=30 <command>
+systemd-run --user --property=RuntimeMaxSec=30 <command>
+# 10分钟后执行
+systemd-run --user --on-active=10min <command>
 
 ===============================================================================
 -*- Unit -*-
