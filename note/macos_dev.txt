@@ -42,3 +42,5 @@
     rm -rf ~/Library/Caches/org.swift.swiftpm/*
     export all_proxy=socks5://<proxy>
     xcodebuild -resolvePackageDependencies -scmProvider system
+*. 重置隐私权限设置
+    tccutil reset All
