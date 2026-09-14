@@ -14,6 +14,10 @@ rm -f ~/.termux_authinfo
 *. wake lock
 termux-wake-lock
 
+*. api
+pkg install termux-api
+termux-battery-status
+
 *. x11
 pkg install x11-repo
 pkg install termux-x11-nightly
