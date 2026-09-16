@@ -33,3 +33,6 @@ ASAN_OPTIONS=symbolize=1 ASAN_SYMBOLIZER_PATH=$(shell which llvm-symbolizer) ./m
 
 # 禁用编译器扩展
 gcc -pedantic
+
+# 开启内存检查
+gcc -g -fsanitize=address -fno-omit-frame-pointer
