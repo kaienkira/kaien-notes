@@ -866,7 +866,7 @@ ninja -C build -j8 && ninja -C build install
 
 # qemu
 git clone https://gitlab.com/qemu-project/qemu.git
-git checkout v11.1.0
+git checkout v11.1.1
 mkdir build && cd build
 ../configure \
     --prefix="$GUI_ROOT_DIR" \
