@@ -1,0 +1,15 @@
+===============================================================================
+-*- Install -*-
+===============================================================================
+useradd -r -U -d /home/git -m -s /bin/bash -c "Git Version Control" git
+mkdir /opt/forgejo
+mkdir /opt/forgejo/bin
+mkdir /opt/forgejo/lib
+chmod 755 /opt/forgejo
+chmod 755 /opt/forgejo/bin
+chmod 750 /opt/forgejo/lib
+chown git:git /opt/forgejo/lib
+
+apt install git git-lfs
+cp forgejo-x.y.z-linux-amd64 /opt/forgejo/bin/forgejo
+chmod 755 /opt/forgejo/bin/forgejo
