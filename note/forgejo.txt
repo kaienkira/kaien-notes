@@ -13,3 +13,37 @@ chown git:git /opt/forgejo/lib
 apt install git git-lfs
 cp forgejo-x.y.z-linux-amd64 /opt/forgejo/bin/forgejo
 chmod 755 /opt/forgejo/bin/forgejo
+
+mysql -uroot
+> CREATE USER 'forgejo'@'localhost' IDENTIFIED BY '<pass>';
+> CREATE DATABASE forgejo CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_bin';
+> GRANT ALTER, CREATE, DELETE, DROP, INDEX, INSERT, REFERENCES, SELECT, UPDATE ON forgejo.* TO 'forgejo'@'localhost';
+> FLUSH PRIVILEGES;
+
+wget https://codeberg.org/forgejo/forgejo/raw/branch/forgejo/contrib/systemd/forgejo.service \
+    -O /opt/forgejo/bin/forgejo.service
+chmod 755 /opt/forgejo/bin/forgejo.service
+```
+[Unit]
+Description=Forgejo
+After=syslog.target
+After=network.target
+Wants=mariadb.service
+After=mariadb.service
+
+[Service]
+RestartSec=2s
+Type=notify
+User=git
+Group=git
+WorkingDirectory=/opt/forgejo/lib
+ExecStart=/opt/forgejo/bin/forgejo web --config /opt/forgejo/lib/app.ini
+Restart=always
+Environment=USER=git HOME=/home/git FORGEJO_WORK_DIR=/opt/forgejo/lib
+
+[Install]
+WantedBy=multi-user.target
+```
+ln -s /opt/forgejo/bin/forgejo.service /etc/systemd/system/
+systemctl enable forgejo.service
+systemctl start forgejo.service
