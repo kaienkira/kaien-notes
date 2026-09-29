@@ -17,6 +17,7 @@ termux-wake-lock
 *. api
 pkg install termux-api
 termux-battery-status
+termux-camera-photo <file>
 
 *. x11
 pkg install x11-repo
