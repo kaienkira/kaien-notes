@@ -100,6 +100,10 @@ git push --tags
 *. 显示提交
 git tag -n99
 git show <tag>
+*. 历史显示标签
+git log --oneline --decorate --tags
+*. 显示所有标签对应的commit
+git show-ref --tags
 
 ================================================================================
 -*- 冲突解决 -*-
