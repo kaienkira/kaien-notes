@@ -60,3 +60,6 @@ export LIBRARY_PATH=\
 <prefix>/glfw/lib\;\
 <prefix>/soil/lib\;\
 ${LIBRARY_PATH}
+
+*. winterm调用msys2
+<MSYS2_DIR>/msys2_shell.cmd -defterm -here -no-start
