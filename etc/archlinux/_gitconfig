@@ -8,7 +8,7 @@ ci = commit
 co = checkout
 br = branch
 l = log --graph \
-    --pretty=format:'%C(yellow)%H%d %C(blue)%an %C(red)<%ad> %C(reset)%s' \
+    --pretty=format:'%C(yellow)%H %C(blue)%an %C(red)<%ad> %C(reset)%s%C(yellow)%d' \
     --date=format:'%Y-%m-%d %H:%M'
 [core]
 editor = vim
