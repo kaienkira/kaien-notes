@@ -58,6 +58,7 @@ dotnet-dump analyze <core_file>
 > dumpheap -stat
 > logclose
 
+echo 0xffffffff > /proc/self/coredump_filter
 dotnet tool install -g dotnet-sos
 dotnet-sos install
 lldb
