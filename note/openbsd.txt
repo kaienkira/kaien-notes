@@ -34,6 +34,15 @@
     rcctl enable sshd
     rcctl start sshd
 ===============================================================================
+*. static network address
+    vi /etc/hostname.em0
+        inet 192.168.100.11/24 # inet autoconf
+    vi /etc/mygate
+        192.168.100.2
+    vi /etc/resolv.conf
+        nameserver 8.8.8.8
+    sh /etc/netstart em0
+===============================================================================
 *. wifi
   fw_update
   vi /etc/hostname.<wifi_interface>
