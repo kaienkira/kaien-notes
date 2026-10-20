@@ -66,10 +66,12 @@ lldb
 > thread select <thread_id>
 > frame select <frame>
 > clrstack -a
-> sos ClrStack
-> sos DumpStackObjects
 > verifyobj <addr>
 > dumpobj <addr>
+> clrthreads
+> pe -nested
+> sos ClrStack
+> sos DumpStackObjects
 
 ------------------------------------------------------------------------------
 <PropertyGroup>
