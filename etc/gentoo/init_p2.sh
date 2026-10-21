@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -o pipefail
+set -uo pipefail
 
 mkdir -p /etc/portage/repos.conf
 if [ $? -ne 0 ]; then exit 1; fi

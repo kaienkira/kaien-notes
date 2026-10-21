@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -o pipefail
+set -uo pipefail
 
 if [ $# -ne 1 ]
 then

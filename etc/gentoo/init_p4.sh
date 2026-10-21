@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -o pipefail
+set -uo pipefail
 
 install_system_tools()
 {

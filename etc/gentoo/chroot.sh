@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -o pipefail
+set -uo pipefail
 
 umount /mnt/gentoo/proc
 umount -R /mnt/gentoo/sys

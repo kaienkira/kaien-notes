@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -o pipefail
+set -uo pipefail
 
 script_abs_name=`readlink -f "$0"`
 script_path=`dirname "$script_abs_name"`

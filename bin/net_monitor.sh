@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -uo pipefail
+
 if [ $# -eq 1 ]
 then
     port=$1
