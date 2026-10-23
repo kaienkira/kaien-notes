@@ -82,7 +82,7 @@ make BUILD_STATIC=no PREFIX="$GUI_ROOT_DIR" install
 
 # brotli
 git clone https://github.com/google/brotli.git
-git checkout v1.2.0
+git checkout v1.2.1
 cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$GUI_ROOT_DIR" \
