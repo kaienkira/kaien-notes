@@ -16,6 +16,7 @@
     pkg info
     pkg update -f
     pkg install <package_name>
+    pkg upgrade
 
 ===============================================================================
 *. dns
