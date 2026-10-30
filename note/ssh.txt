@@ -57,6 +57,10 @@ Match User <user>
     AllowTCPForwarding no
     X11Forwarding no
     ForceCommand internal-sftp
+
+Match User <user>
+    PasswordAuthentication no
+    KbdInteractiveAuthentication no
 ===============================================================================
 ~/.ssh/config
 ===============================================================================

@@ -4,6 +4,11 @@
     pw useradd <user> -m -G <group_list>
 *. 把用户添加到组
     pw groupmod <group> -m <newmembers>
+*. 只有wheel组可以使用su
+    pw groupmod wheel -m <user>
+*. 禁止用户登陆
+    pw lock <user>
+    pw unlock <user>
 
 ===============================================================================
 *. packages
