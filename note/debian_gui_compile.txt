@@ -253,7 +253,7 @@ ninja -C build -j8 && ninja -C build install
 
 # glib2 (libffi,pcre2,zlib)
 git clone https://gitlab.gnome.org/GNOME/glib.git
-git checkout 2.90.1
+git checkout 2.90.2
 git submodule init
 git submodule update
 meson setup build \
