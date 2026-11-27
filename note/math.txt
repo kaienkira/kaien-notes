@@ -3,6 +3,36 @@
 De Casteljau's algorithm
 
 正态分布是唯一满足对称性、有限方差、最大熵的分布
+==============================================================================
+# 余弦和差公式
+# cos(alpha + beta) = cos(alpha)*cos(beta) - sin(alpha)*sin(beta)
+------------------------------------------------------------------------------
+// 在单位圆 x^2 + y^2 = 1 上取四点
+// P1 = (1, 0)
+// P2 = (cos(alpha), sin(alpha))
+// P3 = (cos(alpha + beta), sin(alpha + beta))
+// P4 = (cos(beta), -sin(beta))
+//
+// 弦P1P3和弦P2P4对应的圆心角都是alpha + beta, 对应的弦长也相等
+// 根据两点间的距离公式
+// |P1P3|^2 = (1 - cos(alpha + beta))^2 + sin(alpha + beta)^2
+//          = 1 + cos(alpha + beta)^2 - 2*cos(alpha + beta) + sin(alpha + beta)^2
+//          = 2 - 2*cos(alpha + beta);
+// |P2P4|^2 = (cos(alpha) - cos(beta))^2 + (sin(alpha) + sin(beta)^2
+//          = cos(alpha)^2 + cos(beta)^2 - 2*cos(alpha)*cos(beta)
+//            + sin(alpha)^2 + sin(beta)^2 + 2*sin(alpha)*sin(beta)
+//          = 2 - 2*(cos(alpha)*cos(beta) - sin(alpha)*sin(beta))
+// => cos(alpha + beta) = cos(alpha)*cos(beta) - sin(alpha)*sin(beta)
+
+------------------------------------------------------------------------------
+# 正弦和差公式
+# sin(alpha + beta) = sin(alpha)*cos(beta) + cos(alpha)*sin(beta)
+------------------------------------------------------------------------------
+// sin(theta) = cos(pi/2 - theta) =>
+// sin(alpha + beta) = cos(pi/2 - alpha - beta) = cos((pi/2 - alpha) + (-beta)
+// 代入余弦合角公式
+//   = cos(pi/2 - alpha)*cos(-beta) - sin(pi/2 - alpha)*sin(-beta)
+//   = sin(alpha)*cos(beta) + cos(alpha)*sin(beta)
 
 ==============================================================================
 -*- 叉积 -*-
