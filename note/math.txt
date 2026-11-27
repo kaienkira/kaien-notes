@@ -62,28 +62,24 @@ i*k = -j
 ------------------------------------------------------------------------------
 *. 四元数乘法
 ------------------------------------------------------------------------------
-三维向量a = (a1, a2, a3) 对应为纯虚四元数
-A = a1*i + a2*j + a3*k
-三维向量b = (b1, b2, b3) 对应为
-B = b1*i + b2*j + b3*k
+# 三维向量a = (a1, a2, a3)
+# 三维向量b = (b1, b2, b3)
+# 四元数A = a0 + a1*i + a2*j + a3*k
+# 四元数B = b0 + b1*i + b2*j + b3*k
+# A*B  = a0*b0 - (a dot b) + a0*b + b0*a + (a cross b)
+// A*B = (a0 + a1*i + a2*j + a3*k)(b0 + b1*i + b2*j + b3*k)
+//     =   a0*b0   + a0*b1*i   + a0*b2*j   + a0*b3*k
+//       + a1*b0*i + a1*b1*i^2 + a1*b2*i*j + a1*b3*i*k
+//       + a2*b0*j + a2*b1*j*i + a2*b2*j^2 + a2*b3*j*k
+//       + a3*b0*k + a3*b1*k*i + a3*b2*k*j + a3*b3*k^2
+//     =    a0*b0 - a1*b1 - a2*b2 - a3*b3
+//       + (a0*b1 + a1*b0 + a2*b3 - a3*b2) * i
+//       + (a0*b2 + a2*b0 + a3*b1 - a1*b3) * j
+//       + (a0*b3 + a3*b0 + a1*b2 - a2*b1) * k
+//     = a0*b0 - (a dot b) + a0*b + b0*a + (a cross b)
 
-A*B = (a1*i + a2*j + a3*k)(b1*i + b2*j + b3*k)
-    = -(a1*b1 + a2*b2 + a3*b3)
-     + (a2*b3 - a3*b2)*i
-     - (a1*b3 - a3*b1)*j
-     + (a1*b2 - a2*b1)*k
-    = -(a dot b) + a cross b
-
-A*B = (a0 + a1*i + a2*j + a3*k)(b0 + b1*i + b2*j + b3*k)
-    =   a0*b0   + a0*b1*i   + a0*b2*j   + a0*b3*k
-      + a1*b0*i + a1*b1*i^2 + a1*b2*i*j + a1*b3*i*k
-      + a2*b0*j + a2*b1*j*i + a2*b2*j^2 + a2*b3*j*k
-      + a3*b0*k + a3*b1*k*i + a3*b2*k*j + a3*b3*k^2
-    =    a0*b0 - a1*b1 - a2*b2 - a3*b3
-      + (a0*b1 + a1*b0 + a1*b3 - a3*b2) * i
-      + (a0*b2 + a2*b0 + a3*b1 - a1*b3) * j
-      + (a0*b3 + a3*b0 + a1*b2 - a2*b1) * k
-    = a0*b0 - (a dot b) + a0*b + b0*a - (a cross b)
+# 对于纯虚四元数A,B有
+# A*B = -(a dot b) + a cross b
 
 ------------------------------------------------------------------------------
 *. 任意单位纯虚四元数N，都具有与复数单位i类似的性质：N^2 = -1
@@ -153,38 +149,60 @@ Q^-1 = Q`/|Q|^2
 ------------------------------------------------------------------------------
 *. 四元数旋转公式
 ------------------------------------------------------------------------------
-向量v = (v1, v2, v3) 绕单位轴 n = (n1, n2, n3) 按右手规则旋转theta角的结果
-向量w = (w1, w2, w3)
-  # 让右手拇指指向单位向量n的方向, 其余四指自然弯曲
-    四指弯曲的方向就是正角度的旋转方向
+# 向量v = (v1, v2, v3) 绕单位轴 n = (n1, n2, n3) 按右手规则旋转theta角的结果
+# 向量w = (w1, w2, w3)
+#   W = Q*V*Q` 其中
+#   Q  = cos(theta/2) + (n1*i + n2*j + n3*k)*sin(theta/2)
+#   Q` = cos(theta/2) - (n1*i + n2*j + n3*k)*sin(theta/2)
+* 右手规则: 让右手拇指指向单位向量n的方向, 其余四指自然弯曲
+* 四指弯曲的方向就是正角度的旋转方向
 
-考虑变换W = Q*V*Q`, 其中Q是一个单位四元数
-W` = (Q*V*Q`)` = Q``*V`*Q` = Q*V`*Q` = -Q*V*Q` = -W
-说明W是纯虚四元数
-同时|W| = |Q|*|V|*|Q`| = |V|
-说明该变换保持结果仍然是纯虚四元数，并且模长不变
-旋转轴N使用该变化后本身必须保持不动, 因而要求
-Q*N*Q` = N
-  => Q*N*Q`*Q = N*Q
-  => Q*N = N*Q
+令 Q = a + v(n)
+   Q` = a - v(n)
+   V = 0 + v(v)
+其中 a = cos(theta/2)
+     v(n) = (n1*i + n2*j + n3*k)*sin(theta/2)
 
-设 Q = a + U 其中U是向量u对应的纯虚四元数
-   Q*N - N*Q = 2(u cross n) = 0
-u cross n = 0 要求u和n平行, 所以Q要求有形式 Q = a + b*N
-|Q| = 1 要求 a^2 + b^2 = 1 这意味着(a,b)在单位圆上，可以用某个角度alpha参数化
-Q就有形式Q = cos(alpha) + sin(alpha)*N
+   Q*V = a*0 - (v(n) dot v(v)) + a*v(v) + 0*v(n) + (v(n) cross v(v))
+       = -(v(n) dot v(v)) + a*v(v) + (v(n) cross v(v))
 
-令V = v1*i + v2*j + v3*k
-令Q  = cos(theta/2) + (n1*i + n2*j + n3*k)*sin(theta/2)
-  Q` = cos(theta/2) - (n1*i + n2*j + n3*k)*sin(theta/2)
-  |Q| = cos(theta/2)^2
-        + n1^2*sin(theta/2)^2
-        + n2^2*sin(theta/2)^2
-        + n3^2*sin(theta/2)^2
-      = cos(theta/2)^2 + sin(theta/2)^2
-      = 1
-  |Q`| = 1
+   Q*V*Q` = a*(-(v(n) dot v(v)))
+            - ((a*v(v) + (v(n) cross v(v)) dot (-v(n)))
+            + (-(v(n) dot v(v)))*(-v(n))
+            + a*(a*v(v) + (v(n) cross v(v)))
+            + ((a*v(v) + (v(n) cross v(v))) cross (-v(n)))
+          = -a*(v(v) dot v(n))
+            +a*(v(v) dot v(n)) + (v(n) dot (v(n) cross v(v)))
+            +(v(n) dot v(v))*v(n)
+            + a^2*v(v) + a*(v(n) cross v(v))
+            - a*(v(v) cross v(n)) - (v(n) cross v(v))) cross v(n))
+          = (v(n) dot (v(n) cross v(v)))
+            +(v(n) dot v(v))*v(n)
+            +a^2*v(v)
+            +2*a*(v(n) cross v(v))
+            -(v(n) cross v(v))) cross v(n))
+          = (v(n) dot v(v))*v(n)
+            +a^2*v(v)
+            +2*a*(v(n) cross v(v))
+            -(v(n) cross v(v))) cross v(n))
+
+
+// 考虑变换W = Q*V*Q`, 其中Q是一个单位四元数
+// W` = (Q*V*Q`)` = Q``*V`*Q` = Q*V`*Q` = -Q*V*Q` = -W
+// 说明W是纯虚四元数
+// 同时|W| = |Q|*|V|*|Q`| = |V|
+// 说明该变换保持结果仍然是纯虚四元数，并且模长不变
+// 旋转轴N使用该变化后本身必须保持不动, 因而要求
+// Q*N*Q` = N
+//   => Q*N*Q`*Q = N*Q
+//   => Q*N = N*Q
+//
+// 设 Q = a + U 其中U是向量u对应的纯虚四元数
+//    Q*N - N*Q = 2(u cross n) = 0
+// u cross n = 0 要求u和n平行, 所以Q要求有形式 Q = a + b*N
+// |Q| = 1 要求 a^2 + b^2 = 1 这意味着(a,b)在单位圆上，可以用某个角度alpha参数化
+// Q就有形式Q = cos(alpha) + sin(alpha)*N
 
 # Q和-Q表示同一个旋转
-    W = Q*V*Q` = -Q*V*(-Q)`
+# W = Q*V*Q` = -Q*V*(-Q)`
 ==============================================================================
